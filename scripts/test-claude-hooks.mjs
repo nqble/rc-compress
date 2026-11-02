@@ -93,10 +93,7 @@ test('pushing to main, or forcing anything, is refused', () => {
 test('the hooks are turned on in .claude/settings.json, so a forgotten line is caught', async () => {
   const { readFileSync } = await import('node:fs')
   const settings = JSON.parse(
-    readFileSync(
-      new URL('../.claude/settings.json', import.meta.url),
-      'utf8',
-    ),
+    readFileSync(new URL('../.claude/settings.json', import.meta.url), 'utf8'),
   )
   const commands = settings.hooks.PreToolUse.flatMap((entry) =>
     entry.hooks.map((hook) => hook.command),
