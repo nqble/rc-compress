@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "Preparing CompressO",
+    "title": "Preparing rc-compress",
     "checking": "Checking compression tools…",
     "verifying": "Verifying compression tools…",
     "extracting": "Extracting compression tools…",
@@ -20,11 +20,11 @@
         "changeFailed": "The setting could not be changed.",
         "openAtLogin": {
           "title": "Open at login",
-          "description": "Open CompressO automatically when you log in to your computer."
+          "description": "Open rc-compress automatically when you log in to your computer."
         },
         "needsApproval": {
           "title": "Turned off in System Settings",
-          "description": "CompressO is not allowed to open at login. Allow it in System Settings, under General and Login Items.",
+          "description": "rc-compress is not allowed to open at login. Allow it in System Settings, under General and Login Items.",
           "button": "Open Login Items"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "Show menu bar icon",
           "title_windows": "Show system tray icon",
-          "description_macos": "Show the CompressO icon, the compression progress and the drop zone in the menu bar.",
-          "description_windows": "Show the CompressO icon, the compression progress and the drop zone in the system tray.",
+          "description_macos": "Show the rc-compress icon, the compression progress and the drop zone in the menu bar.",
+          "description_windows": "Show the rc-compress icon, the compression progress and the drop zone in the system tray.",
           "locked": "Media in the drop zone is being compressed. This can be turned off once it is done or stopped."
         }
       },
@@ -164,7 +164,7 @@
           "button": "Add folder",
           "dialogTitle": "Choose a folder to watch.",
           "alreadyWatched": "This folder is already watched.",
-          "description_linux": "New media added to these folders, such as screen recordings or downloads, is compressed automatically while CompressO is open."
+          "description_linux": "New media added to these folders, such as screen recordings or downloads, is compressed automatically while rc-compress is open."
         },
         "watch": "Watch {{name}}",
         "missing": "Folder does not exist. It is not being watched.",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "Settings",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "General",
@@ -280,7 +280,7 @@
       "version": "Version {{version}}",
       "newVersion": "Version {{version}} is available. Restart the app after updating to use it.",
       "upToDate": "You are on the latest version.",
-      "checkDescription": "Check if a newer version of CompressO is available.",
+      "checkDescription": "Check if a newer version of rc-compress is available.",
       "updateNow": "Update now",
       "checkForUpdates": "Check for updates",
       "website": {
@@ -291,7 +291,7 @@
         "title": "Free and open-source",
         "license": "Licensed under AGPL-3.0"
       },
-      "madeBy": "Made with <heart></heart> in public by <link>Code For Real⚡</link>",
+      "madeBy": "Based on <link>compressO</link> by Code For Real⚡",
       "releaseNotes": "Release notes",
       "releaseNotesOnline": {
         "title": "See what's new in version {{version}}",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "Changelog",
-        "description": "What's new in every version of CompressO?",
+        "description": "What's new in every version of rc-compress?",
         "view": "View changelog"
       }
     },
     "credits": {
       "tools": {
         "title": "Open-source tools",
-        "description": "CompressO would not be possible without these incredible open-source tools and libraries."
+        "description": "rc-compress would not be possible without these incredible open-source tools and libraries."
       },
       "license": "Licensed under {{license}}",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "This file type is not supported.",
     "unsupportedSkipped": "Unsupported files were skipped.",
     "addFailed": "The media could not be added.",
-    "openFailed": "CompressO could not be opened.",
-    "quitFailed": "CompressO could not be quit.",
+    "openFailed": "rc-compress could not be opened.",
+    "quitFailed": "rc-compress could not be quit.",
     "pin": "Pin",
     "unpin": "Unpin",
     "openApp": "Open App",
@@ -792,8 +792,8 @@
     "selectTitle": "Select images, videos or audio to compress.",
     "selectFailed": "Could not select media.",
     "invalidFiles": "Invalid files/folders",
-    "accessDenied_one": "CompressO is not allowed to open this file. Allow access to its folder in your system settings, then add it again.",
-    "accessDenied_other": "CompressO is not allowed to open {{count}} files. Allow access to their folder in your system settings, then add them again.",
+    "accessDenied_one": "rc-compress is not allowed to open this file. Allow access to its folder in your system settings, then add it again.",
+    "accessDenied_other": "rc-compress is not allowed to open {{count}} files. Allow access to their folder in your system settings, then add them again.",
     "openSettings": "Open Settings"
   },
   "save": {
@@ -962,12 +962,12 @@
     "unsavedTitle": "Media not saved",
     "unsavedMessage": "Your compressed media is not saved yet. Quitting now will discard it.",
     "dropQueueMessage": "Media in the drop zone is still being compressed. Quitting now will stop it.",
-    "openApp": "Open CompressO",
-    "quitApp": "Quit CompressO",
-    "aboutApp": "About CompressO",
+    "openApp": "Open rc-compress",
+    "quitApp": "Quit rc-compress",
+    "aboutApp": "About rc-compress",
     "settings": "Settings…",
     "services": "Services",
-    "hideApp": "Hide CompressO",
+    "hideApp": "Hide rc-compress",
     "hideOthers": "Hide Others",
     "file": "File",
     "closeWindow": "Close Window",

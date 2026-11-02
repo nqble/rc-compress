@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "CompressO 준비 중",
+    "title": "rc-compress 준비 중",
     "checking": "압축 도구 확인 중…",
     "verifying": "압축 도구 검증 중…",
     "extracting": "압축 도구 추출 중…",
@@ -20,11 +20,11 @@
         "changeFailed": "설정을 변경할 수 없습니다.",
         "openAtLogin": {
           "title": "로그인 시 열기",
-          "description": "컴퓨터에 로그인할 때 CompressO를 자동으로 엽니다."
+          "description": "컴퓨터에 로그인할 때 rc-compress를 자동으로 엽니다."
         },
         "needsApproval": {
           "title": "시스템 설정에서 꺼져 있음",
-          "description": "CompressO가 로그인 시 열리도록 허용되어 있지 않습니다. 시스템 설정의 일반 > 로그인 항목에서 허용하십시오.",
+          "description": "rc-compress가 로그인 시 열리도록 허용되어 있지 않습니다. 시스템 설정의 일반 > 로그인 항목에서 허용하십시오.",
           "button": "로그인 항목 열기"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "메뉴 막대 아이콘 표시",
           "title_windows": "시스템 트레이 아이콘 표시",
-          "description_macos": "메뉴 막대에 CompressO 아이콘, 압축 진행률 및 드롭 영역을 표시합니다.",
-          "description_windows": "시스템 트레이에 CompressO 아이콘, 압축 진행률 및 드롭 영역을 표시합니다.",
+          "description_macos": "메뉴 막대에 rc-compress 아이콘, 압축 진행률 및 드롭 영역을 표시합니다.",
+          "description_windows": "시스템 트레이에 rc-compress 아이콘, 압축 진행률 및 드롭 영역을 표시합니다.",
           "locked": "드롭 영역의 미디어를 압축하는 중입니다. 완료되거나 중지된 후에 끌 수 있습니다."
         }
       },
@@ -164,7 +164,7 @@
           "button": "폴더 추가",
           "dialogTitle": "감시할 폴더를 선택하세요.",
           "alreadyWatched": "이미 감시 중인 폴더입니다.",
-          "description_linux": "CompressO가 열려 있는 동안 이 폴더에 추가된 새 미디어(화면 녹화, 다운로드 등)는 자동으로 압축됩니다."
+          "description_linux": "rc-compress가 열려 있는 동안 이 폴더에 추가된 새 미디어(화면 녹화, 다운로드 등)는 자동으로 압축됩니다."
         },
         "watch": "{{name}} 감시",
         "missing": "폴더가 존재하지 않아 감시하지 않습니다.",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "설정",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "일반",
@@ -280,7 +280,7 @@
       "version": "버전 {{version}}",
       "newVersion": "버전 {{version}}을(를) 사용할 수 있습니다. 업데이트 후 앱을 재시작하면 사용할 수 있습니다.",
       "upToDate": "최신 버전을 사용하고 있습니다.",
-      "checkDescription": "CompressO의 새 버전이 있는지 확인합니다.",
+      "checkDescription": "rc-compress의 새 버전이 있는지 확인합니다.",
       "updateNow": "지금 업데이트",
       "checkForUpdates": "업데이트 확인",
       "website": {
@@ -291,7 +291,7 @@
         "title": "무료 및 오픈 소스",
         "license": "AGPL-3.0 라이선스"
       },
-      "madeBy": "<link>Code For Real⚡</link>이(가) <heart></heart>을(를) 담아 공개적으로 개발",
+      "madeBy": "Code For Real⚡의 <link>compressO</link>를 기반으로 합니다",
       "releaseNotes": "릴리스 노트",
       "releaseNotesOnline": {
         "title": "버전 {{version}}의 새로운 기능 보기",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "변경 내역",
-        "description": "CompressO 각 버전의 새로운 기능.",
+        "description": "rc-compress 각 버전의 새로운 기능.",
         "view": "변경 내역 보기"
       }
     },
     "credits": {
       "tools": {
         "title": "오픈 소스 도구",
-        "description": "이 훌륭한 오픈 소스 도구와 라이브러리가 없었다면 CompressO는 만들어질 수 없었습니다."
+        "description": "이 훌륭한 오픈 소스 도구와 라이브러리가 없었다면 rc-compress는 만들어질 수 없었습니다."
       },
       "license": "{{license}} 라이선스",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "지원되지 않는 파일 형식입니다.",
     "unsupportedSkipped": "지원되지 않는 파일은 건너뛰었습니다.",
     "addFailed": "미디어를 추가할 수 없습니다.",
-    "openFailed": "CompressO를 열 수 없습니다.",
-    "quitFailed": "CompressO를 종료할 수 없습니다.",
+    "openFailed": "rc-compress를 열 수 없습니다.",
+    "quitFailed": "rc-compress를 종료할 수 없습니다.",
     "pin": "고정",
     "unpin": "고정 해제",
     "openApp": "앱 열기",
@@ -784,7 +784,7 @@
     "selectTitle": "압축할 이미지, 비디오 또는 오디오를 선택하십시오.",
     "selectFailed": "미디어를 선택할 수 없습니다.",
     "invalidFiles": "유효하지 않은 파일 또는 폴더",
-    "accessDenied_other": "CompressO에 파일 {{count}}개를 열 권한이 없습니다. 시스템 설정에서 해당 폴더에 대한 접근을 허용한 다음 다시 추가하십시오.",
+    "accessDenied_other": "rc-compress에 파일 {{count}}개를 열 권한이 없습니다. 시스템 설정에서 해당 폴더에 대한 접근을 허용한 다음 다시 추가하십시오.",
     "openSettings": "설정 열기"
   },
   "save": {
@@ -947,12 +947,12 @@
     "unsavedTitle": "미디어가 저장되지 않음",
     "unsavedMessage": "압축된 미디어가 아직 저장되지 않았습니다. 지금 종료하면 버려집니다.",
     "dropQueueMessage": "드롭 영역의 미디어를 아직 압축하는 중입니다. 지금 종료하면 압축이 중지됩니다.",
-    "openApp": "CompressO 열기",
-    "quitApp": "CompressO 종료",
-    "aboutApp": "CompressO에 관하여",
+    "openApp": "rc-compress 열기",
+    "quitApp": "rc-compress 종료",
+    "aboutApp": "rc-compress에 관하여",
     "settings": "설정…",
     "services": "서비스",
-    "hideApp": "CompressO 가리기",
+    "hideApp": "rc-compress 가리기",
     "hideOthers": "기타 가리기",
     "file": "파일",
     "closeWindow": "윈도우 닫기",

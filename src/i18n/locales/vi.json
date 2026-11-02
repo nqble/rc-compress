@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "Đang chuẩn bị CompressO",
+    "title": "Đang chuẩn bị rc-compress",
     "checking": "Đang kiểm tra công cụ nén…",
     "verifying": "Đang xác minh công cụ nén…",
     "extracting": "Đang giải nén công cụ nén…",
@@ -20,11 +20,11 @@
         "changeFailed": "Không thể thay đổi cài đặt.",
         "openAtLogin": {
           "title": "Mở khi đăng nhập",
-          "description": "Tự động mở CompressO khi bạn đăng nhập vào máy tính."
+          "description": "Tự động mở rc-compress khi bạn đăng nhập vào máy tính."
         },
         "needsApproval": {
           "title": "Đã tắt trong Cài đặt hệ thống",
-          "description": "CompressO không được phép mở khi đăng nhập. Hãy cho phép trong Cài đặt hệ thống, mục Cài đặt chung > Mục đăng nhập.",
+          "description": "rc-compress không được phép mở khi đăng nhập. Hãy cho phép trong Cài đặt hệ thống, mục Cài đặt chung > Mục đăng nhập.",
           "button": "Mở Mục đăng nhập"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "Hiển thị biểu tượng trên thanh menu",
           "title_windows": "Hiển thị biểu tượng trong khay hệ thống",
-          "description_macos": "Hiển thị biểu tượng CompressO, tiến trình nén và vùng thả trên thanh menu.",
-          "description_windows": "Hiển thị biểu tượng CompressO, tiến trình nén và vùng thả trong khay hệ thống.",
+          "description_macos": "Hiển thị biểu tượng rc-compress, tiến trình nén và vùng thả trên thanh menu.",
+          "description_windows": "Hiển thị biểu tượng rc-compress, tiến trình nén và vùng thả trong khay hệ thống.",
           "locked": "Tệp phương tiện trong vùng thả đang được nén. Có thể tắt tùy chọn này khi quá trình hoàn tất hoặc bị dừng."
         }
       },
@@ -164,7 +164,7 @@
           "button": "Thêm thư mục",
           "dialogTitle": "Chọn thư mục để theo dõi.",
           "alreadyWatched": "Thư mục này đã được theo dõi.",
-          "description_linux": "Phương tiện mới được thêm vào các thư mục này, như bản ghi màn hình hoặc tệp tải xuống, sẽ được nén tự động khi CompressO đang mở."
+          "description_linux": "Phương tiện mới được thêm vào các thư mục này, như bản ghi màn hình hoặc tệp tải xuống, sẽ được nén tự động khi rc-compress đang mở."
         },
         "watch": "Theo dõi {{name}}",
         "missing": "Thư mục không tồn tại nên hiện không được theo dõi.",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "Cài đặt",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "Chung",
@@ -280,7 +280,7 @@
       "version": "Phiên bản {{version}}",
       "newVersion": "Đã có phiên bản {{version}}. Khởi động lại ứng dụng sau khi cập nhật để sử dụng.",
       "upToDate": "Bạn đang dùng phiên bản mới nhất.",
-      "checkDescription": "Kiểm tra xem có phiên bản CompressO mới hơn không.",
+      "checkDescription": "Kiểm tra xem có phiên bản rc-compress mới hơn không.",
       "updateNow": "Cập nhật ngay",
       "checkForUpdates": "Kiểm tra bản cập nhật",
       "website": {
@@ -291,7 +291,7 @@
         "title": "Miễn phí và mã nguồn mở",
         "license": "Cấp phép theo AGPL-3.0"
       },
-      "madeBy": "Được <link>Code For Real⚡</link> phát triển công khai bằng cả <heart></heart>",
+      "madeBy": "Dựa trên <link>compressO</link> của Code For Real⚡",
       "releaseNotes": "Ghi chú phát hành",
       "releaseNotesOnline": {
         "title": "Xem những điểm mới trong phiên bản {{version}}",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "Nhật ký thay đổi",
-        "description": "Những điểm mới trong mỗi phiên bản CompressO.",
+        "description": "Những điểm mới trong mỗi phiên bản rc-compress.",
         "view": "Xem nhật ký thay đổi"
       }
     },
     "credits": {
       "tools": {
         "title": "Công cụ mã nguồn mở",
-        "description": "CompressO sẽ không thể có được nếu thiếu những công cụ và thư viện mã nguồn mở tuyệt vời này."
+        "description": "rc-compress sẽ không thể có được nếu thiếu những công cụ và thư viện mã nguồn mở tuyệt vời này."
       },
       "license": "Cấp phép theo {{license}}",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "Loại tệp này không được hỗ trợ.",
     "unsupportedSkipped": "Đã bỏ qua các tệp không được hỗ trợ.",
     "addFailed": "Không thể thêm tệp phương tiện.",
-    "openFailed": "Không thể mở CompressO.",
-    "quitFailed": "Không thể thoát CompressO.",
+    "openFailed": "Không thể mở rc-compress.",
+    "quitFailed": "Không thể thoát rc-compress.",
     "pin": "Ghim",
     "unpin": "Bỏ ghim",
     "openApp": "Mở ứng dụng",
@@ -784,7 +784,7 @@
     "selectTitle": "Chọn hình ảnh, video hoặc âm thanh để nén.",
     "selectFailed": "Không thể chọn tệp phương tiện.",
     "invalidFiles": "Tệp hoặc thư mục không hợp lệ",
-    "accessDenied_other": "CompressO không được phép mở {{count}} tệp. Hãy cho phép truy cập thư mục của tệp trong cài đặt hệ thống, rồi thêm lại.",
+    "accessDenied_other": "rc-compress không được phép mở {{count}} tệp. Hãy cho phép truy cập thư mục của tệp trong cài đặt hệ thống, rồi thêm lại.",
     "openSettings": "Mở cài đặt"
   },
   "save": {
@@ -947,12 +947,12 @@
     "unsavedTitle": "Tệp chưa được lưu",
     "unsavedMessage": "Tệp đã nén chưa được lưu. Nếu thoát bây giờ, các tệp này sẽ bị bỏ.",
     "dropQueueMessage": "Tệp phương tiện trong vùng thả vẫn đang được nén. Nếu thoát bây giờ, quá trình này sẽ dừng.",
-    "openApp": "Mở CompressO",
-    "quitApp": "Thoát CompressO",
-    "aboutApp": "Giới thiệu về CompressO",
+    "openApp": "Mở rc-compress",
+    "quitApp": "Thoát rc-compress",
+    "aboutApp": "Giới thiệu về rc-compress",
     "settings": "Cài đặt…",
     "services": "Dịch vụ",
-    "hideApp": "Ẩn CompressO",
+    "hideApp": "Ẩn rc-compress",
     "hideOthers": "Ẩn các ứng dụng khác",
     "file": "Tệp",
     "closeWindow": "Đóng cửa sổ",

@@ -70,7 +70,7 @@ export default function Credits() {
         description={t('settings.credits.notices.description')}
       >
         <Link
-          href="https://github.com/codeforreal1/compressO/blob/main/THIRD_PARTY_NOTICES.md"
+          href="https://github.com/nqble/rc-compress/blob/main/THIRD_PARTY_NOTICES.md"
           className="text-sm"
         >
           {t('settings.credits.notices.view')}

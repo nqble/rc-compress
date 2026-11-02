@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "CompressO hazırlanıyor",
+    "title": "rc-compress hazırlanıyor",
     "checking": "Sıkıştırma araçları kontrol ediliyor…",
     "verifying": "Sıkıştırma araçları doğrulanıyor…",
     "extracting": "Sıkıştırma araçları çıkarılıyor…",
@@ -20,11 +20,11 @@
         "changeFailed": "Ayar değiştirilemedi.",
         "openAtLogin": {
           "title": "Oturum açılınca aç",
-          "description": "Bilgisayarınızda oturum açtığınızda CompressO’yu otomatik olarak açın."
+          "description": "Bilgisayarınızda oturum açtığınızda rc-compress’yu otomatik olarak açın."
         },
         "needsApproval": {
           "title": "Sistem Ayarları’nda kapatılmış",
-          "description": "CompressO’nun oturum açılınca açılmasına izin verilmiyor. Sistem Ayarları’nda, Genel ve Giriş Öğeleri altında buna izin verin.",
+          "description": "rc-compress’nun oturum açılınca açılmasına izin verilmiyor. Sistem Ayarları’nda, Genel ve Giriş Öğeleri altında buna izin verin.",
           "button": "Giriş Öğeleri’ni Aç"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "Menü çubuğu simgesini göster",
           "title_windows": "Sistem tepsisi simgesini göster",
-          "description_macos": "CompressO simgesini, sıkıştırma ilerlemesini ve bırakma alanını menü çubuğunda gösterin.",
-          "description_windows": "CompressO simgesini, sıkıştırma ilerlemesini ve bırakma alanını sistem tepsisinde gösterin.",
+          "description_macos": "rc-compress simgesini, sıkıştırma ilerlemesini ve bırakma alanını menü çubuğunda gösterin.",
+          "description_windows": "rc-compress simgesini, sıkıştırma ilerlemesini ve bırakma alanını sistem tepsisinde gösterin.",
           "locked": "Bırakma alanındaki medya sıkıştırılıyor. Bu, işlem bittiğinde veya durdurulduğunda kapatılabilir."
         }
       },
@@ -164,7 +164,7 @@
           "button": "Klasör ekle",
           "dialogTitle": "İzlenecek bir klasör seçin.",
           "alreadyWatched": "Bu klasör zaten izleniyor.",
-          "description_linux": "Bu klasörlere eklenen yeni medya, örneğin ekran kayıtları veya indirmeler, CompressO açıkken otomatik olarak sıkıştırılır."
+          "description_linux": "Bu klasörlere eklenen yeni medya, örneğin ekran kayıtları veya indirmeler, rc-compress açıkken otomatik olarak sıkıştırılır."
         },
         "watch": "{{name}} klasörünü izle",
         "missing": "Klasör mevcut değil. İzlenmiyor.",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "Ayarlar",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "Genel",
@@ -280,7 +280,7 @@
       "version": "Sürüm {{version}}",
       "newVersion": "Sürüm {{version}} mevcut. Kullanmak için güncellemeden sonra uygulamayı yeniden başlatın.",
       "upToDate": "En son sürümü kullanıyorsunuz.",
-      "checkDescription": "CompressO’nun daha yeni bir sürümünün olup olmadığını denetleyin.",
+      "checkDescription": "rc-compress’nun daha yeni bir sürümünün olup olmadığını denetleyin.",
       "updateNow": "Şimdi güncelle",
       "checkForUpdates": "Güncellemeleri denetle",
       "website": {
@@ -291,7 +291,7 @@
         "title": "Ücretsiz ve açık kaynak",
         "license": "AGPL-3.0 ile lisanslanmıştır"
       },
-      "madeBy": "<link>Code For Real⚡</link> tarafından herkese açık olarak <heart></heart> ile yapıldı",
+      "madeBy": "Code For Real⚡ tarafından geliştirilen <link>compressO</link> temel alınmıştır",
       "releaseNotes": "Sürüm notları",
       "releaseNotesOnline": {
         "title": "{{version}} sürümündeki yenilikleri görün",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "Değişiklik günlüğü",
-        "description": "CompressO’nun her sürümündeki yenilikler.",
+        "description": "rc-compress’nun her sürümündeki yenilikler.",
         "view": "Değişiklik günlüğünü görüntüle"
       }
     },
     "credits": {
       "tools": {
         "title": "Açık kaynak araçlar",
-        "description": "CompressO, bu harika açık kaynak araçlar ve kitaplıklar olmadan mümkün olmazdı."
+        "description": "rc-compress, bu harika açık kaynak araçlar ve kitaplıklar olmadan mümkün olmazdı."
       },
       "license": "{{license}} ile lisanslanmıştır",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "Bu dosya türü desteklenmiyor.",
     "unsupportedSkipped": "Desteklenmeyen dosyalar atlandı.",
     "addFailed": "Medya eklenemedi.",
-    "openFailed": "CompressO açılamadı.",
-    "quitFailed": "CompressO’dan çıkılamadı.",
+    "openFailed": "rc-compress açılamadı.",
+    "quitFailed": "rc-compress’dan çıkılamadı.",
     "pin": "Sabitle",
     "unpin": "Sabitlemeyi kaldır",
     "openApp": "Uygulamayı Aç",
@@ -792,8 +792,8 @@
     "selectTitle": "Sıkıştırılacak görüntüleri, videoları veya sesleri seçin.",
     "selectFailed": "Medya seçilemedi.",
     "invalidFiles": "Geçersiz dosyalar veya klasörler",
-    "accessDenied_one": "CompressO’nun bu dosyayı açma izni yok. Sistem ayarlarında klasörüne erişime izin verin ve dosyayı yeniden ekleyin.",
-    "accessDenied_other": "CompressO’nun {{count}} dosyayı açma izni yok. Sistem ayarlarında klasörlerine erişime izin verin ve dosyaları yeniden ekleyin.",
+    "accessDenied_one": "rc-compress’nun bu dosyayı açma izni yok. Sistem ayarlarında klasörüne erişime izin verin ve dosyayı yeniden ekleyin.",
+    "accessDenied_other": "rc-compress’nun {{count}} dosyayı açma izni yok. Sistem ayarlarında klasörlerine erişime izin verin ve dosyaları yeniden ekleyin.",
     "openSettings": "Ayarları aç"
   },
   "save": {
@@ -962,12 +962,12 @@
     "unsavedTitle": "Medya kaydedilmedi",
     "unsavedMessage": "Sıkıştırılan medyanız henüz kaydedilmedi. Şimdi çıkarsanız atılır.",
     "dropQueueMessage": "Bırakma alanındaki medya hâlâ sıkıştırılıyor. Şimdi çıkarsanız işlem durdurulur.",
-    "openApp": "CompressO’yu Aç",
-    "quitApp": "CompressO’dan Çık",
-    "aboutApp": "CompressO Hakkında",
+    "openApp": "rc-compress’yu Aç",
+    "quitApp": "rc-compress’dan Çık",
+    "aboutApp": "rc-compress Hakkında",
     "settings": "Ayarlar…",
     "services": "Servisler",
-    "hideApp": "CompressO’yu Gizle",
+    "hideApp": "rc-compress’yu Gizle",
     "hideOthers": "Diğerlerini Gizle",
     "file": "Dosya",
     "closeWindow": "Pencereyi Kapat",

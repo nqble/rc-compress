@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "正在准备 CompressO",
+    "title": "正在准备 rc-compress",
     "checking": "正在检查压缩工具…",
     "verifying": "正在验证压缩工具…",
     "extracting": "正在解压压缩工具…",
@@ -20,11 +20,11 @@
         "changeFailed": "无法更改此设置。",
         "openAtLogin": {
           "title": "登录时打开",
-          "description": "登录电脑时自动打开 CompressO。"
+          "description": "登录电脑时自动打开 rc-compress。"
         },
         "needsApproval": {
           "title": "已在系统设置中关闭",
-          "description": "CompressO 未被允许在登录时打开。请在“系统设置”的“通用”>“登录项”中允许。",
+          "description": "rc-compress 未被允许在登录时打开。请在“系统设置”的“通用”>“登录项”中允许。",
           "button": "打开登录项"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "显示菜单栏图标",
           "title_windows": "显示系统托盘图标",
-          "description_macos": "在菜单栏中显示 CompressO 图标、压缩进度和拖放区。",
-          "description_windows": "在系统托盘中显示 CompressO 图标、压缩进度和拖放区。",
+          "description_macos": "在菜单栏中显示 rc-compress 图标、压缩进度和拖放区。",
+          "description_windows": "在系统托盘中显示 rc-compress 图标、压缩进度和拖放区。",
           "locked": "拖放区中的媒体正在压缩。完成或停止后才能关闭此项。"
         }
       },
@@ -164,7 +164,7 @@
           "button": "添加文件夹",
           "dialogTitle": "选择要监视的文件夹。",
           "alreadyWatched": "此文件夹已在监视中。",
-          "description_linux": "在 CompressO 打开时，添加到这些文件夹的新媒体（例如屏幕录制或下载内容）会被自动压缩。"
+          "description_linux": "在 rc-compress 打开时，添加到这些文件夹的新媒体（例如屏幕录制或下载内容）会被自动压缩。"
         },
         "watch": "监视 {{name}}",
         "missing": "文件夹不存在，当前未监视。",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "设置",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "通用",
@@ -280,7 +280,7 @@
       "version": "版本 {{version}}",
       "newVersion": "版本 {{version}} 现已推出。更新后请重新启动应用以使用新版本。",
       "upToDate": "您使用的是最新版本。",
-      "checkDescription": "检查是否有更新版本的 CompressO。",
+      "checkDescription": "检查是否有更新版本的 rc-compress。",
       "updateNow": "立即更新",
       "checkForUpdates": "检查更新",
       "website": {
@@ -291,7 +291,7 @@
         "title": "免费且开源",
         "license": "采用 AGPL-3.0 许可"
       },
-      "madeBy": "由 <link>Code For Real⚡</link> 公开开发，倾注 <heart></heart>",
+      "madeBy": "基于 Code For Real⚡ 的 <link>compressO</link>",
       "releaseNotes": "版本说明",
       "releaseNotesOnline": {
         "title": "查看 {{version}} 版本的新功能",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "更新日志",
-        "description": "CompressO 每个版本的新功能。",
+        "description": "rc-compress 每个版本的新功能。",
         "view": "查看更新日志"
       }
     },
     "credits": {
       "tools": {
         "title": "开源工具",
-        "description": "没有这些出色的开源工具和库，就没有 CompressO。"
+        "description": "没有这些出色的开源工具和库，就没有 rc-compress。"
       },
       "license": "采用 {{license}} 许可",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "不支持此文件类型。",
     "unsupportedSkipped": "已跳过不支持的文件。",
     "addFailed": "无法添加媒体。",
-    "openFailed": "无法打开 CompressO。",
-    "quitFailed": "无法退出 CompressO。",
+    "openFailed": "无法打开 rc-compress。",
+    "quitFailed": "无法退出 rc-compress。",
     "pin": "固定",
     "unpin": "取消固定",
     "openApp": "打开应用",
@@ -784,7 +784,7 @@
     "selectTitle": "选择要压缩的图像、视频或音频。",
     "selectFailed": "无法选择媒体。",
     "invalidFiles": "无效的文件或文件夹",
-    "accessDenied_other": "CompressO 无权打开 {{count}} 个文件。请在系统设置中允许访问其所在文件夹，然后重新添加。",
+    "accessDenied_other": "rc-compress 无权打开 {{count}} 个文件。请在系统设置中允许访问其所在文件夹，然后重新添加。",
     "openSettings": "打开设置"
   },
   "save": {
@@ -947,12 +947,12 @@
     "unsavedTitle": "媒体未保存",
     "unsavedMessage": "压缩后的媒体尚未保存。现在退出将放弃这些媒体。",
     "dropQueueMessage": "拖放区中的媒体仍在压缩中。现在退出将停止压缩。",
-    "openApp": "打开 CompressO",
-    "quitApp": "退出 CompressO",
-    "aboutApp": "关于 CompressO",
+    "openApp": "打开 rc-compress",
+    "quitApp": "退出 rc-compress",
+    "aboutApp": "关于 rc-compress",
     "settings": "设置…",
     "services": "服务",
-    "hideApp": "隐藏 CompressO",
+    "hideApp": "隐藏 rc-compress",
     "hideOthers": "隐藏其他",
     "file": "文件",
     "closeWindow": "关闭窗口",
