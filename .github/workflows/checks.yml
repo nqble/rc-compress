@@ -1,0 +1,78 @@
+# Checks on every pull request and every push to main: formatting and lint (Biome), types, translations, the script
+# tests, and the Rust tests and clippy. CLAUDE.md lists the same commands to run before committing.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    name: Web (Biome, types, translations, script tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      # `pnpm install` runs `fnm use` first (pnpm:devPreinstall); Node is already set up here
+      - name: Stand in for fnm
+        run: |
+          mkdir -p "$RUNNER_TEMP/fnm"
+          printf '#!/bin/sh\nexit 0\n' > "$RUNNER_TEMP/fnm/fnm"
+          chmod +x "$RUNNER_TEMP/fnm/fnm"
+          echo "$RUNNER_TEMP/fnm" >> "$GITHUB_PATH"
+      - run: pnpm install --frozen-lockfile
+      # Upstream compressO formats only its TypeScript (lint-staged); the rest of the tree isn't Biome-clean yet
+      - name: Biome
+        run: |
+          shopt -s globstar
+          pnpm biome ci src/**/*.{ts,tsx} .claude/hooks scripts/test-claude-hooks.mjs .claude/settings.json
+      - run: pnpm tsc:check
+      - run: pnpm i18n:check
+      - run: pnpm test:drop-queue
+      - run: pnpm test:audio-target-size
+      - run: pnpm test:claude-hooks
+
+  rust:
+    name: Rust (tests, clippy)
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the Linux libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev \
+            libxdo-dev libssl-dev libasound2-dev libdbus-1-dev build-essential zlib1g-dev libbz2-dev
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - name: Stand in for fnm
+        run: |
+          mkdir -p "$RUNNER_TEMP/fnm"
+          printf '#!/bin/sh\nexit 0\n' > "$RUNNER_TEMP/fnm/fnm"
+          chmod +x "$RUNNER_TEMP/fnm/fnm"
+          echo "$RUNNER_TEMP/fnm" >> "$GITHUB_PATH"
+      - run: pnpm install --frozen-lockfile
+      # The Rust build embeds the built web page (frontendDist) and the bundled tools, as `tauri build` does
+      - run: node scripts/prepare-tools.mjs && pnpm vite:build
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets
