@@ -265,8 +265,8 @@ mod tests {
         assert_eq!(
             to_hardware_args(&args(&CPU_ARGS), &encoder),
             args(&[
-                "-i", "in.mp4", "-c:v:0", "h264_videotoolbox", "-pix_fmt:v:0", "yuv420p", "-b:v:0",
-                "0", "-q:v:0", "57", "-y", "out.mp4",
+                "-hwaccel", "videotoolbox", "-i", "in.mp4", "-c:v:0", "h264_videotoolbox",
+                "-pix_fmt:v:0", "yuv420p", "-b:v:0", "0", "-q:v:0", "57", "-y", "out.mp4",
             ])
         );
     }
