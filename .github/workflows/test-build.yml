@@ -1,0 +1,55 @@
+# Test build: builds the Windows installer on every push to a claude/* or test/* branch and keeps it as a
+# workflow artifact (Actions -> the run -> Artifacts). No release, no signing, no updater files, so it needs
+# no secrets. Releases are made by release-build.yml.
+name: Test build
+
+on:
+  push:
+    branches: ["claude/**", "test/**"]
+  workflow_dispatch:
+
+jobs:
+  windows:
+    name: Build (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+
+      # `pnpm install` runs `fnm use` first (pnpm:devPreinstall); Node is already set up here
+      - name: Stand in for fnm
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/fnm"
+          printf '@exit /b 0\r\n' > "$RUNNER_TEMP/fnm/fnm.cmd"
+          echo "$RUNNER_TEMP/fnm" >> "$GITHUB_PATH"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Verify bundled image encoders
+        run: node scripts/check-image-encoders.mjs x86_64-pc-windows-msvc
+
+      # Updater files need the signing key, which test builds don't have
+      - name: Build
+        run: pnpm tauri build --config '{\"bundle\":{\"createUpdaterArtifacts\":false}}'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/nsis/*.exe
