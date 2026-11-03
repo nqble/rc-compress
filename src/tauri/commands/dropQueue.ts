@@ -52,6 +52,11 @@ export type DropQueueItem = {
   watchFolderId: string | null
   /** That folder's name, shown with it */
   watchFolderName: string | null
+  /**
+   * Added with "Quick Compress" in the file manager's right-click menu: compressed with the Quick
+   * Compress presets (Settings -> Right-click Menu), not the drop zone's
+   */
+  quickCompress: boolean
 }
 
 export type DropQueueItemUpdate = Partial<

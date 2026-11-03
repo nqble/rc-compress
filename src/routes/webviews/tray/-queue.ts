@@ -60,6 +60,7 @@ import { type PresetMediaType, STANDARD_PRESET_ID } from '@/types/preset'
 import { getOutputFileName } from '@/utils/fs'
 import {
   DROP_ZONE_PRESET_SETTINGS,
+  QUICK_COMPRESS_PRESET_SETTINGS,
   resolvePresetChoice,
 } from '@/utils/presetOutput'
 import { convertDurationToMilliseconds } from '@/utils/string'
@@ -89,10 +90,17 @@ async function waitForMainWindow() {
 }
 
 /**
- * The preset a queued media is compressed with: its watched folder's, or the drop zone's (Settings
- * -> Drop Zone), Default (the preset starred now) unless another is chosen
+ * The preset a queued media is compressed with: Quick Compress's (Settings -> Right-click Menu),
+ * its watched folder's, or the drop zone's (Settings -> Drop Zone), Default (the preset starred
+ * now) unless another is chosen
  */
 function getQueuePresetId(item: DropQueueItem, mediaType: PresetMediaType) {
+  if (item.quickCompress) {
+    return resolvePresetChoice(
+      settingsStore[QUICK_COMPRESS_PRESET_SETTINGS[mediaType]],
+      mediaType,
+    )
+  }
   const choice = item.watchFolderId
     ? settingsStore.watchedFolders.find(({ id }) => id === item.watchFolderId)
         ?.presetIds?.[mediaType]

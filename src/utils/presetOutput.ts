@@ -62,6 +62,13 @@ export const DROP_ZONE_PRESET_SETTINGS = {
   audio: 'dropZoneAudioPresetId',
 } as const satisfies Record<PresetMediaType, keyof typeof settingsStore>
 
+/** Setting of the preset each type of media is compressed with by "Quick Compress" */
+export const QUICK_COMPRESS_PRESET_SETTINGS = {
+  video: 'quickCompressVideoPresetId',
+  image: 'quickCompressImagePresetId',
+  audio: 'quickCompressAudioPresetId',
+} as const satisfies Record<PresetMediaType, keyof typeof settingsStore>
+
 /** The Standard preset's output: the one of Settings -> Output */
 export function getStandardOutput(
   settings: OutputSources['settings'] = settingsStore,

@@ -92,6 +92,13 @@ export type SettingsState = {
   dropZoneVideoPresetId: string
   dropZoneImagePresetId: string
   dropZoneAudioPresetId: string
+  /**
+   * Presets of the media compressed with "Quick Compress" in the file manager's right-click menu
+   * (Default, following the starred ones; see `explorer_menu.rs`)
+   */
+  quickCompressVideoPresetId: string
+  quickCompressImagePresetId: string
+  quickCompressAudioPresetId: string
   /** Folders whose new media the drop zone compresses (none by default) */
   watchedFolders: WatchedFolder[]
   /**
@@ -169,6 +176,15 @@ function readSettings(): SettingsState {
       DEFAULT_PRESET_CHOICE,
     dropZoneAudioPresetId:
       localStorage.getItem(constants.dropZoneAudioPresetId) ??
+      DEFAULT_PRESET_CHOICE,
+    quickCompressVideoPresetId:
+      localStorage.getItem(constants.quickCompressVideoPresetId) ??
+      DEFAULT_PRESET_CHOICE,
+    quickCompressImagePresetId:
+      localStorage.getItem(constants.quickCompressImagePresetId) ??
+      DEFAULT_PRESET_CHOICE,
+    quickCompressAudioPresetId:
+      localStorage.getItem(constants.quickCompressAudioPresetId) ??
       DEFAULT_PRESET_CHOICE,
     watchedFolders: readWatchedFolders(),
     useHardwareAcceleration:
@@ -291,6 +307,18 @@ subscribe(settingsStore, () => {
   localStorage.setItem(
     constants.dropZoneAudioPresetId,
     settingsStore.dropZoneAudioPresetId,
+  )
+  localStorage.setItem(
+    constants.quickCompressVideoPresetId,
+    settingsStore.quickCompressVideoPresetId,
+  )
+  localStorage.setItem(
+    constants.quickCompressImagePresetId,
+    settingsStore.quickCompressImagePresetId,
+  )
+  localStorage.setItem(
+    constants.quickCompressAudioPresetId,
+    settingsStore.quickCompressAudioPresetId,
   )
   localStorage.setItem(
     constants.watchedFolders,
