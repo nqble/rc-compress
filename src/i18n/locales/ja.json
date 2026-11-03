@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "CompressO を準備中",
+    "title": "rc-compress を準備中",
     "checking": "圧縮ツールを確認中…",
     "verifying": "圧縮ツールを検証中…",
     "extracting": "圧縮ツールを展開中…",
@@ -20,11 +20,11 @@
         "changeFailed": "設定を変更できませんでした。",
         "openAtLogin": {
           "title": "ログイン時に開く",
-          "description": "コンピュータにログインしたときに CompressO を自動的に開きます。"
+          "description": "コンピュータにログインしたときに rc-compress を自動的に開きます。"
         },
         "needsApproval": {
           "title": "システム設定でオフになっています",
-          "description": "CompressO はログイン時に開くことを許可されていません。システム設定の「一般」>「ログイン項目」で許可してください。",
+          "description": "rc-compress はログイン時に開くことを許可されていません。システム設定の「一般」>「ログイン項目」で許可してください。",
           "button": "ログイン項目を開く"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "メニューバーにアイコンを表示",
           "title_windows": "システムトレイにアイコンを表示",
-          "description_macos": "CompressO のアイコン、圧縮の進行状況、ドロップゾーンをメニューバーに表示します。",
-          "description_windows": "CompressO のアイコン、圧縮の進行状況、ドロップゾーンをシステムトレイに表示します。",
+          "description_macos": "rc-compress のアイコン、圧縮の進行状況、ドロップゾーンをメニューバーに表示します。",
+          "description_windows": "rc-compress のアイコン、圧縮の進行状況、ドロップゾーンをシステムトレイに表示します。",
           "locked": "ドロップゾーンのメディアを圧縮中です。完了または停止後にオフにできます。"
         }
       },
@@ -164,7 +164,7 @@
           "button": "フォルダを追加",
           "dialogTitle": "監視するフォルダを選択してください。",
           "alreadyWatched": "このフォルダは既に監視されています。",
-          "description_linux": "CompressO が開いている間、これらのフォルダに追加された新しいメディア（画面収録やダウンロードなど）は自動で圧縮されます。"
+          "description_linux": "rc-compress が開いている間、これらのフォルダに追加された新しいメディア（画面収録やダウンロードなど）は自動で圧縮されます。"
         },
         "watch": "{{name}} を監視",
         "missing": "フォルダーが存在しないため、監視していません。",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "設定",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "一般",
@@ -280,7 +280,7 @@
       "version": "バージョン {{version}}",
       "newVersion": "バージョン {{version}} が利用可能です。アップデート後にアプリを再起動すると使用できます。",
       "upToDate": "最新バージョンを使用しています。",
-      "checkDescription": "CompressO の新しいバージョンがあるかどうかを確認します。",
+      "checkDescription": "rc-compress の新しいバージョンがあるかどうかを確認します。",
       "updateNow": "今すぐアップデート",
       "checkForUpdates": "アップデートを確認",
       "website": {
@@ -291,7 +291,7 @@
         "title": "無料かつオープンソース",
         "license": "AGPL-3.0 ライセンス"
       },
-      "madeBy": "<link>Code For Real⚡</link> が <heart></heart> を込めて公開開発",
+      "madeBy": "Code For Real⚡ の <link>compressO</link> をもとにしています",
       "releaseNotes": "リリースノート",
       "releaseNotesOnline": {
         "title": "バージョン {{version}} の新機能を見る",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "変更履歴",
-        "description": "CompressO の各バージョンの新機能。",
+        "description": "rc-compress の各バージョンの新機能。",
         "view": "変更履歴を見る"
       }
     },
     "credits": {
       "tools": {
         "title": "オープンソースツール",
-        "description": "CompressO は、これらの素晴らしいオープンソースのツールとライブラリなしには実現できませんでした。"
+        "description": "rc-compress は、これらの素晴らしいオープンソースのツールとライブラリなしには実現できませんでした。"
       },
       "license": "{{license}} ライセンス",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "このファイルの種類には対応していません。",
     "unsupportedSkipped": "対応していないファイルはスキップされました。",
     "addFailed": "メディアを追加できませんでした。",
-    "openFailed": "CompressO を開けませんでした。",
-    "quitFailed": "CompressO を終了できませんでした。",
+    "openFailed": "rc-compress を開けませんでした。",
+    "quitFailed": "rc-compress を終了できませんでした。",
     "pin": "固定",
     "unpin": "固定を解除",
     "openApp": "アプリを開く",
@@ -784,7 +784,7 @@
     "selectTitle": "圧縮する画像、ビデオ、またはオーディオを選択してください。",
     "selectFailed": "メディアを選択できませんでした。",
     "invalidFiles": "無効なファイルまたはフォルダ",
-    "accessDenied_other": "CompressO には {{count}} 個のファイルを開く権限がありません。システム設定でフォルダへのアクセスを許可してから、もう一度追加してください。",
+    "accessDenied_other": "rc-compress には {{count}} 個のファイルを開く権限がありません。システム設定でフォルダへのアクセスを許可してから、もう一度追加してください。",
     "openSettings": "設定を開く"
   },
   "save": {
@@ -947,12 +947,12 @@
     "unsavedTitle": "メディアは保存されていません",
     "unsavedMessage": "圧縮したメディアはまだ保存されていません。今終了すると破棄されます。",
     "dropQueueMessage": "ドロップゾーンのメディアはまだ圧縮中です。今終了すると圧縮は停止します。",
-    "openApp": "CompressO を開く",
-    "quitApp": "CompressO を終了",
-    "aboutApp": "CompressO について",
+    "openApp": "rc-compress を開く",
+    "quitApp": "rc-compress を終了",
+    "aboutApp": "rc-compress について",
     "settings": "設定…",
     "services": "サービス",
-    "hideApp": "CompressO を隠す",
+    "hideApp": "rc-compress を隠す",
     "hideOthers": "ほかを隠す",
     "file": "ファイル",
     "closeWindow": "ウインドウを閉じる",

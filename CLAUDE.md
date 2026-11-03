@@ -57,9 +57,11 @@ AGPL-3.0: it makes videos, images, audio and PDFs smaller, entirely on the user'
 
 ## 5. Before the first release
 
-The fork still carries compressO's identity: its updater endpoint and public key (`src-tauri/tauri.conf.json`), the
-app's name and identifier, and the website's `CNAME` (`compresso.codeforreal.com`, deployed by
-`.github/workflows/deploy.yml`). All must change to rc-compress's own before anything is released.
+The name (rc-compress), identifier (`com.rccompress.app`) and updater endpoint (`nqble/rc-compress` releases) are
+rc-compress's own. Still compressO's: the updater's **public key** in `src-tauri/tauri.conf.json` (replace it with
+rc-compress's own before the first release; until then no update can install, since none is signed with it), the
+icon (kept for now), and internal names (the `compressO` binary and crate, the `compresso_*` tool files), left as
+they are so upstream changes keep merging.
 
 ## Skills
 

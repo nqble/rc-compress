@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "正在準備 CompressO",
+    "title": "正在準備 rc-compress",
     "checking": "正在檢查壓縮工具…",
     "verifying": "正在驗證壓縮工具…",
     "extracting": "正在解壓縮壓縮工具…",
@@ -20,11 +20,11 @@
         "changeFailed": "無法變更此設定。",
         "openAtLogin": {
           "title": "登入時開啟",
-          "description": "登入電腦時自動開啟 CompressO。"
+          "description": "登入電腦時自動開啟 rc-compress。"
         },
         "needsApproval": {
           "title": "已在系統設定中關閉",
-          "description": "CompressO 未獲准在登入時開啟。請在「系統設定」的「一般」>「登入項目」中允許。",
+          "description": "rc-compress 未獲准在登入時開啟。請在「系統設定」的「一般」>「登入項目」中允許。",
           "button": "打開登入項目"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "顯示選單列圖示",
           "title_windows": "顯示系統匣圖示",
-          "description_macos": "在選單列中顯示 CompressO 圖示、壓縮進度和拖放區。",
-          "description_windows": "在系統匣中顯示 CompressO 圖示、壓縮進度和拖放區。",
+          "description_macos": "在選單列中顯示 rc-compress 圖示、壓縮進度和拖放區。",
+          "description_windows": "在系統匣中顯示 rc-compress 圖示、壓縮進度和拖放區。",
           "locked": "拖放區中的媒體正在壓縮。完成或停止後才能關閉此項。"
         }
       },
@@ -164,7 +164,7 @@
           "button": "新增資料夾",
           "dialogTitle": "選擇要監看的資料夾。",
           "alreadyWatched": "此資料夾已在監看中。",
-          "description_linux": "在 CompressO 開啟時，加入這些資料夾的新媒體（例如螢幕錄影或下載內容）會被自動壓縮。"
+          "description_linux": "在 rc-compress 開啟時，加入這些資料夾的新媒體（例如螢幕錄影或下載內容）會被自動壓縮。"
         },
         "watch": "監看 {{name}}",
         "missing": "資料夾不存在，目前未受監控。",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "設定",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "一般",
@@ -280,7 +280,7 @@
       "version": "版本 {{version}}",
       "newVersion": "版本 {{version}} 現已推出。更新後請重新啟動 App 以使用新版本。",
       "upToDate": "您使用的是最新版本。",
-      "checkDescription": "檢查是否有較新版本的 CompressO。",
+      "checkDescription": "檢查是否有較新版本的 rc-compress。",
       "updateNow": "立即更新",
       "checkForUpdates": "檢查更新",
       "website": {
@@ -291,7 +291,7 @@
         "title": "免費且開放原始碼",
         "license": "採用 AGPL-3.0 授權"
       },
-      "madeBy": "由 <link>Code For Real⚡</link> 公開開發，用心 <heart></heart> 打造",
+      "madeBy": "基於 Code For Real⚡ 的 <link>compressO</link>",
       "releaseNotes": "版本說明",
       "releaseNotesOnline": {
         "title": "查看 {{version}} 版的新功能",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "更新紀錄",
-        "description": "CompressO 每個版本的新功能。",
+        "description": "rc-compress 每個版本的新功能。",
         "view": "查看更新紀錄"
       }
     },
     "credits": {
       "tools": {
         "title": "開放原始碼工具",
-        "description": "若沒有這些出色的開放原始碼工具和函式庫，就不會有 CompressO。"
+        "description": "若沒有這些出色的開放原始碼工具和函式庫，就不會有 rc-compress。"
       },
       "license": "採用 {{license}} 授權",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "不支援此檔案類型。",
     "unsupportedSkipped": "已略過不支援的檔案。",
     "addFailed": "無法加入媒體。",
-    "openFailed": "無法開啟 CompressO。",
-    "quitFailed": "無法結束 CompressO。",
+    "openFailed": "無法開啟 rc-compress。",
+    "quitFailed": "無法結束 rc-compress。",
     "pin": "釘選",
     "unpin": "取消釘選",
     "openApp": "開啟 App",
@@ -784,7 +784,7 @@
     "selectTitle": "選擇要壓縮的影像、影片或音訊。",
     "selectFailed": "無法選擇媒體。",
     "invalidFiles": "無效的檔案或資料夾",
-    "accessDenied_other": "CompressO 無權開啟 {{count}} 個檔案。請在系統設定中允許取用其所在資料夾，然後重新加入。",
+    "accessDenied_other": "rc-compress 無權開啟 {{count}} 個檔案。請在系統設定中允許取用其所在資料夾，然後重新加入。",
     "openSettings": "開啟設定"
   },
   "save": {
@@ -947,12 +947,12 @@
     "unsavedTitle": "媒體尚未儲存",
     "unsavedMessage": "壓縮後的媒體尚未儲存。現在結束將捨棄這些媒體。",
     "dropQueueMessage": "拖放區中的媒體仍在壓縮中。現在結束將停止壓縮。",
-    "openApp": "開啟 CompressO",
-    "quitApp": "結束 CompressO",
-    "aboutApp": "關於 CompressO",
+    "openApp": "開啟 rc-compress",
+    "quitApp": "結束 rc-compress",
+    "aboutApp": "關於 rc-compress",
     "settings": "設定…",
     "services": "服務",
-    "hideApp": "隱藏 CompressO",
+    "hideApp": "隱藏 rc-compress",
     "hideOthers": "隱藏其他",
     "file": "檔案",
     "closeWindow": "關閉視窗",

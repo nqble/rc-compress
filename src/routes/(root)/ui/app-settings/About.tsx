@@ -15,9 +15,10 @@ import Link from '@/tauri/components/Link'
 import { SettingsRow, SettingsSection } from './SettingsLayout'
 
 /** Every version's changelog, on the website */
-const CHANGELOG_URL = 'https://compresso.codeforreal.com/changelog'
+const CHANGELOG_URL =
+  'https://github.com/nqble/rc-compress/blob/main/CHANGELOG.md'
 /** The releases on GitHub, each with its changelog */
-const RELEASES_URL = 'https://github.com/codeforreal1/compressO/releases/tag'
+const RELEASES_URL = 'https://github.com/nqble/rc-compress/releases/tag'
 
 function About() {
   const { t } = useTranslation()
@@ -40,13 +41,13 @@ function About() {
         <Image
           disableAnimation
           src="/logo.png"
-          alt="CompressO"
+          alt="rc-compress"
           width={56}
           height={56}
         />
         <div>
-          <Link href="https://compresso.codeforreal.com">
-            <h2 className="text-2xl font-bold text-primary">CompressO</h2>
+          <Link href="https://github.com/nqble/rc-compress">
+            <h2 className="text-2xl font-bold text-primary">rc-compress</h2>
           </Link>
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             {t('settings.about.tagline')}
@@ -108,20 +109,20 @@ function About() {
           title={t('settings.about.website.title')}
           description={t('settings.about.website.description')}
         >
-          <Link href="https://compresso.codeforreal.com" className="text-sm">
-            compresso.codeforreal.com
+          <Link href="https://github.com/nqble/rc-compress" className="text-sm">
+            github.com/nqble/rc-compress
           </Link>
         </SettingsRow>
         <SettingsRow
           title={t('settings.about.openSource.title')}
           description={
-            <Link href="https://github.com/codeforreal1/compressO/blob/main/LICENSE">
+            <Link href="https://github.com/nqble/rc-compress/blob/main/LICENSE">
               {t('settings.about.openSource.license')}
             </Link>
           }
         >
           <Link
-            href="https://github.com/codeforreal1/compressO"
+            href="https://github.com/nqble/rc-compress"
             className="flex items-center gap-1 text-sm"
           >
             <Icon name="github" size={18} />
@@ -134,11 +135,10 @@ function About() {
             <Trans
               i18nKey="settings.about.madeBy"
               components={{
-                heart: (
-                  <Icon className="inline text-primary" name="lowResHeart" />
-                ),
                 link: (
-                  <Link href="https://codeforreal.com">Code For Real⚡</Link>
+                  <Link href="https://github.com/codeforreal1/compressO">
+                    compressO
+                  </Link>
                 ),
               }}
             />

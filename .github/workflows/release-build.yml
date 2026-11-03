@@ -1,4 +1,4 @@
-# Builds CompressO for Apple Silicon & Intel Macs, Windows & Linux, signs the updater files and
+# Builds rc-compress for Apple Silicon & Intel Macs, Windows & Linux, signs the updater files and
 # uploads everything to a draft release of the version in package.json, with the latest.json the
 # app's updater reads. Test the installers from the draft, then publish it (Releases -> Edit ->
 # Publish release): drafts are only visible to the repository's maintainers & never the latest
@@ -202,17 +202,17 @@ jobs:
           case "$TARGET" in
             *-apple-darwin)
               arch=$([ "$TARGET" = aarch64-apple-darwin ] && echo aarch64 || echo x64)
-              cp "$bundle/dmg/CompressO_${VERSION}_${arch}.dmg" release-files/
-              cp "$bundle/macos/CompressO.app.tar.gz" "release-files/CompressO_${VERSION}_${arch}.app.tar.gz"
-              cp "$bundle/macos/CompressO.app.tar.gz.sig" "release-files/CompressO_${VERSION}_${arch}.app.tar.gz.sig"
+              cp "$bundle/dmg/rc-compress_${VERSION}_${arch}.dmg" release-files/
+              cp "$bundle/macos/rc-compress.app.tar.gz" "release-files/rc-compress_${VERSION}_${arch}.app.tar.gz"
+              cp "$bundle/macos/rc-compress.app.tar.gz.sig" "release-files/rc-compress_${VERSION}_${arch}.app.tar.gz.sig"
               ;;
             *-windows-*)
-              cp "$bundle/nsis/CompressO_${VERSION}_x64-setup.exe" "release-files/CompressO_${VERSION}_x64.exe"
-              cp "$bundle/nsis/CompressO_${VERSION}_x64-setup.exe.sig" "release-files/CompressO_${VERSION}_x64.exe.sig"
+              cp "$bundle/nsis/rc-compress_${VERSION}_x64-setup.exe" "release-files/rc-compress_${VERSION}_x64.exe"
+              cp "$bundle/nsis/rc-compress_${VERSION}_x64-setup.exe.sig" "release-files/rc-compress_${VERSION}_x64.exe.sig"
               ;;
             *-linux-*)
-              cp "$bundle/deb/CompressO_${VERSION}_amd64.deb"* release-files/
-              cp "$bundle/appimage/CompressO_${VERSION}_amd64.AppImage"* release-files/
+              cp "$bundle/deb/rc-compress_${VERSION}_amd64.deb"* release-files/
+              cp "$bundle/appimage/rc-compress_${VERSION}_amd64.AppImage"* release-files/
               ;;
           esac
           ls -l release-files
@@ -297,14 +297,14 @@ jobs:
           for arch in aarch64 x86_64; do
             name=$([ "$arch" = aarch64 ] && echo aarch64 || echo x64)
             mkdir -p "$target/$arch-apple-darwin/release/bundle/macos"
-            cp "signatures/CompressO_${VERSION}_${name}.app.tar.gz.sig" \
-              "$target/$arch-apple-darwin/release/bundle/macos/CompressO.app.tar.gz.sig"
+            cp "signatures/rc-compress_${VERSION}_${name}.app.tar.gz.sig" \
+              "$target/$arch-apple-darwin/release/bundle/macos/rc-compress.app.tar.gz.sig"
           done
           mkdir -p "$target/release/bundle/nsis" "$target/release/bundle/appimage" "$target/release/bundle/deb"
-          cp "signatures/CompressO_${VERSION}_x64.exe.sig" \
-            "$target/release/bundle/nsis/CompressO_${VERSION}_x64-setup.exe.sig"
-          cp "signatures/CompressO_${VERSION}_amd64.AppImage.sig" "$target/release/bundle/appimage/"
-          cp "signatures/CompressO_${VERSION}_amd64.deb.sig" "$target/release/bundle/deb/"
+          cp "signatures/rc-compress_${VERSION}_x64.exe.sig" \
+            "$target/release/bundle/nsis/rc-compress_${VERSION}_x64-setup.exe.sig"
+          cp "signatures/rc-compress_${VERSION}_amd64.AppImage.sig" "$target/release/bundle/appimage/"
+          cp "signatures/rc-compress_${VERSION}_amd64.deb.sig" "$target/release/bundle/deb/"
 
       - name: Create latest.json
         run: |

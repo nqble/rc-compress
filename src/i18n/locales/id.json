@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "Menyiapkan CompressO",
+    "title": "Menyiapkan rc-compress",
     "checking": "Memeriksa alat kompresi…",
     "verifying": "Memverifikasi alat kompresi…",
     "extracting": "Mengekstrak alat kompresi…",
@@ -20,11 +20,11 @@
         "changeFailed": "Pengaturan tidak dapat diubah.",
         "openAtLogin": {
           "title": "Buka saat masuk",
-          "description": "Buka CompressO secara otomatis saat Anda masuk ke komputer."
+          "description": "Buka rc-compress secara otomatis saat Anda masuk ke komputer."
         },
         "needsApproval": {
           "title": "Dinonaktifkan di Pengaturan Sistem",
-          "description": "CompressO tidak diizinkan dibuka saat masuk. Izinkan di Pengaturan Sistem, pada Umum dan Item Masuk.",
+          "description": "rc-compress tidak diizinkan dibuka saat masuk. Izinkan di Pengaturan Sistem, pada Umum dan Item Masuk.",
           "button": "Buka Item Masuk"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "Tampilkan ikon bar menu",
           "title_windows": "Tampilkan ikon baki sistem",
-          "description_macos": "Tampilkan ikon CompressO, kemajuan kompresi, dan zona taruh di bar menu.",
-          "description_windows": "Tampilkan ikon CompressO, kemajuan kompresi, dan zona taruh di baki sistem.",
+          "description_macos": "Tampilkan ikon rc-compress, kemajuan kompresi, dan zona taruh di bar menu.",
+          "description_windows": "Tampilkan ikon rc-compress, kemajuan kompresi, dan zona taruh di baki sistem.",
           "locked": "Media di zona taruh sedang dikompresi. Ini dapat dinonaktifkan setelah selesai atau dihentikan."
         }
       },
@@ -164,7 +164,7 @@
           "button": "Tambah folder",
           "dialogTitle": "Pilih folder untuk dipantau.",
           "alreadyWatched": "Folder ini sudah dipantau.",
-          "description_linux": "Media baru yang ditambahkan ke folder ini, seperti rekaman layar atau unduhan, dikompres secara otomatis selama CompressO terbuka."
+          "description_linux": "Media baru yang ditambahkan ke folder ini, seperti rekaman layar atau unduhan, dikompres secara otomatis selama rc-compress terbuka."
         },
         "watch": "Pantau {{name}}",
         "missing": "Folder tidak ada. Folder ini tidak dipantau.",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "Pengaturan",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "Umum",
@@ -280,7 +280,7 @@
       "version": "Versi {{version}}",
       "newVersion": "Versi {{version}} tersedia. Mulai ulang aplikasi setelah memperbarui untuk menggunakannya.",
       "upToDate": "Anda menggunakan versi terbaru.",
-      "checkDescription": "Periksa apakah versi CompressO yang lebih baru tersedia.",
+      "checkDescription": "Periksa apakah versi rc-compress yang lebih baru tersedia.",
       "updateNow": "Perbarui sekarang",
       "checkForUpdates": "Periksa pembaruan",
       "website": {
@@ -291,7 +291,7 @@
         "title": "Gratis dan sumber terbuka",
         "license": "Berlisensi AGPL-3.0"
       },
-      "madeBy": "Dibuat dengan <heart></heart> secara terbuka oleh <link>Code For Real⚡</link>",
+      "madeBy": "Berdasarkan <link>compressO</link> oleh Code For Real⚡",
       "releaseNotes": "Catatan rilis",
       "releaseNotesOnline": {
         "title": "Lihat yang baru di versi {{version}}",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "Catatan perubahan",
-        "description": "Hal baru di setiap versi CompressO.",
+        "description": "Hal baru di setiap versi rc-compress.",
         "view": "Lihat catatan perubahan"
       }
     },
     "credits": {
       "tools": {
         "title": "Alat sumber terbuka",
-        "description": "CompressO tidak akan ada tanpa alat dan pustaka sumber terbuka yang luar biasa ini."
+        "description": "rc-compress tidak akan ada tanpa alat dan pustaka sumber terbuka yang luar biasa ini."
       },
       "license": "Berlisensi {{license}}",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "Jenis file ini tidak didukung.",
     "unsupportedSkipped": "File yang tidak didukung dilewati.",
     "addFailed": "Media tidak dapat ditambahkan.",
-    "openFailed": "CompressO tidak dapat dibuka.",
-    "quitFailed": "CompressO tidak dapat ditutup.",
+    "openFailed": "rc-compress tidak dapat dibuka.",
+    "quitFailed": "rc-compress tidak dapat ditutup.",
     "pin": "Sematkan",
     "unpin": "Lepas sematan",
     "openApp": "Buka Aplikasi",
@@ -784,7 +784,7 @@
     "selectTitle": "Pilih gambar, video, atau audio untuk dikompresi.",
     "selectFailed": "Media tidak dapat dipilih.",
     "invalidFiles": "File atau folder tidak valid",
-    "accessDenied_other": "CompressO tidak diizinkan membuka {{count}} file. Izinkan akses ke foldernya di pengaturan sistem, lalu tambahkan lagi.",
+    "accessDenied_other": "rc-compress tidak diizinkan membuka {{count}} file. Izinkan akses ke foldernya di pengaturan sistem, lalu tambahkan lagi.",
     "openSettings": "Buka pengaturan"
   },
   "save": {
@@ -947,12 +947,12 @@
     "unsavedTitle": "Media belum disimpan",
     "unsavedMessage": "Media yang dikompresi belum disimpan. Keluar sekarang akan membuangnya.",
     "dropQueueMessage": "Media di zona taruh masih dikompresi. Keluar sekarang akan menghentikannya.",
-    "openApp": "Buka CompressO",
-    "quitApp": "Keluar dari CompressO",
-    "aboutApp": "Tentang CompressO",
+    "openApp": "Buka rc-compress",
+    "quitApp": "Keluar dari rc-compress",
+    "aboutApp": "Tentang rc-compress",
     "settings": "Pengaturan…",
     "services": "Layanan",
-    "hideApp": "Sembunyikan CompressO",
+    "hideApp": "Sembunyikan rc-compress",
     "hideOthers": "Sembunyikan Lainnya",
     "file": "File",
     "closeWindow": "Tutup Jendela",

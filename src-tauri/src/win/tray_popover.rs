@@ -228,9 +228,9 @@ pub fn set_tray_progress(app_handle: &AppHandle, progress: f64) -> Result<(), St
         tray.set_icon(Some(icon)).map_err(|err| err.to_string())?;
     }
     let tooltip = if progress <= 0.0 {
-        "CompressO".to_string()
+        "rc-compress".to_string()
     } else {
-        format!("CompressO - Compressing {}%", progress.round() as u32)
+        format!("rc-compress - Compressing {}%", progress.round() as u32)
     };
     tray.set_tooltip(Some(tooltip))
         .map_err(|err| err.to_string())
@@ -251,7 +251,7 @@ fn create_tray_window(app_handle: &AppHandle) -> Result<WebviewWindow, String> {
         TRAY_WINDOW_LABEL,
         WebviewUrl::App(TRAY_WINDOW_URL.into()),
     )
-    .title("CompressO")
+    .title("rc-compress")
     .decorations(false)
     // Windows 11 draws it with rounded corners & a shadow, as its own flyouts
     .shadow(true)
@@ -348,7 +348,7 @@ fn enable_tray_icon(app_handle: &AppHandle) -> Result<(), String> {
     // A right click shows the menu; a click opens the popover
     TrayIconBuilder::with_id(TRAY_WINDOW_LABEL)
         .icon(crate::win::tray_icon::plain_icon())
-        .tooltip("CompressO")
+        .tooltip("rc-compress")
         .menu(&crate::tauri_commands::tray::tray_icon_menu(app_handle)?)
         .show_menu_on_left_click(false)
         .on_menu_event(crate::tauri_commands::tray::handle_tray_icon_menu_event)

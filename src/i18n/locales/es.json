@@ -1,6 +1,6 @@
 {
   "toolPreparation": {
-    "title": "Preparando CompressO",
+    "title": "Preparando rc-compress",
     "checking": "Comprobando las herramientas de compresión…",
     "verifying": "Verificando las herramientas de compresión…",
     "extracting": "Extrayendo las herramientas de compresión…",
@@ -20,11 +20,11 @@
         "changeFailed": "No se pudo cambiar el ajuste.",
         "openAtLogin": {
           "title": "Abrir al iniciar sesión",
-          "description": "Abrir CompressO automáticamente al iniciar sesión en el ordenador."
+          "description": "Abrir rc-compress automáticamente al iniciar sesión en el ordenador."
         },
         "needsApproval": {
           "title": "Desactivado en Ajustes del Sistema",
-          "description": "CompressO no tiene permiso para abrirse al iniciar sesión. Permítalo en Ajustes del Sistema, en General e Ítems de inicio.",
+          "description": "rc-compress no tiene permiso para abrirse al iniciar sesión. Permítalo en Ajustes del Sistema, en General e Ítems de inicio.",
           "button": "Abrir Ítems de inicio"
         },
         "openInTrayOnly": {
@@ -65,8 +65,8 @@
         "showIcon": {
           "title_macos": "Mostrar icono en la barra de menús",
           "title_windows": "Mostrar icono en la bandeja del sistema",
-          "description_macos": "Mostrar el icono de CompressO, el progreso de la compresión y la zona de arrastre en la barra de menús.",
-          "description_windows": "Mostrar el icono de CompressO, el progreso de la compresión y la zona de arrastre en la bandeja del sistema.",
+          "description_macos": "Mostrar el icono de rc-compress, el progreso de la compresión y la zona de arrastre en la barra de menús.",
+          "description_windows": "Mostrar el icono de rc-compress, el progreso de la compresión y la zona de arrastre en la bandeja del sistema.",
           "locked": "Se están comprimiendo archivos de la zona de arrastre. Esta opción se puede desactivar cuando termine o se detenga."
         }
       },
@@ -164,7 +164,7 @@
           "button": "Añadir carpeta",
           "dialogTitle": "Elija una carpeta para vigilar.",
           "alreadyWatched": "Esta carpeta ya está vigilada.",
-          "description_linux": "Los archivos nuevos añadidos a estas carpetas, como grabaciones de pantalla o descargas, se comprimen automáticamente mientras CompressO está abierto."
+          "description_linux": "Los archivos nuevos añadidos a estas carpetas, como grabaciones de pantalla o descargas, se comprimen automáticamente mientras rc-compress está abierto."
         },
         "watch": "Vigilar {{name}}",
         "missing": "La carpeta no existe. No se está supervisando.",
@@ -262,7 +262,7 @@
     },
     "groups": {
       "settings": "Ajustes",
-      "app": "CompressO"
+      "app": "rc-compress"
     },
     "pages": {
       "general": "General",
@@ -280,7 +280,7 @@
       "version": "Versión {{version}}",
       "newVersion": "La versión {{version}} está disponible. Reinicie la app después de actualizar para usarla.",
       "upToDate": "Está usando la versión más reciente.",
-      "checkDescription": "Comprobar si hay una versión más reciente de CompressO disponible.",
+      "checkDescription": "Comprobar si hay una versión más reciente de rc-compress disponible.",
       "updateNow": "Actualizar ahora",
       "checkForUpdates": "Buscar actualizaciones",
       "website": {
@@ -291,7 +291,7 @@
         "title": "Gratuito y de código abierto",
         "license": "Con licencia AGPL-3.0"
       },
-      "madeBy": "Hecho con <heart></heart> en público por <link>Code For Real⚡</link>",
+      "madeBy": "Basado en <link>compressO</link> de Code For Real⚡",
       "releaseNotes": "Notas de la versión",
       "releaseNotesOnline": {
         "title": "Ver las novedades de la versión {{version}}",
@@ -300,14 +300,14 @@
       },
       "changelog": {
         "title": "Registro de cambios",
-        "description": "Las novedades de cada versión de CompressO.",
+        "description": "Las novedades de cada versión de rc-compress.",
         "view": "Ver el registro de cambios"
       }
     },
     "credits": {
       "tools": {
         "title": "Herramientas de código abierto",
-        "description": "CompressO no sería posible sin estas increíbles herramientas y bibliotecas de código abierto."
+        "description": "rc-compress no sería posible sin estas increíbles herramientas y bibliotecas de código abierto."
       },
       "license": "Con licencia {{license}}",
       "notices": {
@@ -416,8 +416,8 @@
     "unsupportedType": "Este tipo de archivo no es compatible.",
     "unsupportedSkipped": "Se han omitido los archivos no compatibles.",
     "addFailed": "No se pudieron añadir los archivos multimedia.",
-    "openFailed": "No se pudo abrir CompressO.",
-    "quitFailed": "No se pudo salir de CompressO.",
+    "openFailed": "No se pudo abrir rc-compress.",
+    "quitFailed": "No se pudo salir de rc-compress.",
     "pin": "Fijar",
     "unpin": "Soltar",
     "openApp": "Abrir la app",
@@ -800,9 +800,9 @@
     "selectTitle": "Seleccione imágenes, vídeos o audio para comprimir.",
     "selectFailed": "No se pudieron seleccionar los archivos.",
     "invalidFiles": "Archivos o carpetas no válidos",
-    "accessDenied_one": "CompressO no tiene permiso para abrir este archivo. Permita el acceso a su carpeta en los ajustes del sistema y vuelva a añadirlo.",
-    "accessDenied_many": "CompressO no tiene permiso para abrir {{count}} archivos. Permita el acceso a su carpeta en los ajustes del sistema y vuelva a añadirlos.",
-    "accessDenied_other": "CompressO no tiene permiso para abrir {{count}} archivos. Permita el acceso a su carpeta en los ajustes del sistema y vuelva a añadirlos.",
+    "accessDenied_one": "rc-compress no tiene permiso para abrir este archivo. Permita el acceso a su carpeta en los ajustes del sistema y vuelva a añadirlo.",
+    "accessDenied_many": "rc-compress no tiene permiso para abrir {{count}} archivos. Permita el acceso a su carpeta en los ajustes del sistema y vuelva a añadirlos.",
+    "accessDenied_other": "rc-compress no tiene permiso para abrir {{count}} archivos. Permita el acceso a su carpeta en los ajustes del sistema y vuelva a añadirlos.",
     "openSettings": "Abrir ajustes"
   },
   "save": {
@@ -977,12 +977,12 @@
     "unsavedTitle": "Archivos no guardados",
     "unsavedMessage": "Sus archivos comprimidos aún no se han guardado. Si sale ahora, se descartarán.",
     "dropQueueMessage": "Todavía se están comprimiendo archivos de la zona de arrastre. Si sale ahora, se detendrá.",
-    "openApp": "Abrir CompressO",
-    "quitApp": "Salir de CompressO",
-    "aboutApp": "Acerca de CompressO",
+    "openApp": "Abrir rc-compress",
+    "quitApp": "Salir de rc-compress",
+    "aboutApp": "Acerca de rc-compress",
     "settings": "Ajustes…",
     "services": "Servicios",
-    "hideApp": "Ocultar CompressO",
+    "hideApp": "Ocultar rc-compress",
     "hideOthers": "Ocultar otros",
     "file": "Archivo",
     "closeWindow": "Cerrar ventana",

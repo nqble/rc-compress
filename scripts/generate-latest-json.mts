@@ -27,9 +27,9 @@ interface Config {
 }
 
 const CONFIG: Config = {
-  author: 'codeforreal1',
-  repo: 'compressO',
-  appName: 'CompressO',
+  author: 'nqble',
+  repo: 'rc-compress',
+  appName: 'rc-compress',
 }
 
 // Types
