@@ -162,6 +162,9 @@
       "icons/icon.ico"
     ],
     "windows": {
+      "nsis": {
+        "installerHooks": "./windows/explorer-menu.nsh"
+      },
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
       "timestampUrl": ""
