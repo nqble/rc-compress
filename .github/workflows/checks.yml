@@ -35,12 +35,13 @@ jobs:
       - name: Biome
         run: |
           shopt -s globstar
-          pnpm biome ci src/**/*.{ts,tsx} .claude/hooks scripts/test-claude-hooks.mjs .claude/settings.json
+          pnpm biome ci src/**/*.{ts,tsx} .claude/hooks scripts/test-claude-hooks.mjs scripts/test-explorer-menu.mjs .claude/settings.json
       - run: pnpm tsc:check
       - run: pnpm i18n:check
       - run: pnpm test:drop-queue
       - run: pnpm test:audio-target-size
       - run: pnpm test:claude-hooks
+      - run: pnpm test:explorer-menu
 
   rust:
     name: Rust (tests, clippy)

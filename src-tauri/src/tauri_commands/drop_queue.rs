@@ -93,6 +93,9 @@ pub struct DropQueueItem {
     pub watch_folder_id: Option<String>,
     /// That folder's name, shown with it
     pub watch_folder_name: Option<String>,
+    /// Added with "Quick Compress" in the file manager's right-click menu (see
+    /// `sys::explorer_menu`): compressed with the Quick Compress presets, not the drop zone's
+    pub quick_compress: bool,
 }
 
 /// Where queued media came from, when not dropped: a watched folder
@@ -205,6 +208,25 @@ pub fn add_to_queue_from(
     is_supported: impl Fn(&str) -> bool,
     source: Option<QueueSource>,
 ) {
+    add_items(app_handle, paths, is_supported, source, false);
+}
+
+/// `add_to_queue`, for media chosen with "Quick Compress" in the file manager's right-click menu
+pub fn add_to_quick_compress_queue(
+    app_handle: &AppHandle,
+    paths: Vec<String>,
+    is_supported: impl Fn(&str) -> bool,
+) {
+    add_items(app_handle, paths, is_supported, None, true);
+}
+
+fn add_items(
+    app_handle: &AppHandle,
+    paths: Vec<String>,
+    is_supported: impl Fn(&str) -> bool,
+    source: Option<QueueSource>,
+    quick_compress: bool,
+) {
     let files = match crate::tauri_commands::fs::allow_asset_scopes(app_handle, paths) {
         Ok(files) => files,
         Err(err) => {
@@ -252,6 +274,7 @@ pub fn add_to_queue_from(
                 needs_save_location: false,
                 watch_folder_id: source.as_ref().map(|source| source.folder_id.clone()),
                 watch_folder_name: source.as_ref().map(|source| source.folder_name.clone()),
+                quick_compress,
             });
         }
     });

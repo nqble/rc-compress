@@ -214,6 +214,30 @@ export const SETTINGS_INDEX = {
       t('settings.dropZone.compression.autoCompress.description'),
     ],
   },
+  quickCompressVideoPreset: {
+    page: 'rightClickMenu',
+    isAvailable: getPlatform().isWindows,
+    getText: (t) => [
+      t('settings.rightClickMenu.preset.title_video'),
+      t('settings.rightClickMenu.preset.description_video'),
+    ],
+  },
+  quickCompressImagePreset: {
+    page: 'rightClickMenu',
+    isAvailable: getPlatform().isWindows,
+    getText: (t) => [
+      t('settings.rightClickMenu.preset.title_image'),
+      t('settings.rightClickMenu.preset.description_image'),
+    ],
+  },
+  quickCompressAudioPreset: {
+    page: 'rightClickMenu',
+    isAvailable: getPlatform().isWindows,
+    getText: (t) => [
+      t('settings.rightClickMenu.preset.title_audio'),
+      t('settings.rightClickMenu.preset.description_audio'),
+    ],
+  },
   dropZoneVideoPreset: {
     page: 'dropZone',
     isAvailable: hasTray,

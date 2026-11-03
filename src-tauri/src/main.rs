@@ -249,6 +249,13 @@ fn urls_from_launch_args(args: &[String], cwd: Option<&str>) -> Vec<Url> {
 /// Another launch of the app (only one runs at a time, so they never share or clear each other's
 /// cache): the running app comes forward instead, with the files it was launched with
 fn on_second_instance(app_handle: &tauri::AppHandle, args: Vec<String>, cwd: String) {
+    // "Quick Compress" in the right-click menu: compressed in the background, the window stays as
+    // it is
+    #[cfg(windows)]
+    if run_explorer_menu_action(app_handle, &args, Some(&cwd)) {
+        return;
+    }
+
     log::info!("Another launch of the app, bringing this one forward");
 
     if !core::tool_bundle::is_ready(app_handle) {
@@ -286,6 +293,30 @@ fn on_second_instance(app_handle: &tauri::AppHandle, args: Vec<String>, cwd: Str
     }
     #[cfg(target_os = "macos")]
     let _ = (args, cwd);
+}
+
+/// Runs the right-click menu action a launch asks for (see `sys::explorer_menu`) on its files.
+/// Returns whether it was one, so the launch isn't also handled as "Open with".
+#[cfg(windows)]
+fn run_explorer_menu_action(
+    app_handle: &tauri::AppHandle,
+    args: &[String],
+    cwd: Option<&str>,
+) -> bool {
+    use sys::explorer_menu::{action_from_launch_args, quick_compress, MenuAction};
+
+    let Some(action) = action_from_launch_args(args) else {
+        return false;
+    };
+    let paths = urls_from_launch_args(args, cwd)
+        .iter()
+        .filter_map(|url| url.to_file_path().ok())
+        .map(|path| path.to_string_lossy().to_string())
+        .collect();
+    match action {
+        MenuAction::QuickCompress => quick_compress(app_handle, paths),
+    }
+    true
 }
 
 /// Files dropped on the tray can be opened unless compressing or compressed media is unsaved, which
@@ -449,8 +480,17 @@ async fn run() {
                 }
             }
 
+            #[cfg(windows)]
+            let is_menu_action = run_explorer_menu_action(
+                app.handle(),
+                &std::env::args().collect::<Vec<_>>(),
+                None,
+            );
+            #[cfg(not(windows))]
+            let is_menu_action = false;
+
             #[cfg(any(windows, target_os = "linux"))]
-            {
+            if !is_menu_action {
                 let args: Vec<String> = std::env::args().collect();
                 let urls = urls_from_launch_args(&args, None);
                 if let Err(e) = handle_open_with_app(app.handle(), urls) {

@@ -272,7 +272,8 @@
       "about": "Hakkında",
       "credits": "Teşekkürler",
       "watchedFolders": "Klasör izleme",
-      "history": "Geçmiş"
+      "history": "Geçmiş",
+      "rightClickMenu": "Sağ tık menüsü"
     },
     "about": {
       "updateAvailable": "Güncelleme mevcut",
@@ -343,6 +344,22 @@
         "original": "Orijinal boyut",
         "output": "Sıkıştırılmış boyut",
         "reduction": "Ortalama küçülme"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Hızlı sıkıştır",
+        "description": "Dosya Gezgini'nde bir dosyaya sağ tıklayıp rc-compress → Hızlı sıkıştır'ı seçerek onu bu ön ayarlarla arka planda sıkıştırın.",
+        "asksWhereToSave": "Bir ön ayar nereye kaydedileceğini soruyor; bu yüzden dosyaları elle kaydedilmek üzere kuyrukta bekler.",
+        "needsSaveLocation": "Hızlı sıkıştır'ın sormadan kaydedebilmesi için <setting>Çıktı</setting> bölümünde veya bu ön ayarlarda Her seferinde sor dışında bir kayıt konumu seçin."
+      },
+      "preset": {
+        "title_video": "Video ön ayarı",
+        "title_image": "Görüntü ön ayarı",
+        "title_audio": "Ses ön ayarı",
+        "description_video": "Videolar için kullanılan ayarlar.",
+        "description_image": "Görüntüler için kullanılan ayarlar.",
+        "description_audio": "Ses dosyaları için kullanılan ayarlar."
       }
     }
   },

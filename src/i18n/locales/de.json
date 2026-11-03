@@ -272,7 +272,8 @@
       "about": "Über",
       "credits": "Danksagungen",
       "watchedFolders": "Ordnerüberwachung",
-      "history": "Verlauf"
+      "history": "Verlauf",
+      "rightClickMenu": "Rechtsklick-Menü"
     },
     "about": {
       "updateAvailable": "Update verfügbar",
@@ -343,6 +344,22 @@
         "original": "Originalgröße",
         "output": "Komprimierte Größe",
         "reduction": "Durchschnittliche Verkleinerung"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Schnell komprimieren",
+        "description": "Klicke im Datei-Explorer mit der rechten Maustaste auf eine Datei und wähle rc-compress → Schnell komprimieren, um sie im Hintergrund mit diesen Voreinstellungen zu komprimieren.",
+        "asksWhereToSave": "Eine Voreinstellung fragt nach dem Speicherort, daher warten ihre Dateien in der Warteschlange, um von Hand gespeichert zu werden.",
+        "needsSaveLocation": "Wähle unter <setting>Ausgabe</setting> oder in diesen Voreinstellungen einen anderen Speicherort als „Jedes Mal fragen“, damit Schnell komprimieren ohne Nachfrage speichern kann."
+      },
+      "preset": {
+        "title_video": "Video-Voreinstellung",
+        "title_image": "Bild-Voreinstellung",
+        "title_audio": "Audio-Voreinstellung",
+        "description_video": "Einstellungen für Videos.",
+        "description_image": "Einstellungen für Bilder.",
+        "description_audio": "Einstellungen für Audiodateien."
       }
     }
   },

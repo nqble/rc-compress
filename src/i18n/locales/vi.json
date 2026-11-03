@@ -272,7 +272,8 @@
       "about": "Giới thiệu",
       "credits": "Ghi công",
       "watchedFolders": "Theo dõi thư mục",
-      "history": "Lịch sử"
+      "history": "Lịch sử",
+      "rightClickMenu": "Menu chuột phải"
     },
     "about": {
       "updateAvailable": "Có bản cập nhật",
@@ -343,6 +344,22 @@
         "original": "Kích thước gốc",
         "output": "Kích thước sau nén",
         "reduction": "Mức giảm trung bình"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Nén nhanh",
+        "description": "Nhấp chuột phải vào tệp trong File Explorer và chọn rc-compress → Nén nhanh để nén tệp ở chế độ nền với các cài đặt sẵn này.",
+        "asksWhereToSave": "Một cài đặt sẵn hỏi nơi lưu, nên các tệp của nó chờ trong hàng đợi để được lưu thủ công.",
+        "needsSaveLocation": "Hãy chọn vị trí lưu khác với Hỏi mỗi lần, trong <setting>Đầu ra</setting> hoặc trong các cài đặt sẵn này, để Nén nhanh có thể lưu mà không cần hỏi."
+      },
+      "preset": {
+        "title_video": "Cài đặt sẵn cho video",
+        "title_image": "Cài đặt sẵn cho hình ảnh",
+        "title_audio": "Cài đặt sẵn cho âm thanh",
+        "description_video": "Cài đặt dùng cho video.",
+        "description_image": "Cài đặt dùng cho hình ảnh.",
+        "description_audio": "Cài đặt dùng cho tệp âm thanh."
       }
     }
   },

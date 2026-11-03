@@ -272,7 +272,8 @@
       "about": "Informacje",
       "credits": "Podziękowania",
       "watchedFolders": "Obserwowanie folderów",
-      "history": "Historia"
+      "history": "Historia",
+      "rightClickMenu": "Menu kontekstowe"
     },
     "about": {
       "updateAvailable": "Dostępna aktualizacja",
@@ -343,6 +344,22 @@
         "original": "Rozmiar oryginalny",
         "output": "Rozmiar po kompresji",
         "reduction": "Średnie zmniejszenie"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Szybka kompresja",
+        "description": "Kliknij plik prawym przyciskiem myszy w Eksploratorze plików i wybierz rc-compress → Szybka kompresja, aby skompresować go w tle z tymi ustawieniami.",
+        "asksWhereToSave": "Jedno z ustawień pyta, gdzie zapisać, więc jego pliki czekają w kolejce na ręczne zapisanie.",
+        "needsSaveLocation": "Wybierz miejsce zapisu inne niż Pytaj za każdym razem, w <setting>Wyjście</setting> lub w tych ustawieniach, aby Szybka kompresja mogła zapisywać bez pytania."
+      },
+      "preset": {
+        "title_video": "Ustawienie wstępne wideo",
+        "title_image": "Ustawienie wstępne obrazów",
+        "title_audio": "Ustawienie wstępne audio",
+        "description_video": "Ustawienia używane dla filmów.",
+        "description_image": "Ustawienia używane dla obrazów.",
+        "description_audio": "Ustawienia używane dla plików audio."
       }
     }
   },

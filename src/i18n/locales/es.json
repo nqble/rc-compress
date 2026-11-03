@@ -272,7 +272,8 @@
       "about": "Acerca de",
       "credits": "Créditos",
       "watchedFolders": "Vigilar carpetas",
-      "history": "Historial"
+      "history": "Historial",
+      "rightClickMenu": "Menú contextual"
     },
     "about": {
       "updateAvailable": "Actualización disponible",
@@ -343,6 +344,22 @@
         "original": "Tamaño original",
         "output": "Tamaño comprimido",
         "reduction": "Reducción media"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Compresión rápida",
+        "description": "Haz clic derecho en un archivo en el Explorador de archivos y elige rc-compress → Compresión rápida para comprimirlo en segundo plano con estos ajustes preestablecidos.",
+        "asksWhereToSave": "Un ajuste preestablecido pregunta dónde guardar, así que sus archivos esperan en la cola para guardarse a mano.",
+        "needsSaveLocation": "Elige una ubicación de guardado distinta de Preguntar cada vez, en <setting>Salida</setting> o en estos ajustes preestablecidos, para que Compresión rápida pueda guardar sin preguntar."
+      },
+      "preset": {
+        "title_video": "Ajuste preestablecido de vídeo",
+        "title_image": "Ajuste preestablecido de imagen",
+        "title_audio": "Ajuste preestablecido de audio",
+        "description_video": "Configuración usada para los vídeos.",
+        "description_image": "Configuración usada para las imágenes.",
+        "description_audio": "Configuración usada para los archivos de audio."
       }
     }
   },
