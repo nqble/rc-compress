@@ -360,6 +360,24 @@
         "description_video": "Einstellungen für Videos.",
         "description_image": "Einstellungen für Bilder.",
         "description_audio": "Einstellungen für Audiodateien."
+      },
+      "groups": {
+        "title": "Deine Gruppen",
+        "description": "Gib einigen Dateitypen eine eigene Voreinstellung. Schnell komprimieren prüft deine Gruppen von oben und nimmt die erste, die den Dateityp enthält; andere Dateien nutzen die Voreinstellungen oben.",
+        "name": "Name",
+        "newName": "Neue Gruppe",
+        "fileTypes": "Dateitypen",
+        "fileTypesPlaceholder_video": "z. B. mov, mkv",
+        "fileTypesPlaceholder_image": "z. B. png, heic",
+        "fileTypesPlaceholder_audio": "z. B. mp3, wav",
+        "kind": "Art der Medien",
+        "kind_video": "Videos",
+        "kind_image": "Bilder",
+        "kind_audio": "Audio",
+        "preset": "Voreinstellung für {{name}}",
+        "add": "Gruppe hinzufügen",
+        "remove": "Gruppe entfernen",
+        "removeNamed": "{{name}} entfernen"
       }
     }
   },

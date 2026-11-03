@@ -360,6 +360,24 @@
         "description_video": "Videolar için kullanılan ayarlar.",
         "description_image": "Görüntüler için kullanılan ayarlar.",
         "description_audio": "Ses dosyaları için kullanılan ayarlar."
+      },
+      "groups": {
+        "title": "Grupların",
+        "description": "Bazı dosya türlerine kendi ön ayarlarını ver. Hızlı sıkıştır gruplarını yukarıdan kontrol eder ve dosya türünü içeren ilk grubu kullanır; diğer dosyalar yukarıdaki ön ayarları kullanır.",
+        "name": "Ad",
+        "newName": "Yeni grup",
+        "fileTypes": "Dosya türleri",
+        "fileTypesPlaceholder_video": "ör. mov, mkv",
+        "fileTypesPlaceholder_image": "ör. png, heic",
+        "fileTypesPlaceholder_audio": "ör. mp3, wav",
+        "kind": "Medya türü",
+        "kind_video": "Videolar",
+        "kind_image": "Görseller",
+        "kind_audio": "Ses",
+        "preset": "{{name}} için ön ayar",
+        "add": "Grup ekle",
+        "remove": "Grubu kaldır",
+        "removeNamed": "{{name}} grubunu kaldır"
       }
     }
   },

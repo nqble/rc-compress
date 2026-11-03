@@ -360,6 +360,24 @@
         "description_video": "Параметры для видео.",
         "description_image": "Параметры для изображений.",
         "description_audio": "Параметры для аудиофайлов."
+      },
+      "groups": {
+        "title": "Ваши группы",
+        "description": "Задайте некоторым типам файлов собственный пресет. Быстрое сжатие проверяет группы сверху вниз и берёт первую, где есть тип файла; остальные файлы используют пресеты выше.",
+        "name": "Название",
+        "newName": "Новая группа",
+        "fileTypes": "Типы файлов",
+        "fileTypesPlaceholder_video": "напр. mov, mkv",
+        "fileTypesPlaceholder_image": "напр. png, heic",
+        "fileTypesPlaceholder_audio": "напр. mp3, wav",
+        "kind": "Тип медиа",
+        "kind_video": "Видео",
+        "kind_image": "Изображения",
+        "kind_audio": "Аудио",
+        "preset": "Пресет для {{name}}",
+        "add": "Добавить группу",
+        "remove": "Удалить группу",
+        "removeNamed": "Удалить {{name}}"
       }
     }
   },

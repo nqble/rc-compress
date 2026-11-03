@@ -360,6 +360,24 @@
         "description_video": "用於影片的設定。",
         "description_image": "用於影像的設定。",
         "description_audio": "用於音訊檔案的設定。"
+      },
+      "groups": {
+        "title": "我的群組",
+        "description": "為某些檔案類型指定專屬預設。快速壓縮會由上而下檢查群組，使用第一個包含該檔案類型的群組；其他檔案使用上方的預設。",
+        "name": "名稱",
+        "newName": "新群組",
+        "fileTypes": "檔案類型",
+        "fileTypesPlaceholder_video": "例如 mov, mkv",
+        "fileTypesPlaceholder_image": "例如 png, heic",
+        "fileTypesPlaceholder_audio": "例如 mp3, wav",
+        "kind": "媒體類型",
+        "kind_video": "影片",
+        "kind_image": "圖片",
+        "kind_audio": "音訊",
+        "preset": "{{name}} 的預設",
+        "add": "新增群組",
+        "remove": "移除群組",
+        "removeNamed": "移除 {{name}}"
       }
     }
   },

@@ -63,6 +63,7 @@ import {
   QUICK_COMPRESS_PRESET_SETTINGS,
   resolvePresetChoice,
 } from '@/utils/presetOutput'
+import { findQuickCompressGroup } from '@/utils/quickCompressGroups'
 import { convertDurationToMilliseconds } from '@/utils/string'
 
 /** Top folders of dropped folders saved so far, shared by the media of a drop */
@@ -96,8 +97,15 @@ async function waitForMainWindow() {
  */
 function getQueuePresetId(item: DropQueueItem, mediaType: PresetMediaType) {
   if (item.quickCompress) {
+    // The user's own group of this file type first (Settings -> Right-click Menu)
+    const group = findQuickCompressGroup(
+      settingsStore.quickCompressGroups,
+      item.path,
+      mediaType,
+    )
     return resolvePresetChoice(
-      settingsStore[QUICK_COMPRESS_PRESET_SETTINGS[mediaType]],
+      group?.presetId ??
+        settingsStore[QUICK_COMPRESS_PRESET_SETTINGS[mediaType]],
       mediaType,
     )
   }

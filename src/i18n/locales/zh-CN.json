@@ -360,6 +360,24 @@
         "description_video": "用于视频的设置。",
         "description_image": "用于图像的设置。",
         "description_audio": "用于音频文件的设置。"
+      },
+      "groups": {
+        "title": "我的分组",
+        "description": "为某些文件类型指定专属预设。快速压缩会从上往下检查分组，使用第一个包含该文件类型的分组；其他文件使用上方的预设。",
+        "name": "名称",
+        "newName": "新分组",
+        "fileTypes": "文件类型",
+        "fileTypesPlaceholder_video": "例如 mov, mkv",
+        "fileTypesPlaceholder_image": "例如 png, heic",
+        "fileTypesPlaceholder_audio": "例如 mp3, wav",
+        "kind": "媒体类型",
+        "kind_video": "视频",
+        "kind_image": "图片",
+        "kind_audio": "音频",
+        "preset": "{{name}} 的预设",
+        "add": "添加分组",
+        "remove": "删除分组",
+        "removeNamed": "删除 {{name}}"
       }
     }
   },

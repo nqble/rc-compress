@@ -360,6 +360,24 @@
         "description_video": "Impostazioni usate per i video.",
         "description_image": "Impostazioni usate per le immagini.",
         "description_audio": "Impostazioni usate per i file audio."
+      },
+      "groups": {
+        "title": "I tuoi gruppi",
+        "description": "Assegna ad alcuni tipi di file un preset tutto loro. Compressione rapida controlla i tuoi gruppi dall'alto e usa il primo che contiene il tipo del file; gli altri file usano i preset sopra.",
+        "name": "Nome",
+        "newName": "Nuovo gruppo",
+        "fileTypes": "Tipi di file",
+        "fileTypesPlaceholder_video": "es. mov, mkv",
+        "fileTypesPlaceholder_image": "es. png, heic",
+        "fileTypesPlaceholder_audio": "es. mp3, wav",
+        "kind": "Tipo di media",
+        "kind_video": "Video",
+        "kind_image": "Immagini",
+        "kind_audio": "Audio",
+        "preset": "Preset per {{name}}",
+        "add": "Aggiungi gruppo",
+        "remove": "Rimuovi gruppo",
+        "removeNamed": "Rimuovi {{name}}"
       }
     }
   },

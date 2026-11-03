@@ -360,6 +360,24 @@
         "description_video": "Cài đặt dùng cho video.",
         "description_image": "Cài đặt dùng cho hình ảnh.",
         "description_audio": "Cài đặt dùng cho tệp âm thanh."
+      },
+      "groups": {
+        "title": "Nhóm của bạn",
+        "description": "Gán cài đặt sẵn riêng cho một số loại tệp. Nén nhanh kiểm tra các nhóm từ trên xuống và dùng nhóm đầu tiên chứa loại tệp đó; các tệp khác dùng cài đặt sẵn ở trên.",
+        "name": "Tên",
+        "newName": "Nhóm mới",
+        "fileTypes": "Loại tệp",
+        "fileTypesPlaceholder_video": "vd: mov, mkv",
+        "fileTypesPlaceholder_image": "vd: png, heic",
+        "fileTypesPlaceholder_audio": "vd: mp3, wav",
+        "kind": "Loại phương tiện",
+        "kind_video": "Video",
+        "kind_image": "Hình ảnh",
+        "kind_audio": "Âm thanh",
+        "preset": "Cài đặt sẵn cho {{name}}",
+        "add": "Thêm nhóm",
+        "remove": "Xóa nhóm",
+        "removeNamed": "Xóa {{name}}"
       }
     }
   },

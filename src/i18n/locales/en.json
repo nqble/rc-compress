@@ -360,6 +360,24 @@
         "description_video": "Settings used for videos.",
         "description_image": "Settings used for images.",
         "description_audio": "Settings used for audio files."
+      },
+      "groups": {
+        "title": "Your groups",
+        "description": "Give some file types their own preset. Quick Compress checks your groups from the top and uses the first one that holds the file's type; other files use the presets above.",
+        "name": "Name",
+        "newName": "New group",
+        "fileTypes": "File types",
+        "fileTypesPlaceholder_video": "e.g. mov, mkv",
+        "fileTypesPlaceholder_image": "e.g. png, heic",
+        "fileTypesPlaceholder_audio": "e.g. mp3, wav",
+        "kind": "Kind of media",
+        "kind_video": "Videos",
+        "kind_image": "Images",
+        "kind_audio": "Audio",
+        "preset": "Preset for {{name}}",
+        "add": "Add group",
+        "remove": "Remove group",
+        "removeNamed": "Remove {{name}}"
       }
     }
   },

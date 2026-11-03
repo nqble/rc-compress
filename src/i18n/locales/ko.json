@@ -360,6 +360,24 @@
         "description_video": "비디오에 사용되는 설정입니다.",
         "description_image": "이미지에 사용되는 설정입니다.",
         "description_audio": "오디오 파일에 사용되는 설정입니다."
+      },
+      "groups": {
+        "title": "내 그룹",
+        "description": "일부 파일 형식에 전용 프리셋을 지정하세요. 빠른 압축은 위에서부터 그룹을 확인해 파일 형식이 들어 있는 첫 그룹을 사용하고, 나머지 파일은 위의 프리셋을 사용합니다.",
+        "name": "이름",
+        "newName": "새 그룹",
+        "fileTypes": "파일 형식",
+        "fileTypesPlaceholder_video": "예: mov, mkv",
+        "fileTypesPlaceholder_image": "예: png, heic",
+        "fileTypesPlaceholder_audio": "예: mp3, wav",
+        "kind": "미디어 종류",
+        "kind_video": "동영상",
+        "kind_image": "이미지",
+        "kind_audio": "오디오",
+        "preset": "{{name}} 프리셋",
+        "add": "그룹 추가",
+        "remove": "그룹 삭제",
+        "removeNamed": "{{name}} 삭제"
       }
     }
   },

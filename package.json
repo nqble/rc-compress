@@ -28,6 +28,7 @@
     "test:drop-queue": "node --test scripts/test-drop-queue.mjs",
     "test:claude-hooks": "node --test scripts/test-claude-hooks.mjs",
     "test:explorer-menu": "node --test scripts/test-explorer-menu.mjs",
+    "test:quick-compress-groups": "node --test scripts/test-quick-compress-groups.mjs",
     "tsc:check": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {

@@ -14,6 +14,7 @@ import {
   QUICK_COMPRESS_PRESET_SETTINGS,
 } from '@/utils/presetOutput'
 import PresetChoiceSelect from './PresetChoiceSelect'
+import QuickCompressGroups from './QuickCompressGroups'
 import { SettingsRow, SettingsSection } from './SettingsLayout'
 
 const MEDIA_TYPES: PresetMediaType[] = ['video', 'image', 'audio']
@@ -69,7 +70,8 @@ function useQuickCompressSaves() {
   )
 }
 
-function RightClickMenu() {
+/** The built-in presets: one per kind of media, used when no group of the user's matches */
+function QuickCompressPresets() {
   const { t } = useTranslation()
   const savesAutomatically = useQuickCompressSaves()
 
@@ -110,6 +112,15 @@ function RightClickMenu() {
         </SettingsRow>
       ))}
     </SettingsSection>
+  )
+}
+
+function RightClickMenu() {
+  return (
+    <>
+      <QuickCompressPresets />
+      <QuickCompressGroups />
+    </>
   )
 }
 
