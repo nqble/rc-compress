@@ -272,7 +272,8 @@
       "about": "Informazioni",
       "credits": "Riconoscimenti",
       "watchedFolders": "Monitoraggio cartelle",
-      "history": "Cronologia"
+      "history": "Cronologia",
+      "rightClickMenu": "Menu contestuale"
     },
     "about": {
       "updateAvailable": "Aggiornamento disponibile",
@@ -343,6 +344,22 @@
         "original": "Dimensione originale",
         "output": "Dimensione compressa",
         "reduction": "Riduzione media"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Compressione rapida",
+        "description": "Fai clic destro su un file in Esplora file e scegli rc-compress → Compressione rapida per comprimerlo in background con questi preset.",
+        "asksWhereToSave": "Un preset chiede dove salvare, quindi i suoi file restano in coda per essere salvati a mano.",
+        "needsSaveLocation": "Scegli una posizione di salvataggio diversa da Chiedi ogni volta, in <setting>Output</setting> o in questi preset, così Compressione rapida può salvare senza chiedere."
+      },
+      "preset": {
+        "title_video": "Preset video",
+        "title_image": "Preset immagine",
+        "title_audio": "Preset audio",
+        "description_video": "Impostazioni usate per i video.",
+        "description_image": "Impostazioni usate per le immagini.",
+        "description_audio": "Impostazioni usate per i file audio."
       }
     }
   },

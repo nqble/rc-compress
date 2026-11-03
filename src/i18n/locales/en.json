@@ -272,7 +272,8 @@
       "about": "About",
       "credits": "Credits",
       "watchedFolders": "Watch Folder",
-      "history": "History"
+      "history": "History",
+      "rightClickMenu": "Right-click Menu"
     },
     "about": {
       "updateAvailable": "Update available",
@@ -343,6 +344,22 @@
         "original": "Original size",
         "output": "Compressed size",
         "reduction": "Average reduction"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Quick Compress",
+        "description": "Right-click a file in File Explorer and choose rc-compress → Quick Compress to compress it in the background with these presets.",
+        "asksWhereToSave": "A preset asks where to save, so its files wait in the queue to be saved by hand.",
+        "needsSaveLocation": "Choose a save location other than Ask every time, in <setting>Output</setting> or in these presets, so Quick Compress can save without asking."
+      },
+      "preset": {
+        "title_video": "Video preset",
+        "title_image": "Image preset",
+        "title_audio": "Audio preset",
+        "description_video": "Settings used for videos.",
+        "description_image": "Settings used for images.",
+        "description_audio": "Settings used for audio files."
       }
     }
   },

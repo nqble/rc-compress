@@ -34,6 +34,7 @@ import General from './General'
 import History from './History'
 import Output from './Output'
 import Presets from './Presets'
+import RightClickMenu from './RightClickMenu'
 import WatchedFolders from './WatchedFolders'
 
 type SettingsPage = {
@@ -45,7 +46,7 @@ type SettingsPage = {
   fillsHeight?: boolean
 }
 
-const { isMacOS } = getPlatform()
+const { isMacOS, isWindows } = getPlatform()
 
 const SETTINGS_GROUPS: {
   /** Translated (`settings.groups`) */
@@ -77,6 +78,16 @@ const SETTINGS_GROUPS: {
               id: 'dropZone' as const,
               icon: 'dropzone' as const,
               Component: DropZone,
+            },
+          ]
+        : []),
+      // The installer adds the right-click menu on Windows only, for now (see `explorer_menu.rs`)
+      ...(isWindows
+        ? [
+            {
+              id: 'rightClickMenu' as const,
+              icon: 'fileExplorer' as const,
+              Component: RightClickMenu,
             },
           ]
         : []),

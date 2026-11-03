@@ -272,7 +272,8 @@
       "about": "情報",
       "credits": "クレジット",
       "watchedFolders": "フォルダ監視",
-      "history": "履歴"
+      "history": "履歴",
+      "rightClickMenu": "右クリックメニュー"
     },
     "about": {
       "updateAvailable": "アップデートがあります",
@@ -343,6 +344,22 @@
         "original": "元のサイズ",
         "output": "圧縮後のサイズ",
         "reduction": "平均削減率"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "クイック圧縮",
+        "description": "エクスプローラーでファイルを右クリックし、rc-compress → クイック圧縮 を選ぶと、これらのプリセットでバックグラウンドで圧縮します。",
+        "asksWhereToSave": "保存先を毎回確認するプリセットがあるため、そのファイルはキューで手動保存を待ちます。",
+        "needsSaveLocation": "クイック圧縮が確認なしで保存できるよう、<setting>出力</setting>またはこれらのプリセットで「毎回確認」以外の保存先を選んでください。"
+      },
+      "preset": {
+        "title_video": "ビデオのプリセット",
+        "title_image": "画像のプリセット",
+        "title_audio": "オーディオのプリセット",
+        "description_video": "ビデオに使用する設定です。",
+        "description_image": "画像に使用する設定です。",
+        "description_audio": "オーディオファイルに使用する設定です。"
       }
     }
   },

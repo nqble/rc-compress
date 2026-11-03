@@ -272,7 +272,8 @@
       "about": "Tentang",
       "credits": "Kredit",
       "watchedFolders": "Pantau folder",
-      "history": "Riwayat"
+      "history": "Riwayat",
+      "rightClickMenu": "Menu klik kanan"
     },
     "about": {
       "updateAvailable": "Pembaruan tersedia",
@@ -343,6 +344,22 @@
         "original": "Ukuran asli",
         "output": "Ukuran terkompresi",
         "reduction": "Rata-rata pengurangan"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "Kompres Cepat",
+        "description": "Klik kanan file di File Explorer lalu pilih rc-compress → Kompres Cepat untuk mengompresnya di latar belakang dengan preset ini.",
+        "asksWhereToSave": "Ada preset yang menanyakan lokasi simpan, jadi filenya menunggu di antrean untuk disimpan manual.",
+        "needsSaveLocation": "Pilih lokasi simpan selain Tanya setiap kali, di <setting>Output</setting> atau di preset ini, agar Kompres Cepat bisa menyimpan tanpa bertanya."
+      },
+      "preset": {
+        "title_video": "Preset video",
+        "title_image": "Preset gambar",
+        "title_audio": "Preset audio",
+        "description_video": "Pengaturan yang digunakan untuk video.",
+        "description_image": "Pengaturan yang digunakan untuk gambar.",
+        "description_audio": "Pengaturan yang digunakan untuk file audio."
       }
     }
   },

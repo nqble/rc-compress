@@ -272,7 +272,8 @@
       "about": "정보",
       "credits": "크레딧",
       "watchedFolders": "폴더 감시",
-      "history": "기록"
+      "history": "기록",
+      "rightClickMenu": "오른쪽 클릭 메뉴"
     },
     "about": {
       "updateAvailable": "업데이트 사용 가능",
@@ -343,6 +344,22 @@
         "original": "원본 크기",
         "output": "압축 후 크기",
         "reduction": "평균 감소율"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "빠른 압축",
+        "description": "파일 탐색기에서 파일을 마우스 오른쪽 버튼으로 클릭하고 rc-compress → 빠른 압축을 선택하면 이 프리셋으로 백그라운드에서 압축합니다.",
+        "asksWhereToSave": "저장 위치를 묻는 프리셋이 있어 해당 파일은 대기열에서 직접 저장을 기다립니다.",
+        "needsSaveLocation": "빠른 압축이 묻지 않고 저장할 수 있도록 <setting>출력</setting> 또는 이 프리셋에서 '매번 묻기' 이외의 저장 위치를 선택하세요."
+      },
+      "preset": {
+        "title_video": "비디오 프리셋",
+        "title_image": "이미지 프리셋",
+        "title_audio": "오디오 프리셋",
+        "description_video": "비디오에 사용되는 설정입니다.",
+        "description_image": "이미지에 사용되는 설정입니다.",
+        "description_audio": "오디오 파일에 사용되는 설정입니다."
       }
     }
   },

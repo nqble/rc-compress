@@ -272,7 +272,8 @@
       "about": "關於",
       "credits": "致謝",
       "watchedFolders": "監看資料夾",
-      "history": "歷史記錄"
+      "history": "歷史記錄",
+      "rightClickMenu": "右鍵選單"
     },
     "about": {
       "updateAvailable": "有可用的更新",
@@ -343,6 +344,22 @@
         "original": "原始大小",
         "output": "壓縮後大小",
         "reduction": "平均縮減"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "快速壓縮",
+        "description": "在檔案總管中以右鍵點選檔案，選擇 rc-compress → 快速壓縮，即可使用這些預設在背景壓縮。",
+        "asksWhereToSave": "有預設需要詢問儲存位置，因此其檔案會在佇列中等待手動儲存。",
+        "needsSaveLocation": "請在<setting>輸出</setting>或這些預設中選擇「每次詢問」以外的儲存位置，讓快速壓縮不必詢問即可儲存。"
+      },
+      "preset": {
+        "title_video": "影片預設",
+        "title_image": "影像預設",
+        "title_audio": "音訊預設",
+        "description_video": "用於影片的設定。",
+        "description_image": "用於影像的設定。",
+        "description_audio": "用於音訊檔案的設定。"
       }
     }
   },

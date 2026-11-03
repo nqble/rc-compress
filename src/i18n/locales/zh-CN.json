@@ -272,7 +272,8 @@
       "about": "关于",
       "credits": "致谢",
       "watchedFolders": "监视文件夹",
-      "history": "历史记录"
+      "history": "历史记录",
+      "rightClickMenu": "右键菜单"
     },
     "about": {
       "updateAvailable": "有可用更新",
@@ -343,6 +344,22 @@
         "original": "原始大小",
         "output": "压缩后大小",
         "reduction": "平均缩减"
+      }
+    },
+    "rightClickMenu": {
+      "quickCompress": {
+        "title": "快速压缩",
+        "description": "在文件资源管理器中右键单击文件，选择 rc-compress → 快速压缩，即可使用这些预设在后台压缩。",
+        "asksWhereToSave": "有预设需要询问保存位置，因此其文件会在队列中等待手动保存。",
+        "needsSaveLocation": "请在<setting>输出</setting>或这些预设中选择“每次询问”以外的保存位置，以便快速压缩无需询问即可保存。"
+      },
+      "preset": {
+        "title_video": "视频预设",
+        "title_image": "图像预设",
+        "title_audio": "音频预设",
+        "description_video": "用于视频的设置。",
+        "description_image": "用于图像的设置。",
+        "description_audio": "用于音频文件的设置。"
       }
     }
   },
