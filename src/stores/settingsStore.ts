@@ -4,6 +4,10 @@ import { proxy, subscribe } from 'valtio'
 import * as constants from '@/constants'
 import { isLanguageCode, type LanguageCode } from '@/i18n/languages'
 import { DEFAULT_PRESET_CHOICE, type PresetMediaType } from '@/types/preset'
+import {
+  type QuickCompressGroup,
+  readQuickCompressGroups,
+} from '@/utils/quickCompressGroups'
 
 export const DEFAULT_OUTPUT_FILE_PREFIX = 'compressO-'
 
@@ -99,6 +103,11 @@ export type SettingsState = {
   quickCompressVideoPresetId: string
   quickCompressImagePresetId: string
   quickCompressAudioPresetId: string
+  /**
+   * The user's own Quick Compress groups (file types with a preset), checked in order before the
+   * presets above (none by default; see `utils/quickCompressGroups.ts`)
+   */
+  quickCompressGroups: QuickCompressGroup[]
   /** Folders whose new media the drop zone compresses (none by default) */
   watchedFolders: WatchedFolder[]
   /**
@@ -186,6 +195,7 @@ function readSettings(): SettingsState {
     quickCompressAudioPresetId:
       localStorage.getItem(constants.quickCompressAudioPresetId) ??
       DEFAULT_PRESET_CHOICE,
+    quickCompressGroups: readStoredQuickCompressGroups(),
     watchedFolders: readWatchedFolders(),
     useHardwareAcceleration:
       localStorage.getItem(constants.useHardwareAcceleration) === 'true',
@@ -202,6 +212,17 @@ function readSettings(): SettingsState {
     openInMenuBarOnly:
       localStorage.getItem(constants.openInMenuBarOnly) !== 'false',
     language: readLanguage(),
+  }
+}
+
+/** The stored Quick Compress groups, dropping any that are not valid */
+function readStoredQuickCompressGroups(): QuickCompressGroup[] {
+  try {
+    return readQuickCompressGroups(
+      JSON.parse(localStorage.getItem(constants.quickCompressGroups) ?? '[]'),
+    )
+  } catch {
+    return []
   }
 }
 
@@ -319,6 +340,10 @@ subscribe(settingsStore, () => {
   localStorage.setItem(
     constants.quickCompressAudioPresetId,
     settingsStore.quickCompressAudioPresetId,
+  )
+  localStorage.setItem(
+    constants.quickCompressGroups,
+    JSON.stringify(settingsStore.quickCompressGroups),
   )
   localStorage.setItem(
     constants.watchedFolders,
