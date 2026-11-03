@@ -360,6 +360,24 @@
         "description_video": "Configurações usadas para vídeos.",
         "description_image": "Configurações usadas para imagens.",
         "description_audio": "Configurações usadas para arquivos de áudio."
+      },
+      "groups": {
+        "title": "Seus grupos",
+        "description": "Dê a alguns tipos de arquivo sua própria predefinição. A Compressão rápida verifica seus grupos de cima para baixo e usa o primeiro que contém o tipo do arquivo; os outros arquivos usam as predefinições acima.",
+        "name": "Nome",
+        "newName": "Novo grupo",
+        "fileTypes": "Tipos de arquivo",
+        "fileTypesPlaceholder_video": "ex.: mov, mkv",
+        "fileTypesPlaceholder_image": "ex.: png, heic",
+        "fileTypesPlaceholder_audio": "ex.: mp3, wav",
+        "kind": "Tipo de mídia",
+        "kind_video": "Vídeos",
+        "kind_image": "Imagens",
+        "kind_audio": "Áudio",
+        "preset": "Predefinição para {{name}}",
+        "add": "Adicionar grupo",
+        "remove": "Remover grupo",
+        "removeNamed": "Remover {{name}}"
       }
     }
   },

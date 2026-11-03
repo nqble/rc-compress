@@ -360,6 +360,24 @@
         "description_video": "Réglages utilisés pour les vidéos.",
         "description_image": "Réglages utilisés pour les images.",
         "description_audio": "Réglages utilisés pour les fichiers audio."
+      },
+      "groups": {
+        "title": "Vos groupes",
+        "description": "Donnez à certains types de fichiers leur propre préréglage. Compression rapide parcourt vos groupes depuis le haut et utilise le premier qui contient le type du fichier ; les autres fichiers utilisent les préréglages ci-dessus.",
+        "name": "Nom",
+        "newName": "Nouveau groupe",
+        "fileTypes": "Types de fichiers",
+        "fileTypesPlaceholder_video": "p. ex. mov, mkv",
+        "fileTypesPlaceholder_image": "p. ex. png, heic",
+        "fileTypesPlaceholder_audio": "p. ex. mp3, wav",
+        "kind": "Type de média",
+        "kind_video": "Vidéos",
+        "kind_image": "Images",
+        "kind_audio": "Audio",
+        "preset": "Préréglage pour {{name}}",
+        "add": "Ajouter un groupe",
+        "remove": "Supprimer le groupe",
+        "removeNamed": "Supprimer {{name}}"
       }
     }
   },

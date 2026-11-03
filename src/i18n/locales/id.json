@@ -360,6 +360,24 @@
         "description_video": "Pengaturan yang digunakan untuk video.",
         "description_image": "Pengaturan yang digunakan untuk gambar.",
         "description_audio": "Pengaturan yang digunakan untuk file audio."
+      },
+      "groups": {
+        "title": "Grup Anda",
+        "description": "Beri beberapa jenis file preset sendiri. Kompres Cepat memeriksa grup Anda dari atas dan memakai grup pertama yang berisi jenis file itu; file lain memakai preset di atas.",
+        "name": "Nama",
+        "newName": "Grup baru",
+        "fileTypes": "Jenis file",
+        "fileTypesPlaceholder_video": "mis. mov, mkv",
+        "fileTypesPlaceholder_image": "mis. png, heic",
+        "fileTypesPlaceholder_audio": "mis. mp3, wav",
+        "kind": "Jenis media",
+        "kind_video": "Video",
+        "kind_image": "Gambar",
+        "kind_audio": "Audio",
+        "preset": "Preset untuk {{name}}",
+        "add": "Tambah grup",
+        "remove": "Hapus grup",
+        "removeNamed": "Hapus {{name}}"
       }
     }
   },

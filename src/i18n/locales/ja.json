@@ -360,6 +360,24 @@
         "description_video": "ビデオに使用する設定です。",
         "description_image": "画像に使用する設定です。",
         "description_audio": "オーディオファイルに使用する設定です。"
+      },
+      "groups": {
+        "title": "マイグループ",
+        "description": "一部のファイル形式に専用のプリセットを割り当てます。クイック圧縮は上から順にグループを確認し、ファイル形式を含む最初のグループを使います。その他のファイルは上のプリセットを使います。",
+        "name": "名前",
+        "newName": "新しいグループ",
+        "fileTypes": "ファイル形式",
+        "fileTypesPlaceholder_video": "例: mov, mkv",
+        "fileTypesPlaceholder_image": "例: png, heic",
+        "fileTypesPlaceholder_audio": "例: mp3, wav",
+        "kind": "メディアの種類",
+        "kind_video": "動画",
+        "kind_image": "画像",
+        "kind_audio": "オーディオ",
+        "preset": "{{name}} のプリセット",
+        "add": "グループを追加",
+        "remove": "グループを削除",
+        "removeNamed": "{{name}} を削除"
       }
     }
   },

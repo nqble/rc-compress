@@ -360,6 +360,24 @@
         "description_video": "वीडियो के लिए उपयोग की जाने वाली सेटिंग्ज़।",
         "description_image": "छवियों के लिए उपयोग की जाने वाली सेटिंग्ज़।",
         "description_audio": "ऑडियो फ़ाइलों के लिए उपयोग की जाने वाली सेटिंग्ज़।"
+      },
+      "groups": {
+        "title": "आपके समूह",
+        "description": "कुछ फ़ाइल प्रकारों को उनका अपना प्रीसेट दें। क्विक कंप्रेस ऊपर से आपके समूह जाँचता है और फ़ाइल के प्रकार वाला पहला समूह इस्तेमाल करता है; बाकी फ़ाइलें ऊपर के प्रीसेट इस्तेमाल करती हैं।",
+        "name": "नाम",
+        "newName": "नया समूह",
+        "fileTypes": "फ़ाइल प्रकार",
+        "fileTypesPlaceholder_video": "जैसे mov, mkv",
+        "fileTypesPlaceholder_image": "जैसे png, heic",
+        "fileTypesPlaceholder_audio": "जैसे mp3, wav",
+        "kind": "मीडिया का प्रकार",
+        "kind_video": "वीडियो",
+        "kind_image": "इमेज",
+        "kind_audio": "ऑडियो",
+        "preset": "{{name}} का प्रीसेट",
+        "add": "समूह जोड़ें",
+        "remove": "समूह हटाएँ",
+        "removeNamed": "{{name}} हटाएँ"
       }
     }
   },
