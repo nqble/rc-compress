@@ -25,6 +25,14 @@ compressed.
 | **Remove metadata** | Copies the file without its location, camera and date details, without compressing it (videos and audio unchanged; images saved losslessly) | None |
 | **Open in rc-compress…** | Opens the file in the app window, to choose every setting by hand | None |
 
+## PDFs
+
+PDFs are compressed with the bundled Ghostscript (nothing to install); text stays sharp and selectable, and pictures
+inside get a lower resolution. **Quick Compress** uses your **PDF quality** (Settings → Right-click Menu: Small,
+Medium or High). **Compress by** and **Fit to size** try High, then Medium, then Small, and keep the first that is
+small enough (or the smallest). **Remove metadata** compresses at High and empties the document's information (title, author and the
+like).
+
 ## Where the copy goes
 
 Next to the original, named `name (compressed).ext`, unless:

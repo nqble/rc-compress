@@ -40,7 +40,8 @@ say the app is damaged or from an unidentified developer (right-click the app â†
 
   The file is compressed in the background and the copy is saved next to the original as `name (compressed).ext`;
   the original is never changed. How each item works: [docs/right-click-menu.md](docs/right-click-menu.md).
-- **Coming:** PDFs, and the right-click menu on macOS and Linux.
+- **PDFs** from the right-click menu, with Ghostscript bundled.
+- **Coming:** PDFs in the app window, and the right-click menu on macOS and Linux.
 
 ## Based on compressO
 

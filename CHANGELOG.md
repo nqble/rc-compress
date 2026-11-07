@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.1.3
+
+- **PDFs (Windows right-click menu):** Quick Compress, Compress by, Fit to size and Remove metadata work on PDFs too, with Ghostscript bundled (nothing to install). Text stays sharp and selectable; pictures inside get a lower resolution.
+- **PDF quality** for Quick Compress: Small (screen, email), Medium (most documents) or High (printing), in Settings > Right-click Menu.
+
 ### 0.1.2
 
 - **The whole right-click menu (Windows, under Show more options):** rc-compress ▸ Quick Compress, Compress by ▸ 10% … 90%, Fit to size ▸ 8 MB · 10 MB · 25 MB · Your size, Remove metadata, Open in rc-compress.
