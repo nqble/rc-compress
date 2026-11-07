@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Awalan nama file",
           "placeholder": "Tanpa awalan",
-          "description": "Teks yang ditambahkan di awal nama file yang disimpan. Biarkan kosong untuk mempertahankan nama asli."
+          "description": "Teks yang ditambahkan di awal nama file yang disimpan. Kosongkan agar salinan bernama seperti “video (compressed).mp4”."
         },
         "appliesTo": "Berlaku hanya untuk preset Standar."
       },

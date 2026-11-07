@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Prefiks nazwy pliku",
           "placeholder": "Bez prefiksu",
-          "description": "Tekst dodawany na początku nazw zapisywanych plików. Pozostaw puste, aby zachować oryginalne nazwy."
+          "description": "Tekst dodawany na początku nazw zapisanych plików. Zostaw puste, aby kopie miały nazwy jak „video (compressed).mp4”."
         },
         "appliesTo": "Dotyczą tylko ustawienia Standardowego."
       },

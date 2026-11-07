@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Prefixo do nome do arquivo",
           "placeholder": "Sem prefixo",
-          "description": "Texto adicionado ao início do nome dos arquivos salvos. Deixe vazio para manter os nomes originais."
+          "description": "Texto adicionado ao início dos nomes dos arquivos salvos. Deixe vazio para nomear as cópias como “video (compressed).mp4”."
         },
         "appliesTo": "Aplicam-se apenas à predefinição Padrão."
       },

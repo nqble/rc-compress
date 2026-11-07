@@ -212,7 +212,7 @@
         "prefix": {
           "title": "檔名前綴",
           "placeholder": "無前綴",
-          "description": "加在儲存檔名開頭的文字。留空則保留原始檔名。"
+          "description": "加在儲存檔名開頭的文字。留空則副本命名為「video (compressed).mp4」這樣的形式。"
         },
         "appliesTo": "這些設定僅適用於標準預設。"
       },

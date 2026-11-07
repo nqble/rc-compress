@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Préfixe du nom de fichier",
           "placeholder": "Aucun préfixe",
-          "description": "Texte ajouté au début du nom des fichiers enregistrés. Laissez vide pour conserver les noms d’origine."
+          "description": "Texte ajouté au début des noms des fichiers enregistrés. Laissez vide pour nommer les copies comme « video (compressed).mp4 »."
         },
         "appliesTo": "Ces réglages s’appliquent uniquement au préréglage Standard."
       },

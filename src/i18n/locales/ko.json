@@ -212,7 +212,7 @@
         "prefix": {
           "title": "파일 이름 접두사",
           "placeholder": "접두사 없음",
-          "description": "저장되는 파일 이름 앞에 추가되는 텍스트입니다. 원래 이름을 유지하려면 비워 두십시오."
+          "description": "저장되는 파일 이름 앞에 붙는 텍스트입니다. 비워 두면 사본 이름이 “video (compressed).mp4”처럼 됩니다."
         },
         "appliesTo": "이 설정은 표준 프리셋에만 적용됩니다."
       },

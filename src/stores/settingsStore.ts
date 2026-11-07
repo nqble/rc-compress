@@ -10,7 +10,12 @@ import {
   readQuickCompressGroups,
 } from '@/utils/quickCompressGroups'
 
-export const DEFAULT_OUTPUT_FILE_PREFIX = 'compressO-'
+/**
+ * No prefix: copies are named "video (compressed).mp4" (see `utils/outputFileName.ts`). compressO's default prefix,
+ * stored by rc-compress 0.1.x, is read as none.
+ */
+export const DEFAULT_OUTPUT_FILE_PREFIX = ''
+const COMPRESSO_OUTPUT_FILE_PREFIX = 'compressO-'
 
 export const saveLocations = {
   /** Save automatically next to the original (or next to the dropped folder) */
@@ -150,9 +155,7 @@ localStorage.removeItem('skipLargerOutputs')
 function readSettings(): SettingsState {
   const storedSaveLocation = localStorage.getItem(constants.saveLocation)
   return {
-    outputFilePrefix:
-      localStorage.getItem(constants.outputFilePrefix) ??
-      DEFAULT_OUTPUT_FILE_PREFIX,
+    outputFilePrefix: readOutputFilePrefix(),
     saveLocation:
       storedSaveLocation && storedSaveLocation in saveLocations
         ? (storedSaveLocation as SaveLocation)
@@ -217,6 +220,15 @@ function readSettings(): SettingsState {
       localStorage.getItem(constants.openInMenuBarOnly) !== 'false',
     language: readLanguage(),
   }
+}
+
+/** The stored file name prefix; compressO's default (kept by earlier versions) counts as none */
+function readOutputFilePrefix() {
+  const stored = localStorage.getItem(constants.outputFilePrefix)
+  if (stored == null || stored === COMPRESSO_OUTPUT_FILE_PREFIX) {
+    return DEFAULT_OUTPUT_FILE_PREFIX
+  }
+  return stored
 }
 
 /** The stored "Your size" of Fit to size, or its default when none (or no valid one) is stored */
