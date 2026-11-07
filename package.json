@@ -30,6 +30,7 @@
     "test:explorer-menu": "node --test scripts/test-explorer-menu.mjs",
     "test:quick-compress-groups": "node --test scripts/test-quick-compress-groups.mjs",
     "test:compress-by": "node --test scripts/test-compress-by.mjs",
+    "test:remove-metadata": "node --test scripts/test-remove-metadata.mjs",
     "test:image-dynamic-range": "node --test scripts/test-image-dynamic-range.mjs",
     "test:video-dynamic-range": "node --test scripts/test-video-dynamic-range.mjs",
     "tsc:check": "tsc --noEmit --skipLibCheck"

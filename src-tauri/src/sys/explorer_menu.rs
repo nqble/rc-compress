@@ -26,6 +26,10 @@ pub const FIT_TO_ARG: &str = "--fit-to=";
 /// The sizes the menu offers, in MB; must match `hooks.nsh` and `src/utils/compressBy.ts`
 pub const FIT_SIZES_IN_MB: [u16; 3] = [8, 10, 25];
 
+/// "Remove metadata": copies each file without its metadata (location, camera, dates), not
+/// compressed. Must match `hooks.nsh`.
+pub const REMOVE_METADATA_ARG: &str = "--remove-metadata";
+
 /// What a launch from the right-click menu asks for
 #[derive(Debug, PartialEq, Eq)]
 pub enum MenuAction {
@@ -34,6 +38,7 @@ pub enum MenuAction {
     CompressBy(u8),
     /// Within this many MB, or (`None`) the size set in the app
     FitTo(Option<u16>),
+    RemoveMetadata,
 }
 
 /// The right-click menu action a launch asks for, if any (its files are the other arguments)
@@ -41,6 +46,9 @@ pub fn action_from_launch_args(args: &[String]) -> Option<MenuAction> {
     for arg in args.iter().skip(1) {
         if arg == QUICK_COMPRESS_ARG {
             return Some(MenuAction::QuickCompress);
+        }
+        if arg == REMOVE_METADATA_ARG {
+            return Some(MenuAction::RemoveMetadata);
         }
         if let Some(percent) = compress_by_percent(arg) {
             return Some(MenuAction::CompressBy(percent));
@@ -132,6 +140,12 @@ mod tests {
             let launch = args(&["rc-compress.exe", unknown, "C:\\a.mp4"]);
             assert_eq!(action_from_launch_args(&launch), None, "{unknown}");
         }
+    }
+
+    #[test]
+    fn remove_metadata_is_read() {
+        let launch = args(&["rc-compress.exe", REMOVE_METADATA_ARG, "C:\\a.jpg"]);
+        assert_eq!(action_from_launch_args(&launch), Some(MenuAction::RemoveMetadata));
     }
 
     #[test]

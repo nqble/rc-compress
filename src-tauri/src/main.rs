@@ -329,6 +329,10 @@ fn run_explorer_menu_action(
             target_percent: Some(percent),
             ..MenuChoice::default()
         },
+        MenuAction::RemoveMetadata => MenuChoice {
+            remove_metadata: true,
+            ..MenuChoice::default()
+        },
         MenuAction::FitTo(megabytes) => MenuChoice {
             fit_to_mb: megabytes,
             fit_to_custom: megabytes.is_none(),

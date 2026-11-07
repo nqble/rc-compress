@@ -10,6 +10,7 @@
 ;   rc-compress > Quick Compress
 ;                 Compress by > 10% ... 90%
 ;                 Fit to size > 8 MB, 10 MB, 25 MB, your size
+;                 Remove metadata
 ;                 Open in rc-compress...
 ;
 ; Each entry starts the app with the file; `--quick-compress` must match QUICK_COMPRESS_ARG in
@@ -81,6 +82,10 @@
   WriteRegDWORD HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom" "CommandFlags" 0x20
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom" "MultiSelectModel" "Player"
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --fit-to=custom "%1"'
+
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\40metadata" "MUIVerb" "Remove metadata"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\40metadata" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\40metadata\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --remove-metadata "%1"'
 
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\90open" "MUIVerb" "Open in rc-compress..."
   ; 0x20: a separator above it
