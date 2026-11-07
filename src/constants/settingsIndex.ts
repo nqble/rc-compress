@@ -214,6 +214,14 @@ export const SETTINGS_INDEX = {
       t('settings.dropZone.compression.autoCompress.description'),
     ],
   },
+  quickCompressGroups: {
+    page: 'rightClickMenu',
+    isAvailable: getPlatform().isWindows,
+    getText: (t) => [
+      t('settings.rightClickMenu.groups.addTitle'),
+      t('settings.rightClickMenu.groups.description'),
+    ],
+  },
   quickCompressFitSize: {
     page: 'rightClickMenu',
     isAvailable: getPlatform().isWindows,

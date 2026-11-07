@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Szybka kompresja",
-        "description": "Kliknij plik prawym przyciskiem myszy w Eksploratorze plików i wybierz rc-compress → Szybka kompresja, aby skompresować go w tle z tymi ustawieniami.",
-        "asksWhereToSave": "Jedno z ustawień pyta, gdzie zapisać, więc jego pliki czekają w kolejce na ręczne zapisanie.",
         "needsSaveLocation": "Wybierz miejsce zapisu inne niż Pytaj za każdym razem, w <setting>Wyjście</setting> lub w tych ustawieniach, aby Szybka kompresja mogła zapisywać bez pytania."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Obrazy",
         "kind_audio": "Dźwięk",
         "preset": "Ustawienia dla {{name}}",
-        "add": "Dodaj grupę",
+        "add": "Dodaj",
         "remove": "Usuń grupę",
-        "removeNamed": "Usuń {{name}}"
+        "removeNamed": "Usuń {{name}}",
+        "addTitle": "Dodaj grupę"
       },
       "fitSize": {
         "title": "Dopasuj do rozmiaru",

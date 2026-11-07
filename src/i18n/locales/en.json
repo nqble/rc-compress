@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Quick Compress",
-        "description": "Right-click a file in File Explorer and choose rc-compress → Quick Compress to compress it in the background with these presets.",
-        "asksWhereToSave": "A preset asks where to save, so its files wait in the queue to be saved by hand.",
         "needsSaveLocation": "Choose a save location other than Ask every time, in <setting>Output</setting> or in these presets, so Quick Compress can save without asking."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Images",
         "kind_audio": "Audio",
         "preset": "Preset for {{name}}",
-        "add": "Add group",
+        "add": "Add",
         "remove": "Remove group",
-        "removeNamed": "Remove {{name}}"
+        "removeNamed": "Remove {{name}}",
+        "addTitle": "Add a group"
       },
       "fitSize": {
         "title": "Fit to size",

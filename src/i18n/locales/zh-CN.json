@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "快速压缩",
-        "description": "在文件资源管理器中右键单击文件，选择 rc-compress → 快速压缩，即可使用这些预设在后台压缩。",
-        "asksWhereToSave": "有预设需要询问保存位置，因此其文件会在队列中等待手动保存。",
         "needsSaveLocation": "请在<setting>输出</setting>或这些预设中选择“每次询问”以外的保存位置，以便快速压缩无需询问即可保存。"
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "图片",
         "kind_audio": "音频",
         "preset": "{{name}} 的预设",
-        "add": "添加分组",
+        "add": "添加",
         "remove": "删除分组",
-        "removeNamed": "删除 {{name}}"
+        "removeNamed": "删除 {{name}}",
+        "addTitle": "添加分组"
       },
       "fitSize": {
         "title": "压缩到指定大小",

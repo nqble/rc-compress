@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Hızlı sıkıştır",
-        "description": "Dosya Gezgini'nde bir dosyaya sağ tıklayıp rc-compress → Hızlı sıkıştır'ı seçerek onu bu ön ayarlarla arka planda sıkıştırın.",
-        "asksWhereToSave": "Bir ön ayar nereye kaydedileceğini soruyor; bu yüzden dosyaları elle kaydedilmek üzere kuyrukta bekler.",
         "needsSaveLocation": "Hızlı sıkıştır'ın sormadan kaydedebilmesi için <setting>Çıktı</setting> bölümünde veya bu ön ayarlarda Her seferinde sor dışında bir kayıt konumu seçin."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Görseller",
         "kind_audio": "Ses",
         "preset": "{{name}} için ön ayar",
-        "add": "Grup ekle",
+        "add": "Ekle",
         "remove": "Grubu kaldır",
-        "removeNamed": "{{name}} grubunu kaldır"
+        "removeNamed": "{{name}} grubunu kaldır",
+        "addTitle": "Grup ekle"
       },
       "fitSize": {
         "title": "Boyuta sığdır",

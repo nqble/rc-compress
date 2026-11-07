@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Schnell komprimieren",
-        "description": "Klicke im Datei-Explorer mit der rechten Maustaste auf eine Datei und wähle rc-compress → Schnell komprimieren, um sie im Hintergrund mit diesen Voreinstellungen zu komprimieren.",
-        "asksWhereToSave": "Eine Voreinstellung fragt nach dem Speicherort, daher warten ihre Dateien in der Warteschlange, um von Hand gespeichert zu werden.",
         "needsSaveLocation": "Wähle unter <setting>Ausgabe</setting> oder in diesen Voreinstellungen einen anderen Speicherort als „Jedes Mal fragen“, damit Schnell komprimieren ohne Nachfrage speichern kann."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Bilder",
         "kind_audio": "Audio",
         "preset": "Voreinstellung für {{name}}",
-        "add": "Gruppe hinzufügen",
+        "add": "Hinzufügen",
         "remove": "Gruppe entfernen",
-        "removeNamed": "{{name}} entfernen"
+        "removeNamed": "{{name}} entfernen",
+        "addTitle": "Gruppe hinzufügen"
       },
       "fitSize": {
         "title": "An Größe anpassen",

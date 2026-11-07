@@ -6,13 +6,15 @@ import { useSnapshot } from 'valtio'
 import InfoTooltip from '@/components/InfoTooltip'
 import NumberInput from '@/components/NumberInput'
 import SettingLink from '@/components/SettingLink'
-import { canWatchedFolderSave } from '@/hooks/useAutoCompressSync'
 import { presetsStore } from '@/stores/presetsStore'
 import { settingsStore } from '@/stores/settingsStore'
 import type { PresetMediaType } from '@/types/preset'
 import {
+  getPresetOutput,
   type PresetsState,
   QUICK_COMPRESS_PRESET_SETTINGS,
+  resolvePresetChoice,
+  savesAutomatically,
 } from '@/utils/presetOutput'
 import {
   MAX_TARGET_SIZE_IN_MB,
@@ -57,38 +59,39 @@ function QuickCompressPresetSelect({
 }
 
 /**
- * Whether every Quick Compress preset saves without asking where: nothing can ask, so media of a
- * preset that asks waits in the queue to be saved by hand
+ * Whether the Quick Compress preset of this kind of media saves without asking where: nothing can
+ * ask, so its files would wait in the queue to be saved by hand
  */
-function useQuickCompressSaves() {
+function usePresetSaves(mediaType: PresetMediaType) {
   const settings = useSnapshot(settingsStore)
-  const presetsState = useSnapshot(presetsStore)
-  const presetIds = {
-    video: settings.quickCompressVideoPresetId,
-    image: settings.quickCompressImagePresetId,
-    audio: settings.quickCompressAudioPresetId,
-  }
-  return canWatchedFolderSave(
-    { presetIds },
-    settings as typeof settingsStore,
-    presetsState as PresetsState,
-  )
+  const presetsState = useSnapshot(presetsStore) as PresetsState
+  const choice = settings[QUICK_COMPRESS_PRESET_SETTINGS[mediaType]]
+  const presetId = resolvePresetChoice(choice, mediaType, presetsState)
+  const output = getPresetOutput(presetId, {
+    presets: presetsState.presets,
+    settings: settings as typeof settingsStore,
+  })
+  return savesAutomatically(output)
 }
 
-/** The built-in presets: one per kind of media, used when no group of the user's matches */
-function QuickCompressPresets() {
+/** One kind of media's preset, with a warning when it asks where to save */
+function QuickCompressPresetRow({ mediaType }: { mediaType: PresetMediaType }) {
   const { t } = useTranslation()
-  const savesAutomatically = useQuickCompressSaves()
+  const saves = usePresetSaves(mediaType)
 
   return (
-    <SettingsSection title={t('settings.rightClickMenu.quickCompress.title')}>
-      <p className="text-sm text-gray-500 px-1">
-        {t('settings.rightClickMenu.quickCompress.description')}
-      </p>
-      {savesAutomatically ? null : (
-        <div className="flex items-center gap-2 px-1 text-sm">
-          <InfoTooltip
-            content={
+    <SettingsRow
+      settingId={SETTING_IDS[mediaType]}
+      title={t('settings.rightClickMenu.preset.title', { context: mediaType })}
+      description={t('settings.rightClickMenu.preset.description', {
+        context: mediaType,
+      })}
+    >
+      <div className="flex items-center gap-2">
+        <InfoTooltip
+          variant="warning"
+          content={
+            !saves && (
               <Trans
                 i18nKey="settings.rightClickMenu.quickCompress.needsSaveLocation"
                 components={{
@@ -97,24 +100,23 @@ function QuickCompressPresets() {
                   ),
                 }}
               />
-            }
-          />
-          {t('settings.rightClickMenu.quickCompress.asksWhereToSave')}
-        </div>
-      )}
+            )
+          }
+        />
+        <QuickCompressPresetSelect mediaType={mediaType} />
+      </div>
+    </SettingsRow>
+  )
+}
+
+/** The built-in presets: one per kind of media, used when no group of the user's matches */
+function QuickCompressPresets() {
+  const { t } = useTranslation()
+
+  return (
+    <SettingsSection title={t('settings.rightClickMenu.quickCompress.title')}>
       {MEDIA_TYPES.map((mediaType) => (
-        <SettingsRow
-          key={mediaType}
-          settingId={SETTING_IDS[mediaType]}
-          title={t('settings.rightClickMenu.preset.title', {
-            context: mediaType,
-          })}
-          description={t('settings.rightClickMenu.preset.description', {
-            context: mediaType,
-          })}
-        >
-          <QuickCompressPresetSelect mediaType={mediaType} />
-        </SettingsRow>
+        <QuickCompressPresetRow key={mediaType} mediaType={mediaType} />
       ))}
     </SettingsSection>
   )

@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Nén nhanh",
-        "description": "Nhấp chuột phải vào tệp trong File Explorer và chọn rc-compress → Nén nhanh để nén tệp ở chế độ nền với các cài đặt sẵn này.",
-        "asksWhereToSave": "Một cài đặt sẵn hỏi nơi lưu, nên các tệp của nó chờ trong hàng đợi để được lưu thủ công.",
         "needsSaveLocation": "Hãy chọn vị trí lưu khác với Hỏi mỗi lần, trong <setting>Đầu ra</setting> hoặc trong các cài đặt sẵn này, để Nén nhanh có thể lưu mà không cần hỏi."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Hình ảnh",
         "kind_audio": "Âm thanh",
         "preset": "Cài đặt sẵn cho {{name}}",
-        "add": "Thêm nhóm",
+        "add": "Thêm",
         "remove": "Xóa nhóm",
-        "removeNamed": "Xóa {{name}}"
+        "removeNamed": "Xóa {{name}}",
+        "addTitle": "Thêm nhóm"
       },
       "fitSize": {
         "title": "Vừa kích thước",
