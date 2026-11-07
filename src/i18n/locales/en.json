@@ -891,6 +891,8 @@
     "addAfterCompression": "Media cannot be added after compression. Start a new compression to add more media.",
     "noValidFiles": "No valid media files found.",
     "alreadyAdded": "The selected media has already been added.",
+    "pdfsQueued_one": "The PDF is compressed in the background, at your Quick Compress PDF quality.",
+    "pdfsQueued_other": "{{count}} PDFs are compressed in the background, at your Quick Compress PDF quality.",
     "someCorrupted": "Some files appear to be corrupted or invalid and were not added.",
     "corrupted": "The file appears to be corrupted or invalid.",
     "selectTitle": "Select images, videos or audio to compress.",

@@ -883,6 +883,7 @@
     "addAfterCompression": "壓縮完成後無法加入媒體。請開始新的壓縮以加入更多媒體。",
     "noValidFiles": "找不到有效的媒體檔案。",
     "alreadyAdded": "所選媒體已加入。",
+    "pdfsQueued_other": "正在背景以快速壓縮的 PDF 品質壓縮 {{count}} 個 PDF。",
     "someCorrupted": "部分檔案似乎已損毀或無效，未被加入。",
     "corrupted": "該檔案似乎已損毀或無效。",
     "selectTitle": "選擇要壓縮的影像、影片或音訊。",

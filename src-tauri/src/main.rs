@@ -595,6 +595,7 @@ async fn run() {
             compress_images_batch,
             compress_media_batch,
             tauri_commands::pdf::compress_pdf,
+            tauri_commands::pdf::queue_pdfs,
             estimate_video_size,
             sys::watch_folders::set_watched_folders,
             sys::watch_folders::missing_watched_folders,

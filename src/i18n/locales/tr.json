@@ -891,6 +891,8 @@
     "addAfterCompression": "Sıkıştırmadan sonra medya eklenemez. Daha fazla medya eklemek için yeni bir sıkıştırma başlatın.",
     "noValidFiles": "Geçerli medya dosyası bulunamadı.",
     "alreadyAdded": "Seçilen medya zaten eklendi.",
+    "pdfsQueued_one": "PDF arka planda, Hızlı Sıkıştırma PDF kalitenizle sıkıştırılıyor.",
+    "pdfsQueued_other": "{{count}} PDF arka planda, Hızlı Sıkıştırma PDF kalitenizle sıkıştırılıyor.",
     "someCorrupted": "Bazı dosyalar bozuk veya geçersiz görünüyor ve eklenmedi.",
     "corrupted": "Dosya bozuk veya geçersiz görünüyor.",
     "selectTitle": "Sıkıştırılacak görüntüleri, videoları veya sesleri seçin.",
