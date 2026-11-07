@@ -1,6 +1,6 @@
 //! The file manager's right-click menu (Windows Explorer for now): its entries launch the app with
 //! an action option and the chosen file, e.g. `rc-compress.exe --quick-compress "C:\video.mp4"`.
-//! The installer adds the entries (`src-tauri/windows/explorer-menu.nsh`) and its uninstaller
+//! The installer adds the entries (`src-tauri/windows/hooks.nsh`) and its uninstaller
 //! removes them. Explorer starts the app once per chosen file; when the app is already running,
 //! each launch reaches it as a second instance (see `on_second_instance` in `main.rs`).
 //!
@@ -8,7 +8,7 @@
 //! are handled here.
 
 /// Compress the files with the Quick Compress presets (Settings -> Right-click menu), in the
-/// background queue, without opening the main window. Must match `explorer-menu.nsh`.
+/// background queue, without opening the main window. Must match `hooks.nsh`.
 pub const QUICK_COMPRESS_ARG: &str = "--quick-compress";
 
 /// What a launch from the right-click menu asks for

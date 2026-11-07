@@ -254,7 +254,7 @@ fn enable_tray_icon(app_handle: &AppHandle) -> Result<(), String> {
     TrayIconBuilder::with_id(TRAY_WINDOW_LABEL)
         .icon(tray_icon_image())
         .icon_as_template(true)
-        .tooltip("CompressO")
+        .tooltip("rc-compress")
         // A right click shows the menu (see `show_tray_icon_menu`); a click opens the popover
         .on_menu_event(crate::tauri_commands::tray::handle_tray_icon_menu_event)
         .on_tray_icon_event(|tray, event| {

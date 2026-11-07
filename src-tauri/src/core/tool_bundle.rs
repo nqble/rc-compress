@@ -149,7 +149,7 @@ fn show_preparation(app: &AppHandle) -> Result<(), String> {
     }
     let builder =
         WebviewWindowBuilder::new(app, "preparation", WebviewUrl::App("index.html".into()))
-            .title("CompressO")
+            .title("rc-compress")
             .inner_size(360.0, 360.0)
             .resizable(false)
             .decorations(true)
@@ -531,7 +531,7 @@ fn ensure_bundle(
     };
     if hash_file_with_progress(&archive, &mut count)? != manifest.sha256 {
         return Err(
-            "The bundled tool archive is damaged. Reinstall CompressO to restore it.".into(),
+            "The bundled tool archive is damaged. Reinstall rc-compress to restore it.".into(),
         );
     }
     verify_files(resources, &manifest.bootstrap, true)?;
