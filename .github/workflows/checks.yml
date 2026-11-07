@@ -35,7 +35,7 @@ jobs:
       - name: Biome
         run: |
           shopt -s globstar
-          pnpm biome ci src/**/*.{ts,tsx} .claude/hooks scripts/test-claude-hooks.mjs scripts/test-explorer-menu.mjs scripts/test-quick-compress-groups.mjs .claude/settings.json
+          pnpm biome ci src/**/*.{ts,tsx} .claude/hooks scripts/test-claude-hooks.mjs scripts/test-explorer-menu.mjs scripts/test-quick-compress-groups.mjs scripts/test-compress-by.mjs .claude/settings.json
       - run: pnpm tsc:check
       - run: pnpm i18n:check
       - run: pnpm test:drop-queue
@@ -43,6 +43,7 @@ jobs:
       - run: pnpm test:claude-hooks
       - run: pnpm test:explorer-menu
       - run: pnpm test:quick-compress-groups
+      - run: pnpm test:compress-by
 
   rust:
     name: Rust (tests, clippy)

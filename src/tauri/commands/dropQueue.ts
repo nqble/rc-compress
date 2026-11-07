@@ -58,6 +58,11 @@ export type DropQueueItem = {
    */
   quickCompress: boolean
   /**
+   * "Compress by N%" in the right-click menu: compressed to a size this much smaller than the
+   * original (see `utils/compressBy.ts`), with the Quick Compress presets' other settings
+   */
+  targetPercent: number | null
+  /**
    * The command line job it belongs to (see `cli_server.rs`), with its presets & output settings;
    * `null` for media added in the app
    */

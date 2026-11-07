@@ -59,6 +59,7 @@ import {
   isAudioFileExtension,
 } from '@/types/compression'
 import { type PresetMediaType, STANDARD_PRESET_ID } from '@/types/preset'
+import { imageTargetSizeInKB, videoTargetSizeInMB } from '@/utils/compressBy'
 import { getOutputFileName } from '@/utils/fs'
 import {
   DROP_ZONE_PRESET_SETTINGS,
@@ -154,14 +155,39 @@ async function loadQueueMedia(item: DropQueueItem): Promise<MediaFile> {
   // A format chosen on the command line (by the output's file name) replaces the preset's; the
   // command line only sends one the media type can be saved in
   const extension = item.cliJob?.convertToExtension
-  const config = extension
+  const converted = extension
     ? { ...media.config, convertToExtension: extension }
     : media.config
+  const config = withCompressByTarget(
+    media,
+    converted as MediaFile['config'],
+    item.targetPercent,
+  )
   return {
     ...media,
     config,
     ...(acceleration ? { acceleration } : {}),
   } as MediaFile
+}
+
+/**
+ * "Compress by N%" (`targetPercent`): the media is compressed to a size N% smaller than the original, as a target
+ * size on the preset's settings (see `utils/compressBy.ts`)
+ */
+function withCompressByTarget(
+  media: MediaFile,
+  config: MediaFile['config'],
+  targetPercent: number | null,
+) {
+  if (!targetPercent || !media.sizeInBytes) {
+    return config
+  }
+  if (media.type === 'image') {
+    const targetSizeInKB = imageTargetSizeInKB(media.sizeInBytes, targetPercent)
+    return { ...config, shouldUseTargetSize: true, targetSizeInKB }
+  }
+  const targetSizeInMB = videoTargetSizeInMB(media.sizeInBytes, targetPercent)
+  return { ...config, shouldUseTargetSize: true, targetSizeInMB }
 }
 
 async function readQueueMedia(item: DropQueueItem): Promise<MediaFile> {
