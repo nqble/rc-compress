@@ -4,6 +4,7 @@ import { proxy, subscribe } from 'valtio'
 import * as constants from '@/constants'
 import { isLanguageCode, type LanguageCode } from '@/i18n/languages'
 import { DEFAULT_PRESET_CHOICE, type PresetMediaType } from '@/types/preset'
+import { DEFAULT_CUSTOM_FIT_SIZE_IN_MB } from '@/utils/compressBy'
 import {
   type QuickCompressGroup,
   readQuickCompressGroups,
@@ -108,6 +109,8 @@ export type SettingsState = {
    * presets above (none by default; see `utils/quickCompressGroups.ts`)
    */
   quickCompressGroups: QuickCompressGroup[]
+  /** "Fit to size > Your size" in the right-click menu, in MB */
+  quickCompressFitSizeInMB: number
   /** Folders whose new media the drop zone compresses (none by default) */
   watchedFolders: WatchedFolder[]
   /**
@@ -196,6 +199,7 @@ function readSettings(): SettingsState {
       localStorage.getItem(constants.quickCompressAudioPresetId) ??
       DEFAULT_PRESET_CHOICE,
     quickCompressGroups: readStoredQuickCompressGroups(),
+    quickCompressFitSizeInMB: readFitSizeInMB(),
     watchedFolders: readWatchedFolders(),
     useHardwareAcceleration:
       localStorage.getItem(constants.useHardwareAcceleration) === 'true',
@@ -213,6 +217,14 @@ function readSettings(): SettingsState {
       localStorage.getItem(constants.openInMenuBarOnly) !== 'false',
     language: readLanguage(),
   }
+}
+
+/** The stored "Your size" of Fit to size, or its default when none (or no valid one) is stored */
+function readFitSizeInMB() {
+  const stored = Number(
+    localStorage.getItem(constants.quickCompressFitSizeInMB),
+  )
+  return stored > 0 ? stored : DEFAULT_CUSTOM_FIT_SIZE_IN_MB
 }
 
 /** The stored Quick Compress groups, dropping any that are not valid */
@@ -344,6 +356,10 @@ subscribe(settingsStore, () => {
   localStorage.setItem(
     constants.quickCompressGroups,
     JSON.stringify(settingsStore.quickCompressGroups),
+  )
+  localStorage.setItem(
+    constants.quickCompressFitSizeInMB,
+    String(settingsStore.quickCompressFitSizeInMB),
   )
   localStorage.setItem(
     constants.watchedFolders,

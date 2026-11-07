@@ -433,6 +433,11 @@
         "add": "Grup ekle",
         "remove": "Grubu kaldır",
         "removeNamed": "{{name}} grubunu kaldır"
+      },
+      "fitSize": {
+        "title": "Boyuta sığdır",
+        "yourSize": "Senin boyutun",
+        "description": "Sağ tık menüsündeki “Boyuta sığdır > Senin boyutun” seçeneğinin dosyaları sığdırdığı boyut."
       }
     }
   },

@@ -9,6 +9,7 @@
 ;
 ;   rc-compress > Quick Compress
 ;                 Compress by > 10% ... 90%
+;                 Fit to size > 8 MB, 10 MB, 25 MB, your size
 ;                 Open in rc-compress...
 ;
 ; Each entry starts the app with the file; `--quick-compress` must match QUICK_COMPRESS_ARG in
@@ -62,6 +63,24 @@
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\90" "MUIVerb" "90%"
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\90" "MultiSelectModel" "Player"
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\90\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=90 "%1"'
+
+  ; Fit to size > 8 MB, 10 MB, 25 MB, your size: --fit-to must match FIT_SIZES_IN_MB (explorer_menu.rs)
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit" "MUIVerb" "Fit to size"
+  WriteRegDWORD HKCU "${RC_MENU_KEY}\shell\30fit" "CommandFlags" 0x20
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit" "SubCommands" ""
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\08" "MUIVerb" "8 MB (Discord)"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\08" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\08\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --fit-to=8 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\10" "MUIVerb" "10 MB (Discord)"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\10" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\10\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --fit-to=10 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\25" "MUIVerb" "25 MB (Email)"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\25" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\25\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --fit-to=25 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom" "MUIVerb" "Your size (set in the app)"
+  WriteRegDWORD HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom" "CommandFlags" 0x20
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\30fit\shell\90custom\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --fit-to=custom "%1"'
 
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\90open" "MUIVerb" "Open in rc-compress..."
   ; 0x20: a separator above it

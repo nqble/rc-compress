@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
 
 import InfoTooltip from '@/components/InfoTooltip'
+import NumberInput from '@/components/NumberInput'
 import SettingLink from '@/components/SettingLink'
 import { canWatchedFolderSave } from '@/hooks/useAutoCompressSync'
 import { presetsStore } from '@/stores/presetsStore'
@@ -13,6 +14,10 @@ import {
   type PresetsState,
   QUICK_COMPRESS_PRESET_SETTINGS,
 } from '@/utils/presetOutput'
+import {
+  MAX_TARGET_SIZE_IN_MB,
+  MIN_TARGET_SIZE_IN_MB,
+} from '@/utils/targetSize'
 import PresetChoiceSelect from './PresetChoiceSelect'
 import QuickCompressGroups from './QuickCompressGroups'
 import { SettingsRow, SettingsSection } from './SettingsLayout'
@@ -115,10 +120,39 @@ function QuickCompressPresets() {
   )
 }
 
+/** "Fit to size > Your size": the size it fits within, in MB */
+function FitSize() {
+  const { t } = useTranslation()
+  const { quickCompressFitSizeInMB } = useSnapshot(settingsStore)
+
+  return (
+    <SettingsSection title={t('settings.rightClickMenu.fitSize.title')}>
+      <SettingsRow
+        settingId="quickCompressFitSize"
+        title={t('settings.rightClickMenu.fitSize.yourSize')}
+        description={t('settings.rightClickMenu.fitSize.description')}
+      >
+        <NumberInput
+          aria-label={t('settings.rightClickMenu.fitSize.yourSize')}
+          value={quickCompressFitSizeInMB}
+          minValue={MIN_TARGET_SIZE_IN_MB}
+          maxValue={MAX_TARGET_SIZE_IN_MB}
+          endContent={<span className="text-sm text-gray-500">MB</span>}
+          onValueChange={(value) => {
+            if (value > 0) settingsStore.quickCompressFitSizeInMB = value
+          }}
+          className="w-[140px]"
+        />
+      </SettingsRow>
+    </SettingsSection>
+  )
+}
+
 function RightClickMenu() {
   return (
     <>
       <QuickCompressPresets />
+      <FitSize />
       <QuickCompressGroups />
     </>
   )

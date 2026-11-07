@@ -59,7 +59,11 @@ import {
   isAudioFileExtension,
 } from '@/types/compression'
 import { type PresetMediaType, STANDARD_PRESET_ID } from '@/types/preset'
-import { imageTargetSizeInKB, videoTargetSizeInMB } from '@/utils/compressBy'
+import {
+  imageFitSizeInKB,
+  imageTargetSizeInKB,
+  videoTargetSizeInMB,
+} from '@/utils/compressBy'
 import { getOutputFileName } from '@/utils/fs'
 import {
   DROP_ZONE_PRESET_SETTINGS,
@@ -158,11 +162,7 @@ async function loadQueueMedia(item: DropQueueItem): Promise<MediaFile> {
   const converted = extension
     ? { ...media.config, convertToExtension: extension }
     : media.config
-  const config = withCompressByTarget(
-    media,
-    converted as MediaFile['config'],
-    item.targetPercent,
-  )
+  const config = withMenuTarget(media, converted as MediaFile['config'], item)
   return {
     ...media,
     config,
@@ -171,23 +171,33 @@ async function loadQueueMedia(item: DropQueueItem): Promise<MediaFile> {
 }
 
 /**
- * "Compress by N%" (`targetPercent`): the media is compressed to a size N% smaller than the original, as a target
- * size on the preset's settings (see `utils/compressBy.ts`)
+ * The right-click menu's sizes, as a target size on the preset's settings (see `utils/compressBy.ts`): "Compress by
+ * N%" (`targetPercent`) makes the media N% smaller, "Fit to size" (`fitToMb`, or the size set in the app for
+ * `fitToCustom`) makes it fit within that many MB
  */
-function withCompressByTarget(
+function withMenuTarget(
   media: MediaFile,
   config: MediaFile['config'],
-  targetPercent: number | null,
+  item: DropQueueItem,
 ) {
-  if (!targetPercent || !media.sizeInBytes) {
+  const isImage = media.type === 'image'
+  const fitToMb = item.fitToCustom
+    ? settingsStore.quickCompressFitSizeInMB
+    : item.fitToMb
+  if (fitToMb) {
+    const target = isImage
+      ? { targetSizeInKB: imageFitSizeInKB(fitToMb) }
+      : { targetSizeInMB: fitToMb }
+    return { ...config, shouldUseTargetSize: true, ...target }
+  }
+  const sizeInBytes = media.sizeInBytes
+  if (!item.targetPercent || !sizeInBytes) {
     return config
   }
-  if (media.type === 'image') {
-    const targetSizeInKB = imageTargetSizeInKB(media.sizeInBytes, targetPercent)
-    return { ...config, shouldUseTargetSize: true, targetSizeInKB }
-  }
-  const targetSizeInMB = videoTargetSizeInMB(media.sizeInBytes, targetPercent)
-  return { ...config, shouldUseTargetSize: true, targetSizeInMB }
+  const target = isImage
+    ? { targetSizeInKB: imageTargetSizeInKB(sizeInBytes, item.targetPercent) }
+    : { targetSizeInMB: videoTargetSizeInMB(sizeInBytes, item.targetPercent) }
+  return { ...config, shouldUseTargetSize: true, ...target }
 }
 
 async function readQueueMedia(item: DropQueueItem): Promise<MediaFile> {
