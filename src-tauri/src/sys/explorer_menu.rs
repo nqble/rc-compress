@@ -60,6 +60,13 @@ pub fn action_from_launch_args(args: &[String]) -> Option<MenuAction> {
     None
 }
 
+/// Whether this app was started by the right-click menu (not already running): its main window then
+/// stays hidden, as the file is compressed in the background (see `take_background_launch`)
+pub fn is_menu_launch() -> bool {
+    let args: Vec<String> = std::env::args().collect();
+    action_from_launch_args(&args).is_some()
+}
+
 /// The percentage of a `--compress-by=N` option, when N is one the menu offers
 fn compress_by_percent(arg: &str) -> Option<u8> {
     let percent = arg.strip_prefix(COMPRESS_BY_ARG)?.parse::<u8>().ok()?;
