@@ -214,6 +214,14 @@ export const SETTINGS_INDEX = {
       t('settings.dropZone.compression.autoCompress.description'),
     ],
   },
+  quickCompressPdfLevel: {
+    page: 'rightClickMenu',
+    isAvailable: getPlatform().isWindows,
+    getText: (t) => [
+      t('settings.rightClickMenu.pdf.title'),
+      t('settings.rightClickMenu.pdf.description'),
+    ],
+  },
   quickCompressGroups: {
     page: 'rightClickMenu',
     isAvailable: getPlatform().isWindows,

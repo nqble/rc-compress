@@ -5,6 +5,7 @@ import * as constants from '@/constants'
 import { isLanguageCode, type LanguageCode } from '@/i18n/languages'
 import { DEFAULT_PRESET_CHOICE, type PresetMediaType } from '@/types/preset'
 import { DEFAULT_CUSTOM_FIT_SIZE_IN_MB } from '@/utils/compressBy'
+import { DEFAULT_PDF_LEVEL, isPdfLevel, type PdfLevel } from '@/utils/pdfLevels'
 import {
   type QuickCompressGroup,
   readQuickCompressGroups,
@@ -116,6 +117,8 @@ export type SettingsState = {
   quickCompressGroups: QuickCompressGroup[]
   /** "Fit to size > Your size" in the right-click menu, in MB */
   quickCompressFitSizeInMB: number
+  /** The level Quick Compress makes PDFs at (see `utils/pdfLevels.ts`) */
+  quickCompressPdfLevel: PdfLevel
   /** Folders whose new media the drop zone compresses (none by default) */
   watchedFolders: WatchedFolder[]
   /**
@@ -203,6 +206,7 @@ function readSettings(): SettingsState {
       DEFAULT_PRESET_CHOICE,
     quickCompressGroups: readStoredQuickCompressGroups(),
     quickCompressFitSizeInMB: readFitSizeInMB(),
+    quickCompressPdfLevel: readPdfLevel(),
     watchedFolders: readWatchedFolders(),
     useHardwareAcceleration:
       localStorage.getItem(constants.useHardwareAcceleration) === 'true',
@@ -229,6 +233,12 @@ function readOutputFilePrefix() {
     return DEFAULT_OUTPUT_FILE_PREFIX
   }
   return stored
+}
+
+/** The stored PDF level of Quick Compress, or Medium */
+function readPdfLevel(): PdfLevel {
+  const stored = localStorage.getItem(constants.quickCompressPdfLevel)
+  return isPdfLevel(stored) ? stored : DEFAULT_PDF_LEVEL
 }
 
 /** The stored "Your size" of Fit to size, or its default when none (or no valid one) is stored */
@@ -372,6 +382,10 @@ subscribe(settingsStore, () => {
   localStorage.setItem(
     constants.quickCompressFitSizeInMB,
     String(settingsStore.quickCompressFitSizeInMB),
+  )
+  localStorage.setItem(
+    constants.quickCompressPdfLevel,
+    settingsStore.quickCompressPdfLevel,
   )
   localStorage.setItem(
     constants.watchedFolders,

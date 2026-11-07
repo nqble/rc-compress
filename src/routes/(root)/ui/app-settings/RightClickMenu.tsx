@@ -1,14 +1,17 @@
 // Settings of the file manager's right-click menu (Windows Explorer for now; the entries are added
 // by the installer, see `src-tauri/windows/hooks.nsh` and `explorer_menu.rs`)
+import { SelectItem } from '@heroui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
 
 import InfoTooltip from '@/components/InfoTooltip'
 import NumberInput from '@/components/NumberInput'
+import Select from '@/components/Select'
 import SettingLink from '@/components/SettingLink'
 import { presetsStore } from '@/stores/presetsStore'
 import { settingsStore } from '@/stores/settingsStore'
 import type { PresetMediaType } from '@/types/preset'
+import { isPdfLevel, PDF_LEVELS } from '@/utils/pdfLevels'
 import {
   getPresetOutput,
   type PresetsState,
@@ -109,6 +112,38 @@ function QuickCompressPresetRow({ mediaType }: { mediaType: PresetMediaType }) {
   )
 }
 
+/** The level Quick Compress makes PDFs at (see `utils/pdfLevels.ts`) */
+function PdfLevelRow() {
+  const { t } = useTranslation()
+  const { quickCompressPdfLevel } = useSnapshot(settingsStore)
+
+  return (
+    <SettingsRow
+      settingId="quickCompressPdfLevel"
+      title={t('settings.rightClickMenu.pdf.title')}
+      description={t('settings.rightClickMenu.pdf.description')}
+    >
+      <Select
+        aria-label={t('settings.rightClickMenu.pdf.title')}
+        selectedKeys={[quickCompressPdfLevel]}
+        disallowEmptySelection
+        onSelectionChange={(keys) => {
+          const [key] = Array.from(keys)
+          if (isPdfLevel(key)) settingsStore.quickCompressPdfLevel = key
+        }}
+        className="w-[220px]"
+        classNames={{ popoverContent: 'settings-dialog' }}
+      >
+        {PDF_LEVELS.map((level) => (
+          <SelectItem key={level}>
+            {t('settings.rightClickMenu.pdf.level', { context: level })}
+          </SelectItem>
+        ))}
+      </Select>
+    </SettingsRow>
+  )
+}
+
 /** The built-in presets: one per kind of media, used when no group of the user's matches */
 function QuickCompressPresets() {
   const { t } = useTranslation()
@@ -118,6 +153,7 @@ function QuickCompressPresets() {
       {MEDIA_TYPES.map((mediaType) => (
         <QuickCompressPresetRow key={mediaType} mediaType={mediaType} />
       ))}
+      <PdfLevelRow />
     </SettingsSection>
   )
 }

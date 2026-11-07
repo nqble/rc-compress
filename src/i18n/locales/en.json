@@ -437,6 +437,13 @@
         "title": "Fit to size",
         "yourSize": "Your size",
         "description": "The size “Fit to size > Your size” in the right-click menu compresses files to fit within."
+      },
+      "pdf": {
+        "title": "PDF quality",
+        "description": "How small Quick Compress makes PDFs. Text stays sharp and selectable; pictures inside get a lower resolution.",
+        "level_small": "Small (screen, email)",
+        "level_medium": "Medium (most documents)",
+        "level_high": "High (printing)"
       }
     }
   },

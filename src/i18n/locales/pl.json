@@ -437,6 +437,13 @@
         "title": "Dopasuj do rozmiaru",
         "yourSize": "Twój rozmiar",
         "description": "Rozmiar, do którego „Dopasuj do rozmiaru > Twój rozmiar” w menu kontekstowym kompresuje pliki."
+      },
+      "pdf": {
+        "title": "Jakość PDF",
+        "description": "Jak bardzo Szybka kompresja zmniejsza pliki PDF. Tekst pozostaje ostry i możliwy do zaznaczenia; obrazy w środku mają niższą rozdzielczość.",
+        "level_small": "Mała (ekran, e-mail)",
+        "level_medium": "Średnia (większość dokumentów)",
+        "level_high": "Wysoka (druk)"
       }
     }
   },

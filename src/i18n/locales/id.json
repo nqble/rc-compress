@@ -437,6 +437,13 @@
         "title": "Sesuaikan ukuran",
         "yourSize": "Ukuran Anda",
         "description": "Ukuran yang dipakai “Sesuaikan ukuran > Ukuran Anda” di menu klik kanan untuk memuat file."
+      },
+      "pdf": {
+        "title": "Kualitas PDF",
+        "description": "Seberapa kecil Kompres Cepat membuat PDF. Teks tetap tajam dan bisa dipilih; gambar di dalamnya resolusinya diturunkan.",
+        "level_small": "Kecil (layar, email)",
+        "level_medium": "Sedang (sebagian besar dokumen)",
+        "level_high": "Tinggi (cetak)"
       }
     }
   },

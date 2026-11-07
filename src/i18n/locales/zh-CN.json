@@ -437,6 +437,13 @@
         "title": "压缩到指定大小",
         "yourSize": "自定义大小",
         "description": "右键菜单中“压缩到指定大小 > 自定义大小”将文件压缩到的大小。"
+      },
+      "pdf": {
+        "title": "PDF 质量",
+        "description": "快速压缩将 PDF 压缩到多小。文字保持清晰且可选中；其中的图片分辨率会降低。",
+        "level_small": "小（屏幕、邮件）",
+        "level_medium": "中（大多数文档）",
+        "level_high": "高（打印）"
       }
     }
   },

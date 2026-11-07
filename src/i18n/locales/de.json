@@ -437,6 +437,13 @@
         "title": "An Größe anpassen",
         "yourSize": "Deine Größe",
         "description": "Die Größe, in die „An Größe anpassen > Deine Größe“ im Rechtsklick-Menü Dateien komprimiert."
+      },
+      "pdf": {
+        "title": "PDF-Qualität",
+        "description": "Wie klein Schnell komprimieren PDFs macht. Text bleibt scharf und markierbar; Bilder darin erhalten eine geringere Auflösung.",
+        "level_small": "Klein (Bildschirm, E-Mail)",
+        "level_medium": "Mittel (die meisten Dokumente)",
+        "level_high": "Hoch (Drucken)"
       }
     }
   },
