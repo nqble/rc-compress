@@ -103,6 +103,8 @@ pub struct DropQueueItem {
     pub fit_to_mb: Option<u16>,
     /// "Fit to size > Your size": within the size set in the app (Settings -> Right-click Menu)
     pub fit_to_custom: bool,
+    /// "Remove metadata" in the right-click menu: copied without its metadata, not compressed
+    pub remove_metadata: bool,
     /// The command line job it belongs to (see `cli_server`), with that job's preset & output
     /// settings; `None` for media added in the app
     pub cli_job: Option<CliJob>,
@@ -348,6 +350,7 @@ pub struct MenuChoice {
     pub target_percent: Option<u8>,
     pub fit_to_mb: Option<u16>,
     pub fit_to_custom: bool,
+    pub remove_metadata: bool,
 }
 
 /// `add_files_to_queue`, also marking media chosen in the right-click menu (`menu`)
@@ -400,6 +403,7 @@ fn queue_files(
                 target_percent: menu.and_then(|menu| menu.target_percent),
                 fit_to_mb: menu.and_then(|menu| menu.fit_to_mb),
                 fit_to_custom: menu.is_some_and(|menu| menu.fit_to_custom),
+                remove_metadata: menu.is_some_and(|menu| menu.remove_metadata),
                 cli_job: cli_job.clone(),
                 reason: None,
                 error: None,
