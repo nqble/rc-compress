@@ -6,6 +6,7 @@ pub mod explorer_menu;
 pub mod cli_install;
 pub mod cli_server;
 pub mod cli_settings;
+pub mod early_launches;
 pub mod fs;
 pub mod history;
 pub mod keep_awake;
