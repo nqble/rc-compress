@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Prefijo del nombre de archivo",
           "placeholder": "Sin prefijo",
-          "description": "Texto añadido al principio de los nombres de los archivos guardados. Déjelo vacío para conservar los nombres originales."
+          "description": "Texto que se añade al principio de los nombres de archivo guardados. Déjalo vacío para nombrar las copias como «video (compressed).mp4»."
         },
         "appliesTo": "Se aplican solo al ajuste preestablecido Estándar."
       },
