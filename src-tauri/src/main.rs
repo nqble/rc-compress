@@ -399,6 +399,11 @@ fn main() {
     #[cfg(any(target_os = "macos", target_os = "linux"))]
     run_cli_if_asked();
 
+    // A launch while another rc-compress is still starting (several files opened at once): wait until it can
+    // take this launch's files, before the single-instance plugin looks for it
+    #[cfg(windows)]
+    sys::launch_wait::wait_for_starting_instance();
+
     let runtime = tokio::runtime::Builder::new_multi_thread()
         .enable_all()
         .thread_stack_size(WORKER_STACK_SIZE)
