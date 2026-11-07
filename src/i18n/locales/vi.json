@@ -883,6 +883,7 @@
     "addAfterCompression": "Không thể thêm tệp phương tiện sau khi nén. Hãy bắt đầu lần nén mới để thêm tệp.",
     "noValidFiles": "Không tìm thấy tệp phương tiện hợp lệ.",
     "alreadyAdded": "Tệp phương tiện đã chọn đã được thêm.",
+    "pdfsQueued_other": "Đang nén {{count}} PDF trong nền, với chất lượng PDF của Nén nhanh.",
     "someCorrupted": "Một số tệp có vẻ bị hỏng hoặc không hợp lệ nên chưa được thêm.",
     "corrupted": "Tệp có vẻ bị hỏng hoặc không hợp lệ.",
     "selectTitle": "Chọn hình ảnh, video hoặc âm thanh để nén.",

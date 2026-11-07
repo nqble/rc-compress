@@ -883,6 +883,7 @@
     "addAfterCompression": "Media tidak dapat ditambahkan setelah kompresi. Mulai kompresi baru untuk menambahkan media lainnya.",
     "noValidFiles": "File media yang valid tidak ditemukan.",
     "alreadyAdded": "Media yang dipilih sudah ditambahkan.",
+    "pdfsQueued_other": "{{count}} PDF dikompresi di latar belakang, dengan kualitas PDF Kompres Cepat Anda.",
     "someCorrupted": "Beberapa file tampaknya rusak atau tidak valid dan tidak ditambahkan.",
     "corrupted": "File tampaknya rusak atau tidak valid.",
     "selectTitle": "Pilih gambar, video, atau audio untuk dikompresi.",

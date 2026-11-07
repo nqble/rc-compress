@@ -1,11 +1,13 @@
 //! PDF compression with the bundled Ghostscript (docs/ghostscript.md): rewrites a PDF with its pictures at a lower
-//! resolution, keeping its text as text. Used by the background queue for PDFs from the right-click menu (see
-//! `src/routes/webviews/tray/-queue.ts`); the levels match `src/utils/pdfLevels.ts`.
+//! resolution, keeping its text as text. Used by the background queue for PDFs from the right-click menu and the app
+//! window (see `src/routes/webviews/tray/-queue.ts`); the levels match `src/utils/pdfLevels.ts`.
 
 use std::path::{Path, PathBuf};
 
 use serde::Deserialize;
 use tauri::{AppHandle, Manager};
+
+use crate::core::domain::CollectedFile;
 
 /// How small to make a PDF: the resolution of its pictures (Ghostscript's `-dPDFSETTINGS`)
 #[derive(Deserialize, Clone, Copy, Debug, PartialEq, Eq)]
@@ -55,13 +57,27 @@ fn ghostscript_args(input: &Path, output: &Path, level: PdfLevel, strip_metadata
     args
 }
 
-/// Whether a file is a PDF (by its extension), which only the queue compresses for now (the
-/// right-click menu's items), not the main window
+/// Whether a file is a PDF (by its extension). Only the queue compresses PDFs: the main window hands
+/// them over (`queue_pdfs`)
 pub fn is_pdf(path: &str) -> bool {
     Path::new(path)
         .extension()
         .and_then(|extension| extension.to_str())
         .is_some_and(|extension| extension.eq_ignore_ascii_case("pdf"))
+}
+
+/// The PDFs among `files`, the rest left out
+fn pdfs_only(files: Vec<CollectedFile>) -> Vec<CollectedFile> {
+    files.into_iter().filter(|file| is_pdf(&file.path)).collect()
+}
+
+/// Queues the PDFs dropped on or opened in the main window, which knows only videos, images and
+/// audio: they are compressed in the background with Quick Compress's PDF quality, like from the
+/// right-click menu. Returns how many were queued (one already waiting is not queued again).
+#[tauri::command]
+pub fn queue_pdfs(app_handle: AppHandle, files: Vec<CollectedFile>) -> usize {
+    let queue = crate::tauri_commands::drop_queue::add_files_to_queue;
+    queue(&app_handle, pdfs_only(files), None, None).len()
 }
 
 /// Where a compressed PDF waits before it is saved: the app's cache, under a new name
@@ -125,6 +141,17 @@ mod tests {
         assert!(is_pdf("/home/me/a.pdf"));
         assert!(!is_pdf("/home/me/pdf"));
         assert!(!is_pdf("/home/me/a.pdf.zip"));
+    }
+
+    fn file(path: &str) -> CollectedFile {
+        CollectedFile { path: path.to_string(), relative_dir: String::new() }
+    }
+
+    #[test]
+    fn only_pdfs_are_handed_to_the_queue() {
+        let files = vec![file("a.pdf"), file("b.mp4"), file("c.PDF"), file("d.png")];
+        let paths: Vec<String> = pdfs_only(files).into_iter().map(|file| file.path).collect();
+        assert_eq!(paths, ["a.pdf", "c.PDF"]);
     }
 
     #[test]

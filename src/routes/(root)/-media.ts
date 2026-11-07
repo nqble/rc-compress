@@ -35,6 +35,7 @@ import { CollectedFile } from '@/types/fs'
 import { formatBytes } from '@/utils/fs'
 import { withTimeout } from '@/utils/promise'
 import { isVideoPreviewAvailable } from '@/utils/video'
+import { handOffPdfs, PDF_PICKER_FILTER } from './-pdfs'
 import {
   applyDefaultPresetsToBatchConfig,
   getInitialAudioFileConfig,
@@ -104,11 +105,13 @@ export async function addMedia(selection: MediaSelection | MediaSelection[]) {
     appProxy.state.media.map((mediaFile) => mediaFile.pathRaw),
   )
 
-  const selectedFiles = (
-    Array.isArray(selection) ? selection : [selection]
-  ).map((file) =>
-    typeof file === 'string' ? { path: file, relativeDir: '' } : file,
+  const selectedFiles = await handOffPdfs(
+    (Array.isArray(selection) ? selection : [selection]).map((file) =>
+      typeof file === 'string' ? { path: file, relativeDir: '' } : file,
+    ),
   )
+  // Only PDFs: all went to the queue
+  if (selectedFiles.length === 0) return
   const supportedFiles = selectedFiles.filter(({ path: filePath }) => {
     const ext = filePath.split('.').pop()?.toLowerCase()
     return (
@@ -424,6 +427,7 @@ export async function pickMediaToAdd() {
         { name: 'video', extensions: inputExtensions.video },
         { name: 'image', extensions: inputExtensions.image },
         { name: 'audio', extensions: inputExtensions.audio },
+        PDF_PICKER_FILTER,
       ],
     })
     if (filePath == null) {

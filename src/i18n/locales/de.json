@@ -891,6 +891,8 @@
     "addAfterCompression": "Nach der Komprimierung können keine Medien hinzugefügt werden. Starten Sie eine neue Komprimierung, um weitere Medien hinzuzufügen.",
     "noValidFiles": "Keine gültigen Mediendateien gefunden.",
     "alreadyAdded": "Die ausgewählten Medien wurden bereits hinzugefügt.",
+    "pdfsQueued_one": "Das PDF wird im Hintergrund komprimiert, mit deiner PDF-Qualität für „Schnell komprimieren“.",
+    "pdfsQueued_other": "{{count}} PDFs werden im Hintergrund komprimiert, mit deiner PDF-Qualität für „Schnell komprimieren“.",
     "someCorrupted": "Einige Dateien scheinen beschädigt oder ungültig zu sein und wurden nicht hinzugefügt.",
     "corrupted": "Die Datei scheint beschädigt oder ungültig zu sein.",
     "selectTitle": "Bilder, Videos oder Audiodateien zum Komprimieren auswählen.",
