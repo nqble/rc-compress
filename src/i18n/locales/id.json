@@ -433,6 +433,11 @@
         "add": "Tambah grup",
         "remove": "Hapus grup",
         "removeNamed": "Hapus {{name}}"
+      },
+      "fitSize": {
+        "title": "Sesuaikan ukuran",
+        "yourSize": "Ukuran Anda",
+        "description": "Ukuran yang dipakai “Sesuaikan ukuran > Ukuran Anda” di menu klik kanan untuk memuat file."
       }
     }
   },

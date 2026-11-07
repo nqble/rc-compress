@@ -433,6 +433,11 @@
         "add": "그룹 추가",
         "remove": "그룹 삭제",
         "removeNamed": "{{name}} 삭제"
+      },
+      "fitSize": {
+        "title": "크기에 맞추기",
+        "yourSize": "내 크기",
+        "description": "오른쪽 클릭 메뉴의 “크기에 맞추기 > 내 크기”가 파일을 맞추는 크기입니다."
       }
     }
   },

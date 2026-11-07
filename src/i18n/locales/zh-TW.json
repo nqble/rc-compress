@@ -433,6 +433,11 @@
         "add": "新增群組",
         "remove": "移除群組",
         "removeNamed": "移除 {{name}}"
+      },
+      "fitSize": {
+        "title": "壓縮到指定大小",
+        "yourSize": "自訂大小",
+        "description": "右鍵選單中「壓縮到指定大小 > 自訂大小」將檔案壓縮到的大小。"
       }
     }
   },
