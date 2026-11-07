@@ -99,6 +99,10 @@ pub struct DropQueueItem {
     /// "Compress by N%" in the right-click menu: compressed to a size this much smaller than the
     /// original, with the Quick Compress presets' other settings
     pub target_percent: Option<u8>,
+    /// "Fit to size" in the right-click menu: compressed to fit within this many MB
+    pub fit_to_mb: Option<u16>,
+    /// "Fit to size > Your size": within the size set in the app (Settings -> Right-click Menu)
+    pub fit_to_custom: bool,
     /// The command line job it belongs to (see `cli_server`), with that job's preset & output
     /// settings; `None` for media added in the app
     pub cli_job: Option<CliJob>,
@@ -285,14 +289,13 @@ pub fn add_to_queue_from(
 }
 
 /// `add_to_queue`, for media chosen with "Quick Compress" in the file manager's right-click menu
-/// (with `target_percent`, "Compress by N%")
+/// (or "Compress by N%" and "Fit to size", from `menu`)
 pub fn add_to_quick_compress_queue(
     app_handle: &AppHandle,
     paths: Vec<String>,
     is_supported: impl Fn(&str) -> bool,
-    target_percent: Option<u8>,
+    menu: MenuChoice,
 ) {
-    let menu = MenuChoice { target_percent };
     add_items(app_handle, paths, is_supported, None, Some(menu));
 }
 
@@ -340,9 +343,11 @@ pub fn add_files_to_queue(
 }
 
 /// What the right-click menu asked for, for media queued from it (see `sys::explorer_menu`)
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 pub struct MenuChoice {
     pub target_percent: Option<u8>,
+    pub fit_to_mb: Option<u16>,
+    pub fit_to_custom: bool,
 }
 
 /// `add_files_to_queue`, also marking media chosen in the right-click menu (`menu`)
@@ -393,6 +398,8 @@ fn queue_files(
                 watch_folder_name: source.as_ref().map(|source| source.folder_name.clone()),
                 quick_compress: menu.is_some(),
                 target_percent: menu.and_then(|menu| menu.target_percent),
+                fit_to_mb: menu.and_then(|menu| menu.fit_to_mb),
+                fit_to_custom: menu.is_some_and(|menu| menu.fit_to_custom),
                 cli_job: cli_job.clone(),
                 reason: None,
                 error: None,

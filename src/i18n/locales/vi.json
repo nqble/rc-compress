@@ -433,6 +433,11 @@
         "add": "Thêm nhóm",
         "remove": "Xóa nhóm",
         "removeNamed": "Xóa {{name}}"
+      },
+      "fitSize": {
+        "title": "Vừa kích thước",
+        "yourSize": "Kích thước của bạn",
+        "description": "Kích thước mà “Vừa kích thước > Kích thước của bạn” trong menu chuột phải nén tệp vào."
       }
     }
   },

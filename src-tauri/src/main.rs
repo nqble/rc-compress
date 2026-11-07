@@ -313,6 +313,7 @@ fn run_explorer_menu_action(
     cwd: Option<&str>,
 ) -> bool {
     use sys::explorer_menu::{action_from_launch_args, quick_compress, MenuAction};
+    use tauri_commands::drop_queue::MenuChoice;
 
     let Some(action) = action_from_launch_args(args) else {
         return false;
@@ -322,10 +323,19 @@ fn run_explorer_menu_action(
         .filter_map(|url| url.to_file_path().ok())
         .map(|path| path.to_string_lossy().to_string())
         .collect();
-    match action {
-        MenuAction::QuickCompress => quick_compress(app_handle, paths, None),
-        MenuAction::CompressBy(percent) => quick_compress(app_handle, paths, Some(percent)),
-    }
+    let menu = match action {
+        MenuAction::QuickCompress => MenuChoice::default(),
+        MenuAction::CompressBy(percent) => MenuChoice {
+            target_percent: Some(percent),
+            ..MenuChoice::default()
+        },
+        MenuAction::FitTo(megabytes) => MenuChoice {
+            fit_to_mb: megabytes,
+            fit_to_custom: megabytes.is_none(),
+            ..MenuChoice::default()
+        },
+    };
+    quick_compress(app_handle, paths, menu);
     true
 }
 

@@ -29,3 +29,20 @@ export function imageTargetSizeInKB(sizeInBytes: number, percent: number) {
   const kilobytes = Math.floor(bytesLeft(sizeInBytes, percent) / BYTES_PER_KB)
   return Math.max(MIN_IMAGE_TARGET_SIZE_IN_KB, kilobytes)
 }
+
+/**
+ * "Fit to size" in the right-click menu: the sizes it offers, in MB; must match `explorer_menu.rs` and `hooks.nsh`
+ * (`scripts/test-compress-by.mjs` checks all three). "Your size" is `settingsStore.quickCompressFitSizeInMB`.
+ */
+export const FIT_SIZES_IN_MB = [8, 10, 25]
+
+/** The default of "Your size", in MB */
+export const DEFAULT_CUSTOM_FIT_SIZE_IN_MB = 50
+
+/** An image's target to fit within `megabytes`, in KB */
+export function imageFitSizeInKB(megabytes: number) {
+  return Math.max(
+    MIN_IMAGE_TARGET_SIZE_IN_KB,
+    Math.floor((megabytes * BYTES_PER_MB) / BYTES_PER_KB),
+  )
+}

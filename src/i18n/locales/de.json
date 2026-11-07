@@ -433,6 +433,11 @@
         "add": "Gruppe hinzufügen",
         "remove": "Gruppe entfernen",
         "removeNamed": "{{name}} entfernen"
+      },
+      "fitSize": {
+        "title": "An Größe anpassen",
+        "yourSize": "Deine Größe",
+        "description": "Die Größe, in die „An Größe anpassen > Deine Größe“ im Rechtsklick-Menü Dateien komprimiert."
       }
     }
   },

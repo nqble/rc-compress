@@ -433,6 +433,11 @@
         "add": "添加分组",
         "remove": "删除分组",
         "removeNamed": "删除 {{name}}"
+      },
+      "fitSize": {
+        "title": "压缩到指定大小",
+        "yourSize": "自定义大小",
+        "description": "右键菜单中“压缩到指定大小 > 自定义大小”将文件压缩到的大小。"
       }
     }
   },
