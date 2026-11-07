@@ -66,6 +66,8 @@ export type DropQueueItem = {
   fitToMb: number | null
   /** "Fit to size > Your size": within `settingsStore.quickCompressFitSizeInMB` */
   fitToCustom: boolean
+  /** "Remove metadata" in the right-click menu: copied without its metadata, not compressed */
+  removeMetadata: boolean
   /**
    * The command line job it belongs to (see `cli_server.rs`), with its presets & output settings;
    * `null` for media added in the app

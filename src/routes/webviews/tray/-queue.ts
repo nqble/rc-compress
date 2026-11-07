@@ -71,6 +71,7 @@ import {
   resolvePresetChoice,
 } from '@/utils/presetOutput'
 import { findQuickCompressGroup } from '@/utils/quickCompressGroups'
+import { metadataOnlyConfig } from '@/utils/removeMetadata'
 import { convertDurationToMilliseconds } from '@/utils/string'
 
 /** Top folders of dropped folders saved so far, shared by the media of a drop */
@@ -162,7 +163,11 @@ async function loadQueueMedia(item: DropQueueItem): Promise<MediaFile> {
   const converted = extension
     ? { ...media.config, convertToExtension: extension }
     : media.config
-  const config = withMenuTarget(media, converted as MediaFile['config'], item)
+  const targeted = withMenuTarget(media, converted as MediaFile['config'], item)
+  // "Remove metadata" in the right-click menu: copied without it, not compressed
+  const config = item.removeMetadata
+    ? metadataOnlyConfig(targeted, media.type === 'image')
+    : targeted
   return {
     ...media,
     config,
