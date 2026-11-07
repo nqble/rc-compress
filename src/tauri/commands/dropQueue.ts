@@ -62,6 +62,10 @@ export type DropQueueItem = {
    * original (see `utils/compressBy.ts`), with the Quick Compress presets' other settings
    */
   targetPercent: number | null
+  /** "Fit to size" in the right-click menu: compressed to fit within this many MB */
+  fitToMb: number | null
+  /** "Fit to size > Your size": within `settingsStore.quickCompressFitSizeInMB` */
+  fitToCustom: boolean
   /**
    * The command line job it belongs to (see `cli_server.rs`), with its presets & output settings;
    * `null` for media added in the app
