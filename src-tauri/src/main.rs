@@ -503,8 +503,8 @@ async fn run() {
                 // Fallback in case the frontend never signals readiness (e.g. a load error); not
                 // once it did, as it may have chosen to stay hidden (opened at login)
                 tokio::time::sleep(std::time::Duration::from_secs(3)).await;
-                // Started by the command line, which needs no window
-                if sys::cli_server::is_background_launch() {
+                // Started by the command line or the right-click menu, which need no window
+                if sys::cli_server::is_background_launch() || sys::explorer_menu::is_menu_launch() {
                     return;
                 }
                 let is_frontend_ready = fallback_app_handle

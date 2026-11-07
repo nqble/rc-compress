@@ -44,12 +44,14 @@ pub fn is_background_launch() -> bool {
     std::env::args().any(|arg| arg == BACKGROUND_ARG)
 }
 
-/// Whether the app was started by the command line, so its first main window stays hidden: true
-/// once, so a main window opened later (e.g. from the menu bar) is shown
+/// Whether the app was started by the command line (or by rc-compress's right-click menu, see
+/// `explorer_menu::is_menu_launch`), so its first main window stays hidden: true once, so a main
+/// window opened later (e.g. from the menu bar) is shown
 #[tauri::command]
 pub fn take_background_launch() -> bool {
     static IS_TAKEN: AtomicBool = AtomicBool::new(false);
-    !IS_TAKEN.swap(true, Ordering::SeqCst) && is_background_launch()
+    let is_quiet_launch = is_background_launch() || crate::sys::explorer_menu::is_menu_launch();
+    !IS_TAKEN.swap(true, Ordering::SeqCst) && is_quiet_launch
 }
 
 /// The user opened the app's window or dropped media: an app started by the command line now
