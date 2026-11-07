@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Prefisso del nome file",
           "placeholder": "Nessun prefisso",
-          "description": "Testo aggiunto all’inizio dei nomi dei file salvati. Lasci vuoto per mantenere i nomi originali."
+          "description": "Testo aggiunto all'inizio dei nomi dei file salvati. Lascia vuoto per chiamare le copie come “video (compressed).mp4”."
         },
         "appliesTo": "Si applicano solo alla preimpostazione Standard."
       },

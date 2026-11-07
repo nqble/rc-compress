@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Tiền tố tên tệp",
           "placeholder": "Không có tiền tố",
-          "description": "Văn bản thêm vào đầu tên tệp được lưu. Để trống để giữ tên gốc."
+          "description": "Văn bản thêm vào đầu tên tệp được lưu. Để trống để đặt tên bản sao như “video (compressed).mp4”."
         },
         "appliesTo": "Chỉ áp dụng cho cài đặt sẵn Tiêu chuẩn."
       },
