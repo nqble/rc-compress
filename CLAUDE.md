@@ -58,8 +58,8 @@ AGPL-3.0: it makes videos, images, audio and PDFs smaller, entirely on the user'
 ## 5. Before the first release
 
 The name (rc-compress), identifier (`com.rccompress.app`) and updater endpoint (`nqble/rc-compress` releases) are
-rc-compress's own. Still compressO's: the updater's **public key** in `src-tauri/tauri.conf.json` (replace it with
-rc-compress's own before the first release; until then no update can install, since none is signed with it), the
+rc-compress's own. The updater's public key (`src-tauri/tauri.conf.json`) is rc-compress's own too: the private key is kept outside
+the project and in the repository secrets `TAURI_SIGNING_PRIVATE_KEY(_PASSWORD)`. Still compressO's: the
 icon (kept for now), and internal names (the `compressO` binary and crate, the `compresso_*` tool files), left as
 they are so upstream changes keep merging.
 
