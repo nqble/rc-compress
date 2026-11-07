@@ -16,9 +16,16 @@ pub async fn get_image_dynamic_range(
     window: tauri::WebviewWindow,
     image_path: String,
 ) -> Result<crate::core::image_dynamic_range::ImageDynamicRangeInfo, String> {
-    crate::core::image_dynamic_range::inspect_source(&app, &image_path, window.label(), &[])
-        .await
-        .map(|(info, _)| info)
+    // Boxed: kept out of Tauri's IPC dispatch, which runs on the main thread (1 MiB of stack on
+    // Windows); see `command_futures_stay_small`
+    Box::pin(crate::core::image_dynamic_range::inspect_source(
+        &app,
+        &image_path,
+        window.label(),
+        &[],
+    ))
+    .await
+    .map(|(info, _)| info)
 }
 
 #[tauri::command]
@@ -41,8 +48,8 @@ pub async fn compress_images_batch(
         )
     };
 
-    image_compressor
-        .compress_images_batch(batch_id, images)
+    // Boxed, like `get_image_dynamic_range`
+    Box::pin(image_compressor.compress_images_batch(batch_id, images))
         .await
         .map(|result| Ok(result))
         .unwrap_or_else(|err| Err(err))
@@ -133,4 +140,50 @@ pub async fn prepare_image_preview(
 #[tauri::command]
 pub async fn get_exif_info(image_path: &str) -> Result<ExifInfo, String> {
     ImageInfo::get_exif_info(image_path)
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// A command's future is built on the main thread before Tauri moves it to a worker. On
+    /// Windows that thread has 1 MiB of stack, and image futures near 70 KB overflowed it (every
+    /// image crashed the app with 0xC00000FD), so each image command must box its large inner work.
+    const MAX_COMMAND_FUTURE_BYTES: usize = 16 * 1024;
+
+    fn future_size2<A, B, F: std::future::Future>(_: fn(A, B) -> F) -> usize {
+        std::mem::size_of::<F>()
+    }
+
+    fn future_size3<A, B, C, F: std::future::Future>(_: fn(A, B, C) -> F) -> usize {
+        std::mem::size_of::<F>()
+    }
+
+    #[test]
+    fn command_futures_stay_small() {
+        type App = tauri::AppHandle;
+        let sizes = [
+            (
+                "get_image_dynamic_range",
+                future_size3::<App, tauri::WebviewWindow, String, _>(get_image_dynamic_range),
+            ),
+            (
+                "compress_images_batch",
+                future_size3::<App, &'static str, Vec<ImageCompressionConfig>, _>(
+                    compress_images_batch,
+                ),
+            ),
+            ("get_image_dimensions", future_size2::<App, &'static str, _>(get_image_dimensions)),
+            ("get_image_color_info", future_size2::<App, &'static str, _>(get_image_color_info)),
+            ("prepare_image_preview", future_size2::<App, &'static str, _>(prepare_image_preview)),
+            (
+                "get_image_dimension",
+                future_size2::<App, &'static str, _>(crate::tauri_commands::fs::get_image_dimension),
+            ),
+        ];
+        for (name, size) in sizes {
+            assert!(size <= MAX_COMMAND_FUTURE_BYTES, "{name}'s future is {size} bytes");
+        }
+    }
 }
