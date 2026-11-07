@@ -8,6 +8,7 @@
 ; by the uninstaller (inserted into the two hooks below). It is a submenu of the classic menu (on Windows 11: Show more options):
 ;
 ;   rc-compress > Quick Compress
+;                 Compress by > 10% ... 90%
 ;                 Open in rc-compress...
 ;
 ; Each entry starts the app with the file; `--quick-compress` must match QUICK_COMPRESS_ARG in
@@ -28,6 +29,39 @@
   ; Several selected files are each passed to the app (one launch per file reaches the running app)
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\10quick" "MultiSelectModel" "Player"
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\10quick\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --quick-compress "%1"'
+
+  ; Compress by > 10% ... 90%: a submenu of its own; --compress-by must match COMPRESS_BY_PERCENTS
+  ; (explorer_menu.rs), checked by scripts/test-compress-by.mjs
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby" "MUIVerb" "Compress by"
+  WriteRegDWORD HKCU "${RC_MENU_KEY}\shell\20compressby" "CommandFlags" 0x20
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby" "SubCommands" ""
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\10" "MUIVerb" "10%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\10" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\10\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=10 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\20" "MUIVerb" "20%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\20" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\20\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=20 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\30" "MUIVerb" "30%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\30" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\30\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=30 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\40" "MUIVerb" "40%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\40" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\40\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=40 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\50" "MUIVerb" "50%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\50" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\50\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=50 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\60" "MUIVerb" "60%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\60" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\60\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=60 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\70" "MUIVerb" "70%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\70" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\70\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=70 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\80" "MUIVerb" "80%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\80" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\80\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=80 "%1"'
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\90" "MUIVerb" "90%"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\90" "MultiSelectModel" "Player"
+  WriteRegStr HKCU "${RC_MENU_KEY}\shell\20compressby\shell\90\command" "" '"$INSTDIR\${MAINBINARYNAME}.exe" --compress-by=90 "%1"'
 
   WriteRegStr HKCU "${RC_MENU_KEY}\shell\90open" "MUIVerb" "Open in rc-compress..."
   ; 0x20: a separator above it

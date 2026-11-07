@@ -12,7 +12,7 @@ const menu = read('src-tauri/windows/hooks.nsh')
 const rust = read('src-tauri/src/sys/explorer_menu.rs')
 
 test('every option the menu passes is one the app reads', () => {
-  const options = [...menu.matchAll(/\.exe" (--[a-z-]+)/g)].map(
+  const options = [...menu.matchAll(/\.exe" (--[a-z-]+=?)/g)].map(
     (match) => match[1],
   )
   assert.ok(options.length > 0, 'the menu passes no option')
