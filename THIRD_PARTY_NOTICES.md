@@ -22,6 +22,23 @@ https://www.gnu.org/licenses/lgpl-2.1.html
 
 ---
 
+## Ghostscript
+
+This software includes Ghostscript 10.08.0 (`compresso_ghostscript`), used to make PDF files smaller.
+
+Copyright (C) 2001-2026 Artifex Software, Inc.
+
+Licensed under the GNU Affero General Public License (AGPL) v3 or later.
+
+You may obtain the source code for Ghostscript at:
+https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/tag/gs10080
+https://ghostscript.com/
+
+The exact source archive used (SHA-256 `caf199e3f233f1290b27d0972d636f66c303355f2353309b7bfddf1edda06b3d`) and how it is
+built are in [docs/ghostscript.md](docs/ghostscript.md). A copy of the license is in `LICENSES/ghostscript/`.
+
+---
+
 ## pngquant
 
 This software includes pngquant.

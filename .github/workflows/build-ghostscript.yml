@@ -1,0 +1,130 @@
+# Builds Ghostscript (PDF compression, see docs/ghostscript.md) for every release target and commits the executables to
+# src-tauri/bin/ on the branch it runs on, like the other bundled tools. Runs when this file changes on a work branch, or
+# by hand: Actions -> "Build Ghostscript" -> Run workflow, on a work branch (never main). Linux and macOS are built from the pinned source archive; Windows uses
+# Artifex's official build (its installer, unpacked). Every download is checked against its pinned SHA-256, and every
+# executable must shrink a test PDF before it is kept.
+name: Build Ghostscript
+
+on:
+  workflow_dispatch:
+  # Also when this file changes on a work branch, so a new version can be built before the workflow is on main
+  push:
+    branches: ['claude/**']
+    paths: ['.github/workflows/build-ghostscript.yml']
+
+permissions:
+  contents: write
+
+env:
+  GS_VERSION: 10.08.0
+  GS_TAG: gs10080
+  GS_SOURCE_SHA256: caf199e3f233f1290b27d0972d636f66c303355f2353309b7bfddf1edda06b3d
+  GS_WINDOWS_SHA256: 52a91b8bf09298788d7a57b9206127026c23eacd75405f0a131e26dc381dce50
+
+jobs:
+  unix:
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: macos-15-intel
+            target: x86_64-apple-darwin
+    env:
+      # The oldest macOS the app supports
+      MACOSX_DEPLOYMENT_TARGET: '11.0'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and check the source
+        run: |
+          curl -sSL -o gs.tar.gz "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/$GS_TAG/ghostscript-$GS_VERSION.tar.gz"
+          echo "$GS_SOURCE_SHA256  gs.tar.gz" | shasum -a 256 -c -
+          tar xzf gs.tar.gz
+      # Only what PDF compression needs: no printers, windows, fonts from the system or network features. The
+      # libraries Ghostscript ships in its source (zlib, libpng, libjpeg, freetype, lcms2, openjpeg, jbig2dec) are
+      # built in, so the executable needs only the system's C library.
+      - name: Build
+        working-directory: ghostscript-${{ env.GS_VERSION }}
+        run: |
+          ./configure --disable-cups --disable-gtk --disable-dbus --disable-fontconfig --without-x \
+            --without-libidn --without-libpaper --without-tesseract --without-ijs
+          make -j4
+          strip bin/gs
+      - name: Check it shrinks a PDF and needs no extra libraries
+        run: |
+          gs="ghostscript-$GS_VERSION/bin/gs"
+          ldd "$gs" 2>/dev/null || otool -L "$gs"
+          "$gs" -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen \
+            -sOutputFile=small.pdf "ghostscript-$GS_VERSION/examples/annots.pdf"
+          test -s small.pdf
+          ls -l "ghostscript-$GS_VERSION/examples/annots.pdf" small.pdf
+      - name: Name it like the other tools
+        run: |
+          mkdir out
+          cp "ghostscript-$GS_VERSION/bin/gs" "out/compresso_ghostscript-${{ matrix.target }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ghostscript-${{ matrix.target }}
+          path: out/
+
+  windows:
+    name: Build (x86_64-pc-windows-msvc)
+    runs-on: windows-latest
+    steps:
+      - name: Download, check and unpack Artifex's build
+        shell: bash
+        run: |
+          curl -sSL -o gs.exe "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/$GS_TAG/${GS_TAG}w64.exe"
+          echo "$GS_WINDOWS_SHA256  gs.exe" | sha256sum -c -
+          7z x -ogs gs.exe bin/gswin64c.exe bin/gsdll64.dll
+      - name: Check it shrinks a PDF
+        shell: bash
+        # Git's Bash would turn "/screen" into a Windows path
+        env:
+          MSYS_NO_PATHCONV: '1'
+        run: |
+          curl -sSL -o test.pdf "https://raw.githubusercontent.com/ArtifexSoftware/ghostpdl/ghostpdl-$GS_VERSION/examples/annots.pdf" || true
+          if [ -s test.pdf ]; then
+            gs/bin/gswin64c.exe -q -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile=small.pdf test.pdf
+            test -s small.pdf
+          else
+            gs/bin/gswin64c.exe -q -dBATCH -dNOPAUSE -sDEVICE=nullpage -c quit
+          fi
+      - name: Name it like the other tools
+        shell: bash
+        run: |
+          mkdir out
+          cp gs/bin/gswin64c.exe out/compresso_ghostscript-x86_64-pc-windows-msvc.exe
+          cp gs/bin/gsdll64.dll out/gsdll64.dll
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ghostscript-x86_64-pc-windows-msvc
+          path: out/
+
+  commit:
+    name: Commit the executables to this branch
+    needs: [unix, windows]
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Put them next to the other tools and commit
+        run: |
+          cp artifacts/*/compresso_ghostscript-* src-tauri/bin/
+          mkdir -p src-tauri/bin/ghostscript-windows
+          cp artifacts/ghostscript-x86_64-pc-windows-msvc/gsdll64.dll src-tauri/bin/ghostscript-windows/
+          chmod +x src-tauri/bin/compresso_ghostscript-*
+          sha256sum src-tauri/bin/compresso_ghostscript-* src-tauri/bin/ghostscript-windows/gsdll64.dll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src-tauri/bin
+          git commit -m "build(ghostscript): add ghostscript $GS_VERSION executables" -m "Built by .github/workflows/build-ghostscript.yml, run ${{ github.run_id }}."
+          git push
