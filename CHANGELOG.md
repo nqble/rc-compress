@@ -1,5 +1,17 @@
 # Changelog
 
+### 0.1.1
+
+- **From compressO 4.1:** HDR Boost and Remove HDR for images and videos, HDR kept when compressing, a command line tool (`compresso`, Settings > CLI), Straighten, and fixes.
+- First version to arrive through the app's own update check.
+
+### 0.1.0
+
+- **rc-compress:** compressO under its own name, with its own updates.
+- **Right-click menu (Windows):** rc-compress > Quick Compress and Open in rc-compress, under Show more options.
+- **Quick Compress presets and groups:** Settings > Right-click Menu.
+
+
 ### 4.1.0
 
 Features:

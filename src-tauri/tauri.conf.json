@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "rc-compress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "identifier": "com.rccompress.app",
   "build": {
     "beforeBuildCommand": "node scripts/prepare-tools.mjs && node scripts/build-cli.mjs && pnpm vite:build",
