@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Dateinamenpräfix",
           "placeholder": "Kein Präfix",
-          "description": "Text, der am Anfang gespeicherter Dateinamen eingefügt wird. Leer lassen, um die ursprünglichen Namen beizubehalten."
+          "description": "Text am Anfang der gespeicherten Dateinamen. Leer lassen, um Kopien wie „video (compressed).mp4“ zu benennen."
         },
         "appliesTo": "Gilt nur für die Standard-Voreinstellung."
       },

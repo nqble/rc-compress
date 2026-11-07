@@ -13,6 +13,7 @@ import {
 } from '@/tauri/commands/fs'
 import { Image, Video } from '@/types/app'
 import { formatBytes, getParentDirectory } from '@/utils/fs'
+import { outputFileName } from '@/utils/outputFileName'
 import { getPresetOutput, savesAutomatically } from '@/utils/presetOutput'
 import { recordSavedOutput } from './-history'
 import { appProxy } from './-state'
@@ -94,7 +95,7 @@ async function saveCompressedMedia(
 
       const savedPath = await moveFile(
         compressedFile.pathRaw,
-        `${destinationDirectory}/${prefix}${compressedFile.fileNameToDisplay || mediaFile.fileName}`,
+        `${destinationDirectory}/${outputFileName(prefix, compressedFile.fileNameToDisplay || mediaFile.fileName || '', settingsStore.replaceOriginalFiles)}`,
         {
           replaceOriginal: settingsStore.replaceOriginalFiles
             ? mediaFile.pathRaw
@@ -265,7 +266,11 @@ export async function saveCompressedMediaWithPrompt(mediaIndex?: number) {
 
   const pathToSave = await save({
     title: t('save.chooseLocation'),
-    defaultPath: `${getMediaOutput(mediaFile).filePrefix}${compressedFile.fileNameToDisplay ?? mediaFile.fileName ?? ''}`,
+    defaultPath: outputFileName(
+      getMediaOutput(mediaFile).filePrefix,
+      compressedFile.fileNameToDisplay ?? mediaFile.fileName ?? '',
+      settingsStore.replaceOriginalFiles,
+    ),
   })
   if (!pathToSave) return
 
@@ -392,7 +397,7 @@ export function getOutputClipboardFile(
   return {
     path: compressedFile.pathRaw,
     fileName: name
-      ? `${getMediaOutput(mediaFile).filePrefix}${name}`
+      ? outputFileName(getMediaOutput(mediaFile).filePrefix, name)
       : undefined,
   }
 }
@@ -544,7 +549,11 @@ export async function saveQueueOutput(
     const fileName =
       settings.outputFolder && settings.outputFileName
         ? settings.outputFileName
-        : `${outputFilePrefix}${output.outputFileName}`
+        : outputFileName(
+            outputFilePrefix,
+            output.outputFileName,
+            replaceOriginalFiles,
+          )
     try {
       const savedPath = await moveFile(
         output.outputPath,

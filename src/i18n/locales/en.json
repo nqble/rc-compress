@@ -212,7 +212,7 @@
         "prefix": {
           "title": "File name prefix",
           "placeholder": "No prefix",
-          "description": "Text added to the start of saved file names. Leave empty to keep the original names."
+          "description": "Text added to the start of saved file names. Leave empty to name copies like “video (compressed).mp4”."
         },
         "appliesTo": "These apply to the Standard preset only."
       },

@@ -212,7 +212,7 @@
         "prefix": {
           "title": "Dosya adı öneki",
           "placeholder": "Önek yok",
-          "description": "Kaydedilen dosya adlarının başına eklenen metin. Orijinal adları korumak için boş bırakın."
+          "description": "Kaydedilen dosya adlarının başına eklenen metin. Kopyaları “video (compressed).mp4” gibi adlandırmak için boş bırakın."
         },
         "appliesTo": "Bunlar yalnızca Standart ön ayar için geçerlidir."
       },
