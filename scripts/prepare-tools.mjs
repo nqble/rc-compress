@@ -15,7 +15,15 @@ const run = (program, args, options = {}) =>
   execFileSync(program, args, { encoding: 'utf8', ...options })
 const host = run('rustc', ['-vV']).match(/^host: (.+)$/m)?.[1]
 const target = process.env.TAURI_ENV_TARGET_TRIPLE || process.env.TARGET || host
-const names = ['ffmpeg', 'ffprobe', 'pngquant', 'jpegoptim', 'gifski']
+// ghostscript: rc-compress's PDF compression (docs/ghostscript.md)
+const names = [
+  'ffmpeg',
+  'ffprobe',
+  'pngquant',
+  'jpegoptim',
+  'gifski',
+  'ghostscript',
+]
 const imageCodecs = getImageTools(target)
 const imageTools = imageCodecs.names
 const isMac = target?.endsWith('apple-darwin')
@@ -38,7 +46,18 @@ const sources = [
   ...imageCodecs.extraFiles.map(({ file }) => ({
     name: file,
     source: path.join(imageCodecs.directory, file),
-  })),
+  })), // Artifex's Windows build of Ghostscript keeps its engine in a DLL next to the executable
+  ...(isWindows
+    ? [
+        {
+          name: 'gsdll64.dll',
+          source: path.join(
+            root,
+            'src-tauri/bin/ghostscript-windows/gsdll64.dll',
+          ),
+        },
+      ]
+    : []),
 ]
 for (const { source } of sources) {
   if (!fs.existsSync(source))

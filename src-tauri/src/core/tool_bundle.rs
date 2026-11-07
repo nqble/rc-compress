@@ -14,7 +14,8 @@ use tauri::{AppHandle, Manager, WebviewUrl, WebviewWindowBuilder};
 
 const EMBEDDED_MANIFEST: &str = include_str!(concat!(env!("OUT_DIR"), "/tool-manifest.json"));
 const TARGET: &str = env!("COMPRESSO_TARGET");
-const TOOLS: [&str; 10] = [
+// "ghostscript": rc-compress's PDF compression (docs/ghostscript.md)
+const TOOLS: [&str; 11] = [
     "ffmpeg",
     "ffprobe",
     "pngquant",
@@ -25,7 +26,10 @@ const TOOLS: [&str; 10] = [
     "jxlinfo",
     "heif-dec",
     "heif-enc",
+    "ghostscript",
 ];
+/// The Windows Ghostscript's engine; must match `prepare-tools.mjs` and `build-ghostscript.yml`
+const WINDOWS_GHOSTSCRIPT_DLL: &str = "gsdll64.dll";
 const IMAGE_SOURCES: &str = include_str!(concat!(
     env!("CARGO_MANIFEST_DIR"),
     "/../LICENSES/image-codecs/SOURCES.json"
@@ -288,6 +292,10 @@ fn manifest() -> Result<Option<Manifest>, String> {
         .get(TARGET)
         .ok_or("Missing image codec target metadata")?;
     expected.extend(extras.extra_files.iter().map(|file| file.file.clone()));
+    // Artifex's Windows build of Ghostscript runs from a DLL next to it (see `prepare-tools.mjs`)
+    if cfg!(windows) {
+        expected.insert(WINDOWS_GHOSTSCRIPT_DLL.to_string());
+    }
     let actual: HashSet<String> = manifest
         .files
         .iter()
