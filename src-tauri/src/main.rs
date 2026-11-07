@@ -253,6 +253,10 @@ fn urls_from_launch_args(args: &[String], cwd: Option<&str>) -> Vec<Url> {
 /// Another launch of the app (only one runs at a time, so they never share or clear each other's
 /// cache): the running app comes forward instead, with the files it was launched with
 fn on_second_instance(app_handle: &tauri::AppHandle, args: Vec<String>, cwd: String) {
+    // Arrived while this app is still setting up: handled once it is ready (see `sys::early_launches`)
+    if sys::early_launches::hold((args.clone(), cwd.clone())) {
+        return;
+    }
     // Started by the command line while it was starting the app too: nothing to show
     if args.iter().any(|arg| arg == sys::cli_server::BACKGROUND_ARG) {
         log::info!("Another background launch of the app, ignored");
@@ -584,6 +588,12 @@ async fn run() {
             sys::cli_server::start(app.handle());
 
             IS_APP_SET_UP.store(true, std::sync::atomic::Ordering::SeqCst);
+            // Other launches that arrived while setting up (e.g. files selected together in Explorer)
+            let app_handle = app.handle().clone();
+            sys::early_launches::replay(|(args, cwd)| {
+                log::info!("Handling a launch that arrived while the app was starting");
+                on_second_instance(&app_handle, args, cwd);
+            });
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
