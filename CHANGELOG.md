@@ -4,6 +4,8 @@
 
 - **PDFs (Windows right-click menu):** Quick Compress, Compress by, Fit to size and Remove metadata work on PDFs too, with Ghostscript bundled (nothing to install). Text stays sharp and selectable; pictures inside get a lower resolution.
 - **PDF quality** for Quick Compress: Small (screen, email), Medium (most documents) or High (printing), in Settings > Right-click Menu.
+- **PDFs dropped on or opened in the app window** are compressed in the background too, at the same PDF quality.
+- **Fixed: images no longer crash the app on Windows** (any image, from the menu or the window, since 0.1.1).
 
 ### 0.1.2
 
