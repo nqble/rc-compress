@@ -323,7 +323,8 @@ fn run_explorer_menu_action(
         .map(|path| path.to_string_lossy().to_string())
         .collect();
     match action {
-        MenuAction::QuickCompress => quick_compress(app_handle, paths),
+        MenuAction::QuickCompress => quick_compress(app_handle, paths, None),
+        MenuAction::CompressBy(percent) => quick_compress(app_handle, paths, Some(percent)),
     }
     true
 }
