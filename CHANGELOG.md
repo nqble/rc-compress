@@ -1,5 +1,12 @@
 # Changelog
 
+### 0.1.2
+
+- **The whole right-click menu (Windows, under Show more options):** rc-compress ▸ Quick Compress, Compress by ▸ 10% … 90%, Fit to size ▸ 8 MB · 10 MB · 25 MB · Your size, Remove metadata, Open in rc-compress.
+- **"Your size"** for Fit to size: Settings > Right-click Menu.
+- **Copies are named "video (compressed).mp4"** next to the original (or keep the original name with Replace original files).
+- **No window pops up** when a right-click action starts rc-compress; the file is compressed in the background.
+
 ### 0.1.1
 
 - **From compressO 4.1:** HDR Boost and Remove HDR for images and videos, HDR kept when compressing, a command line tool (`compresso`, Settings > CLI), Straighten, and fixes.
