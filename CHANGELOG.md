@@ -6,6 +6,7 @@
 - **PDF quality** for Quick Compress: Small (screen, email), Medium (most documents) or High (printing), in Settings > Right-click Menu.
 - **PDFs dropped on or opened in the app window** are compressed in the background too, at the same PDF quality.
 - **Fixed: images no longer crash the app on Windows** (any image, from the menu or the window, since 0.1.1).
+- **Fixed: every selected file is compressed** when you pick several in the right-click menu while rc-compress is closed (before, only one was).
 
 ### 0.1.2
 
