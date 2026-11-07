@@ -3,6 +3,9 @@ pub mod clipboard_watch;
 // The right-click menu's actions are parsed on every system (tested in CI), handled on Windows
 #[cfg_attr(not(windows), allow(dead_code))]
 pub mod explorer_menu;
+pub mod cli_install;
+pub mod cli_server;
+pub mod cli_settings;
 pub mod fs;
 pub mod history;
 pub mod keep_awake;

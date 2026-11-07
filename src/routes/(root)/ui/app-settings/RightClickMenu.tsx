@@ -1,5 +1,5 @@
 // Settings of the file manager's right-click menu (Windows Explorer for now; the entries are added
-// by the installer, see `src-tauri/windows/explorer-menu.nsh` and `explorer_menu.rs`)
+// by the installer, see `src-tauri/windows/hooks.nsh` and `explorer_menu.rs`)
 import { Trans, useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
 
