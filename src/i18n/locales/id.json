@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Kompres Cepat",
-        "description": "Klik kanan file di File Explorer lalu pilih rc-compress → Kompres Cepat untuk mengompresnya di latar belakang dengan preset ini.",
-        "asksWhereToSave": "Ada preset yang menanyakan lokasi simpan, jadi filenya menunggu di antrean untuk disimpan manual.",
         "needsSaveLocation": "Pilih lokasi simpan selain Tanya setiap kali, di <setting>Output</setting> atau di preset ini, agar Kompres Cepat bisa menyimpan tanpa bertanya."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Gambar",
         "kind_audio": "Audio",
         "preset": "Preset untuk {{name}}",
-        "add": "Tambah grup",
+        "add": "Tambah",
         "remove": "Hapus grup",
-        "removeNamed": "Hapus {{name}}"
+        "removeNamed": "Hapus {{name}}",
+        "addTitle": "Tambah grup"
       },
       "fitSize": {
         "title": "Sesuaikan ukuran",

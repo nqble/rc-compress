@@ -19,7 +19,7 @@ import {
   type QuickCompressGroup,
 } from '@/utils/quickCompressGroups'
 import PresetChoiceSelect from './PresetChoiceSelect'
-import { SettingsSection } from './SettingsLayout'
+import { SettingsRow, SettingsSection } from './SettingsLayout'
 
 const MEDIA_TYPES: PresetMediaType[] = ['video', 'image', 'audio']
 
@@ -81,9 +81,10 @@ function GroupCard({ group }: { group: QuickCompressGroup }) {
   const { t } = useTranslation()
 
   return (
-    <div className="rounded-xl border border-zinc-200 dark:border-zinc-700 p-3 flex flex-col gap-3">
-      <div className="flex items-end gap-2">
+    <div className="py-4">
+      <div className="flex items-end gap-3">
         <TextInput
+          className="flex-1"
           label={t('settings.rightClickMenu.groups.name')}
           value={group.name}
           onValueChange={(name) => updateGroup(group.id, { name })}
@@ -106,7 +107,7 @@ function GroupCard({ group }: { group: QuickCompressGroup }) {
           </Button>
         </Tooltip>
       </div>
-      <div className="grid grid-cols-3 gap-3 items-end">
+      <div className="mt-3 grid grid-cols-3 gap-3 items-end">
         <Select
           label={t('settings.rightClickMenu.groups.kind')}
           selectedKeys={[group.mediaType]}
@@ -149,21 +150,21 @@ function QuickCompressGroups() {
 
   return (
     <SettingsSection title={t('settings.rightClickMenu.groups.title')}>
-      <p className="text-sm text-gray-500 px-1">
-        {t('settings.rightClickMenu.groups.description')}
-      </p>
-      {quickCompressGroups.map((group) => (
-        <GroupCard key={group.id} group={group as QuickCompressGroup} />
-      ))}
-      <div>
+      <SettingsRow
+        settingId="quickCompressGroups"
+        title={t('settings.rightClickMenu.groups.addTitle')}
+        description={t('settings.rightClickMenu.groups.description')}
+      >
         <Button
           size="sm"
           onPress={() => addGroup(t('settings.rightClickMenu.groups.newName'))}
         >
-          <Icon name="plus" size={16} />
           {t('settings.rightClickMenu.groups.add')}
         </Button>
-      </div>
+      </SettingsRow>
+      {quickCompressGroups.map((group) => (
+        <GroupCard key={group.id} group={group as QuickCompressGroup} />
+      ))}
     </SettingsSection>
   )
 }

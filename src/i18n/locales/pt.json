@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Compressão rápida",
-        "description": "Clique com o botão direito num arquivo no Explorador de Arquivos e escolha rc-compress → Compressão rápida para comprimi-lo em segundo plano com estas predefinições.",
-        "asksWhereToSave": "Uma predefinição pergunta onde salvar, então seus arquivos esperam na fila para serem salvos manualmente.",
         "needsSaveLocation": "Escolha um local de salvamento diferente de Perguntar sempre, em <setting>Saída</setting> ou nestas predefinições, para que a Compressão rápida possa salvar sem perguntar."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Imagens",
         "kind_audio": "Áudio",
         "preset": "Predefinição para {{name}}",
-        "add": "Adicionar grupo",
+        "add": "Adicionar",
         "remove": "Remover grupo",
-        "removeNamed": "Remover {{name}}"
+        "removeNamed": "Remover {{name}}",
+        "addTitle": "Adicionar um grupo"
       },
       "fitSize": {
         "title": "Ajustar ao tamanho",

@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Compression rapide",
-        "description": "Faites un clic droit sur un fichier dans l’Explorateur de fichiers et choisissez rc-compress → Compression rapide pour le compresser en arrière-plan avec ces préréglages.",
-        "asksWhereToSave": "Un préréglage demande où enregistrer : ses fichiers attendent dans la file pour être enregistrés à la main.",
         "needsSaveLocation": "Choisissez un emplacement d’enregistrement autre que Demander à chaque fois, dans <setting>Sortie</setting> ou dans ces préréglages, pour que Compression rapide puisse enregistrer sans demander."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Images",
         "kind_audio": "Audio",
         "preset": "Préréglage pour {{name}}",
-        "add": "Ajouter un groupe",
+        "add": "Ajouter",
         "remove": "Supprimer le groupe",
-        "removeNamed": "Supprimer {{name}}"
+        "removeNamed": "Supprimer {{name}}",
+        "addTitle": "Ajouter un groupe"
       },
       "fitSize": {
         "title": "Ajuster à la taille",

@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "快速壓縮",
-        "description": "在檔案總管中以右鍵點選檔案，選擇 rc-compress → 快速壓縮，即可使用這些預設在背景壓縮。",
-        "asksWhereToSave": "有預設需要詢問儲存位置，因此其檔案會在佇列中等待手動儲存。",
         "needsSaveLocation": "請在<setting>輸出</setting>或這些預設中選擇「每次詢問」以外的儲存位置，讓快速壓縮不必詢問即可儲存。"
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "圖片",
         "kind_audio": "音訊",
         "preset": "{{name}} 的預設",
-        "add": "新增群組",
+        "add": "新增",
         "remove": "移除群組",
-        "removeNamed": "移除 {{name}}"
+        "removeNamed": "移除 {{name}}",
+        "addTitle": "新增群組"
       },
       "fitSize": {
         "title": "壓縮到指定大小",

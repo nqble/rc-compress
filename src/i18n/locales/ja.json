@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "クイック圧縮",
-        "description": "エクスプローラーでファイルを右クリックし、rc-compress → クイック圧縮 を選ぶと、これらのプリセットでバックグラウンドで圧縮します。",
-        "asksWhereToSave": "保存先を毎回確認するプリセットがあるため、そのファイルはキューで手動保存を待ちます。",
         "needsSaveLocation": "クイック圧縮が確認なしで保存できるよう、<setting>出力</setting>またはこれらのプリセットで「毎回確認」以外の保存先を選んでください。"
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "画像",
         "kind_audio": "オーディオ",
         "preset": "{{name}} のプリセット",
-        "add": "グループを追加",
+        "add": "追加",
         "remove": "グループを削除",
-        "removeNamed": "{{name}} を削除"
+        "removeNamed": "{{name}} を削除",
+        "addTitle": "グループを追加"
       },
       "fitSize": {
         "title": "サイズに収める",

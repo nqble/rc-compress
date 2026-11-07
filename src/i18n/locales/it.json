@@ -404,8 +404,6 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Compressione rapida",
-        "description": "Fai clic destro su un file in Esplora file e scegli rc-compress → Compressione rapida per comprimerlo in background con questi preset.",
-        "asksWhereToSave": "Un preset chiede dove salvare, quindi i suoi file restano in coda per essere salvati a mano.",
         "needsSaveLocation": "Scegli una posizione di salvataggio diversa da Chiedi ogni volta, in <setting>Output</setting> o in questi preset, così Compressione rapida può salvare senza chiedere."
       },
       "preset": {
@@ -430,9 +428,10 @@
         "kind_image": "Immagini",
         "kind_audio": "Audio",
         "preset": "Preset per {{name}}",
-        "add": "Aggiungi gruppo",
+        "add": "Aggiungi",
         "remove": "Rimuovi gruppo",
-        "removeNamed": "Rimuovi {{name}}"
+        "removeNamed": "Rimuovi {{name}}",
+        "addTitle": "Aggiungi un gruppo"
       },
       "fitSize": {
         "title": "Adatta alle dimensioni",
