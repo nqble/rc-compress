@@ -433,6 +433,11 @@
         "add": "Adicionar grupo",
         "remove": "Remover grupo",
         "removeNamed": "Remover {{name}}"
+      },
+      "fitSize": {
+        "title": "Ajustar ao tamanho",
+        "yourSize": "Seu tamanho",
+        "description": "O tamanho em que “Ajustar ao tamanho > Seu tamanho” do menu de contexto faz os arquivos caberem."
       }
     }
   },

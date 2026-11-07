@@ -96,6 +96,15 @@ pub struct DropQueueItem {
     /// Added with "Quick Compress" in the file manager's right-click menu (see
     /// `sys::explorer_menu`): compressed with the Quick Compress presets, not the drop zone's
     pub quick_compress: bool,
+    /// "Compress by N%" in the right-click menu: compressed to a size this much smaller than the
+    /// original, with the Quick Compress presets' other settings
+    pub target_percent: Option<u8>,
+    /// "Fit to size" in the right-click menu: compressed to fit within this many MB
+    pub fit_to_mb: Option<u16>,
+    /// "Fit to size > Your size": within the size set in the app (Settings -> Right-click Menu)
+    pub fit_to_custom: bool,
+    /// "Remove metadata" in the right-click menu: copied without its metadata, not compressed
+    pub remove_metadata: bool,
     /// The command line job it belongs to (see `cli_server`), with that job's preset & output
     /// settings; `None` for media added in the app
     pub cli_job: Option<CliJob>,
@@ -278,16 +287,18 @@ pub fn add_to_queue_from(
     is_supported: impl Fn(&str) -> bool,
     source: Option<QueueSource>,
 ) {
-    add_items(app_handle, paths, is_supported, source, false);
+    add_items(app_handle, paths, is_supported, source, None);
 }
 
 /// `add_to_queue`, for media chosen with "Quick Compress" in the file manager's right-click menu
+/// (or "Compress by N%" and "Fit to size", from `menu`)
 pub fn add_to_quick_compress_queue(
     app_handle: &AppHandle,
     paths: Vec<String>,
     is_supported: impl Fn(&str) -> bool,
+    menu: MenuChoice,
 ) {
-    add_items(app_handle, paths, is_supported, None, true);
+    add_items(app_handle, paths, is_supported, None, Some(menu));
 }
 
 fn add_items(
@@ -295,7 +306,7 @@ fn add_items(
     paths: Vec<String>,
     is_supported: impl Fn(&str) -> bool,
     source: Option<QueueSource>,
-    quick_compress: bool,
+    menu: Option<MenuChoice>,
 ) {
     let files = match crate::tauri_commands::fs::allow_asset_scopes(app_handle, paths) {
         Ok(files) => files,
@@ -318,7 +329,7 @@ fn add_items(
     if source.is_none() {
         crate::sys::cli_server::keep_app_open();
     }
-    queue_files(app_handle, files, source, None, quick_compress);
+    queue_files(app_handle, files, source, None, menu);
 }
 
 /// Adds media to the end of the queue, in order: from a watched folder (`source`), for a command
@@ -330,16 +341,25 @@ pub fn add_files_to_queue(
     source: Option<QueueSource>,
     cli_job: Option<CliJob>,
 ) -> Vec<DropQueueItem> {
-    queue_files(app_handle, files, source, cli_job, false)
+    queue_files(app_handle, files, source, cli_job, None)
 }
 
-/// `add_files_to_queue`, also marking media chosen with "Quick Compress" (`quick_compress`)
+/// What the right-click menu asked for, for media queued from it (see `sys::explorer_menu`)
+#[derive(Clone, Copy, Default)]
+pub struct MenuChoice {
+    pub target_percent: Option<u8>,
+    pub fit_to_mb: Option<u16>,
+    pub fit_to_custom: bool,
+    pub remove_metadata: bool,
+}
+
+/// `add_files_to_queue`, also marking media chosen in the right-click menu (`menu`)
 fn queue_files(
     app_handle: &AppHandle,
     files: Vec<crate::core::domain::CollectedFile>,
     source: Option<QueueSource>,
     cli_job: Option<CliJob>,
-    quick_compress: bool,
+    menu: Option<MenuChoice>,
 ) -> Vec<DropQueueItem> {
     let group_id = nanoid!();
     // The tray webview compresses the queue (the main window, on Linux or without the tray icon)
@@ -379,7 +399,11 @@ fn queue_files(
                 needs_save_location: false,
                 watch_folder_id: source.as_ref().map(|source| source.folder_id.clone()),
                 watch_folder_name: source.as_ref().map(|source| source.folder_name.clone()),
-                quick_compress,
+                quick_compress: menu.is_some(),
+                target_percent: menu.and_then(|menu| menu.target_percent),
+                fit_to_mb: menu.and_then(|menu| menu.fit_to_mb),
+                fit_to_custom: menu.is_some_and(|menu| menu.fit_to_custom),
+                remove_metadata: menu.is_some_and(|menu| menu.remove_metadata),
                 cli_job: cli_job.clone(),
                 reason: None,
                 error: None,

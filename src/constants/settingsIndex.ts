@@ -214,6 +214,14 @@ export const SETTINGS_INDEX = {
       t('settings.dropZone.compression.autoCompress.description'),
     ],
   },
+  quickCompressFitSize: {
+    page: 'rightClickMenu',
+    isAvailable: getPlatform().isWindows,
+    getText: (t) => [
+      t('settings.rightClickMenu.fitSize.yourSize'),
+      t('settings.rightClickMenu.fitSize.description'),
+    ],
+  },
   quickCompressVideoPreset: {
     page: 'rightClickMenu',
     isAvailable: getPlatform().isWindows,

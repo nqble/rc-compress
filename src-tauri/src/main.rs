@@ -313,6 +313,7 @@ fn run_explorer_menu_action(
     cwd: Option<&str>,
 ) -> bool {
     use sys::explorer_menu::{action_from_launch_args, quick_compress, MenuAction};
+    use tauri_commands::drop_queue::MenuChoice;
 
     let Some(action) = action_from_launch_args(args) else {
         return false;
@@ -322,9 +323,23 @@ fn run_explorer_menu_action(
         .filter_map(|url| url.to_file_path().ok())
         .map(|path| path.to_string_lossy().to_string())
         .collect();
-    match action {
-        MenuAction::QuickCompress => quick_compress(app_handle, paths),
-    }
+    let menu = match action {
+        MenuAction::QuickCompress => MenuChoice::default(),
+        MenuAction::CompressBy(percent) => MenuChoice {
+            target_percent: Some(percent),
+            ..MenuChoice::default()
+        },
+        MenuAction::RemoveMetadata => MenuChoice {
+            remove_metadata: true,
+            ..MenuChoice::default()
+        },
+        MenuAction::FitTo(megabytes) => MenuChoice {
+            fit_to_mb: megabytes,
+            fit_to_custom: megabytes.is_none(),
+            ..MenuChoice::default()
+        },
+    };
+    quick_compress(app_handle, paths, menu);
     true
 }
 
@@ -488,8 +503,8 @@ async fn run() {
                 // Fallback in case the frontend never signals readiness (e.g. a load error); not
                 // once it did, as it may have chosen to stay hidden (opened at login)
                 tokio::time::sleep(std::time::Duration::from_secs(3)).await;
-                // Started by the command line, which needs no window
-                if sys::cli_server::is_background_launch() {
+                // Started by the command line or the right-click menu, which need no window
+                if sys::cli_server::is_background_launch() || sys::explorer_menu::is_menu_launch() {
                     return;
                 }
                 let is_frontend_ready = fallback_app_handle
