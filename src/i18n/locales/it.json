@@ -437,6 +437,13 @@
         "title": "Adatta alle dimensioni",
         "yourSize": "La tua dimensione",
         "description": "La dimensione entro cui “Adatta alle dimensioni > La tua dimensione” del menu contestuale comprime i file."
+      },
+      "pdf": {
+        "title": "Qualità PDF",
+        "description": "Quanto Compressione rapida riduce i PDF. Il testo resta nitido e selezionabile; le immagini interne hanno una risoluzione più bassa.",
+        "level_small": "Piccola (schermo, email)",
+        "level_medium": "Media (la maggior parte dei documenti)",
+        "level_high": "Alta (stampa)"
       }
     }
   },

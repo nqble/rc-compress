@@ -437,6 +437,13 @@
         "title": "Ajustar al tamaño",
         "yourSize": "Tu tamaño",
         "description": "El tamaño en el que «Ajustar al tamaño > Tu tamaño» del menú contextual hace caber los archivos."
+      },
+      "pdf": {
+        "title": "Calidad de PDF",
+        "description": "Cuánto reduce Compresión rápida los PDF. El texto sigue nítido y seleccionable; las imágenes de dentro bajan de resolución.",
+        "level_small": "Pequeña (pantalla, correo)",
+        "level_medium": "Media (la mayoría de documentos)",
+        "level_high": "Alta (impresión)"
       }
     }
   },

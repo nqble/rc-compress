@@ -437,6 +437,13 @@
         "title": "Vừa kích thước",
         "yourSize": "Kích thước của bạn",
         "description": "Kích thước mà “Vừa kích thước > Kích thước của bạn” trong menu chuột phải nén tệp vào."
+      },
+      "pdf": {
+        "title": "Chất lượng PDF",
+        "description": "Mức Nén nhanh làm nhỏ tệp PDF. Chữ vẫn sắc nét và chọn được; hình ảnh bên trong giảm độ phân giải.",
+        "level_small": "Nhỏ (màn hình, email)",
+        "level_medium": "Vừa (hầu hết tài liệu)",
+        "level_high": "Cao (in ấn)"
       }
     }
   },

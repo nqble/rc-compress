@@ -437,6 +437,13 @@
         "title": "Boyuta sığdır",
         "yourSize": "Senin boyutun",
         "description": "Sağ tık menüsündeki “Boyuta sığdır > Senin boyutun” seçeneğinin dosyaları sığdırdığı boyut."
+      },
+      "pdf": {
+        "title": "PDF kalitesi",
+        "description": "Hızlı sıkıştır'ın PDF'leri ne kadar küçülteceği. Metin net ve seçilebilir kalır; içindeki görsellerin çözünürlüğü düşer.",
+        "level_small": "Küçük (ekran, e-posta)",
+        "level_medium": "Orta (çoğu belge)",
+        "level_high": "Yüksek (baskı)"
       }
     }
   },

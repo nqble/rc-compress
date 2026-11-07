@@ -73,6 +73,7 @@ import {
 import { findQuickCompressGroup } from '@/utils/quickCompressGroups'
 import { metadataOnlyConfig } from '@/utils/removeMetadata'
 import { convertDurationToMilliseconds } from '@/utils/string'
+import { compressPdfQueueItem, isPdfItem } from './-pdfQueue'
 
 /** Top folders of dropped folders saved so far, shared by the media of a drop */
 const topFolders = new Map<string, Promise<string>>()
@@ -301,6 +302,50 @@ async function readQueueMedia(item: DropQueueItem): Promise<MediaFile> {
   }
 }
 
+/** Tells the queue how saving a compressed media went (see `saveQueueOutput`) */
+export async function reportSaved(
+  item: DropQueueItem,
+  saved: Awaited<ReturnType<typeof saveQueueOutput>>,
+  outputMetadata: { path: string; size: number },
+) {
+  if ('savedPath' in saved) {
+    await updateDropQueueItem(item.id, {
+      status: 'done',
+      progress: 100,
+      outputSize: outputMetadata.size,
+      savedPath: saved.savedPath,
+    }).catch(() => {})
+    // Not for the command line, which is not at the app
+    if (settingsStore.copyOutputToClipboard && !item.cliJob) {
+      copyFilesToClipboard([{ path: saved.savedPath }]).catch(() => {})
+    }
+  } else if (saved.reason === 'larger') {
+    // Nothing can save it later from the command line, so it is not kept
+    if (item.cliJob) deleteFile(outputMetadata.path).catch(() => {})
+    await updateDropQueueItem(item.id, {
+      status: 'done',
+      progress: 100,
+      outputSize: outputMetadata.size,
+      // Kept until the item is cleared, which deletes it
+      outputPath: item.cliJob ? null : outputMetadata.path,
+      message: t('queue.notSavedLarger'),
+      reason: 'larger',
+    }).catch(() => {})
+  } else {
+    await updateDropQueueItem(item.id, {
+      status: 'failed',
+      outputPath: outputMetadata.path,
+      message:
+        saved.reason === 'no-save-location'
+          ? t('queue.noSaveLocation')
+          : t('queue.saveFailed'),
+      needsSaveLocation: saved.reason === 'no-save-location',
+      reason:
+        saved.reason === 'no-save-location' ? 'noSaveLocation' : 'saveFailed',
+    }).catch(() => {})
+  }
+}
+
 /** Compresses & saves a queued media, reporting its progress to the queue */
 async function compressQueueItem(item: DropQueueItem) {
   const update = (changes: DropQueueItemUpdate) =>
@@ -390,42 +435,7 @@ async function compressQueueItem(item: DropQueueItem) {
             : 'video',
       presetId: media.config?.presetId,
     })
-    if ('savedPath' in saved) {
-      await update({
-        status: 'done',
-        progress: 100,
-        outputSize: outputMetadata.size,
-        savedPath: saved.savedPath,
-      })
-      // Not for the command line, which is not at the app
-      if (settingsStore.copyOutputToClipboard && !item.cliJob) {
-        copyFilesToClipboard([{ path: saved.savedPath }]).catch(() => {})
-      }
-    } else if (saved.reason === 'larger') {
-      // Nothing can save it later from the command line, so it is not kept
-      if (item.cliJob) deleteFile(outputMetadata.path).catch(() => {})
-      await update({
-        status: 'done',
-        progress: 100,
-        outputSize: outputMetadata.size,
-        // Kept until the item is cleared, which deletes it
-        outputPath: item.cliJob ? null : outputMetadata.path,
-        message: t('queue.notSavedLarger'),
-        reason: 'larger',
-      })
-    } else {
-      await update({
-        status: 'failed',
-        outputPath: outputMetadata.path,
-        message:
-          saved.reason === 'no-save-location'
-            ? t('queue.noSaveLocation')
-            : t('queue.saveFailed'),
-        needsSaveLocation: saved.reason === 'no-save-location',
-        reason:
-          saved.reason === 'no-save-location' ? 'noSaveLocation' : 'saveFailed',
-      })
-    }
+    await reportSaved(item, saved, outputMetadata)
     // The completion sound is for media added in the app
     return !item.cliJob
   } catch (error) {
@@ -447,9 +457,10 @@ async function compressQueueItem(item: DropQueueItem) {
 }
 
 /** Which lane a queued media is compressed in (see `runDropQueue`), by its file */
-type Lane = 'video' | 'audio' | 'image'
+type Lane = 'video' | 'audio' | 'image' | 'pdf'
 
 function getLane(item: DropQueueItem): Lane {
+  if (isPdfItem(item)) return 'pdf'
   const extension = item.path.split('.').pop()?.toLowerCase() ?? ''
   if (isAudioFileExtension(extension)) return 'audio'
   return (inputExtensions.image as string[]).includes(extension)
@@ -457,7 +468,7 @@ function getLane(item: DropQueueItem): Lane {
     : 'video'
 }
 
-const LANES: Lane[] = ['video', 'audio', 'image']
+const LANES: Lane[] = ['video', 'audio', 'image', 'pdf']
 
 /** Asked for while the queue was running, to look again once it is done */
 let isRunRequested = false
@@ -505,7 +516,9 @@ export async function runDropQueue() {
           )[0]
         if (next) {
           compressedIds.add(next.id)
-          if (await compressQueueItem(next)) hasCompressed = true
+          const compress =
+            lane === 'pdf' ? compressPdfQueueItem : compressQueueItem
+          if (await compress(next)) hasCompressed = true
         }
       } finally {
         activeLanes--

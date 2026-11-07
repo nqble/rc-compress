@@ -437,6 +437,13 @@
         "title": "Ajuster à la taille",
         "yourSize": "Votre taille",
         "description": "La taille dans laquelle « Ajuster à la taille > Votre taille » du menu contextuel fait tenir les fichiers."
+      },
+      "pdf": {
+        "title": "Qualité des PDF",
+        "description": "À quel point Compression rapide réduit les PDF. Le texte reste net et sélectionnable ; les images à l’intérieur ont une résolution plus basse.",
+        "level_small": "Petite (écran, e-mail)",
+        "level_medium": "Moyenne (la plupart des documents)",
+        "level_high": "Haute (impression)"
       }
     }
   },

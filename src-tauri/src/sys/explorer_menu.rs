@@ -97,7 +97,11 @@ pub fn quick_compress(
     log::info!("[explorer-menu] Quick Compress of {} files", paths.len());
     let app = app_handle.clone();
     let is_supported =
-        move |path: &str| !has_supported_drop_extensions(&app) || is_supported_drop(&app, path);
+        move |path: &str| {
+            !has_supported_drop_extensions(&app)
+                || is_supported_drop(&app, path)
+                || crate::tauri_commands::pdf::is_pdf(path)
+        };
     crate::tauri_commands::drop_queue::add_to_quick_compress_queue(
         app_handle,
         paths,

@@ -8,6 +8,7 @@ pub mod fs;
 pub mod hardware_encoder;
 pub mod image;
 pub mod media;
+pub mod pdf;
 pub mod sound;
 pub mod updater;
 pub mod window;
