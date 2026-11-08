@@ -25,10 +25,10 @@ say the app is damaged or from an unidentified developer (right-click the app �
 
 ## What it does
 
-- **Shrinks videos, images and audio**, with full control over format, quality, size, resolution and more, or one
+- **Shrinks videos, images, audio and PDFs**, with full control over format, quality, size, resolution and more, or one
   click with a preset. HDR is kept (or removed, or boosted), and many files can be compressed at once.
 - **Nothing is uploaded:** every file is compressed on your computer. The only network use is checking for updates.
-- **Right-click menu (Windows):** in File Explorer, right-click a file → Show more options → **rc-compress**:
+- **Right-click menu (Windows):** in File Explorer, right-click a file or a folder → Show more options → **rc-compress**:
 
   ```
   rc-compress ▸  Quick Compress
@@ -39,9 +39,11 @@ say the app is damaged or from an unidentified developer (right-click the app �
   ```
 
   The file is compressed in the background and the copy is saved next to the original as `name (compressed).ext`;
-  the original is never changed. How each item works: [docs/right-click-menu.md](docs/right-click-menu.md).
-- **PDFs** from the right-click menu, with Ghostscript bundled.
-- **Coming:** PDFs in the app window, and the right-click menu on macOS and Linux.
+  the original is never changed. A folder's videos, images, audio and PDFs are compressed, subfolders included;
+  anything else is skipped. Several photos are compressed at once. How each item works:
+  [docs/right-click-menu.md](docs/right-click-menu.md).
+- **PDFs** from the right-click menu or the app window, with Ghostscript bundled (nothing to install).
+- **Coming:** the right-click menu on macOS and Linux.
 
 ## Based on compressO
 
