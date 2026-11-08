@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.1.6
+
+- **Photos compress up to 4 at once** in the background (right-click menu, drop zone, watched folders), depending on your processor: 50 photos in about 90 s instead of 5 minutes on an 8-core PC.
+
 ### 0.1.5
 
 - **Right-click a folder** (Windows, under Show more options): the same rc-compress menu compresses every video, image, audio file and PDF inside it, subfolders included, each copy next to its original.
