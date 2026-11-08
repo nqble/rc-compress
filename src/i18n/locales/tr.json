@@ -274,7 +274,7 @@
       "watchedFolders": "Klasör izleme",
       "history": "Geçmiş",
       "commandLine": "CLI",
-      "rightClickMenu": "Sağ tık menüsü"
+      "rightClickMenu": "Sağ Tık Menüsü"
     },
     "about": {
       "updateAvailable": "Güncelleme mevcut",
@@ -403,8 +403,8 @@
     },
     "rightClickMenu": {
       "quickCompress": {
-        "title": "Hızlı sıkıştır",
-        "needsSaveLocation": "Hızlı sıkıştır'ın sormadan kaydedebilmesi için <setting>Çıktı</setting> bölümünde veya bu ön ayarlarda Her seferinde sor dışında bir kayıt konumu seçin."
+        "title": "Hızlı Sıkıştırma",
+        "needsSaveLocation": "Hızlı Sıkıştırma'nın sormadan kaydedebilmesi için, <setting>Çıktı</setting> bölümünde veya bu ön ayarlarda \"Her seferinde sor\" seçeneği dışında bir kaydetme konumu seçin."
       },
       "preset": {
         "title_video": "Video ön ayarı",
@@ -415,35 +415,35 @@
         "description_audio": "Ses dosyaları için kullanılan ayarlar."
       },
       "groups": {
-        "title": "Grupların",
-        "description": "Bazı dosya türlerine kendi ön ayarlarını ver. Hızlı sıkıştır gruplarını yukarıdan kontrol eder ve dosya türünü içeren ilk grubu kullanır; diğer dosyalar yukarıdaki ön ayarları kullanır.",
+        "title": "Gruplarınız",
+        "description": "Bazı dosya türlerine özel ön ayarlar atayın. Hızlı Sıkıştırma, gruplarınızı yukarıdan aşağıya doğru kontrol eder ve dosya türünü kapsayan ilk grubu kullanır; diğer dosyalar ise yukarıdaki ön ayarları kullanır.",
         "name": "Ad",
         "newName": "Yeni grup",
         "fileTypes": "Dosya türleri",
         "fileTypesPlaceholder_video": "ör. mov, mkv",
         "fileTypesPlaceholder_image": "ör. png, heic",
         "fileTypesPlaceholder_audio": "ör. mp3, wav",
-        "kind": "Medya türü",
+        "kind": "Medya Türü",
         "kind_video": "Videolar",
-        "kind_image": "Görseller",
+        "kind_image": "Görüntüler",
         "kind_audio": "Ses",
         "preset": "{{name}} için ön ayar",
         "add": "Ekle",
         "remove": "Grubu kaldır",
-        "removeNamed": "{{name}} grubunu kaldır",
+        "removeNamed": "{{name}} öğesini kaldır",
         "addTitle": "Grup ekle"
       },
       "fitSize": {
         "title": "Boyuta sığdır",
-        "yourSize": "Senin boyutun",
-        "description": "Sağ tık menüsündeki “Boyuta sığdır > Senin boyutun” seçeneğinin dosyaları sığdırdığı boyut."
+        "yourSize": "Boyutunuz",
+        "description": "Sağ tık menüsündeki “Boyuta göre sığdır > Kendi boyutunuz” seçeneği, dosyaları belirtilen boyutlar içine sığacak şekilde sıkıştırır."
       },
       "pdf": {
         "title": "PDF kalitesi",
-        "description": "Hızlı sıkıştır'ın PDF'leri ne kadar küçülteceği. Metin net ve seçilebilir kalır; içindeki görsellerin çözünürlüğü düşer.",
+        "description": "Hızlı Sıkıştırma'nın PDF'leri ne kadar küçülttüğü. Metin net ve seçilebilir kalır; içindeki resimler ise daha düşük çözünürlüğe sahip olur.",
         "level_small": "Küçük (ekran, e-posta)",
         "level_medium": "Orta (çoğu belge)",
-        "level_high": "Yüksek (baskı)"
+        "level_high": "Yüksek (yazdırma)"
       }
     }
   },
@@ -517,8 +517,8 @@
   "dropZone": {
     "unsupportedType": "Bu dosya türü desteklenmiyor.",
     "unsupportedSkipped": "Desteklenmeyen dosyalar atlandı.",
-    "nothingToCompress_one": "Bu dosya sıkıştırılamaz. rc-compress videoları, görselleri, sesleri ve PDF'leri küçültür.",
-    "nothingToCompress_other": "Bu {{count}} dosyanın hiçbiri sıkıştırılamaz. rc-compress videoları, görselleri, sesleri ve PDF'leri küçültür.",
+    "nothingToCompress_one": "Bu dosya sıkıştırılamaz. rc-compress; videoları, resimleri, sesleri ve PDF'leri daha küçük hale getirir.",
+    "nothingToCompress_other": "Bu {{count}} dosyanın hiçbiri sıkıştırılamaz. rc-compress; videoları, resimleri, sesleri ve PDF'leri daha küçük hale getirir.",
     "addFailed": "Medya eklenemedi.",
     "openFailed": "rc-compress açılamadı.",
     "quitFailed": "rc-compress’dan çıkılamadı.",
@@ -893,8 +893,8 @@
     "addAfterCompression": "Sıkıştırmadan sonra medya eklenemez. Daha fazla medya eklemek için yeni bir sıkıştırma başlatın.",
     "noValidFiles": "Geçerli medya dosyası bulunamadı.",
     "alreadyAdded": "Seçilen medya zaten eklendi.",
-    "pdfsQueued_one": "PDF arka planda, Hızlı Sıkıştırma PDF kalitenizle sıkıştırılıyor.",
-    "pdfsQueued_other": "{{count}} PDF arka planda, Hızlı Sıkıştırma PDF kalitenizle sıkıştırılıyor.",
+    "pdfsQueued_one": "PDF, Hızlı Sıkıştırma PDF kalitenize göre arka planda sıkıştırılır.",
+    "pdfsQueued_other": "{{count}} adet PDF, Hızlı Sıkıştırma PDF kalitesi ayarınıza göre arka planda sıkıştırılıyor.",
     "someCorrupted": "Bazı dosyalar bozuk veya geçersiz görünüyor ve eklenmedi.",
     "corrupted": "Dosya bozuk veya geçersiz görünüyor.",
     "selectTitle": "Sıkıştırılacak görüntüleri, videoları veya sesleri seçin.",

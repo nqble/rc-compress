@@ -274,7 +274,7 @@
       "watchedFolders": "Obserwowanie folderów",
       "history": "Historia",
       "commandLine": "CLI",
-      "rightClickMenu": "Menu kontekstowe"
+      "rightClickMenu": "Menu z prawego przycisku myszy"
     },
     "about": {
       "updateAvailable": "Dostępna aktualizacja",
@@ -404,19 +404,19 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Szybka kompresja",
-        "needsSaveLocation": "Wybierz miejsce zapisu inne niż Pytaj za każdym razem, w <setting>Wyjście</setting> lub w tych ustawieniach, aby Szybka kompresja mogła zapisywać bez pytania."
+        "needsSaveLocation": "Wybierz lokalizację zapisu inną niż „Zawsze pytaj” w <setting>Output</setting> lub w tych ustawieniach wstępnych, aby Szybka kompresja mogła zapisywać pliki bez pytania."
       },
       "preset": {
-        "title_video": "Ustawienie wstępne wideo",
-        "title_image": "Ustawienie wstępne obrazów",
-        "title_audio": "Ustawienie wstępne audio",
+        "title_video": "Predefinicja wideo",
+        "title_image": "Predefiniacja obrazu",
+        "title_audio": "Predefinicja audio",
         "description_video": "Ustawienia używane dla filmów.",
         "description_image": "Ustawienia używane dla obrazów.",
         "description_audio": "Ustawienia używane dla plików audio."
       },
       "groups": {
         "title": "Twoje grupy",
-        "description": "Nadaj niektórym typom plików własne ustawienia. Szybka kompresja sprawdza grupy od góry i używa pierwszej, która zawiera typ pliku; pozostałe pliki używają ustawień powyżej.",
+        "description": "Przypisz niektórym typom plików własne ustawienia wstępne. Szybka kompresja sprawdza Twoje grupy od góry i używa pierwszej, która odpowiada typowi pliku; pozostałe pliki wykorzystują powyższe ustawienia wstępne.",
         "name": "Nazwa",
         "newName": "Nowa grupa",
         "fileTypes": "Typy plików",
@@ -426,8 +426,8 @@
         "kind": "Rodzaj multimediów",
         "kind_video": "Filmy",
         "kind_image": "Obrazy",
-        "kind_audio": "Dźwięk",
-        "preset": "Ustawienia dla {{name}}",
+        "kind_audio": "Audio",
+        "preset": "Predefinicja dla {{name}}",
         "add": "Dodaj",
         "remove": "Usuń grupę",
         "removeNamed": "Usuń {{name}}",
@@ -436,13 +436,13 @@
       "fitSize": {
         "title": "Dopasuj do rozmiaru",
         "yourSize": "Twój rozmiar",
-        "description": "Rozmiar, do którego „Dopasuj do rozmiaru > Twój rozmiar” w menu kontekstowym kompresuje pliki."
+        "description": "Opcja „Dopasuj do rozmiaru > Twój rozmiar” w menu prawego przycisku myszy kompresuje pliki tak, aby zmieściły się w określonych granicach."
       },
       "pdf": {
         "title": "Jakość PDF",
-        "description": "Jak bardzo Szybka kompresja zmniejsza pliki PDF. Tekst pozostaje ostry i możliwy do zaznaczenia; obrazy w środku mają niższą rozdzielczość.",
-        "level_small": "Mała (ekran, e-mail)",
-        "level_medium": "Średnia (większość dokumentów)",
+        "description": "Jak bardzo Szybka kompresja zmniejsza pliki PDF. Tekst pozostaje ostry i zaznaczalny; obrazy wewnątrz mają niższą rozdzielczość.",
+        "level_small": "Mały (ekran, e-mail)",
+        "level_medium": "Średni (większość dokumentów)",
         "level_high": "Wysoka (druk)"
       }
     }
@@ -517,10 +517,10 @@
   "dropZone": {
     "unsupportedType": "Ten typ pliku nie jest obsługiwany.",
     "unsupportedSkipped": "Pominięto nieobsługiwane pliki.",
-    "nothingToCompress_one": "Tego pliku nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
-    "nothingToCompress_few": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
-    "nothingToCompress_many": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
-    "nothingToCompress_other": "Żadnego z tych {{count}} pliku nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
+    "nothingToCompress_one": "Tego pliku nie można skompresować. rc-compress zmniejsza rozmiar filmów, obrazów, plików audio i dokumentów PDF.",
+    "nothingToCompress_few": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza rozmiar filmów, obrazów, plików audio i dokumentów PDF.",
+    "nothingToCompress_many": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza rozmiar filmów, obrazów, plików audio i dokumentów PDF.",
+    "nothingToCompress_other": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza rozmiar filmów, obrazów, plików audio i dokumentów PDF.",
     "addFailed": "Nie udało się dodać multimediów.",
     "openFailed": "Nie udało się otworzyć rc-compress.",
     "quitFailed": "Nie udało się zamknąć rc-compress.",
@@ -911,10 +911,10 @@
     "addAfterCompression": "Po kompresji nie można dodawać multimediów. Rozpocznij nową kompresję, aby dodać więcej.",
     "noValidFiles": "Nie znaleziono prawidłowych plików multimedialnych.",
     "alreadyAdded": "Wybrane multimedia zostały już dodane.",
-    "pdfsQueued_one": "PDF jest kompresowany w tle, z jakością PDF szybkiej kompresji.",
-    "pdfsQueued_few": "{{count}} pliki PDF są kompresowane w tle, z jakością PDF szybkiej kompresji.",
-    "pdfsQueued_many": "{{count}} plików PDF jest kompresowanych w tle, z jakością PDF szybkiej kompresji.",
-    "pdfsQueued_other": "{{count}} pliku PDF jest kompresowane w tle, z jakością PDF szybkiej kompresji.",
+    "pdfsQueued_one": "Plik PDF jest kompresowany w tle z ustawioną przez Ciebie jakością w opcji Szybka kompresja PDF.",
+    "pdfsQueued_few": "{{count}} plików PDF jest kompresowanych w tle, przy użyciu Twojej jakości kompresji PDF w opcji Szybka kompresja.",
+    "pdfsQueued_many": "{{count}} plików PDF jest kompresowanych w tle, przy użyciu Twojej jakości kompresji PDF w opcji Szybka kompresja.",
+    "pdfsQueued_other": "{{count}} plików PDF jest kompresowanych w tle, przy użyciu Twojej jakości kompresji PDF w opcji Szybka kompresja.",
     "someCorrupted": "Niektóre pliki wydają się uszkodzone lub nieprawidłowe i nie zostały dodane.",
     "corrupted": "Plik wydaje się uszkodzony lub nieprawidłowy.",
     "selectTitle": "Wybierz obrazy, filmy lub audio do kompresji.",

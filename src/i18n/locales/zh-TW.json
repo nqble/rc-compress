@@ -404,45 +404,45 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "快速壓縮",
-        "needsSaveLocation": "請在<setting>輸出</setting>或這些預設中選擇「每次詢問」以外的儲存位置，讓快速壓縮不必詢問即可儲存。"
+        "needsSaveLocation": "請在 <setting>Output</setting> 或這些預設中選擇一個儲存位置，而非每次都詢問，如此快速壓縮才能在不詢問的情況下儲存。"
       },
       "preset": {
-        "title_video": "影片預設",
-        "title_image": "影像預設",
-        "title_audio": "音訊預設",
+        "title_video": "影片預設值",
+        "title_image": "影像預設值",
+        "title_audio": "音訊預設值",
         "description_video": "用於影片的設定。",
         "description_image": "用於影像的設定。",
         "description_audio": "用於音訊檔案的設定。"
       },
       "groups": {
-        "title": "我的群組",
-        "description": "為某些檔案類型指定專屬預設。快速壓縮會由上而下檢查群組，使用第一個包含該檔案類型的群組；其他檔案使用上方的預設。",
+        "title": "您的群組",
+        "description": "為某些檔案類型指定專屬的預設設定。快速壓縮會由上而下檢查您的群組，並使用第一個符合該檔案類型的群組；其他檔案則會使用上方的預設設定。",
         "name": "名稱",
         "newName": "新群組",
         "fileTypes": "檔案類型",
-        "fileTypesPlaceholder_video": "例如 mov, mkv",
-        "fileTypesPlaceholder_image": "例如 png, heic",
-        "fileTypesPlaceholder_audio": "例如 mp3, wav",
+        "fileTypesPlaceholder_video": "例如：mov、mkv",
+        "fileTypesPlaceholder_image": "例如：png、heic",
+        "fileTypesPlaceholder_audio": "例如：mp3、wav",
         "kind": "媒體類型",
         "kind_video": "影片",
         "kind_image": "圖片",
         "kind_audio": "音訊",
-        "preset": "{{name}} 的預設",
+        "preset": "{{name}} 的預設設定",
         "add": "新增",
         "remove": "移除群組",
         "removeNamed": "移除 {{name}}",
         "addTitle": "新增群組"
       },
       "fitSize": {
-        "title": "壓縮到指定大小",
-        "yourSize": "自訂大小",
-        "description": "右鍵選單中「壓縮到指定大小 > 自訂大小」將檔案壓縮到的大小。"
+        "title": "調整至尺寸",
+        "yourSize": "您的大小",
+        "description": "右鍵選單中的「調整至尺寸 > 自訂尺寸」會將檔案壓縮到符合該尺寸範圍內。"
       },
       "pdf": {
         "title": "PDF 品質",
-        "description": "快速壓縮將 PDF 壓縮到多小。文字保持清晰且可選取；其中的圖片解析度會降低。",
-        "level_small": "小（螢幕、郵件）",
-        "level_medium": "中（大多數文件）",
+        "description": "快速壓縮會將 PDF 縮小到什麼程度。文字保持清晰且可選取；內部的圖片則會降低解析度。",
+        "level_small": "小型（螢幕、電子郵件）",
+        "level_medium": "中等（大多數文件）",
         "level_high": "高（列印）"
       }
     }
@@ -517,7 +517,7 @@
   "dropZone": {
     "unsupportedType": "不支援此檔案類型。",
     "unsupportedSkipped": "已略過不支援的檔案。",
-    "nothingToCompress_other": "這 {{count}} 個檔案都無法壓縮。rc-compress 可縮小影片、圖片、音訊和 PDF。",
+    "nothingToCompress_other": "這 {{count}} 個檔案中沒有任何一個可以壓縮。rc-compress 可以縮小影片、圖片、音訊和 PDF 檔案的大小。",
     "addFailed": "無法加入媒體。",
     "openFailed": "無法開啟 rc-compress。",
     "quitFailed": "無法結束 rc-compress。",
@@ -884,7 +884,7 @@
     "addAfterCompression": "壓縮完成後無法加入媒體。請開始新的壓縮以加入更多媒體。",
     "noValidFiles": "找不到有效的媒體檔案。",
     "alreadyAdded": "所選媒體已加入。",
-    "pdfsQueued_other": "正在背景以快速壓縮的 PDF 品質壓縮 {{count}} 個 PDF。",
+    "pdfsQueued_other": "{{count}} 份 PDF 正在後台進行壓縮，並採用您設定的「快速壓縮」PDF 品質。",
     "someCorrupted": "部分檔案似乎已損毀或無效，未被加入。",
     "corrupted": "該檔案似乎已損毀或無效。",
     "selectTitle": "選擇要壓縮的影像、影片或音訊。",

@@ -274,7 +274,7 @@
       "watchedFolders": "Monitoraggio cartelle",
       "history": "Cronologia",
       "commandLine": "CLI",
-      "rightClickMenu": "Menu contestuale"
+      "rightClickMenu": "Menu con tasto destro"
     },
     "about": {
       "updateAvailable": "Aggiornamento disponibile",
@@ -404,25 +404,25 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Compressione rapida",
-        "needsSaveLocation": "Scegli una posizione di salvataggio diversa da Chiedi ogni volta, in <setting>Output</setting> o in questi preset, così Compressione rapida può salvare senza chiedere."
+        "needsSaveLocation": "Scegli una posizione di salvataggio diversa da \"Chiedi ogni volta\", in <setting>Output</setting> o in questi preset, in modo che Compressione rapida possa salvare senza chiedere."
       },
       "preset": {
         "title_video": "Preset video",
         "title_image": "Preset immagine",
         "title_audio": "Preset audio",
-        "description_video": "Impostazioni usate per i video.",
-        "description_image": "Impostazioni usate per le immagini.",
-        "description_audio": "Impostazioni usate per i file audio."
+        "description_video": "Impostazioni utilizzate per i video.",
+        "description_image": "Impostazioni utilizzate per le immagini.",
+        "description_audio": "Impostazioni utilizzate per i file audio."
       },
       "groups": {
         "title": "I tuoi gruppi",
-        "description": "Assegna ad alcuni tipi di file un preset tutto loro. Compressione rapida controlla i tuoi gruppi dall'alto e usa il primo che contiene il tipo del file; gli altri file usano i preset sopra.",
+        "description": "Assegna a determinati tipi di file le proprie impostazioni predefinite. Compressione rapida controlla i tuoi gruppi dall'alto e utilizza il primo che corrisponde al tipo di file; gli altri file utilizzano le impostazioni predefinite indicate sopra.",
         "name": "Nome",
         "newName": "Nuovo gruppo",
         "fileTypes": "Tipi di file",
-        "fileTypesPlaceholder_video": "es. mov, mkv",
-        "fileTypesPlaceholder_image": "es. png, heic",
-        "fileTypesPlaceholder_audio": "es. mp3, wav",
+        "fileTypesPlaceholder_video": "ad es. mov, mkv",
+        "fileTypesPlaceholder_image": "ad es. png, heic",
+        "fileTypesPlaceholder_audio": "ad es. mp3, wav",
         "kind": "Tipo di media",
         "kind_video": "Video",
         "kind_image": "Immagini",
@@ -436,13 +436,13 @@
       "fitSize": {
         "title": "Adatta alle dimensioni",
         "yourSize": "La tua dimensione",
-        "description": "La dimensione entro cui “Adatta alle dimensioni > La tua dimensione” del menu contestuale comprime i file."
+        "description": "L'opzione \"Adatta alle dimensioni > Le tue dimensioni\" nel menu contestuale comprime i file in modo che rientrino nelle dimensioni specificate."
       },
       "pdf": {
         "title": "Qualità PDF",
-        "description": "Quanto Compressione rapida riduce i PDF. Il testo resta nitido e selezionabile; le immagini interne hanno una risoluzione più bassa.",
-        "level_small": "Piccola (schermo, email)",
-        "level_medium": "Media (la maggior parte dei documenti)",
+        "description": "Quanto riduce le dimensioni dei PDF la Compressione rapida. Il testo rimane nitido e selezionabile; le immagini al suo interno ottengono una risoluzione inferiore.",
+        "level_small": "Piccolo (schermo, e-mail)",
+        "level_medium": "Medio (la maggior parte dei documenti)",
         "level_high": "Alta (stampa)"
       }
     }
@@ -517,9 +517,9 @@
   "dropZone": {
     "unsupportedType": "Questo tipo di file non è supportato.",
     "unsupportedSkipped": "I file non supportati sono stati ignorati.",
-    "nothingToCompress_one": "Questo file non può essere compresso. rc-compress riduce video, immagini, audio e PDF.",
-    "nothingToCompress_many": "Nessuno di questi {{count}} file può essere compresso. rc-compress riduce video, immagini, audio e PDF.",
-    "nothingToCompress_other": "Nessuno di questi {{count}} file può essere compresso. rc-compress riduce video, immagini, audio e PDF.",
+    "nothingToCompress_one": "Questo file non può essere compresso. rc-compress riduce le dimensioni di video, immagini, file audio e PDF.",
+    "nothingToCompress_many": "Nessuno di questi {{count}} file può essere compresso. rc-compress riduce le dimensioni di video, immagini, file audio e PDF.",
+    "nothingToCompress_other": "Nessuno di questi {{count}} file può essere compresso. rc-compress riduce le dimensioni di video, immagini, file audio e PDF.",
     "addFailed": "Non è stato possibile aggiungere i contenuti.",
     "openFailed": "Non è stato possibile aprire rc-compress.",
     "quitFailed": "Non è stato possibile chiudere rc-compress.",
@@ -902,9 +902,9 @@
     "addAfterCompression": "Non è possibile aggiungere contenuti dopo la compressione. Avvii una nuova compressione per aggiungerne altri.",
     "noValidFiles": "Nessun file multimediale valido trovato.",
     "alreadyAdded": "I contenuti selezionati sono già stati aggiunti.",
-    "pdfsQueued_one": "Il PDF viene compresso in background, con la qualità PDF della compressione rapida.",
-    "pdfsQueued_many": "{{count}} PDF vengono compressi in background, con la qualità PDF della compressione rapida.",
-    "pdfsQueued_other": "{{count}} PDF vengono compressi in background, con la qualità PDF della compressione rapida.",
+    "pdfsQueued_one": "Il PDF viene compresso in background, con la qualità PDF di Compressione rapida da te selezionata.",
+    "pdfsQueued_many": "{{count}} PDF vengono compressi in background, con la qualità PDF della Compressione rapida impostata da te.",
+    "pdfsQueued_other": "{{count}} PDF vengono compressi in background, con la qualità PDF della Compressione rapida impostata da te.",
     "someCorrupted": "Alcuni file sembrano danneggiati o non validi e non sono stati aggiunti.",
     "corrupted": "Il file sembra danneggiato o non valido.",
     "selectTitle": "Selezioni immagini, video o audio da comprimere.",

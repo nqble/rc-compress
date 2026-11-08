@@ -274,7 +274,7 @@
       "watchedFolders": "Monitorar pastas",
       "history": "Histórico",
       "commandLine": "CLI",
-      "rightClickMenu": "Menu de contexto"
+      "rightClickMenu": "Menu com botão direito"
     },
     "about": {
       "updateAvailable": "Atualização disponível",
@@ -403,8 +403,8 @@
     },
     "rightClickMenu": {
       "quickCompress": {
-        "title": "Compressão rápida",
-        "needsSaveLocation": "Escolha um local de salvamento diferente de Perguntar sempre, em <setting>Saída</setting> ou nestas predefinições, para que a Compressão rápida possa salvar sem perguntar."
+        "title": "Compressão Rápida",
+        "needsSaveLocation": "Escolha um local de salvamento diferente de \"Perguntar sempre\", em <setting>Output</setting> ou nestes predefinidos, para que a Compressão Rápida possa salvar sem perguntar."
       },
       "preset": {
         "title_video": "Predefinição de vídeo",
@@ -416,12 +416,12 @@
       },
       "groups": {
         "title": "Seus grupos",
-        "description": "Dê a alguns tipos de arquivo sua própria predefinição. A Compressão rápida verifica seus grupos de cima para baixo e usa o primeiro que contém o tipo do arquivo; os outros arquivos usam as predefinições acima.",
+        "description": "Atribua um predefinido próprio a alguns tipos de arquivo. A Compressão Rápida verifica seus grupos a partir do topo e utiliza o primeiro que corresponda ao tipo do arquivo; outros arquivos utilizam os predefinidos acima.",
         "name": "Nome",
         "newName": "Novo grupo",
         "fileTypes": "Tipos de arquivo",
-        "fileTypesPlaceholder_video": "ex.: mov, mkv",
-        "fileTypesPlaceholder_image": "ex.: png, heic",
+        "fileTypesPlaceholder_video": "p. ex.: mov, mkv",
+        "fileTypesPlaceholder_image": "p. ex.: png, heic",
         "fileTypesPlaceholder_audio": "ex.: mp3, wav",
         "kind": "Tipo de mídia",
         "kind_video": "Vídeos",
@@ -436,13 +436,13 @@
       "fitSize": {
         "title": "Ajustar ao tamanho",
         "yourSize": "Seu tamanho",
-        "description": "O tamanho em que “Ajustar ao tamanho > Seu tamanho” do menu de contexto faz os arquivos caberem."
+        "description": "A opção de tamanho “Ajustar ao tamanho > Seu tamanho” no menu de clique direito comprime os arquivos para que caibam dentro."
       },
       "pdf": {
         "title": "Qualidade do PDF",
-        "description": "Quanto a Compressão rápida reduz os PDFs. O texto continua nítido e selecionável; as imagens dentro ficam com resolução menor.",
-        "level_small": "Pequena (tela, e-mail)",
-        "level_medium": "Média (a maioria dos documentos)",
+        "description": "O quão pequenos os PDFs ficam com a Compressão Rápida. O texto permanece nítido e selecionável; as imagens dentro dele recebem uma resolução mais baixa.",
+        "level_small": "Pequeno (tela, e-mail)",
+        "level_medium": "Médio (a maioria dos documentos)",
         "level_high": "Alta (impressão)"
       }
     }
@@ -517,9 +517,9 @@
   "dropZone": {
     "unsupportedType": "Este tipo de arquivo não é compatível.",
     "unsupportedSkipped": "Os arquivos não compatíveis foram ignorados.",
-    "nothingToCompress_one": "Este arquivo não pode ser comprimido. O rc-compress reduz vídeos, imagens, áudio e PDFs.",
-    "nothingToCompress_many": "Nenhum destes {{count}} arquivos pode ser comprimido. O rc-compress reduz vídeos, imagens, áudio e PDFs.",
-    "nothingToCompress_other": "Nenhum destes {{count}} arquivos pode ser comprimido. O rc-compress reduz vídeos, imagens, áudio e PDFs.",
+    "nothingToCompress_one": "Este arquivo não pode ser compactado. O rc-compress reduz o tamanho de vídeos, imagens, áudios e PDFs.",
+    "nothingToCompress_many": "Nenhum desses {{count}} arquivos pode ser comprimido. O rc-compress reduz o tamanho de vídeos, imagens, áudios e PDFs.",
+    "nothingToCompress_other": "Nenhum desses {{count}} arquivos pode ser comprimido. O rc-compress reduz o tamanho de vídeos, imagens, áudios e PDFs.",
     "addFailed": "Não foi possível adicionar as mídias.",
     "openFailed": "Não foi possível abrir o rc-compress.",
     "quitFailed": "Não foi possível encerrar o rc-compress.",
@@ -902,9 +902,9 @@
     "addAfterCompression": "Não é possível adicionar mídias após a compressão. Inicie uma nova compressão para adicionar mais.",
     "noValidFiles": "Nenhum arquivo de mídia válido encontrado.",
     "alreadyAdded": "As mídias selecionadas já foram adicionadas.",
-    "pdfsQueued_one": "O PDF é comprimido em segundo plano, com a qualidade de PDF da compressão rápida.",
-    "pdfsQueued_many": "{{count}} PDFs são comprimidos em segundo plano, com a qualidade de PDF da compressão rápida.",
-    "pdfsQueued_other": "{{count}} PDFs são comprimidos em segundo plano, com a qualidade de PDF da compressão rápida.",
+    "pdfsQueued_one": "O PDF é compactado em segundo plano, com a qualidade de PDF da sua Compressão Rápida.",
+    "pdfsQueued_many": "{{count}} PDFs são compactados em segundo plano, com a qualidade de PDF da sua Compressão Rápida.",
+    "pdfsQueued_other": "{{count}} PDFs são compactados em segundo plano, com a qualidade de PDF da sua Compressão Rápida.",
     "someCorrupted": "Alguns arquivos parecem estar corrompidos ou inválidos e não foram adicionados.",
     "corrupted": "O arquivo parece estar corrompido ou inválido.",
     "selectTitle": "Selecione imagens, vídeos ou áudios para comprimir.",
