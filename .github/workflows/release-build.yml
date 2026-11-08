@@ -172,7 +172,20 @@ jobs:
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
-        run: pnpm tauri build --target ${{ matrix.target }}
+        # On GitHub's Intel Macs, making the .dmg fails now and then (0.1.3 and 0.1.4: "failed to run bundle_dmg.sh",
+        # a disk image helper left behind), with the app itself built. So on a Mac a failed build is tried once
+        # more, which reuses the compiled app, this time showing the packaging script's own output
+        shell: bash
+        run: |
+          if pnpm tauri build --target "$TARGET"; then
+            exit 0
+          fi
+          if [ "$RUNNER_OS" != "macOS" ]; then
+            exit 1
+          fi
+          echo "::warning::The build failed on macOS; trying once more (the .dmg step fails at random there)"
+          hdiutil info || true
+          pnpm tauri build --target "$TARGET" --verbose
 
       # The AppImage bundles Ubuntu 22.04's Wayland client libraries, which do not work with the
       # newer Mesa of recent distributions (Ubuntu 26.04, Fedora 44): the webview aborts with "Could
