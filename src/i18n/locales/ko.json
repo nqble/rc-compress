@@ -517,6 +517,7 @@
   "dropZone": {
     "unsupportedType": "지원되지 않는 파일 형식입니다.",
     "unsupportedSkipped": "지원되지 않는 파일은 건너뛰었습니다.",
+    "nothingToCompress_other": "이 파일 {{count}}개는 모두 압축할 수 없습니다. rc-compress는 동영상, 이미지, 오디오, PDF를 줄입니다.",
     "addFailed": "미디어를 추가할 수 없습니다.",
     "openFailed": "rc-compress를 열 수 없습니다.",
     "quitFailed": "rc-compress를 종료할 수 없습니다.",

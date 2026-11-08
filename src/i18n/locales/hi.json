@@ -517,6 +517,8 @@
   "dropZone": {
     "unsupportedType": "यह फ़ाइल प्रकार समर्थित नहीं है।",
     "unsupportedSkipped": "असमर्थित फ़ाइलें छोड़ दी गईं।",
+    "nothingToCompress_one": "इस फ़ाइल को कंप्रेस नहीं किया जा सकता। rc-compress वीडियो, इमेज, ऑडियो और PDF को छोटा करता है।",
+    "nothingToCompress_other": "इन {{count}} फ़ाइलों में से किसी को भी कंप्रेस नहीं किया जा सकता। rc-compress वीडियो, इमेज, ऑडियो और PDF को छोटा करता है।",
     "addFailed": "मीडिया जोड़ा नहीं जा सका।",
     "openFailed": "rc-compress खोला नहीं जा सका।",
     "quitFailed": "rc-compress बंद नहीं किया जा सका।",

@@ -517,6 +517,8 @@
   "dropZone": {
     "unsupportedType": "This file type is not supported.",
     "unsupportedSkipped": "Unsupported files were skipped.",
+    "nothingToCompress_one": "This file can't be compressed. rc-compress makes videos, images, audio and PDFs smaller.",
+    "nothingToCompress_other": "None of these {{count}} files can be compressed. rc-compress makes videos, images, audio and PDFs smaller.",
     "addFailed": "The media could not be added.",
     "openFailed": "rc-compress could not be opened.",
     "quitFailed": "rc-compress could not be quit.",

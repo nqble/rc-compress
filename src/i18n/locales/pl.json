@@ -517,6 +517,10 @@
   "dropZone": {
     "unsupportedType": "Ten typ pliku nie jest obsługiwany.",
     "unsupportedSkipped": "Pominięto nieobsługiwane pliki.",
+    "nothingToCompress_one": "Tego pliku nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
+    "nothingToCompress_few": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
+    "nothingToCompress_many": "Żadnego z tych {{count}} plików nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
+    "nothingToCompress_other": "Żadnego z tych {{count}} pliku nie można skompresować. rc-compress zmniejsza filmy, obrazy, audio i pliki PDF.",
     "addFailed": "Nie udało się dodać multimediów.",
     "openFailed": "Nie udało się otworzyć rc-compress.",
     "quitFailed": "Nie udało się zamknąć rc-compress.",

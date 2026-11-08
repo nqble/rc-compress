@@ -517,6 +517,10 @@
   "dropZone": {
     "unsupportedType": "Этот тип файлов не поддерживается.",
     "unsupportedSkipped": "Неподдерживаемые файлы пропущены.",
+    "nothingToCompress_one": "Этот файл нельзя сжать. rc-compress уменьшает видео, изображения, аудио и PDF.",
+    "nothingToCompress_few": "Ни один из этих {{count}} файлов нельзя сжать. rc-compress уменьшает видео, изображения, аудио и PDF.",
+    "nothingToCompress_many": "Ни один из этих {{count}} файлов нельзя сжать. rc-compress уменьшает видео, изображения, аудио и PDF.",
+    "nothingToCompress_other": "Ни один из этих {{count}} файла нельзя сжать. rc-compress уменьшает видео, изображения, аудио и PDF.",
     "addFailed": "Не удалось добавить файлы.",
     "openFailed": "Не удалось открыть rc-compress.",
     "quitFailed": "Не удалось завершить rc-compress.",

@@ -41,6 +41,7 @@ import { inputExtensions } from '@/types/compression'
 import DropQueueList from '@/ui/DropQueueList'
 import { getPlatform } from '@/utils/fs'
 import { cn } from '@/utils/tailwind'
+import { useSkippedNote } from './-skippedNote'
 
 const { isWindows } = getPlatform()
 // Borders: the drop zone's dashed one & the buttons', light so they stay quiet
@@ -202,6 +203,7 @@ function TrayWindow() {
   const isDragging = useFileDrop(true)
   usePasteFiles()
   const droppedFiles = useDroppedFiles()
+  useSkippedNote()
   const isMainWindowBusy =
     status?.state === 'compressing' || !!status?.hasUnsavedOutput
 

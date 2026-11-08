@@ -517,6 +517,7 @@
   "dropZone": {
     "unsupportedType": "Loại tệp này không được hỗ trợ.",
     "unsupportedSkipped": "Đã bỏ qua các tệp không được hỗ trợ.",
+    "nothingToCompress_other": "Không tệp nào trong {{count}} tệp này nén được. rc-compress làm nhỏ video, hình ảnh, âm thanh và PDF.",
     "addFailed": "Không thể thêm tệp phương tiện.",
     "openFailed": "Không thể mở rc-compress.",
     "quitFailed": "Không thể thoát rc-compress.",

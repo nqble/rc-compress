@@ -517,6 +517,7 @@
   "dropZone": {
     "unsupportedType": "不支持此文件类型。",
     "unsupportedSkipped": "已跳过不支持的文件。",
+    "nothingToCompress_other": "这 {{count}} 个文件都无法压缩。rc-compress 可缩小视频、图片、音频和 PDF。",
     "addFailed": "无法添加媒体。",
     "openFailed": "无法打开 rc-compress。",
     "quitFailed": "无法退出 rc-compress。",
