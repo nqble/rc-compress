@@ -48,6 +48,7 @@ jobs:
       - run: pnpm test:output-file-name
       - run: pnpm test:pdf-levels
       - run: pnpm test:compressible
+      - run: pnpm test:queue-lanes
 
   rust:
     name: Rust (tests, clippy)

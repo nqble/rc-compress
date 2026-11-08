@@ -446,7 +446,7 @@ function DropZoneIsland() {
     (item) => item.status === 'waiting' || item.status === 'compressing',
   ).length
   const finishedCount = items.length - pendingCount
-  // Up to one of each kind of media at a time (see `runDropQueue`)
+  // Several at a time: one of each kind, and a few images (see `runDropQueue`)
   const compressingProgress = items
     .filter((item) => item.status === 'compressing')
     .reduce((total, item) => total + item.progress, 0)
