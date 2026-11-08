@@ -287,18 +287,21 @@ pub fn add_to_queue_from(
     is_supported: impl Fn(&str) -> bool,
     source: Option<QueueSource>,
 ) {
-    add_items(app_handle, paths, is_supported, source, None);
+    add_items(app_handle, paths, is_supported, source);
 }
 
-/// `add_to_queue`, for media chosen with "Quick Compress" in the file manager's right-click menu
-/// (or "Compress by N%" and "Fit to size", from `menu`)
-pub fn add_to_quick_compress_queue(
+/// Queues media chosen in the file manager's right-click menu ("Quick Compress", "Compress by N%", "Fit to size",
+/// "Remove metadata", from `menu`): files already collected from the chosen files & folders, and checked (see
+/// `sys::explorer_menu::quick_compress`)
+#[cfg(windows)]
+pub fn add_files_to_quick_compress_queue(
     app_handle: &AppHandle,
-    paths: Vec<String>,
-    is_supported: impl Fn(&str) -> bool,
+    files: Vec<crate::core::domain::CollectedFile>,
     menu: MenuChoice,
 ) {
-    add_items(app_handle, paths, is_supported, None, Some(menu));
+    // Media chosen by the user: an app started by the command line now stays open
+    crate::sys::cli_server::keep_app_open();
+    queue_files(app_handle, files, None, None, Some(menu));
 }
 
 fn add_items(
@@ -306,7 +309,6 @@ fn add_items(
     paths: Vec<String>,
     is_supported: impl Fn(&str) -> bool,
     source: Option<QueueSource>,
-    menu: Option<MenuChoice>,
 ) {
     let files = match crate::tauri_commands::fs::allow_asset_scopes(app_handle, paths) {
         Ok(files) => files,
@@ -329,7 +331,7 @@ fn add_items(
     if source.is_none() {
         crate::sys::cli_server::keep_app_open();
     }
-    queue_files(app_handle, files, source, None, menu);
+    queue_files(app_handle, files, source, None, None);
 }
 
 /// Adds media to the end of the queue, in order: from a watched folder (`source`), for a command
