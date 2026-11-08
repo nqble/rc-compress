@@ -274,7 +274,7 @@
       "watchedFolders": "Vigilar carpetas",
       "history": "Historial",
       "commandLine": "CLI",
-      "rightClickMenu": "Menú contextual"
+      "rightClickMenu": "Menú al hacer clic derecho"
     },
     "about": {
       "updateAvailable": "Actualización disponible",
@@ -404,21 +404,21 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Compresión rápida",
-        "needsSaveLocation": "Elige una ubicación de guardado distinta de Preguntar cada vez, en <setting>Salida</setting> o en estos ajustes preestablecidos, para que Compresión rápida pueda guardar sin preguntar."
+        "needsSaveLocation": "Elija una ubicación de guardado distinta a «Preguntar siempre», en <setting>Output</setting> o en estos ajustes predefinidos, para que Compresión rápida pueda guardar sin preguntar."
       },
       "preset": {
-        "title_video": "Ajuste preestablecido de vídeo",
-        "title_image": "Ajuste preestablecido de imagen",
-        "title_audio": "Ajuste preestablecido de audio",
-        "description_video": "Configuración usada para los vídeos.",
-        "description_image": "Configuración usada para las imágenes.",
-        "description_audio": "Configuración usada para los archivos de audio."
+        "title_video": "Preajuste de vídeo",
+        "title_image": "Preajuste de imagen",
+        "title_audio": "Preajuste de audio",
+        "description_video": "Configuración utilizada para los vídeos.",
+        "description_image": "Configuración utilizada para imágenes.",
+        "description_audio": "Configuración utilizada para archivos de audio."
       },
       "groups": {
         "title": "Tus grupos",
-        "description": "Da a algunos tipos de archivo su propio ajuste preestablecido. Compresión rápida revisa tus grupos desde arriba y usa el primero que contiene el tipo del archivo; los demás archivos usan los ajustes de arriba.",
+        "description": "Asigna un ajuste preestablecido propio a algunos tipos de archivo. Compresión rápida revisa tus grupos desde arriba y utiliza el primero que coincida con el tipo de archivo; los demás archivos utilizan los ajustes preestablecidos anteriores.",
         "name": "Nombre",
-        "newName": "Grupo nuevo",
+        "newName": "Nuevo grupo",
         "fileTypes": "Tipos de archivo",
         "fileTypesPlaceholder_video": "p. ej. mov, mkv",
         "fileTypesPlaceholder_image": "p. ej. png, heic",
@@ -427,22 +427,22 @@
         "kind_video": "Vídeos",
         "kind_image": "Imágenes",
         "kind_audio": "Audio",
-        "preset": "Ajuste para {{name}}",
+        "preset": "Preajuste para {{name}}",
         "add": "Añadir",
-        "remove": "Quitar grupo",
-        "removeNamed": "Quitar {{name}}",
+        "remove": "Eliminar grupo",
+        "removeNamed": "Eliminar {{name}}",
         "addTitle": "Añadir un grupo"
       },
       "fitSize": {
         "title": "Ajustar al tamaño",
         "yourSize": "Tu tamaño",
-        "description": "El tamaño en el que «Ajustar al tamaño > Tu tamaño» del menú contextual hace caber los archivos."
+        "description": "La opción «Ajustar al tamaño > Tu tamaño» del menú contextual comprime los archivos para que quepan dentro."
       },
       "pdf": {
-        "title": "Calidad de PDF",
-        "description": "Cuánto reduce Compresión rápida los PDF. El texto sigue nítido y seleccionable; las imágenes de dentro bajan de resolución.",
-        "level_small": "Pequeña (pantalla, correo)",
-        "level_medium": "Media (la mayoría de documentos)",
+        "title": "Calidad del PDF",
+        "description": "Qué tan pequeños hace los PDF la Compresión rápida. El texto se mantiene nítido y seleccionable; las imágenes en su interior obtienen una resolución más baja.",
+        "level_small": "Pequeño (pantalla, correo electrónico)",
+        "level_medium": "Medio (la mayoría de los documentos)",
         "level_high": "Alta (impresión)"
       }
     }
@@ -517,9 +517,9 @@
   "dropZone": {
     "unsupportedType": "Este tipo de archivo no es compatible.",
     "unsupportedSkipped": "Se han omitido los archivos no compatibles.",
-    "nothingToCompress_one": "Este archivo no se puede comprimir. rc-compress reduce vídeos, imágenes, audio y PDF.",
-    "nothingToCompress_many": "Ninguno de estos {{count}} archivos se puede comprimir. rc-compress reduce vídeos, imágenes, audio y PDF.",
-    "nothingToCompress_other": "Ninguno de estos {{count}} archivos se puede comprimir. rc-compress reduce vídeos, imágenes, audio y PDF.",
+    "nothingToCompress_one": "Este archivo no se puede comprimir. rc-compress reduce el tamaño de vídeos, imágenes, audios y PDFs.",
+    "nothingToCompress_many": "Ninguno de estos {{count}} archivos se puede comprimir. rc-compress reduce el tamaño de vídeos, imágenes, audios y PDFs.",
+    "nothingToCompress_other": "Ninguno de estos {{count}} archivos se puede comprimir. rc-compress reduce el tamaño de vídeos, imágenes, audios y PDFs.",
     "addFailed": "No se pudieron añadir los archivos multimedia.",
     "openFailed": "No se pudo abrir rc-compress.",
     "quitFailed": "No se pudo salir de rc-compress.",
@@ -902,9 +902,9 @@
     "addAfterCompression": "No se pueden añadir archivos después de la compresión. Inicie una nueva compresión para añadir más.",
     "noValidFiles": "No se han encontrado archivos multimedia válidos.",
     "alreadyAdded": "Los archivos seleccionados ya se han añadido.",
-    "pdfsQueued_one": "El PDF se comprime en segundo plano, con la calidad de PDF de la compresión rápida.",
-    "pdfsQueued_many": "{{count}} PDF se comprimen en segundo plano, con la calidad de PDF de la compresión rápida.",
-    "pdfsQueued_other": "{{count}} PDF se comprimen en segundo plano, con la calidad de PDF de la compresión rápida.",
+    "pdfsQueued_one": "El PDF se comprime en segundo plano, con la calidad de PDF de Compresión rápida que hayas seleccionado.",
+    "pdfsQueued_many": "{{count}} PDFs se comprimen en segundo plano, con la calidad de PDF de Compresión rápida que hayas seleccionado.",
+    "pdfsQueued_other": "{{count}} PDFs se comprimen en segundo plano, con la calidad de PDF de Compresión rápida que hayas seleccionado.",
     "someCorrupted": "Algunos archivos parecen estar dañados o no ser válidos y no se han añadido.",
     "corrupted": "El archivo parece estar dañado o no ser válido.",
     "selectTitle": "Seleccione imágenes, vídeos o audio para comprimir.",

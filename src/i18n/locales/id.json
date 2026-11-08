@@ -274,7 +274,7 @@
       "watchedFolders": "Pantau folder",
       "history": "Riwayat",
       "commandLine": "CLI",
-      "rightClickMenu": "Menu klik kanan"
+      "rightClickMenu": "Klik Kanan Menu"
     },
     "about": {
       "updateAvailable": "Pembaruan tersedia",
@@ -403,47 +403,47 @@
     },
     "rightClickMenu": {
       "quickCompress": {
-        "title": "Kompres Cepat",
-        "needsSaveLocation": "Pilih lokasi simpan selain Tanya setiap kali, di <setting>Output</setting> atau di preset ini, agar Kompres Cepat bisa menyimpan tanpa bertanya."
+        "title": "Kompresi Cepat",
+        "needsSaveLocation": "Pilih lokasi penyimpanan selain Tanya setiap saat, di <setting>Output</setting> atau di prasetel ini, agar Kompresi Cepat dapat menyimpan tanpa bertanya."
       },
       "preset": {
-        "title_video": "Preset video",
-        "title_image": "Preset gambar",
-        "title_audio": "Preset audio",
+        "title_video": "Prasetel video",
+        "title_image": "Prasetel gambar",
+        "title_audio": "Prasetel audio",
         "description_video": "Pengaturan yang digunakan untuk video.",
         "description_image": "Pengaturan yang digunakan untuk gambar.",
         "description_audio": "Pengaturan yang digunakan untuk file audio."
       },
       "groups": {
         "title": "Grup Anda",
-        "description": "Beri beberapa jenis file preset sendiri. Kompres Cepat memeriksa grup Anda dari atas dan memakai grup pertama yang berisi jenis file itu; file lain memakai preset di atas.",
+        "description": "Berikan beberapa jenis file prasetelnya sendiri. Kompresi Cepat memeriksa grup Anda dari atas dan menggunakan grup pertama yang mencakup jenis file tersebut; file lain menggunakan prasetel di atas.",
         "name": "Nama",
         "newName": "Grup baru",
         "fileTypes": "Jenis file",
-        "fileTypesPlaceholder_video": "mis. mov, mkv",
-        "fileTypesPlaceholder_image": "mis. png, heic",
-        "fileTypesPlaceholder_audio": "mis. mp3, wav",
+        "fileTypesPlaceholder_video": "misalnya mov, mkv",
+        "fileTypesPlaceholder_image": "misalnya png, heic",
+        "fileTypesPlaceholder_audio": "misalnya mp3, wav",
         "kind": "Jenis media",
         "kind_video": "Video",
         "kind_image": "Gambar",
         "kind_audio": "Audio",
-        "preset": "Preset untuk {{name}}",
+        "preset": "Prasetel untuk {{name}}",
         "add": "Tambah",
         "remove": "Hapus grup",
         "removeNamed": "Hapus {{name}}",
         "addTitle": "Tambah grup"
       },
       "fitSize": {
-        "title": "Sesuaikan ukuran",
+        "title": "Sesuaikan dengan ukuran",
         "yourSize": "Ukuran Anda",
-        "description": "Ukuran yang dipakai “Sesuaikan ukuran > Ukuran Anda” di menu klik kanan untuk memuat file."
+        "description": "Ukuran “Cocokkan dengan ukuran > Ukuran Anda” di menu klik kanan akan mengompres file agar muat di dalam ukuran tersebut."
       },
       "pdf": {
         "title": "Kualitas PDF",
-        "description": "Seberapa kecil Kompres Cepat membuat PDF. Teks tetap tajam dan bisa dipilih; gambar di dalamnya resolusinya diturunkan.",
+        "description": "Seberapa kecil ukuran PDF yang dihasilkan oleh Kompresi Cepat. Teks tetap tajam dan dapat dipilih; gambar di dalamnya akan mendapatkan resolusi yang lebih rendah.",
         "level_small": "Kecil (layar, email)",
         "level_medium": "Sedang (sebagian besar dokumen)",
-        "level_high": "Tinggi (cetak)"
+        "level_high": "Tinggi (pencetakan)"
       }
     }
   },
@@ -517,7 +517,7 @@
   "dropZone": {
     "unsupportedType": "Jenis file ini tidak didukung.",
     "unsupportedSkipped": "File yang tidak didukung dilewati.",
-    "nothingToCompress_other": "Tidak satu pun dari {{count}} file ini dapat dikompresi. rc-compress memperkecil video, gambar, audio, dan PDF.",
+    "nothingToCompress_other": "Tidak ada satu pun dari {{count}} file ini yang dapat dikompres. rc-compress membuat video, gambar, audio, dan PDF menjadi lebih kecil.",
     "addFailed": "Media tidak dapat ditambahkan.",
     "openFailed": "rc-compress tidak dapat dibuka.",
     "quitFailed": "rc-compress tidak dapat ditutup.",
@@ -884,7 +884,7 @@
     "addAfterCompression": "Media tidak dapat ditambahkan setelah kompresi. Mulai kompresi baru untuk menambahkan media lainnya.",
     "noValidFiles": "File media yang valid tidak ditemukan.",
     "alreadyAdded": "Media yang dipilih sudah ditambahkan.",
-    "pdfsQueued_other": "{{count}} PDF dikompresi di latar belakang, dengan kualitas PDF Kompres Cepat Anda.",
+    "pdfsQueued_other": "{{count}} PDF sedang dikompresi di latar belakang, dengan kualitas PDF Kompresi Cepat Anda.",
     "someCorrupted": "Beberapa file tampaknya rusak atau tidak valid dan tidak ditambahkan.",
     "corrupted": "File tampaknya rusak atau tidak valid.",
     "selectTitle": "Pilih gambar, video, atau audio untuk dikompresi.",

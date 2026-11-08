@@ -404,46 +404,46 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "クイック圧縮",
-        "needsSaveLocation": "クイック圧縮が確認なしで保存できるよう、<setting>出力</setting>またはこれらのプリセットで「毎回確認」以外の保存先を選んでください。"
+        "needsSaveLocation": "「毎回尋ねる」以外の保存先を、<setting>出力</setting>またはこれらのプリセットで選択すると、クイック圧縮は確認なしで保存できます。"
       },
       "preset": {
-        "title_video": "ビデオのプリセット",
-        "title_image": "画像のプリセット",
-        "title_audio": "オーディオのプリセット",
-        "description_video": "ビデオに使用する設定です。",
-        "description_image": "画像に使用する設定です。",
-        "description_audio": "オーディオファイルに使用する設定です。"
+        "title_video": "ビデオプリセット",
+        "title_image": "画像プリセット",
+        "title_audio": "オーディオプリセット",
+        "description_video": "動画で使用される設定。",
+        "description_image": "画像に使用される設定。",
+        "description_audio": "音声ファイルに使用される設定。"
       },
       "groups": {
-        "title": "マイグループ",
-        "description": "一部のファイル形式に専用のプリセットを割り当てます。クイック圧縮は上から順にグループを確認し、ファイル形式を含む最初のグループを使います。その他のファイルは上のプリセットを使います。",
+        "title": "あなたのグループ",
+        "description": "一部のファイル形式には、専用のプリセットを割り当てることができます。クイック圧縮は、グループを上から確認し、ファイル形式に一致する最初のグループを使用します。その他のファイルは、上記のプリセットが使用されます。",
         "name": "名前",
         "newName": "新しいグループ",
         "fileTypes": "ファイル形式",
-        "fileTypesPlaceholder_video": "例: mov, mkv",
-        "fileTypesPlaceholder_image": "例: png, heic",
-        "fileTypesPlaceholder_audio": "例: mp3, wav",
+        "fileTypesPlaceholder_video": "例：mov、mkv",
+        "fileTypesPlaceholder_image": "例：png、heic",
+        "fileTypesPlaceholder_audio": "例：mp3、wav",
         "kind": "メディアの種類",
         "kind_video": "動画",
         "kind_image": "画像",
-        "kind_audio": "オーディオ",
+        "kind_audio": "音声",
         "preset": "{{name}} のプリセット",
         "add": "追加",
         "remove": "グループを削除",
-        "removeNamed": "{{name}} を削除",
+        "removeNamed": "{{name}}を削除",
         "addTitle": "グループを追加"
       },
       "fitSize": {
-        "title": "サイズに収める",
-        "yourSize": "指定サイズ",
-        "description": "右クリックメニューの「サイズに収める > 指定サイズ」でファイルを収めるサイズ。"
+        "title": "サイズに合わせる",
+        "yourSize": "サイズ",
+        "description": "右クリックメニューにある「サイズに合わせる > 任意のサイズ」のサイズ設定は、ファイルをそのサイズ内に収まるように圧縮します。"
       },
       "pdf": {
-        "title": "PDF の品質",
-        "description": "クイック圧縮で PDF をどこまで小さくするか。文字は鮮明で選択できるまま、中の画像の解像度が下がります。",
+        "title": "PDFの画質",
+        "description": "クイック圧縮がPDFをどの程度小さくするか。テキストは鮮明なまま選択可能で、中の画像は解像度が下げられます。",
         "level_small": "小（画面、メール）",
-        "level_medium": "中（ほとんどの文書）",
-        "level_high": "高（印刷）"
+        "level_medium": "中程度（ほとんどのドキュメント）",
+        "level_high": "高品質（印刷用）"
       }
     }
   },
@@ -517,7 +517,7 @@
   "dropZone": {
     "unsupportedType": "このファイルの種類には対応していません。",
     "unsupportedSkipped": "対応していないファイルはスキップされました。",
-    "nothingToCompress_other": "これらの {{count}} 件のファイルはどれも圧縮できません。rc-compress は動画、画像、音声、PDF を小さくします。",
+    "nothingToCompress_other": "これら{{count}}個のファイルはどれも圧縮できません。rc-compressは、動画、画像、音声、PDFのサイズを小さくします。",
     "addFailed": "メディアを追加できませんでした。",
     "openFailed": "rc-compress を開けませんでした。",
     "quitFailed": "rc-compress を終了できませんでした。",
@@ -884,7 +884,7 @@
     "addAfterCompression": "圧縮後はメディアを追加できません。メディアを追加するには新しい圧縮を開始してください。",
     "noValidFiles": "有効なメディアファイルが見つかりません。",
     "alreadyAdded": "選択したメディアはすでに追加されています。",
-    "pdfsQueued_other": "{{count}} 件の PDF をバックグラウンドで、クイック圧縮の PDF 画質で圧縮しています。",
+    "pdfsQueued_other": "{{count}}個のPDFが、クイック圧縮で設定したPDF画質に基づき、バックグラウンドで圧縮されます。",
     "someCorrupted": "一部のファイルが破損しているか無効なため、追加されませんでした。",
     "corrupted": "ファイルが破損しているか無効です。",
     "selectTitle": "圧縮する画像、ビデオ、またはオーディオを選択してください。",

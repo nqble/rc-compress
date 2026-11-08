@@ -274,7 +274,7 @@
       "watchedFolders": "폴더 감시",
       "history": "기록",
       "commandLine": "CLI",
-      "rightClickMenu": "오른쪽 클릭 메뉴"
+      "rightClickMenu": "우클릭 메뉴"
     },
     "about": {
       "updateAvailable": "업데이트 사용 가능",
@@ -404,22 +404,22 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "빠른 압축",
-        "needsSaveLocation": "빠른 압축이 묻지 않고 저장할 수 있도록 <setting>출력</setting> 또는 이 프리셋에서 '매번 묻기' 이외의 저장 위치를 선택하세요."
+        "needsSaveLocation": "<setting>Output</setting> 또는 이 사전 설정에서 '매번 묻기' 이외의 저장 위치를 선택하면 빠른 압축이 묻지 않고 저장할 수 있습니다."
       },
       "preset": {
-        "title_video": "비디오 프리셋",
-        "title_image": "이미지 프리셋",
-        "title_audio": "오디오 프리셋",
-        "description_video": "비디오에 사용되는 설정입니다.",
-        "description_image": "이미지에 사용되는 설정입니다.",
+        "title_video": "비디오 사전 설정",
+        "title_image": "이미지 사전 설정",
+        "title_audio": "오디오 사전 설정",
+        "description_video": "비디오에 사용되는 설정.",
+        "description_image": "이미지에 사용되는 설정.",
         "description_audio": "오디오 파일에 사용되는 설정입니다."
       },
       "groups": {
         "title": "내 그룹",
-        "description": "일부 파일 형식에 전용 프리셋을 지정하세요. 빠른 압축은 위에서부터 그룹을 확인해 파일 형식이 들어 있는 첫 그룹을 사용하고, 나머지 파일은 위의 프리셋을 사용합니다.",
+        "description": "일부 파일 형식에는 자체 프리셋을 지정할 수 있습니다. 빠른 압축은 상단부터 그룹을 확인하여 파일 형식에 맞는 첫 번째 그룹을 사용하며, 해당되지 않는 파일은 위에 있는 프리셋을 사용합니다.",
         "name": "이름",
         "newName": "새 그룹",
-        "fileTypes": "파일 형식",
+        "fileTypes": "파일 유형",
         "fileTypesPlaceholder_video": "예: mov, mkv",
         "fileTypesPlaceholder_image": "예: png, heic",
         "fileTypesPlaceholder_audio": "예: mp3, wav",
@@ -427,23 +427,23 @@
         "kind_video": "동영상",
         "kind_image": "이미지",
         "kind_audio": "오디오",
-        "preset": "{{name}} 프리셋",
+        "preset": "{{name}}에 대한 사전 설정",
         "add": "추가",
-        "remove": "그룹 삭제",
-        "removeNamed": "{{name}} 삭제",
+        "remove": "그룹 제거",
+        "removeNamed": "{{name}} 제거하기",
         "addTitle": "그룹 추가"
       },
       "fitSize": {
-        "title": "크기에 맞추기",
-        "yourSize": "내 크기",
-        "description": "오른쪽 클릭 메뉴의 “크기에 맞추기 > 내 크기”가 파일을 맞추는 크기입니다."
+        "title": "크기에 맞게 조정",
+        "yourSize": "크기",
+        "description": "우클릭 메뉴의 “크기에 맞추기 > 사용자 지정 크기” 옵션은 파일을 지정된 크기 내에 맞게 압축합니다."
       },
       "pdf": {
         "title": "PDF 품질",
-        "description": "빠른 압축이 PDF를 얼마나 작게 만들지 정합니다. 텍스트는 선명하고 선택 가능한 상태로 남고, 안의 이미지 해상도가 낮아집니다.",
-        "level_small": "작게 (화면, 이메일)",
-        "level_medium": "보통 (대부분의 문서)",
-        "level_high": "높게 (인쇄)"
+        "description": "빠른 압축이 PDF를 얼마나 작게 만드는지. 텍스트는 선명하게 유지되고 선택할 수 있으며, 내부의 이미지는 해상도가 낮아집니다.",
+        "level_small": "작음 (화면, 이메일)",
+        "level_medium": "중간 (대부분의 문서)",
+        "level_high": "높음 (인쇄)"
       }
     }
   },
@@ -517,7 +517,7 @@
   "dropZone": {
     "unsupportedType": "지원되지 않는 파일 형식입니다.",
     "unsupportedSkipped": "지원되지 않는 파일은 건너뛰었습니다.",
-    "nothingToCompress_other": "이 파일 {{count}}개는 모두 압축할 수 없습니다. rc-compress는 동영상, 이미지, 오디오, PDF를 줄입니다.",
+    "nothingToCompress_other": "이 {{count}}개의 파일 중 어느 것도 압축할 수 없습니다. rc-compress는 동영상, 이미지, 오디오 및 PDF의 크기를 줄여줍니다.",
     "addFailed": "미디어를 추가할 수 없습니다.",
     "openFailed": "rc-compress를 열 수 없습니다.",
     "quitFailed": "rc-compress를 종료할 수 없습니다.",
@@ -884,7 +884,7 @@
     "addAfterCompression": "압축 후에는 미디어를 추가할 수 없습니다. 미디어를 더 추가하려면 새 압축을 시작하십시오.",
     "noValidFiles": "유효한 미디어 파일을 찾을 수 없습니다.",
     "alreadyAdded": "선택한 미디어가 이미 추가되어 있습니다.",
-    "pdfsQueued_other": "PDF {{count}}개를 빠른 압축의 PDF 품질로 백그라운드에서 압축합니다.",
+    "pdfsQueued_other": "{{count}}개의 PDF가 빠른 압축 PDF 품질 설정에 따라 백그라운드에서 압축됩니다.",
     "someCorrupted": "일부 파일이 손상되었거나 유효하지 않아 추가되지 않았습니다.",
     "corrupted": "파일이 손상되었거나 유효하지 않습니다.",
     "selectTitle": "압축할 이미지, 비디오 또는 오디오를 선택하십시오.",

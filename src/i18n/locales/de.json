@@ -274,7 +274,7 @@
       "watchedFolders": "Ordnerüberwachung",
       "history": "Verlauf",
       "commandLine": "CLI",
-      "rightClickMenu": "Rechtsklick-Menü"
+      "rightClickMenu": "Kontextmenü"
     },
     "about": {
       "updateAvailable": "Update verfügbar",
@@ -403,27 +403,27 @@
     },
     "rightClickMenu": {
       "quickCompress": {
-        "title": "Schnell komprimieren",
-        "needsSaveLocation": "Wähle unter <setting>Ausgabe</setting> oder in diesen Voreinstellungen einen anderen Speicherort als „Jedes Mal fragen“, damit Schnell komprimieren ohne Nachfrage speichern kann."
+        "title": "Schnellkomprimierung",
+        "needsSaveLocation": "Wählen Sie einen Speicherort, der nicht „Jedes Mal fragen“ ist, in <setting>Output</setting> oder in diesen Voreinstellungen, damit die Schnellkomprimierung ohne Nachfrage speichern kann."
       },
       "preset": {
-        "title_video": "Video-Voreinstellung",
+        "title_video": "Videovoreinstellung",
         "title_image": "Bild-Voreinstellung",
-        "title_audio": "Audio-Voreinstellung",
-        "description_video": "Einstellungen für Videos.",
-        "description_image": "Einstellungen für Bilder.",
-        "description_audio": "Einstellungen für Audiodateien."
+        "title_audio": "Audiopreset",
+        "description_video": "Einstellungen, die für Videos verwendet werden.",
+        "description_image": "Einstellungen, die für Bilder verwendet werden.",
+        "description_audio": "Einstellungen, die für Audiodateien verwendet werden."
       },
       "groups": {
-        "title": "Deine Gruppen",
-        "description": "Gib einigen Dateitypen eine eigene Voreinstellung. Schnell komprimieren prüft deine Gruppen von oben und nimmt die erste, die den Dateityp enthält; andere Dateien nutzen die Voreinstellungen oben.",
+        "title": "Ihre Gruppen",
+        "description": "Weisen Sie einigen Dateitypen eigene Voreinstellungen zu. Die Schnellkomprimierung prüft Ihre Gruppen von oben nach unten und verwendet die erste Gruppe, die dem Dateityp entspricht; andere Dateien verwenden die darüber liegenden Voreinstellungen.",
         "name": "Name",
         "newName": "Neue Gruppe",
         "fileTypes": "Dateitypen",
         "fileTypesPlaceholder_video": "z. B. mov, mkv",
         "fileTypesPlaceholder_image": "z. B. png, heic",
         "fileTypesPlaceholder_audio": "z. B. mp3, wav",
-        "kind": "Art der Medien",
+        "kind": "Medienart",
         "kind_video": "Videos",
         "kind_image": "Bilder",
         "kind_audio": "Audio",
@@ -435,15 +435,15 @@
       },
       "fitSize": {
         "title": "An Größe anpassen",
-        "yourSize": "Deine Größe",
-        "description": "Die Größe, in die „An Größe anpassen > Deine Größe“ im Rechtsklick-Menü Dateien komprimiert."
+        "yourSize": "Ihre Größe",
+        "description": "Die Option „An Größe anpassen > Ihre Größe“ im Kontextmenü komprimiert Dateien, sodass sie in die angegebene Größe passen."
       },
       "pdf": {
         "title": "PDF-Qualität",
-        "description": "Wie klein Schnell komprimieren PDFs macht. Text bleibt scharf und markierbar; Bilder darin erhalten eine geringere Auflösung.",
+        "description": "Wie stark die Schnellkomprimierung PDFs verkleinert. Der Text bleibt scharf und auswählbar; Bilder darin erhalten eine niedrigere Auflösung.",
         "level_small": "Klein (Bildschirm, E-Mail)",
         "level_medium": "Mittel (die meisten Dokumente)",
-        "level_high": "Hoch (Drucken)"
+        "level_high": "Hoch (Druck)"
       }
     }
   },
@@ -517,8 +517,8 @@
   "dropZone": {
     "unsupportedType": "Dieser Dateityp wird nicht unterstützt.",
     "unsupportedSkipped": "Nicht unterstützte Dateien wurden übersprungen.",
-    "nothingToCompress_one": "Diese Datei kann nicht komprimiert werden. rc-compress verkleinert Videos, Bilder, Audio und PDFs.",
-    "nothingToCompress_other": "Keine dieser {{count}} Dateien kann komprimiert werden. rc-compress verkleinert Videos, Bilder, Audio und PDFs.",
+    "nothingToCompress_one": "Diese Datei kann nicht komprimiert werden. rc-compress macht Videos, Bilder, Audiodateien und PDFs kleiner.",
+    "nothingToCompress_other": "Keine dieser {{count}} Dateien kann komprimiert werden. rc-compress macht Videos, Bilder, Audiodateien und PDFs kleiner.",
     "addFailed": "Die Medien konnten nicht hinzugefügt werden.",
     "openFailed": "rc-compress konnte nicht geöffnet werden.",
     "quitFailed": "rc-compress konnte nicht beendet werden.",
@@ -893,8 +893,8 @@
     "addAfterCompression": "Nach der Komprimierung können keine Medien hinzugefügt werden. Starten Sie eine neue Komprimierung, um weitere Medien hinzuzufügen.",
     "noValidFiles": "Keine gültigen Mediendateien gefunden.",
     "alreadyAdded": "Die ausgewählten Medien wurden bereits hinzugefügt.",
-    "pdfsQueued_one": "Das PDF wird im Hintergrund komprimiert, mit deiner PDF-Qualität für „Schnell komprimieren“.",
-    "pdfsQueued_other": "{{count}} PDFs werden im Hintergrund komprimiert, mit deiner PDF-Qualität für „Schnell komprimieren“.",
+    "pdfsQueued_one": "Die PDF wird im Hintergrund mit der von Ihnen für die Schnellkomprimierung von PDFs gewählten Qualität komprimiert.",
+    "pdfsQueued_other": "{{count}} PDFs werden im Hintergrund mit Ihrer Qualitätseinstellung für die Schnellkomprimierung von PDFs komprimiert.",
     "someCorrupted": "Einige Dateien scheinen beschädigt oder ungültig zu sein und wurden nicht hinzugefügt.",
     "corrupted": "Die Datei scheint beschädigt oder ungültig zu sein.",
     "selectTitle": "Bilder, Videos oder Audiodateien zum Komprimieren auswählen.",

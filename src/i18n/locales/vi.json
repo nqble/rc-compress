@@ -404,45 +404,45 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "Nén nhanh",
-        "needsSaveLocation": "Hãy chọn vị trí lưu khác với Hỏi mỗi lần, trong <setting>Đầu ra</setting> hoặc trong các cài đặt sẵn này, để Nén nhanh có thể lưu mà không cần hỏi."
+        "needsSaveLocation": "Chọn một vị trí lưu khác ngoài \"Hỏi mỗi lần\" trong <setting>Output</setting> hoặc trong các cài đặt sẵn này để Nén nhanh có thể lưu mà không cần hỏi."
       },
       "preset": {
-        "title_video": "Cài đặt sẵn cho video",
-        "title_image": "Cài đặt sẵn cho hình ảnh",
-        "title_audio": "Cài đặt sẵn cho âm thanh",
-        "description_video": "Cài đặt dùng cho video.",
-        "description_image": "Cài đặt dùng cho hình ảnh.",
-        "description_audio": "Cài đặt dùng cho tệp âm thanh."
+        "title_video": "Cài đặt sẵn video",
+        "title_image": "Cài đặt sẵn hình ảnh",
+        "title_audio": "Thiết lập sẵn âm thanh",
+        "description_video": "Cài đặt được sử dụng cho video.",
+        "description_image": "Cài đặt được sử dụng cho hình ảnh.",
+        "description_audio": "Cài đặt được sử dụng cho các tệp âm thanh."
       },
       "groups": {
         "title": "Nhóm của bạn",
-        "description": "Gán cài đặt sẵn riêng cho một số loại tệp. Nén nhanh kiểm tra các nhóm từ trên xuống và dùng nhóm đầu tiên chứa loại tệp đó; các tệp khác dùng cài đặt sẵn ở trên.",
+        "description": "Gán các cài đặt sẵn riêng cho một số loại tệp. Nén nhanh sẽ kiểm tra các nhóm của bạn từ trên xuống và sử dụng nhóm đầu tiên có chứa loại tệp đó; các tệp khác sẽ sử dụng các cài đặt sẵn ở trên.",
         "name": "Tên",
         "newName": "Nhóm mới",
         "fileTypes": "Loại tệp",
-        "fileTypesPlaceholder_video": "vd: mov, mkv",
-        "fileTypesPlaceholder_image": "vd: png, heic",
-        "fileTypesPlaceholder_audio": "vd: mp3, wav",
+        "fileTypesPlaceholder_video": "ví dụ: mov, mkv",
+        "fileTypesPlaceholder_image": "ví dụ: png, heic",
+        "fileTypesPlaceholder_audio": "ví dụ: mp3, wav",
         "kind": "Loại phương tiện",
         "kind_video": "Video",
         "kind_image": "Hình ảnh",
         "kind_audio": "Âm thanh",
-        "preset": "Cài đặt sẵn cho {{name}}",
+        "preset": "Chế độ sẵn có cho {{name}}",
         "add": "Thêm",
         "remove": "Xóa nhóm",
         "removeNamed": "Xóa {{name}}",
         "addTitle": "Thêm nhóm"
       },
       "fitSize": {
-        "title": "Vừa kích thước",
+        "title": "Khớp với kích thước",
         "yourSize": "Kích thước của bạn",
-        "description": "Kích thước mà “Vừa kích thước > Kích thước của bạn” trong menu chuột phải nén tệp vào."
+        "description": "Kích thước “Vừa vặn với kích thước > Kích thước của bạn” trong menu chuột phải sẽ nén các tệp để vừa vặn trong giới hạn đó."
       },
       "pdf": {
         "title": "Chất lượng PDF",
-        "description": "Mức Nén nhanh làm nhỏ tệp PDF. Chữ vẫn sắc nét và chọn được; hình ảnh bên trong giảm độ phân giải.",
+        "description": "Mức độ nén nhanh của rc-compress đối với các tệp PDF. Văn bản vẫn sắc nét và có thể chọn được; hình ảnh bên trong sẽ có độ phân giải thấp hơn.",
         "level_small": "Nhỏ (màn hình, email)",
-        "level_medium": "Vừa (hầu hết tài liệu)",
+        "level_medium": "Trung bình (hầu hết các tài liệu)",
         "level_high": "Cao (in ấn)"
       }
     }
@@ -517,7 +517,7 @@
   "dropZone": {
     "unsupportedType": "Loại tệp này không được hỗ trợ.",
     "unsupportedSkipped": "Đã bỏ qua các tệp không được hỗ trợ.",
-    "nothingToCompress_other": "Không tệp nào trong {{count}} tệp này nén được. rc-compress làm nhỏ video, hình ảnh, âm thanh và PDF.",
+    "nothingToCompress_other": "Không có tệp nào trong số {{count}} tệp này có thể được nén. rc-compress giúp giảm dung lượng của video, hình ảnh, âm thanh và PDF.",
     "addFailed": "Không thể thêm tệp phương tiện.",
     "openFailed": "Không thể mở rc-compress.",
     "quitFailed": "Không thể thoát rc-compress.",
@@ -884,7 +884,7 @@
     "addAfterCompression": "Không thể thêm tệp phương tiện sau khi nén. Hãy bắt đầu lần nén mới để thêm tệp.",
     "noValidFiles": "Không tìm thấy tệp phương tiện hợp lệ.",
     "alreadyAdded": "Tệp phương tiện đã chọn đã được thêm.",
-    "pdfsQueued_other": "Đang nén {{count}} PDF trong nền, với chất lượng PDF của Nén nhanh.",
+    "pdfsQueued_other": "{{count}} tệp PDF đang được nén ở chế độ nền, với chất lượng PDF theo cài đặt Nén nhanh của bạn.",
     "someCorrupted": "Một số tệp có vẻ bị hỏng hoặc không hợp lệ nên chưa được thêm.",
     "corrupted": "Tệp có vẻ bị hỏng hoặc không hợp lệ.",
     "selectTitle": "Chọn hình ảnh, video hoặc âm thanh để nén.",

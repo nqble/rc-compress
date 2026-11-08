@@ -404,7 +404,7 @@
     "rightClickMenu": {
       "quickCompress": {
         "title": "快速压缩",
-        "needsSaveLocation": "请在<setting>输出</setting>或这些预设中选择“每次询问”以外的保存位置，以便快速压缩无需询问即可保存。"
+        "needsSaveLocation": "请在 <setting>Output</setting> 或这些预设中选择“每次询问”以外的保存位置，这样“快速压缩”功能才能在不询问的情况下保存文件。"
       },
       "preset": {
         "title_video": "视频预设",
@@ -415,34 +415,34 @@
         "description_audio": "用于音频文件的设置。"
       },
       "groups": {
-        "title": "我的分组",
-        "description": "为某些文件类型指定专属预设。快速压缩会从上往下检查分组，使用第一个包含该文件类型的分组；其他文件使用上方的预设。",
+        "title": "您的分组",
+        "description": "为某些文件类型设置专属预设。快速压缩会从顶部开始检查您的分组，并使用第一个匹配文件类型的分组；其他文件则使用上方的预设。",
         "name": "名称",
-        "newName": "新分组",
+        "newName": "新建组",
         "fileTypes": "文件类型",
-        "fileTypesPlaceholder_video": "例如 mov, mkv",
-        "fileTypesPlaceholder_image": "例如 png, heic",
-        "fileTypesPlaceholder_audio": "例如 mp3, wav",
+        "fileTypesPlaceholder_video": "例如：mov、mkv",
+        "fileTypesPlaceholder_image": "例如：png、heic",
+        "fileTypesPlaceholder_audio": "例如：mp3、wav",
         "kind": "媒体类型",
         "kind_video": "视频",
         "kind_image": "图片",
         "kind_audio": "音频",
         "preset": "{{name}} 的预设",
         "add": "添加",
-        "remove": "删除分组",
-        "removeNamed": "删除 {{name}}",
-        "addTitle": "添加分组"
+        "remove": "移除组",
+        "removeNamed": "移除 {{name}}",
+        "addTitle": "添加组"
       },
       "fitSize": {
-        "title": "压缩到指定大小",
-        "yourSize": "自定义大小",
-        "description": "右键菜单中“压缩到指定大小 > 自定义大小”将文件压缩到的大小。"
+        "title": "调整至尺寸",
+        "yourSize": "您的大小",
+        "description": "右键菜单中的“调整到尺寸 > 您的尺寸”选项可将文件压缩至指定尺寸范围内。"
       },
       "pdf": {
         "title": "PDF 质量",
-        "description": "快速压缩将 PDF 压缩到多小。文字保持清晰且可选中；其中的图片分辨率会降低。",
-        "level_small": "小（屏幕、邮件）",
-        "level_medium": "中（大多数文档）",
+        "description": "“快速压缩”可将 PDF 文件压缩到多小的程度。文本依然清晰且可选；其中的图片则会被降低分辨率。",
+        "level_small": "小（屏幕、电子邮件）",
+        "level_medium": "中等（大多数文档）",
         "level_high": "高（打印）"
       }
     }
@@ -517,7 +517,7 @@
   "dropZone": {
     "unsupportedType": "不支持此文件类型。",
     "unsupportedSkipped": "已跳过不支持的文件。",
-    "nothingToCompress_other": "这 {{count}} 个文件都无法压缩。rc-compress 可缩小视频、图片、音频和 PDF。",
+    "nothingToCompress_other": "这 {{count}} 个文件都无法压缩。rc-compress 可以减小视频、图片、音频和 PDF 文件的大小。",
     "addFailed": "无法添加媒体。",
     "openFailed": "无法打开 rc-compress。",
     "quitFailed": "无法退出 rc-compress。",
@@ -884,7 +884,7 @@
     "addAfterCompression": "压缩完成后无法添加媒体。请开始新的压缩以添加更多媒体。",
     "noValidFiles": "未找到有效的媒体文件。",
     "alreadyAdded": "所选媒体已添加。",
-    "pdfsQueued_other": "正在后台以快速压缩的 PDF 质量压缩 {{count}} 个 PDF。",
+    "pdfsQueued_other": "{{count}} 个 PDF 正在后台压缩，压缩质量由您的“快速压缩 PDF”设置决定。",
     "someCorrupted": "部分文件似乎已损坏或无效，未被添加。",
     "corrupted": "该文件似乎已损坏或无效。",
     "selectTitle": "选择要压缩的图像、视频或音频。",
