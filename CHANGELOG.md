@@ -1,5 +1,9 @@
 # Changelog
 
+### Unreleased
+
+- **Fixed: the command line works on macOS and Linux** (`compresso <file>`). Before, it started rc-compress and then gave up after a minute with "CompressO was started, but it did not respond", because it looked for the app under compressO's old name.
+
 ### 0.1.6
 
 - **Photos compress up to 4 at once** in the background (right-click menu, drop zone, watched folders), depending on your processor: 50 photos in about 90 s instead of 5 minutes on an 8-core PC.

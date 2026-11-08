@@ -4,8 +4,8 @@
 //! file is written to until it holds more than `MAX_FILE_SIZE` when the app starts, then a new one is
 //! started, and only the newest `KEPT_FILES` are kept, so the logs take about 25 MB at most.
 //!
-//! Where they are: macOS `~/Library/Logs/com.compresso.app/`, Windows
-//! `%LOCALAPPDATA%\com.compresso.app\logs\`, Linux `~/.local/share/com.compresso.app/logs/`.
+//! Where they are: macOS `~/Library/Logs/com.rccompress.app/`, Windows
+//! `%LOCALAPPDATA%\com.rccompress.app\logs\`, Linux `~/.local/share/com.rccompress.app/logs/`.
 
 use std::fs::{File, OpenOptions};
 use std::io::Write;
