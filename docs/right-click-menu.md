@@ -16,6 +16,9 @@ The menu is offered on every file; rc-compress compresses videos, images, audio 
 anything else (a `.txt`, a `.zip`). When none of the chosen files can be compressed, the tray panel opens with a note
 saying so. Several selected files are each compressed.
 
+**Folders:** the same menu is on folders. A folder's media is compressed, subfolders included, each file by its own
+kind (its preset or PDF quality), and each copy is saved next to its original; the folder's other files are skipped.
+
 ## The items
 
 | Item | What it does | Settings |

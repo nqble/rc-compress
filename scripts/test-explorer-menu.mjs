@@ -24,14 +24,28 @@ test('every option the menu passes is one the app reads', () => {
   }
 })
 
-test('the uninstaller removes the key the installer writes', () => {
+test('the menu is installed on files and folders, and the uninstaller removes both', () => {
   assert.match(
     menu,
-    /!macro RC_MENU_INSTALL[\s\S]*WriteRegStr HKCU "\$\{RC_MENU_KEY\}"/,
+    /!macro RC_MENU_ENTRIES KEY[\s\S]*WriteRegStr HKCU "\$\{KEY\}"/,
   )
+  for (const key of ['RC_MENU_KEY', 'RC_FOLDER_MENU_KEY']) {
+    assert.match(
+      menu,
+      new RegExp(
+        `!macro RC_MENU_INSTALL[\\s\\S]*!insertmacro RC_MENU_ENTRIES "\\$\\{${key}\\}"`,
+      ),
+    )
+    assert.match(
+      menu,
+      new RegExp(
+        `!macro RC_MENU_UNINSTALL[\\s\\S]*DeleteRegKey HKCU "\\$\\{${key}\\}"`,
+      ),
+    )
+  }
   assert.match(
     menu,
-    /!macro RC_MENU_UNINSTALL[\s\S]*DeleteRegKey HKCU "\$\{RC_MENU_KEY\}"/,
+    /RC_FOLDER_MENU_KEY "Software\\Classes\\Directory\\shell\\rc-compress"/,
   )
 })
 

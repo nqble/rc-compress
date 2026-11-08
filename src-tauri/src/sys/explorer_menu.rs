@@ -12,6 +12,7 @@ use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
 use super::compressible::is_compressible;
+use crate::core::domain::CollectedFile;
 
 /// Compress the files with the Quick Compress presets (Settings -> Right-click menu), in the
 /// background queue, without opening the main window. Must match `hooks.nsh`.
@@ -103,9 +104,11 @@ static LAST_QUEUED: Mutex<Option<Instant>> = Mutex::new(None);
 /// Explorer's launches for one selection arrive within a fraction of a second (Master measured 0.2 s for 10)
 const NOTE_GRACE: Duration = Duration::from_millis(1500);
 
-/// Whether a launch chose files and none of them can be compressed
-fn is_nothing_to_compress(paths: &[String]) -> bool {
-    !paths.is_empty() && !paths.iter().any(|path| is_compressible(path))
+/// The files a launch chose (folders already opened into their files) that can be compressed, and how many can't
+fn split_compressible(files: Vec<CollectedFile>) -> (Vec<CollectedFile>, usize) {
+    let (compressible, skipped): (Vec<_>, Vec<_>) =
+        files.into_iter().partition(|file| is_compressible(&file.path));
+    (compressible, skipped.len())
 }
 
 /// Whether the note for files skipped at `skipped_at` is due, checked `grace` later: not when a launch of the same
@@ -118,26 +121,37 @@ fn is_note_due(last_queued: Option<Instant>, skipped_at: Instant, grace: Duratio
 }
 
 /// Queues the files of a "Quick Compress", "Compress by N%", "Fit to size" or "Remove metadata" launch (`menu`).
-/// Files rc-compress cannot compress (a `.txt`, a `.zip`) are skipped; when that is all of them, the tray shows a
-/// note saying so.
+/// A chosen folder gives the media inside it, subfolders included (each copy is saved next to its original). Files
+/// rc-compress cannot compress (a `.txt`, a `.zip`) are skipped; when that is all of them, the tray shows a note.
 #[cfg(windows)]
 pub fn quick_compress(
     app_handle: &tauri::AppHandle,
     paths: Vec<String>,
     menu: crate::tauri_commands::drop_queue::MenuChoice,
 ) {
-    log::info!("[explorer-menu] Quick Compress of {} files", paths.len());
-    if is_nothing_to_compress(&paths) {
-        note_skipped_files(app_handle, paths.len());
+    log::info!("[explorer-menu] Quick Compress of {} files or folders", paths.len());
+    // Also allows the app to read them (asset scopes), as for dropped files & folders
+    let files = match crate::tauri_commands::fs::allow_asset_scopes(app_handle, paths) {
+        Ok(files) => files,
+        Err(err) => {
+            log::error!("[explorer-menu] Could not read the chosen files: {}", err);
+            return;
+        }
+    };
+    let (compressible, skipped) = split_compressible(files);
+    if compressible.is_empty() {
+        // An empty folder has nothing to say a note about
+        if skipped > 0 {
+            note_skipped_files(app_handle, skipped);
+        }
         return;
     }
     if let Ok(mut last_queued) = LAST_QUEUED.lock() {
         *last_queued = Some(Instant::now());
     }
-    crate::tauri_commands::drop_queue::add_to_quick_compress_queue(
+    crate::tauri_commands::drop_queue::add_files_to_quick_compress_queue(
         app_handle,
-        paths,
-        is_compressible,
+        compressible,
         menu,
     );
 }
@@ -186,11 +200,24 @@ mod tests {
         list.iter().map(|arg| arg.to_string()).collect()
     }
 
+    fn file(path: &str) -> CollectedFile {
+        CollectedFile { path: path.to_string(), relative_dir: String::new() }
+    }
+
     #[test]
-    fn a_note_only_when_no_chosen_file_can_be_compressed() {
-        assert!(is_nothing_to_compress(&args(&["notes.txt", "photos.zip"])));
-        assert!(!is_nothing_to_compress(&args(&["notes.txt", "clip.mp4"])));
-        assert!(!is_nothing_to_compress(&[]));
+    fn only_media_and_pdfs_are_queued_and_the_rest_counted() {
+        let files = vec![file("Trip/clip.mp4"), file("Trip/notes.txt"), file("Trip/Day1/a.jpg"), file("b.zip")];
+        let (compressible, skipped) = split_compressible(files);
+        let paths: Vec<_> = compressible.iter().map(|file| file.path.as_str()).collect();
+        assert_eq!(paths, ["Trip/clip.mp4", "Trip/Day1/a.jpg"]);
+        assert_eq!(skipped, 2);
+    }
+
+    #[test]
+    fn nothing_compressible_in_an_empty_choice() {
+        let (compressible, skipped) = split_compressible(Vec::new());
+        assert!(compressible.is_empty());
+        assert_eq!(skipped, 0);
     }
 
     #[test]
