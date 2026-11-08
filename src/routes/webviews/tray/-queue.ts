@@ -70,6 +70,7 @@ import {
   QUICK_COMPRESS_PRESET_SETTINGS,
   resolvePresetChoice,
 } from '@/utils/presetOutput'
+import { type Lane, laneWorkers } from '@/utils/queueLanes'
 import { findQuickCompressGroup } from '@/utils/quickCompressGroups'
 import { metadataOnlyConfig } from '@/utils/removeMetadata'
 import { convertDurationToMilliseconds } from '@/utils/string'
@@ -457,7 +458,6 @@ async function compressQueueItem(item: DropQueueItem) {
 }
 
 /** Which lane a queued media is compressed in (see `runDropQueue`), by its file */
-type Lane = 'video' | 'audio' | 'image' | 'pdf'
 
 function getLane(item: DropQueueItem): Lane {
   if (isPdfItem(item)) return 'pdf'
@@ -474,9 +474,10 @@ const LANES: Lane[] = ['video', 'audio', 'image', 'pdf']
 let isRunRequested = false
 
 /**
- * Compresses the waiting media of the drop zone's queue in three lanes, one for each kind of media:
- * one video, one audio file & one image at a time, each lane in the order its media was added (like
- * `compress_media_batch`), so images & audio do not wait for a video. Runs once at a time; call it
+ * Compresses the waiting media of the drop zone's queue in lanes, one for each kind of media: one
+ * video, one audio file & one PDF at a time, and several images (see `laneWorkers`), each lane in
+ * the order its media was added (like `compress_media_batch`), so images & audio do not wait for a
+ * video. Runs once at a time; call it
  * whenever media is added.
  */
 export async function runDropQueue() {
@@ -490,6 +491,8 @@ export async function runDropQueue() {
   let isPaused = false
   // The media compressed in this run, to tell if it was stopped
   const compressedIds = new Set<string>()
+  // The media a worker is compressing now, so a lane's workers never take the same one
+  const takenIds = new Set<string>()
   // Lanes looking for or compressing media; an idle lane waits for them, as media of its kind may
   // still be added
   let activeLanes = 0
@@ -508,7 +511,13 @@ export async function runDropQueue() {
         // The media dropped (or pasted, or copied) first, then that of the watched folders, each
         // in the order it was queued (media tried again is queued after the waiting media)
         next = (await getDropQueue())
-          .filter((item) => item.status === 'waiting' && getLane(item) === lane)
+          // Not one another worker of this lane has just taken (still "waiting" in this copy)
+          .filter(
+            (item) =>
+              item.status === 'waiting' &&
+              getLane(item) === lane &&
+              !takenIds.has(item.id),
+          )
           .sort(
             (a, b) =>
               Number(!!a.watchFolderId) - Number(!!b.watchFolderId) ||
@@ -516,9 +525,15 @@ export async function runDropQueue() {
           )[0]
         if (next) {
           compressedIds.add(next.id)
+          takenIds.add(next.id)
           const compress =
             lane === 'pdf' ? compressPdfQueueItem : compressQueueItem
-          if (await compress(next)) hasCompressed = true
+          try {
+            if (await compress(next)) hasCompressed = true
+          } finally {
+            // It can be tried again in this run
+            takenIds.delete(next.id)
+          }
         }
       } finally {
         activeLanes--
@@ -537,7 +552,11 @@ export async function runDropQueue() {
         await updateDropQueueItem(item.id, { status: 'waiting', progress: 0 })
       }
     }
-    await Promise.all(LANES.map(runLane))
+    const cores = navigator.hardwareConcurrency || 1
+    const workers = LANES.flatMap((lane) =>
+      Array.from({ length: laneWorkers(lane, cores) }, () => runLane(lane)),
+    )
+    await Promise.all(workers)
     // The queue ran out (not paused), so the compression completed
     const isCompleted = !isPaused
     // Stopped: its media is cancelled, which is not a completion either

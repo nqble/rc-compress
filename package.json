@@ -34,6 +34,7 @@
     "test:output-file-name": "node --test scripts/test-output-file-name.mjs",
     "test:pdf-levels": "node --test scripts/test-pdf-levels.mjs",
     "test:compressible": "node --test scripts/test-compressible.mjs",
+    "test:queue-lanes": "node --test scripts/test-queue-lanes.mjs",
     "test:image-dynamic-range": "node --test scripts/test-image-dynamic-range.mjs",
     "test:video-dynamic-range": "node --test scripts/test-video-dynamic-range.mjs",
     "tsc:check": "tsc --noEmit --skipLibCheck"
