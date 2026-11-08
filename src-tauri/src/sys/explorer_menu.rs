@@ -7,6 +7,12 @@
 //! "Open in rc-compress…" is a plain launch with the file ("Open with"), so only the other actions
 //! are handled here.
 
+use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Mutex;
+use std::time::{Duration, Instant};
+
+use super::compressible::is_compressible;
+
 /// Compress the files with the Quick Compress presets (Settings -> Right-click menu), in the
 /// background queue, without opening the main window. Must match `hooks.nsh`.
 pub const QUICK_COMPRESS_ARG: &str = "--quick-compress";
@@ -83,31 +89,93 @@ fn fit_size(arg: &str) -> Option<Option<u16>> {
     FIT_SIZES_IN_MB.contains(&megabytes).then_some(Some(megabytes))
 }
 
-/// Queues the files of a "Quick Compress", "Compress by N%" or "Fit to size" launch (`menu`). Until the app's windows have told the backend
-/// which media they can compress (on a launch straight from the menu, before they load), every
-/// file is queued, and the queue skips what it cannot open.
+/// Sent to the tray window when none of the files a menu launch chose can be compressed (see `take_skipped_note`)
+pub const NOTHING_TO_COMPRESS_EVENT: &str = "nothing-to-compress";
+
+/// How many files the last menu launches chose that could not be compressed, until the tray window shows its note
+/// (it may load after the launch, so it asks with `take_skipped_note` as well as listening)
+static SKIPPED_FOR_NOTE: AtomicUsize = AtomicUsize::new(0);
+
+/// When a menu launch last queued a file. Explorer starts one launch per selected file, so a `.txt` launch can't see
+/// the `.mp4` chosen with it: the note waits `NOTE_GRACE` and is shown only if no launch near it queued anything.
+static LAST_QUEUED: Mutex<Option<Instant>> = Mutex::new(None);
+
+/// Explorer's launches for one selection arrive within a fraction of a second (Master measured 0.2 s for 10)
+const NOTE_GRACE: Duration = Duration::from_millis(1500);
+
+/// Whether a launch chose files and none of them can be compressed
+fn is_nothing_to_compress(paths: &[String]) -> bool {
+    !paths.is_empty() && !paths.iter().any(|path| is_compressible(path))
+}
+
+/// Whether the note for files skipped at `skipped_at` is due, checked `grace` later: not when a launch of the same
+/// selection queued a file (at most `grace` before it, or any time since)
+fn is_note_due(last_queued: Option<Instant>, skipped_at: Instant, grace: Duration) -> bool {
+    match last_queued {
+        None => true,
+        Some(queued_at) => queued_at + grace < skipped_at,
+    }
+}
+
+/// Queues the files of a "Quick Compress", "Compress by N%", "Fit to size" or "Remove metadata" launch (`menu`).
+/// Files rc-compress cannot compress (a `.txt`, a `.zip`) are skipped; when that is all of them, the tray shows a
+/// note saying so.
 #[cfg(windows)]
 pub fn quick_compress(
     app_handle: &tauri::AppHandle,
     paths: Vec<String>,
     menu: crate::tauri_commands::drop_queue::MenuChoice,
 ) {
-    use crate::tauri_commands::tray::{has_supported_drop_extensions, is_supported_drop};
-
     log::info!("[explorer-menu] Quick Compress of {} files", paths.len());
-    let app = app_handle.clone();
-    let is_supported =
-        move |path: &str| {
-            !has_supported_drop_extensions(&app)
-                || is_supported_drop(&app, path)
-                || crate::tauri_commands::pdf::is_pdf(path)
-        };
+    if is_nothing_to_compress(&paths) {
+        note_skipped_files(app_handle, paths.len());
+        return;
+    }
+    if let Ok(mut last_queued) = LAST_QUEUED.lock() {
+        *last_queued = Some(Instant::now());
+    }
     crate::tauri_commands::drop_queue::add_to_quick_compress_queue(
         app_handle,
         paths,
-        is_supported,
+        is_compressible,
         menu,
     );
+}
+
+/// Counts the skipped files and, after `NOTE_GRACE`, has the tray show its note unless the selection queued a file
+#[cfg(windows)]
+fn note_skipped_files(app_handle: &tauri::AppHandle, count: usize) {
+    log::info!("[explorer-menu] None of the {count} files can be compressed");
+    SKIPPED_FOR_NOTE.fetch_add(count, Ordering::SeqCst);
+    let skipped_at = Instant::now();
+    let app_handle = app_handle.clone();
+    std::thread::spawn(move || {
+        std::thread::sleep(NOTE_GRACE);
+        let last_queued = LAST_QUEUED.lock().ok().and_then(|last_queued| *last_queued);
+        if !is_note_due(last_queued, skipped_at, NOTE_GRACE) {
+            SKIPPED_FOR_NOTE.store(0, Ordering::SeqCst);
+            return;
+        }
+        show_skipped_note(&app_handle);
+    });
+}
+
+#[cfg(windows)]
+fn show_skipped_note(app_handle: &tauri::AppHandle) {
+    use tauri::Emitter;
+
+    crate::tray_popover::ensure_tray_window(app_handle);
+    let _ = app_handle.emit_to(
+        crate::tray_popover::TRAY_WINDOW_LABEL,
+        NOTHING_TO_COMPRESS_EVENT,
+        (),
+    );
+}
+
+/// The files the tray window has a note to show for (0 for none), cleared as it is taken
+#[tauri::command]
+pub fn take_skipped_note() -> usize {
+    SKIPPED_FOR_NOTE.swap(0, Ordering::SeqCst)
 }
 
 #[cfg(test)]
@@ -116,6 +184,32 @@ mod tests {
 
     fn args(list: &[&str]) -> Vec<String> {
         list.iter().map(|arg| arg.to_string()).collect()
+    }
+
+    #[test]
+    fn a_note_only_when_no_chosen_file_can_be_compressed() {
+        assert!(is_nothing_to_compress(&args(&["notes.txt", "photos.zip"])));
+        assert!(!is_nothing_to_compress(&args(&["notes.txt", "clip.mp4"])));
+        assert!(!is_nothing_to_compress(&[]));
+    }
+
+    #[test]
+    fn no_note_when_the_same_selection_queued_a_file() {
+        let grace = Duration::from_millis(1500);
+        let skipped_at = Instant::now();
+        assert!(is_note_due(None, skipped_at, grace));
+        // A video chosen with the .txt, queued just before or just after it
+        assert!(!is_note_due(Some(skipped_at - Duration::from_millis(300)), skipped_at, grace));
+        assert!(!is_note_due(Some(skipped_at + Duration::from_millis(300)), skipped_at, grace));
+        // A file queued long before, by another selection
+        assert!(is_note_due(Some(skipped_at - Duration::from_secs(60)), skipped_at, grace));
+    }
+
+    #[test]
+    fn the_note_is_taken_once() {
+        SKIPPED_FOR_NOTE.store(2, Ordering::SeqCst);
+        assert_eq!(take_skipped_note(), 2);
+        assert_eq!(take_skipped_note(), 0);
     }
 
     #[test]

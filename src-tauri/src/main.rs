@@ -600,6 +600,7 @@ async fn run() {
             core::tool_bundle::get_tool_status,
             sys::cli_settings::sync_cli_settings,
             sys::cli_server::take_background_launch,
+            sys::explorer_menu::take_skipped_note,
             sys::cli_install::get_cli_install_status,
             sys::cli_install::install_cli,
             sys::cli_install::uninstall_cli,

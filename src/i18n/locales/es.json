@@ -517,6 +517,9 @@
   "dropZone": {
     "unsupportedType": "Este tipo de archivo no es compatible.",
     "unsupportedSkipped": "Se han omitido los archivos no compatibles.",
+    "nothingToCompress_one": "Este archivo no se puede comprimir. rc-compress reduce vídeos, imágenes, audio y PDF.",
+    "nothingToCompress_many": "Ninguno de estos {{count}} archivos se puede comprimir. rc-compress reduce vídeos, imágenes, audio y PDF.",
+    "nothingToCompress_other": "Ninguno de estos {{count}} archivos se puede comprimir. rc-compress reduce vídeos, imágenes, audio y PDF.",
     "addFailed": "No se pudieron añadir los archivos multimedia.",
     "openFailed": "No se pudo abrir rc-compress.",
     "quitFailed": "No se pudo salir de rc-compress.",

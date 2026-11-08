@@ -108,21 +108,6 @@ fn update_dropped_files(app_handle: &AppHandle, update: impl FnOnce(&mut Vec<Str
     let _ = app_handle.emit_to(TRAY_WINDOW_LABEL, DROPPED_FILES_EVENT, files);
 }
 
-/// Whether the windows have sent the media extensions that can be compressed yet (see
-/// `set_supported_drop_extensions`); not on a launch straight from the right-click menu
-pub fn has_supported_drop_extensions(app_handle: &AppHandle) -> bool {
-    app_handle
-        .try_state::<DroppedFilesState>()
-        .and_then(|state| {
-            state
-                .supported_extensions
-                .lock()
-                .ok()
-                .map(|extensions| !extensions.is_empty())
-        })
-        .unwrap_or(false)
-}
-
 /// Whether a dropped path can be added: a folder (its media is picked when opened) or a file with a
 /// supported extension
 pub fn is_supported_drop(app_handle: &AppHandle, path: &str) -> bool {

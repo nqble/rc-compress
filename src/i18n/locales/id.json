@@ -517,6 +517,7 @@
   "dropZone": {
     "unsupportedType": "Jenis file ini tidak didukung.",
     "unsupportedSkipped": "File yang tidak didukung dilewati.",
+    "nothingToCompress_other": "Tidak satu pun dari {{count}} file ini dapat dikompresi. rc-compress memperkecil video, gambar, audio, dan PDF.",
     "addFailed": "Media tidak dapat ditambahkan.",
     "openFailed": "rc-compress tidak dapat dibuka.",
     "quitFailed": "rc-compress tidak dapat ditutup.",

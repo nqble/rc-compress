@@ -12,8 +12,9 @@ uninstaller removes it (`src-tauri/windows/hooks.nsh`); the app handles each ite
 | Windows 10 | Right-click a file → rc-compress. |
 | macOS, Linux | Not yet: use the app window, the drop zone or the command line. The Right-click Menu settings page only shows on Windows. |
 
-The menu is offered on every file; rc-compress skips what it can't compress. Several selected files are each
-compressed.
+The menu is offered on every file; rc-compress compresses videos, images, audio and PDFs, and quietly skips
+anything else (a `.txt`, a `.zip`). When none of the chosen files can be compressed, the tray panel opens with a note
+saying so. Several selected files are each compressed.
 
 ## The items
 

@@ -517,6 +517,8 @@
   "dropZone": {
     "unsupportedType": "Bu dosya türü desteklenmiyor.",
     "unsupportedSkipped": "Desteklenmeyen dosyalar atlandı.",
+    "nothingToCompress_one": "Bu dosya sıkıştırılamaz. rc-compress videoları, görselleri, sesleri ve PDF'leri küçültür.",
+    "nothingToCompress_other": "Bu {{count}} dosyanın hiçbiri sıkıştırılamaz. rc-compress videoları, görselleri, sesleri ve PDF'leri küçültür.",
     "addFailed": "Medya eklenemedi.",
     "openFailed": "rc-compress açılamadı.",
     "quitFailed": "rc-compress’dan çıkılamadı.",
