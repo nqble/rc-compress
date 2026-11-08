@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.1.5
+
+- **Right-click a folder** (Windows, under Show more options): the same rc-compress menu compresses every video, image, audio file and PDF inside it, subfolders included, each copy next to its original.
+- **Files rc-compress can't compress are skipped** (a `.txt`, a `.zip`) instead of failing in the queue. When none of the chosen files can be compressed, the tray panel says so.
+
 ### 0.1.4
 
 - **Fixed: every selected file is compressed** when you pick several in the right-click menu while rc-compress is closed (before, only one was).
