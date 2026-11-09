@@ -120,11 +120,16 @@ async fn listen(app_handle: AppHandle) -> Result<(), String> {
     }
 }
 
+/// The app's identifier (`tauri.conf.json`). `compresso` (`cli/src/app.rs`) has its own copy, to
+/// find the folder the socket is in and the named pipe; a test checks the three agree.
+#[cfg(any(windows, test))]
+const IDENTIFIER: &str = "com.rccompress.app";
+
 /// The named pipe of the user, as `compresso` finds it
 #[cfg(windows)]
 fn pipe_name() -> String {
     let user = std::env::var("USERNAME").unwrap_or_default();
-    format!(r"\\.\pipe\com.compresso.app-{user}")
+    format!(r"\\.\pipe\{IDENTIFIER}-{user}")
 }
 
 #[cfg(windows)]
@@ -528,4 +533,29 @@ fn should_quit(app_handle: &AppHandle) -> bool {
         && !drop_queue::is_queue_active(app_handle)
         && !crate::tauri_commands::compression_status::is_compressing(app_handle)
         && !is_main_window_visible
+}
+
+#[cfg(test)]
+mod tests {
+    use super::IDENTIFIER;
+
+    /// The identifier in `tauri.conf.json`, which names the app's data folder (where the socket is)
+    fn configured_identifier() -> String {
+        let config: serde_json::Value =
+            serde_json::from_str(include_str!("../../tauri.conf.json")).expect("tauri.conf.json");
+        config["identifier"].as_str().expect("identifier").to_string()
+    }
+
+    #[test]
+    fn the_app_uses_the_configured_identifier() {
+        assert_eq!(IDENTIFIER, configured_identifier());
+    }
+
+    /// `compresso` looks for the socket, its settings and the pipe under this identifier; with an
+    /// old one it waits for an app that never answers (macOS and Linux, 0.1.6)
+    #[test]
+    fn the_command_line_uses_the_configured_identifier() {
+        let expected = format!("const IDENTIFIER: &str = \"{}\";", configured_identifier());
+        assert!(include_str!("../../cli/src/app.rs").contains(&expected));
+    }
 }

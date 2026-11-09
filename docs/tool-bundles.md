@@ -95,7 +95,7 @@ installed files' SHA-256 hashes, sizes, and executable permissions before making
 available to compression code. A completion marker alone is never sufficient.
 
 The installation path is Tauri's `app_local_data_dir()/tools/<target>/<archive-sha256>/`.
-On macOS this is normally `~/Library/Application Support/com.compresso.app/tools/`.
+On macOS this is normally `~/Library/Application Support/com.rccompress.app/tools/`.
 Versions with identical tool archives reuse the same installation. Different archive hashes get
 separate directories; older versions are retained so switching versions does not destroy them.
 The archive stays in the application bundle for offline repair.

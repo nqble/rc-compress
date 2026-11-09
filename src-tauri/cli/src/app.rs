@@ -5,8 +5,9 @@ use std::time::{Duration, Instant};
 
 use crate::error::CliError;
 
-/// The app's identifier (`tauri.conf.json`), the name of its data folder
-const IDENTIFIER: &str = "com.compresso.app";
+/// The app's identifier (`tauri.conf.json`), the name of its data folder; keep it the same as
+/// `IDENTIFIER` in the app's `cli_server.rs` (a test there checks both)
+const IDENTIFIER: &str = "com.rccompress.app";
 
 /// Passed to the app when it is started from here: no window, & it quits once done
 const BACKGROUND_ARG: &str = "--background";
