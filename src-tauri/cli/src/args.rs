@@ -75,9 +75,7 @@ Examples:
 pub enum Command {
     Help,
     Version,
-    Presets {
-        json: bool,
-    },
+    Presets { json: bool },
     Mcp,
     Compress(CompressArgs),
     /// A right-click menu action (macOS Quick Actions): the app queues the files as from the menu

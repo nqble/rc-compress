@@ -66,11 +66,7 @@ pub async fn compress_media_batch(
     // `keep_awake` (Settings -> General)
     let _keep_awake = crate::sys::keep_awake::KeepAwake::acquire();
 
-    log::info!(
-        "[media] Compressing {} media (batch {})",
-        media.len(),
-        batch_id
-    );
+    log::info!("[media] Compressing {} media (batch {})", media.len(), batch_id);
 
     // Cancelled between two media (or while paused), when no process would see it
     let is_cancelled = Arc::new(AtomicBool::new(false));

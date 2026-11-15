@@ -229,8 +229,7 @@ impl MediaProcessExecutor {
         let mut processes: Vec<Arc<SharedChild>> = Vec::new();
         let should_cancel = Arc::new(Mutex::new(false));
         let captured_stdout = Arc::new(Mutex::new(None));
-        let command_descriptions: Vec<String> =
-            self.commands.iter().map(describe_command).collect();
+        let command_descriptions: Vec<String> = self.commands.iter().map(describe_command).collect();
 
         for mut cmd in self.commands {
             let child = SharedChild::spawn(&mut cmd).map_err(|e| e.to_string())?;
@@ -426,6 +425,7 @@ impl MediaProcessExecutor {
             }
         }
 
+
         for proc in &processes {
             proc.kill().ok();
         }
@@ -440,10 +440,7 @@ impl MediaProcessExecutor {
 
         if final_exit_code != 0 {
             for (idx, (tail, reader)) in error_outputs.into_iter().enumerate() {
-                let command = command_descriptions
-                    .get(idx)
-                    .map(String::as_str)
-                    .unwrap_or("");
+                let command = command_descriptions.get(idx).map(String::as_str).unwrap_or("");
                 log_failed_process(command, Some(final_exit_code), &tail, reader).await;
             }
         }
@@ -468,8 +465,7 @@ impl MediaProcessExecutor {
 
         let mut previous_stdout: Option<std::process::ChildStdout> = None;
         let command_count = self.commands.len();
-        let command_descriptions: Vec<String> =
-            self.commands.iter().map(describe_command).collect();
+        let command_descriptions: Vec<String> = self.commands.iter().map(describe_command).collect();
 
         for (idx, mut cmd) in self.commands.into_iter().enumerate() {
             if idx > 0 {
@@ -763,12 +759,10 @@ impl MediaProcessExecutor {
             }
         }
 
+
         if !all_success {
             for (idx, (tail, reader)) in error_outputs.into_iter().enumerate() {
-                let command = command_descriptions
-                    .get(idx)
-                    .map(String::as_str)
-                    .unwrap_or("");
+                let command = command_descriptions.get(idx).map(String::as_str).unwrap_or("");
                 log_failed_process(command, Some(final_exit_code), &tail, reader).await;
             }
             return Err("Piped process chain failed".to_string());

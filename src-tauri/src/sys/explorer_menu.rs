@@ -90,9 +90,7 @@ fn fit_size(arg: &str) -> Option<Option<u16>> {
         return Some(None);
     }
     let megabytes = value.parse::<u16>().ok()?;
-    FIT_SIZES_IN_MB
-        .contains(&megabytes)
-        .then_some(Some(megabytes))
+    FIT_SIZES_IN_MB.contains(&megabytes).then_some(Some(megabytes))
 }
 
 /// Sent to the tray window when none of the files a menu launch chose can be compressed (see `take_skipped_note`)
@@ -111,9 +109,8 @@ const NOTE_GRACE: Duration = Duration::from_millis(1500);
 
 /// The files a launch chose (folders already opened into their files) that can be compressed, and how many can't
 fn split_compressible(files: Vec<CollectedFile>) -> (Vec<CollectedFile>, usize) {
-    let (compressible, skipped): (Vec<_>, Vec<_>) = files
-        .into_iter()
-        .partition(|file| is_compressible(&file.path));
+    let (compressible, skipped): (Vec<_>, Vec<_>) =
+        files.into_iter().partition(|file| is_compressible(&file.path));
     (compressible, skipped.len())
 }
 
@@ -157,10 +154,7 @@ pub fn quick_compress(
     paths: Vec<String>,
     menu: crate::tauri_commands::drop_queue::MenuChoice,
 ) {
-    log::info!(
-        "[explorer-menu] Quick Compress of {} files or folders",
-        paths.len()
-    );
+    log::info!("[explorer-menu] Quick Compress of {} files or folders", paths.len());
     // Also allows the app to read them (asset scopes), as for dropped files & folders
     let files = match crate::tauri_commands::fs::allow_asset_scopes(app_handle, paths) {
         Ok(files) => files,
@@ -232,20 +226,12 @@ mod tests {
     }
 
     fn file(path: &str) -> CollectedFile {
-        CollectedFile {
-            path: path.to_string(),
-            relative_dir: String::new(),
-        }
+        CollectedFile { path: path.to_string(), relative_dir: String::new() }
     }
 
     #[test]
     fn only_media_and_pdfs_are_queued_and_the_rest_counted() {
-        let files = vec![
-            file("Trip/clip.mp4"),
-            file("Trip/notes.txt"),
-            file("Trip/Day1/a.jpg"),
-            file("b.zip"),
-        ];
+        let files = vec![file("Trip/clip.mp4"), file("Trip/notes.txt"), file("Trip/Day1/a.jpg"), file("b.zip")];
         let (compressible, skipped) = split_compressible(files);
         let paths: Vec<_> = compressible.iter().map(|file| file.path.as_str()).collect();
         assert_eq!(paths, ["Trip/clip.mp4", "Trip/Day1/a.jpg"]);
@@ -265,22 +251,10 @@ mod tests {
         let skipped_at = Instant::now();
         assert!(is_note_due(None, skipped_at, grace));
         // A video chosen with the .txt, queued just before or just after it
-        assert!(!is_note_due(
-            Some(skipped_at - Duration::from_millis(300)),
-            skipped_at,
-            grace
-        ));
-        assert!(!is_note_due(
-            Some(skipped_at + Duration::from_millis(300)),
-            skipped_at,
-            grace
-        ));
+        assert!(!is_note_due(Some(skipped_at - Duration::from_millis(300)), skipped_at, grace));
+        assert!(!is_note_due(Some(skipped_at + Duration::from_millis(300)), skipped_at, grace));
         // A file queued long before, by another selection
-        assert!(is_note_due(
-            Some(skipped_at - Duration::from_secs(60)),
-            skipped_at,
-            grace
-        ));
+        assert!(is_note_due(Some(skipped_at - Duration::from_secs(60)), skipped_at, grace));
     }
 
     #[test]
@@ -306,16 +280,8 @@ mod tests {
     #[test]
     fn compress_by_reads_the_offered_percentages_only() {
         let launch = args(&["rc-compress.exe", "--compress-by=30", "C:\\a.mp4"]);
-        assert_eq!(
-            action_from_launch_args(&launch),
-            Some(MenuAction::CompressBy(30))
-        );
-        for unknown in [
-            "--compress-by=35",
-            "--compress-by=0",
-            "--compress-by=100",
-            "--compress-by=x",
-        ] {
+        assert_eq!(action_from_launch_args(&launch), Some(MenuAction::CompressBy(30)));
+        for unknown in ["--compress-by=35", "--compress-by=0", "--compress-by=100", "--compress-by=x"] {
             let launch = args(&["rc-compress.exe", unknown, "C:\\a.mp4"]);
             assert_eq!(action_from_launch_args(&launch), None, "{unknown}");
         }
@@ -324,15 +290,9 @@ mod tests {
     #[test]
     fn fit_to_reads_the_offered_sizes_and_custom_only() {
         let launch = args(&["rc-compress.exe", "--fit-to=8", "C:\\a.mp4"]);
-        assert_eq!(
-            action_from_launch_args(&launch),
-            Some(MenuAction::FitTo(Some(8)))
-        );
+        assert_eq!(action_from_launch_args(&launch), Some(MenuAction::FitTo(Some(8))));
         let launch = args(&["rc-compress.exe", "--fit-to=custom", "C:\\a.mp4"]);
-        assert_eq!(
-            action_from_launch_args(&launch),
-            Some(MenuAction::FitTo(None))
-        );
+        assert_eq!(action_from_launch_args(&launch), Some(MenuAction::FitTo(None)));
         for unknown in ["--fit-to=9", "--fit-to=", "--fit-to=Custom"] {
             let launch = args(&["rc-compress.exe", unknown, "C:\\a.mp4"]);
             assert_eq!(action_from_launch_args(&launch), None, "{unknown}");
@@ -342,10 +302,7 @@ mod tests {
     #[test]
     fn remove_metadata_is_read() {
         let launch = args(&["rc-compress.exe", REMOVE_METADATA_ARG, "C:\\a.jpg"]);
-        assert_eq!(
-            action_from_launch_args(&launch),
-            Some(MenuAction::RemoveMetadata)
-        );
+        assert_eq!(action_from_launch_args(&launch), Some(MenuAction::RemoveMetadata));
     }
 
     #[test]

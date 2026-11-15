@@ -5,7 +5,8 @@
 use std::sync::atomic::{AtomicBool, Ordering};
 
 use tauri::menu::{
-    AboutMetadata, Menu, MenuItem, PredefinedMenuItem, Submenu, HELP_SUBMENU_ID, WINDOW_SUBMENU_ID,
+    AboutMetadata, Menu, MenuItem, PredefinedMenuItem, Submenu, HELP_SUBMENU_ID,
+    WINDOW_SUBMENU_ID,
 };
 use tauri::{App, AppHandle, Emitter, Manager, Wry};
 
@@ -46,11 +47,7 @@ fn build(app_handle: &AppHandle) -> tauri::Result<Menu<Wry>> {
         name: Some(pkg_info.name.clone()),
         version: Some(pkg_info.version.to_string()),
         copyright: config.bundle.copyright.clone(),
-        authors: config
-            .bundle
-            .publisher
-            .clone()
-            .map(|publisher| vec![publisher]),
+        authors: config.bundle.publisher.clone().map(|publisher| vec![publisher]),
         ..Default::default()
     };
     let separator = || PredefinedMenuItem::separator(app_handle);
@@ -83,10 +80,7 @@ fn build(app_handle: &AppHandle) -> tauri::Result<Menu<Wry>> {
         app_handle,
         &texts.file,
         true,
-        &[&PredefinedMenuItem::close_window(
-            app_handle,
-            Some(&texts.close_window),
-        )?],
+        &[&PredefinedMenuItem::close_window(app_handle, Some(&texts.close_window))?],
     )?;
     let edit_submenu = Submenu::with_items(
         app_handle,
@@ -106,10 +100,7 @@ fn build(app_handle: &AppHandle) -> tauri::Result<Menu<Wry>> {
         app_handle,
         &texts.view,
         true,
-        &[&PredefinedMenuItem::fullscreen(
-            app_handle,
-            Some(&texts.full_screen),
-        )?],
+        &[&PredefinedMenuItem::fullscreen(app_handle, Some(&texts.full_screen))?],
     )?;
     // The ids make macOS list the windows here & add its help search
     let window_submenu = Submenu::with_id_and_items(
@@ -124,8 +115,7 @@ fn build(app_handle: &AppHandle) -> tauri::Result<Menu<Wry>> {
             &PredefinedMenuItem::close_window(app_handle, Some(&texts.close_window))?,
         ],
     )?;
-    let help_submenu =
-        Submenu::with_id_and_items(app_handle, HELP_SUBMENU_ID, &texts.help, true, &[])?;
+    let help_submenu = Submenu::with_id_and_items(app_handle, HELP_SUBMENU_ID, &texts.help, true, &[])?;
 
     Menu::with_items(
         app_handle,

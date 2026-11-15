@@ -133,14 +133,15 @@ pub async fn prepare_image_preview(
         "main",
         &[],
     ))
-    .await
-    .map(|path| path.to_string_lossy().into_owned())
+        .await
+        .map(|path| path.to_string_lossy().into_owned())
 }
 
 #[tauri::command]
 pub async fn get_exif_info(image_path: &str) -> Result<ExifInfo, String> {
     ImageInfo::get_exif_info(image_path)
 }
+
 
 #[cfg(test)]
 mod tests {
@@ -173,30 +174,16 @@ mod tests {
                     compress_images_batch,
                 ),
             ),
-            (
-                "get_image_dimensions",
-                future_size2::<App, &'static str, _>(get_image_dimensions),
-            ),
-            (
-                "get_image_color_info",
-                future_size2::<App, &'static str, _>(get_image_color_info),
-            ),
-            (
-                "prepare_image_preview",
-                future_size2::<App, &'static str, _>(prepare_image_preview),
-            ),
+            ("get_image_dimensions", future_size2::<App, &'static str, _>(get_image_dimensions)),
+            ("get_image_color_info", future_size2::<App, &'static str, _>(get_image_color_info)),
+            ("prepare_image_preview", future_size2::<App, &'static str, _>(prepare_image_preview)),
             (
                 "get_image_dimension",
-                future_size2::<App, &'static str, _>(
-                    crate::tauri_commands::fs::get_image_dimension,
-                ),
+                future_size2::<App, &'static str, _>(crate::tauri_commands::fs::get_image_dimension),
             ),
         ];
         for (name, size) in sizes {
-            assert!(
-                size <= MAX_COMMAND_FUTURE_BYTES,
-                "{name}'s future is {size} bytes"
-            );
+            assert!(size <= MAX_COMMAND_FUTURE_BYTES, "{name}'s future is {size} bytes");
         }
     }
 }

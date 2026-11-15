@@ -49,10 +49,7 @@ mod tests {
     use super::*;
 
     fn launch(file: &str) -> Launch {
-        (
-            vec!["rc-compress".into(), "--quick-compress".into(), file.into()],
-            String::new(),
-        )
+        (vec!["rc-compress".into(), "--quick-compress".into(), file.into()], String::new())
     }
 
     #[test]

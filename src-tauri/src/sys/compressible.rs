@@ -10,7 +10,8 @@ use std::path::Path;
 /// Videos, images, audio (`inputExtensions` in `compression.ts`; `gif` is listed once) and PDFs, lower case
 pub const COMPRESSIBLE_EXTENSIONS: [&str; 36] = [
     // Video
-    "mp4", "mov", "mkv", "webm", "avi", "ts", "gif", "m4v", "mts", "m2ts", // Image
+    "mp4", "mov", "mkv", "webm", "avi", "ts", "gif", "m4v", "mts", "m2ts",
+    // Image
     "png", "jpg", "jpeg", "webp", "svg", "avif", "jxl", "heic", "heif", "bmp", "tiff", "tif",
     // Audio
     "mp3", "m4a", "wav", "flac", "ogg", "opus", "aac", "m4b", "aiff", "aif", "wma", "oga", "mp2",
@@ -20,10 +21,7 @@ pub const COMPRESSIBLE_EXTENSIONS: [&str; 36] = [
 
 /// Whether rc-compress can compress this file, by its extension (any case)
 pub fn is_compressible(path: &str) -> bool {
-    let Some(extension) = Path::new(path)
-        .extension()
-        .and_then(|extension| extension.to_str())
-    else {
+    let Some(extension) = Path::new(path).extension().and_then(|extension| extension.to_str()) else {
         return false;
     };
     let extension = extension.to_lowercase();
@@ -36,27 +34,14 @@ mod tests {
 
     #[test]
     fn media_and_pdfs_are_compressible() {
-        for path in [
-            "a.MP4",
-            "b.jpg",
-            "c.heic",
-            "d.wav",
-            "e.mp2",
-            "C:\\docs\\f.PDF",
-        ] {
+        for path in ["a.MP4", "b.jpg", "c.heic", "d.wav", "e.mp2", "C:\\docs\\f.PDF"] {
             assert!(is_compressible(path), "{path}");
         }
     }
 
     #[test]
     fn other_files_are_not() {
-        for path in [
-            "notes.txt",
-            "photos.zip",
-            "setup.exe",
-            "no-extension",
-            "archive.pdf.zip",
-        ] {
+        for path in ["notes.txt", "photos.zip", "setup.exe", "no-extension", "archive.pdf.zip"] {
             assert!(!is_compressible(path), "{path}");
         }
     }

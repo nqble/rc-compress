@@ -33,12 +33,7 @@ impl PdfLevel {
 
 /// Ghostscript's arguments to rewrite `input` into `output` at `level`. With `strip_metadata`, the
 /// document information (title, author, dates, the program that made it) is emptied.
-fn ghostscript_args(
-    input: &Path,
-    output: &Path,
-    level: PdfLevel,
-    strip_metadata: bool,
-) -> Vec<String> {
+fn ghostscript_args(input: &Path, output: &Path, level: PdfLevel, strip_metadata: bool) -> Vec<String> {
     let mut args = vec![
         "-q".to_string(),
         // No access to files other than the ones named here
@@ -73,10 +68,7 @@ pub fn is_pdf(path: &str) -> bool {
 
 /// The PDFs among `files`, the rest left out
 fn pdfs_only(files: Vec<CollectedFile>) -> Vec<CollectedFile> {
-    files
-        .into_iter()
-        .filter(|file| is_pdf(&file.path))
-        .collect()
+    files.into_iter().filter(|file| is_pdf(&file.path)).collect()
 }
 
 /// Queues the PDFs dropped on or opened in the main window, which knows only videos, images and
@@ -105,12 +97,7 @@ pub async fn compress_pdf(
 ) -> Result<(String, u64), String> {
     let output = output_path(&app)?;
     let mut command = crate::core::tool_bundle::command(&app, "ghostscript")?;
-    command.args(ghostscript_args(
-        Path::new(&path),
-        &output,
-        level,
-        strip_metadata,
-    ));
+    command.args(ghostscript_args(Path::new(&path), &output, level, strip_metadata));
     // Ghostscript reads only the files it is given, never what is typed
     command.stdin(std::process::Stdio::null());
     let result = tauri::async_runtime::spawn_blocking(move || command.output())
@@ -130,12 +117,7 @@ mod tests {
     use super::*;
 
     fn args(level: PdfLevel, strip_metadata: bool) -> Vec<String> {
-        ghostscript_args(
-            Path::new("in.pdf"),
-            Path::new("out.pdf"),
-            level,
-            strip_metadata,
-        )
+        ghostscript_args(Path::new("in.pdf"), Path::new("out.pdf"), level, strip_metadata)
     }
 
     #[test]
@@ -162,10 +144,7 @@ mod tests {
     }
 
     fn file(path: &str) -> CollectedFile {
-        CollectedFile {
-            path: path.to_string(),
-            relative_dir: String::new(),
-        }
+        CollectedFile { path: path.to_string(), relative_dir: String::new() }
     }
 
     #[test]
@@ -177,12 +156,7 @@ mod tests {
 
     #[test]
     fn metadata_is_emptied_only_when_asked() {
-        assert!(!args(PdfLevel::Medium, false)
-            .iter()
-            .any(|arg| arg.contains("DOCINFO")));
-        assert!(args(PdfLevel::High, true)
-            .last()
-            .unwrap()
-            .contains("/DOCINFO pdfmark"));
+        assert!(!args(PdfLevel::Medium, false).iter().any(|arg| arg.contains("DOCINFO")));
+        assert!(args(PdfLevel::High, true).last().unwrap().contains("/DOCINFO pdfmark"));
     }
 }

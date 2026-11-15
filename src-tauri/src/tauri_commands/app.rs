@@ -72,10 +72,7 @@ pub struct OpenAtLoginState {
 /// system's login items): its login item, unless switched off there
 #[tauri::command]
 pub fn get_open_at_login(app: AppHandle) -> Result<OpenAtLoginState, String> {
-    let has_login_item = app
-        .autolaunch()
-        .is_enabled()
-        .map_err(|err| err.to_string())?;
+    let has_login_item = app.autolaunch().is_enabled().map_err(|err| err.to_string())?;
     if !has_login_item {
         return Ok(OpenAtLoginState {
             is_enabled: false,
@@ -130,11 +127,7 @@ fn is_linux_autostart_disabled(app: &AppHandle) -> bool {
         .ok()
         .filter(|dir| !dir.is_empty())
         .unwrap_or_else(|| format!("{}/.config", std::env::var("HOME").unwrap_or_default()));
-    let path = format!(
-        "{}/autostart/{}.desktop",
-        config_dir,
-        app.package_info().name
-    );
+    let path = format!("{}/autostart/{}.desktop", config_dir, app.package_info().name);
     std::fs::read_to_string(path)
         .map(|content| {
             content.lines().any(|line| {

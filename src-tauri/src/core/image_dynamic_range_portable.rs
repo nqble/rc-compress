@@ -134,15 +134,14 @@ fn source_color(bytes: &[u8]) -> SourceColor {
 }
 
 fn is_multi_frame(path: &str) -> bool {
-    let Ok(reader) = ImageReader::open(path).and_then(|reader| reader.with_guessed_format()) else {
+    let Ok(reader) = ImageReader::open(path).and_then(|reader| reader.with_guessed_format())
+    else {
         return false;
     };
     match reader.format() {
         Some(image::ImageFormat::Gif) => fs::File::open(path)
             .ok()
-            .and_then(|file| {
-                image::codecs::gif::GifDecoder::new(std::io::BufReader::new(file)).ok()
-            })
+            .and_then(|file| image::codecs::gif::GifDecoder::new(std::io::BufReader::new(file)).ok())
             .is_some_and(|decoder| {
                 use image::AnimationDecoder;
                 decoder.into_frames().take(2).count() > 1
@@ -555,11 +554,7 @@ mod tests {
         .unwrap();
         assert!(!super::super::image_codecs::png_is_hdr(&sdr).unwrap());
         let sdr = image::open(&sdr).unwrap().to_rgba8();
-        assert!(
-            (245..=249).contains(&sdr.get_pixel(4, 2)[0]),
-            "{:?}",
-            sdr.get_pixel(4, 2)
-        );
+        assert!((245..=249).contains(&sdr.get_pixel(4, 2)[0]), "{:?}", sdr.get_pixel(4, 2));
         let color = sdr.get_pixel(1, 0);
         assert!(color[0] > color[1] && color[1] > color[2], "{color:?}");
         assert_eq!(sdr.get_pixel(0, 0)[3], 64);
@@ -590,15 +585,11 @@ mod tests {
 
     #[test]
     fn gain_map_jpeg_keeps_its_sdr_rendition() {
-        let fixture = concat!(
-            env!("CARGO_MANIFEST_DIR"),
-            "/tests/fixtures/image-hdr/gain-map.jpg"
-        );
+        let fixture = concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/image-hdr/gain-map.jpg");
         let info = inspect(fixture).unwrap();
         assert_eq!(info.dynamic_range, DynamicRange::Hdr);
         assert!(info.has_gain_map && !info.supports_hdr_jpeg);
-        let output =
-            std::env::temp_dir().join(format!("compresso-gain-map-{}.png", std::process::id()));
+        let output = std::env::temp_dir().join(format!("compresso-gain-map-{}.png", std::process::id()));
         process(
             fixture,
             output.to_str().unwrap(),

@@ -32,9 +32,7 @@ impl KeepAwake {
     pub fn acquire() -> Self {
         let assertion = if IS_ENABLED.load(Ordering::SeqCst) {
             platform::Assertion::new(SHOULD_KEEP_DISPLAY_ON.load(Ordering::SeqCst))
-                .map_err(|err| {
-                    log::error!("[keep awake] Could not keep the computer awake: {}", err)
-                })
+                .map_err(|err| log::error!("[keep awake] Could not keep the computer awake: {}", err))
                 .ok()
         } else {
             None
@@ -218,8 +216,11 @@ mod platform {
     /// Prevents the system from sleeping when it is idle, until the returned descriptor is closed
     fn inhibit_idle() -> Result<OwnedFd, dbus::Error> {
         let connection = Connection::new_system()?;
-        let proxy =
-            connection.with_proxy("org.freedesktop.login1", "/org/freedesktop/login1", TIMEOUT);
+        let proxy = connection.with_proxy(
+            "org.freedesktop.login1",
+            "/org/freedesktop/login1",
+            TIMEOUT,
+        );
         let (fd,): (OwnedFd,) = proxy.method_call(
             "org.freedesktop.login1.Manager",
             "Inhibit",

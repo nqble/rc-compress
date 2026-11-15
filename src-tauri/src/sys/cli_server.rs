@@ -576,10 +576,7 @@ mod tests {
     fn configured_identifier() -> String {
         let config: serde_json::Value =
             serde_json::from_str(include_str!("../../tauri.conf.json")).expect("tauri.conf.json");
-        config["identifier"]
-            .as_str()
-            .expect("identifier")
-            .to_string()
+        config["identifier"].as_str().expect("identifier").to_string()
     }
 
     #[test]

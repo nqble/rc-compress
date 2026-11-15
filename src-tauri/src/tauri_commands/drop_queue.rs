@@ -276,11 +276,7 @@ fn show_queue_progress(app_handle: &AppHandle, items: &[DropQueueItem]) {
 
 /// Adds media to the end of the queue (folders are added as the media they contain), in order.
 /// Media already waiting or being compressed is not added again.
-pub fn add_to_queue(
-    app_handle: &AppHandle,
-    paths: Vec<String>,
-    is_supported: impl Fn(&str) -> bool,
-) {
+pub fn add_to_queue(app_handle: &AppHandle, paths: Vec<String>, is_supported: impl Fn(&str) -> bool) {
     add_to_queue_from(app_handle, paths, is_supported, None);
 }
 
