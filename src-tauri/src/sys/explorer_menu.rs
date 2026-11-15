@@ -5,7 +5,8 @@
 //!   each launch reaches it as a second instance (see `on_second_instance` in `main.rs`).
 //! - macOS: a launch with arguments runs the command line (see `run_cli_if_asked` in `main.rs`),
 //!   which hands the action to the app through its socket (the `menu` request in `cli_server.rs`).
-//! - Linux: not yet.
+//! - Linux: the entries `linux_menu.rs` writes launch the app as on Windows. With no tray icon,
+//!   the main window compresses the queue, so a menu launch shows it.
 //!
 //! "Open in rc-compress…" is a plain launch with the file ("Open with"), so only the other actions
 //! are handled here.
@@ -94,6 +95,8 @@ fn fit_size(arg: &str) -> Option<Option<u16>> {
 }
 
 /// Sent to the tray window when none of the files a menu launch chose can be compressed (see `take_skipped_note`)
+// Linux has no tray window to send it to
+#[cfg_attr(target_os = "linux", allow(dead_code))]
 pub const NOTHING_TO_COMPRESS_EVENT: &str = "nothing-to-compress";
 
 /// How many files the last menu launches chose that could not be compressed, until the tray window shows its note
@@ -148,13 +151,14 @@ pub fn menu_choice(action: MenuAction) -> crate::tauri_commands::drop_queue::Men
 /// Queues the files of a "Quick Compress", "Compress by N%", "Fit to size" or "Remove metadata" launch (`menu`).
 /// A chosen folder gives the media inside it, subfolders included (each copy is saved next to its original). Files
 /// rc-compress cannot compress (a `.txt`, a `.zip`) are skipped; when that is all of them, the tray shows a note.
-#[cfg(any(target_os = "macos", windows))]
 pub fn quick_compress(
     app_handle: &tauri::AppHandle,
     paths: Vec<String>,
     menu: crate::tauri_commands::drop_queue::MenuChoice,
 ) {
     log::info!("[explorer-menu] Quick Compress of {} files or folders", paths.len());
+    #[cfg(target_os = "linux")]
+    show_queue_window(app_handle);
     // Also allows the app to read them (asset scopes), as for dropped files & folders
     let files = match crate::tauri_commands::fs::allow_asset_scopes(app_handle, paths) {
         Ok(files) => files,
@@ -182,7 +186,6 @@ pub fn quick_compress(
 }
 
 /// Counts the skipped files and, after `NOTE_GRACE`, has the tray show its note unless the selection queued a file
-#[cfg(any(target_os = "macos", windows))]
 fn note_skipped_files(app_handle: &tauri::AppHandle, count: usize) {
     log::info!("[explorer-menu] None of the {count} files can be compressed");
     SKIPPED_FOR_NOTE.fetch_add(count, Ordering::SeqCst);
@@ -197,6 +200,27 @@ fn note_skipped_files(app_handle: &tauri::AppHandle, count: usize) {
         }
         show_skipped_note(&app_handle);
     });
+}
+
+/// Linux has no tray icon: the main window compresses the queue & shows its progress (it is already
+/// shown by `quick_compress`, which is where the person sees that nothing was compressed)
+#[cfg(target_os = "linux")]
+fn show_skipped_note(_app_handle: &tauri::AppHandle) {
+    SKIPPED_FOR_NOTE.store(0, Ordering::SeqCst);
+}
+
+/// The main window, which compresses the queue on Linux; the app then stays open
+#[cfg(target_os = "linux")]
+fn show_queue_window(app_handle: &tauri::AppHandle) {
+    use tauri::Manager;
+
+    crate::sys::cli_server::keep_app_open();
+    let Some(window) = app_handle.get_webview_window("main") else {
+        return;
+    };
+    let _ = window.unminimize();
+    let _ = window.show();
+    let _ = window.set_focus();
 }
 
 #[cfg(any(target_os = "macos", windows))]

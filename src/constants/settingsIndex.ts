@@ -1,10 +1,11 @@
 import type { Translation, t as translate } from '@/i18n'
 import { settingsStore } from '@/stores/settingsStore'
+import {
+  fileManagerMenuContext,
+  hasFileManagerMenuSwitch,
+} from '@/utils/fileManagerMenu'
 import { getPlatform } from '@/utils/fs'
 import { hasTray, TRAY_CONTEXT } from '@/utils/tray'
-
-/** Explorer's menu on Windows, Finder's Quick Actions on macOS; not on Linux yet */
-const hasRightClickMenu = getPlatform().isWindows || getPlatform().isMacOS
 
 export type SettingsPageId = keyof Translation['settings']['pages']
 
@@ -217,17 +218,20 @@ export const SETTINGS_INDEX = {
       t('settings.dropZone.compression.autoCompress.description'),
     ],
   },
-  finderMenu: {
+  fileManagerMenu: {
     page: 'rightClickMenu',
-    isAvailable: getPlatform().isMacOS,
+    isAvailable: hasFileManagerMenuSwitch,
     getText: (t) => [
-      t('settings.rightClickMenu.finderMenu.title'),
-      t('settings.rightClickMenu.finderMenu.description'),
+      t('settings.rightClickMenu.fileManagerMenu.title', {
+        context: fileManagerMenuContext,
+      }),
+      t('settings.rightClickMenu.fileManagerMenu.description', {
+        context: fileManagerMenuContext,
+      }),
     ],
   },
   quickCompressPdfLevel: {
     page: 'rightClickMenu',
-    isAvailable: hasRightClickMenu,
     getText: (t) => [
       t('settings.rightClickMenu.pdf.title'),
       t('settings.rightClickMenu.pdf.description'),
@@ -235,7 +239,6 @@ export const SETTINGS_INDEX = {
   },
   quickCompressGroups: {
     page: 'rightClickMenu',
-    isAvailable: hasRightClickMenu,
     getText: (t) => [
       t('settings.rightClickMenu.groups.addTitle'),
       t('settings.rightClickMenu.groups.description'),
@@ -243,7 +246,6 @@ export const SETTINGS_INDEX = {
   },
   quickCompressFitSize: {
     page: 'rightClickMenu',
-    isAvailable: hasRightClickMenu,
     getText: (t) => [
       t('settings.rightClickMenu.fitSize.yourSize'),
       t('settings.rightClickMenu.fitSize.description'),
@@ -251,7 +253,6 @@ export const SETTINGS_INDEX = {
   },
   quickCompressVideoPreset: {
     page: 'rightClickMenu',
-    isAvailable: hasRightClickMenu,
     getText: (t) => [
       t('settings.rightClickMenu.preset.title_video'),
       t('settings.rightClickMenu.preset.description_video'),
@@ -259,7 +260,6 @@ export const SETTINGS_INDEX = {
   },
   quickCompressImagePreset: {
     page: 'rightClickMenu',
-    isAvailable: hasRightClickMenu,
     getText: (t) => [
       t('settings.rightClickMenu.preset.title_image'),
       t('settings.rightClickMenu.preset.description_image'),
@@ -267,7 +267,6 @@ export const SETTINGS_INDEX = {
   },
   quickCompressAudioPreset: {
     page: 'rightClickMenu',
-    isAvailable: hasRightClickMenu,
     getText: (t) => [
       t('settings.rightClickMenu.preset.title_audio'),
       t('settings.rightClickMenu.preset.description_audio'),

@@ -445,10 +445,13 @@
         "level_medium": "Среднее (большинство документов)",
         "level_high": "Высокое (печать)"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Показывать в меню Finder",
-        "description": "Добавляет rc-compress в контекстное меню Finder, в раздел «Быстрые действия»: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Выключите это перед удалением приложения. Затем включите их один раз: щелкните файл правой кнопкой → Быстрые действия → Настроить… и отметьте каждое (снова — после повторного включения)."
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "Файловый менеджер",
+        "title_macos": "Показывать в меню Finder",
+        "title_linux": "Показывать в меню файлового менеджера",
+        "description_macos": "Добавляет rc-compress в контекстное меню Finder, в раздел «Быстрые действия»: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Выключите это перед удалением приложения. Затем включите их один раз: щелкните файл правой кнопкой → Быстрые действия → Настроить… и отметьте каждое (снова — после повторного включения).",
+        "description_linux": "Добавляет rc-compress в контекстное меню Dolphin (KDE), «Файлов» (GNOME) и Nemo (Cinnamon). Выключите это перед удалением приложения."
       }
     }
   },

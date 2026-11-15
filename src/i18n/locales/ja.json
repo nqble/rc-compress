@@ -445,10 +445,13 @@
         "level_medium": "中程度（ほとんどのドキュメント）",
         "level_high": "高品質（印刷用）"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Finder のメニューに表示",
-        "description": "Finder の右クリックメニューの「クイックアクション」に rc-compress を追加します：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。アプリを削除する前にオフにしてください。 その後、一度だけオンにしてください：ファイルを右クリック →「クイックアクション」→「カスタマイズ…」で、それぞれにチェックを入れます（これを再びオンにした後も同様）。"
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "ファイルマネージャー",
+        "title_macos": "Finder のメニューに表示",
+        "title_linux": "ファイルマネージャーのメニューに表示",
+        "description_macos": "Finder の右クリックメニューの「クイックアクション」に rc-compress を追加します：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。アプリを削除する前にオフにしてください。 その後、一度だけオンにしてください：ファイルを右クリック →「クイックアクション」→「カスタマイズ…」で、それぞれにチェックを入れます（これを再びオンにした後も同様）。",
+        "description_linux": "Dolphin（KDE）、ファイル（GNOME）、Nemo（Cinnamon）の右クリックメニューに rc-compress を追加します。アプリをアンインストールする前にオフにしてください。"
       }
     }
   },

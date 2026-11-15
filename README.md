@@ -43,7 +43,7 @@ say the app is damaged or from an unidentified developer (right-click the app â†
   anything else is skipped. Several photos are compressed at once. How each item works:
   [docs/right-click-menu.md](docs/right-click-menu.md).
 - **PDFs** from the right-click menu or the app window, with Ghostscript bundled (nothing to install).
-- **Coming:** the right-click menu on macOS and Linux.
+- **On macOS and Linux too:** Finder's Quick Actions, and Dolphin, Files and Nemo on Linux.
 
 ## Based on compressO
 

@@ -1,6 +1,7 @@
 // Settings of the file manager's right-click menu: Windows Explorer's (added by the installer, see
-// `src-tauri/windows/hooks.nsh`) and Finder's Quick Actions on macOS (added by the app, with the
-// switch here, see `finder_menu.rs`); the actions themselves are in `explorer_menu.rs`
+// `src-tauri/windows/hooks.nsh`), Finder's Quick Actions on macOS and the Linux file managers'
+// (added by the app, with the switch here, see `file_manager_menu.rs`); the actions themselves are
+// in `explorer_menu.rs`
 import { SelectItem } from '@heroui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
@@ -13,7 +14,10 @@ import Switch from '@/components/Switch'
 import { presetsStore } from '@/stores/presetsStore'
 import { settingsStore } from '@/stores/settingsStore'
 import type { PresetMediaType } from '@/types/preset'
-import { getPlatform } from '@/utils/fs'
+import {
+  fileManagerMenuContext,
+  hasFileManagerMenuSwitch,
+} from '@/utils/fileManagerMenu'
 import { isPdfLevel, PDF_LEVELS } from '@/utils/pdfLevels'
 import {
   getPresetOutput,
@@ -189,23 +193,29 @@ function FitSize() {
   )
 }
 
-/** The switch that adds or removes the Quick Actions in Finder (macOS) */
-function FinderMenu() {
+/** The switch that adds or removes rc-compress's entries in the file manager's menu (macOS & Linux) */
+function FileManagerMenu() {
   const { t } = useTranslation()
-  const { finderMenuEnabled } = useSnapshot(settingsStore)
+  const { fileManagerMenuEnabled } = useSnapshot(settingsStore)
+  const context = fileManagerMenuContext
+  const title = t('settings.rightClickMenu.fileManagerMenu.title', { context })
 
   return (
-    <SettingsSection title={t('settings.rightClickMenu.finderMenu.section')}>
+    <SettingsSection
+      title={t('settings.rightClickMenu.fileManagerMenu.section', { context })}
+    >
       <SettingsRow
-        settingId="finderMenu"
-        title={t('settings.rightClickMenu.finderMenu.title')}
-        description={t('settings.rightClickMenu.finderMenu.description')}
+        settingId="fileManagerMenu"
+        title={title}
+        description={t('settings.rightClickMenu.fileManagerMenu.description', {
+          context,
+        })}
       >
         <Switch
-          aria-label={t('settings.rightClickMenu.finderMenu.title')}
-          isSelected={finderMenuEnabled}
+          aria-label={title}
+          isSelected={fileManagerMenuEnabled}
           onValueChange={(isSelected) => {
-            settingsStore.finderMenuEnabled = isSelected
+            settingsStore.fileManagerMenuEnabled = isSelected
           }}
         />
       </SettingsRow>
@@ -216,7 +226,7 @@ function FinderMenu() {
 function RightClickMenu() {
   return (
     <>
-      {getPlatform().isMacOS && <FinderMenu />}
+      {hasFileManagerMenuSwitch && <FileManagerMenu />}
       <QuickCompressPresets />
       <FitSize />
       <QuickCompressGroups />

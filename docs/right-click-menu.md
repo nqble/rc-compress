@@ -1,8 +1,9 @@
 # The right-click menu
 
-rc-compress adds a **rc-compress** submenu to Windows File Explorer's right-click menu, and four Quick Actions to
-macOS Finder's. On Windows the installer adds it and the uninstaller removes it (`src-tauri/windows/hooks.nsh`); on
-macOS the app adds them itself (`src-tauri/src/sys/finder_menu.rs`). The app handles each item in
+rc-compress adds a **rc-compress** submenu to Windows File Explorer's right-click menu, four Quick Actions to
+macOS Finder's, and entries to the Linux file managers Dolphin, Files and Nemo. On Windows the installer adds it and
+the uninstaller removes it (`src-tauri/windows/hooks.nsh`); on macOS and Linux the app adds them itself
+(`src-tauri/src/sys/finder_menu.rs`, `src-tauri/src/sys/linux_menu.rs`). The app handles each item in
 `src-tauri/src/sys/explorer_menu.rs`.
 
 ## Where it is
@@ -12,7 +13,7 @@ macOS the app adds them itself (`src-tauri/src/sys/finder_menu.rs`). The app han
 | Windows 11 | Right-click a file → **Show more options** → rc-compress. The new, shorter menu only lists signed, packaged apps; rc-compress joins it once it is signed. |
 | Windows 10 | Right-click a file → rc-compress. |
 | macOS | Right-click a file → **Quick Actions** → one of the four below (see "On macOS"). |
-| Linux | Not yet: use the app window, the drop zone or the command line. The Right-click Menu settings page doesn't show on Linux. |
+| Linux | Dolphin (KDE): right-click → rc-compress. Files (GNOME): right-click → **Scripts** → rc-compress. Nemo (Cinnamon): four items in the right-click menu. Thunar (Xfce) and others: not yet (see "On Linux"). |
 
 The menu is offered on every file; rc-compress compresses videos, images, audio and PDFs, and quietly skips
 anything else (a `.txt`, a `.zip`). When none of the chosen files can be compressed, the tray panel opens with a note
@@ -51,6 +52,24 @@ deleting the app, or the Quick Actions stay and do nothing (delete them from `~/
 Quick Action runs the app's executable with the menu option (`compressO --compress-by=30 <files>`), which hands it to
 the app through the command line's connection, starting the app in the background when it isn't running.
 
+## On Linux
+
+The switch **Show in the file manager's menu** (Settings → Right-click Menu, on by default) writes the entries into
+your data folder (`~/.local/share`, or `$XDG_DATA_HOME`) and deletes them when turned off; the app rewrites them at
+each start when they changed, so an AppImage that is moved keeps working. Turn the switch off before uninstalling.
+
+| File manager | Where the entries are | What it shows |
+|---|---|---|
+| Dolphin (KDE) | `kio/servicemenus/rc-compress.desktop` | An **rc-compress** submenu with every item (Compress by and Fit to size as one item per choice: a service menu has one level of submenu only) |
+| Files (GNOME, Nautilus) | `nautilus/scripts/rc-compress/` | **Scripts → rc-compress**, with the same submenus as on Windows |
+| Nemo (Cinnamon) | `nemo/actions/rc-compress-*.nemo_action` | Four items, as Nemo has no submenus: Compress with rc-compress, Compress by 50%, Fit to 10 MB, Remove metadata |
+
+Thunar (Xfce) keeps its custom actions in one file it shares with the ones you made yourself, so rc-compress doesn't
+write to it. There is no **Open in rc-compress…** item: the file manager's **Open With** does that.
+
+Linux has no tray icon, so a right-click item opens the main window, which shows the queue while it compresses
+(when none of the chosen files can be compressed, the window opens with nothing queued).
+
 ## PDFs
 
 PDFs are compressed with the bundled Ghostscript (nothing to install); text stays sharp and selectable, and pictures
@@ -71,6 +90,6 @@ icon) to be saved by hand, and Settings → Right-click Menu shows a warning nex
 
 ## In the background
 
-When rc-compress is closed, a right-click item starts it without opening its window; progress shows on the tray icon (the menu bar icon on macOS)
+When rc-compress is closed, a right-click item starts it without opening its window; progress shows on the tray icon (the menu bar icon on macOS; on Linux, which has none, the main window opens)
 and in its queue. The first start after installing still shows the one-time "Preparing" window while the bundled
 tools are unpacked.

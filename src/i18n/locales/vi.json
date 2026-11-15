@@ -445,10 +445,13 @@
         "level_medium": "Trung bình (hầu hết các tài liệu)",
         "level_high": "Cao (in ấn)"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Hiển thị trong menu Finder",
-        "description": "Thêm rc-compress vào menu chuột phải của Finder, trong mục Tác vụ nhanh: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Hãy tắt mục này trước khi xóa ứng dụng. Sau đó bật chúng một lần: nhấp chuột phải vào tệp → Tác vụ nhanh → Tùy chỉnh… và đánh dấu từng mục (làm lại sau khi bật lại mục này)."
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "Trình quản lý tệp",
+        "title_macos": "Hiển thị trong menu Finder",
+        "title_linux": "Hiển thị trong menu trình quản lý tệp",
+        "description_macos": "Thêm rc-compress vào menu chuột phải của Finder, trong mục Tác vụ nhanh: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Hãy tắt mục này trước khi xóa ứng dụng. Sau đó bật chúng một lần: nhấp chuột phải vào tệp → Tác vụ nhanh → Tùy chỉnh… và đánh dấu từng mục (làm lại sau khi bật lại mục này).",
+        "description_linux": "Thêm rc-compress vào menu chuột phải của Dolphin (KDE), Tệp (GNOME) và Nemo (Cinnamon). Hãy tắt mục này trước khi gỡ cài đặt ứng dụng."
       }
     }
   },

@@ -445,10 +445,13 @@
         "level_medium": "Sedang (sebagian besar dokumen)",
         "level_high": "Tinggi (pencetakan)"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Tampilkan di menu Finder",
-        "description": "Menambahkan rc-compress ke menu klik kanan Finder, di Tindakan Cepat: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Matikan ini sebelum menghapus aplikasi. Lalu nyalakan sekali: klik kanan file → Tindakan Cepat → Sesuaikan…, dan centang masing-masing (lagi setelah Anda menyalakan ini kembali)."
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "Pengelola file",
+        "title_macos": "Tampilkan di menu Finder",
+        "title_linux": "Tampilkan di menu pengelola file",
+        "description_macos": "Menambahkan rc-compress ke menu klik kanan Finder, di Tindakan Cepat: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Matikan ini sebelum menghapus aplikasi. Lalu nyalakan sekali: klik kanan file → Tindakan Cepat → Sesuaikan…, dan centang masing-masing (lagi setelah Anda menyalakan ini kembali).",
+        "description_linux": "Menambahkan rc-compress ke menu klik kanan Dolphin (KDE), File (GNOME), dan Nemo (Cinnamon). Matikan ini sebelum mencopot pemasangan aplikasi."
       }
     }
   },
