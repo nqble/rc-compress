@@ -240,7 +240,11 @@ pub fn prepare_tools(app: AppHandle) {
 fn preview_setup(app: &AppHandle, fails: bool) {
     let steps = [
         ("verifying", "Verifying bundled compression tools…", 0.15),
-        ("extracting", "Extracting compression tools. This may take a moment…", 0.55),
+        (
+            "extracting",
+            "Extracting compression tools. This may take a moment…",
+            0.55,
+        ),
         ("validating", "Checking extracted compression tools…", 1.0),
     ];
     if let Err(error) = show_preparation(app) {

@@ -276,7 +276,11 @@ fn show_queue_progress(app_handle: &AppHandle, items: &[DropQueueItem]) {
 
 /// Adds media to the end of the queue (folders are added as the media they contain), in order.
 /// Media already waiting or being compressed is not added again.
-pub fn add_to_queue(app_handle: &AppHandle, paths: Vec<String>, is_supported: impl Fn(&str) -> bool) {
+pub fn add_to_queue(
+    app_handle: &AppHandle,
+    paths: Vec<String>,
+    is_supported: impl Fn(&str) -> bool,
+) {
     add_to_queue_from(app_handle, paths, is_supported, None);
 }
 
@@ -293,7 +297,7 @@ pub fn add_to_queue_from(
 /// Queues media chosen in the file manager's right-click menu ("Quick Compress", "Compress by N%", "Fit to size",
 /// "Remove metadata", from `menu`): files already collected from the chosen files & folders, and checked (see
 /// `sys::explorer_menu::quick_compress`)
-#[cfg(windows)]
+#[cfg(any(target_os = "macos", windows))]
 pub fn add_files_to_quick_compress_queue(
     app_handle: &AppHandle,
     files: Vec<crate::core::domain::CollectedFile>,

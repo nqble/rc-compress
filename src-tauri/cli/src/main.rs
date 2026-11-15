@@ -46,6 +46,25 @@ async fn run() -> i32 {
         Command::Presets { json } => list_presets(json).await,
         Command::Mcp => mcp::serve().await,
         Command::Compress(parsed) => compress(parsed).await,
+        Command::Menu { action, inputs } => run_menu_action(action, inputs).await,
+    }
+}
+
+/// A right-click menu action: the app queues the files & shows their progress in its tray, so the
+/// command line is done once they are handed over
+async fn run_menu_action(action: String, inputs: Vec<std::path::PathBuf>) -> i32 {
+    let inputs: Vec<String> = inputs
+        .iter()
+        .map(|path| path.display().to_string())
+        .collect();
+    let request = serde_json::json!({ "type": "menu", "action": action, "inputs": inputs });
+    let answer = match client::Connection::open(|_| {}).await {
+        Ok(mut connection) => connection.request(request).await,
+        Err(err) => Err(err),
+    };
+    match answer {
+        Ok(_) => exit_code::SUCCESS,
+        Err(err) => report_error(&err, false),
     }
 }
 

@@ -1,9 +1,9 @@
 use crate::core::domain::{
     AudioConfig, BatchCompressionResult, BatchVideoCompressionProgress,
     BatchVideoIndividualCompressionResult, CustomEvents, MediaMetadataConfig, MediaTransform,
-    MediaTransformCrop, MediaTransformHistory, OutputOption, SubtitleStream, SubtitlesConfig, TargetSize,
-    VideoCompressionConfig, VideoCompressionProgress, VideoCompressionResult, VideoThumbnail,
-    VideoTrimSegment,
+    MediaTransformCrop, MediaTransformHistory, OutputOption, SubtitleStream, SubtitlesConfig,
+    TargetSize, VideoCompressionConfig, VideoCompressionProgress, VideoCompressionResult,
+    VideoThumbnail, VideoTrimSegment,
 };
 use crate::core::ffprobe::FFPROBE;
 use crate::core::hardware_encoder;
@@ -54,7 +54,11 @@ fn audio_output_codec(extension: &str, requested_codec: Option<&str>) -> String 
     };
     match requested_codec {
         Some(codec) if supported_codecs.contains(&codec) => codec.to_string(),
-        _ => supported_codecs.first().copied().unwrap_or("copy").to_string(),
+        _ => supported_codecs
+            .first()
+            .copied()
+            .unwrap_or("copy")
+            .to_string(),
     }
 }
 
@@ -74,7 +78,9 @@ static FFMPEG_ENCODERS: tokio::sync::OnceCell<String> = tokio::sync::OnceCell::c
 async fn has_encoder(app: &AppHandle, name: &str) -> bool {
     let encoders = FFMPEG_ENCODERS
         .get_or_init(|| async {
-            let Ok(mut command) = super::tool_bundle::command(app, "ffmpeg").map(tokio::process::Command::from) else {
+            let Ok(mut command) =
+                super::tool_bundle::command(app, "ffmpeg").map(tokio::process::Command::from)
+            else {
                 return String::new();
             };
             command
@@ -217,7 +223,8 @@ impl FFMPEG {
             if let Some(subs_config) = subtitles_config {
                 let preserve = subs_config.preserve_existing_subtitles.unwrap_or(false);
                 if preserve {
-                    let mut ffprobe = FFPROBE::new(&self.app)?.with_owner_window(&self.owner_window);
+                    let mut ffprobe =
+                        FFPROBE::new(&self.app)?.with_owner_window(&self.owner_window);
                     let streams = ffprobe.get_subtitle_streams(video_path).await?;
                     let count = streams.len();
                     (count, streams)
@@ -277,37 +284,36 @@ impl FFMPEG {
             }
         }
 
-        let subtitle_input_indices: Vec<(usize, String, Option<String>)> = if !is_gif_target
-            && !is_audio_target
-        {
-            if let Some(subs_config) = subtitles_config {
-                if subs_config.should_enable_subtitles.unwrap_or(false) {
-                    let mut indices = Vec::new();
-                    for sub in &subs_config.subtitles {
-                        if let Some(ref sub_path) = sub.subtitle_path {
-                            if sub_path.len() > 0 {
-                                cmd_args.extend_from_slice(&["-i", sub_path]);
-                                let lang = if sub.language == "und" {
-                                    String::new()
-                                } else {
-                                    sub.language.clone()
-                                };
-                                let title = sub.title.as_ref().map(|t| t.trim().to_string());
-                                indices.push((input_index, lang, title));
-                                input_index += 1;
+        let subtitle_input_indices: Vec<(usize, String, Option<String>)> =
+            if !is_gif_target && !is_audio_target {
+                if let Some(subs_config) = subtitles_config {
+                    if subs_config.should_enable_subtitles.unwrap_or(false) {
+                        let mut indices = Vec::new();
+                        for sub in &subs_config.subtitles {
+                            if let Some(ref sub_path) = sub.subtitle_path {
+                                if sub_path.len() > 0 {
+                                    cmd_args.extend_from_slice(&["-i", sub_path]);
+                                    let lang = if sub.language == "und" {
+                                        String::new()
+                                    } else {
+                                        sub.language.clone()
+                                    };
+                                    let title = sub.title.as_ref().map(|t| t.trim().to_string());
+                                    indices.push((input_index, lang, title));
+                                    input_index += 1;
+                                }
                             }
                         }
+                        indices
+                    } else {
+                        Vec::new()
                     }
-                    indices
                 } else {
                     Vec::new()
                 }
             } else {
                 Vec::new()
-            }
-        } else {
-            Vec::new()
-        };
+            };
 
         let should_strip_metadata = strip_metadata.unwrap_or(false);
         if should_strip_metadata {
@@ -385,7 +391,8 @@ impl FFMPEG {
             } else {
                 if preset_name.is_none() {
                     let source_streams = {
-                        let mut ffprobe = FFPROBE::new(&self.app)?.with_owner_window(&self.owner_window);
+                        let mut ffprobe =
+                            FFPROBE::new(&self.app)?.with_owner_window(&self.owner_window);
                         ffprobe.get_video_streams(video_path).await?
                     };
 
@@ -582,8 +589,11 @@ impl FFMPEG {
         let dynamic_range_filter = source_color
             .as_ref()
             .and_then(|(color, _)| video_dynamic_range::filter(dynamic_range_operation, color));
-        let video_post_process =
-            build_ffmpeg_filters(transform_history, dimensions, dynamic_range_filter.as_deref());
+        let video_post_process = build_ffmpeg_filters(
+            transform_history,
+            dimensions,
+            dynamic_range_filter.as_deref(),
+        );
 
         let mut filter_complex_parts: Vec<String> = Vec::new();
         let mut map_video = false;
@@ -1116,7 +1126,8 @@ impl FFMPEG {
         // `hardware_encoder`)
         let cpu_args: Vec<String> = cmd_args.iter().map(|arg| arg.to_string()).collect();
         let hardware_encoder = if preset_name.is_some() && !is_gif_target && !is_audio_target {
-            hardware_encoder::encoder_for(&self.app, &output_codec, self.hardware_acceleration).await
+            hardware_encoder::encoder_for(&self.app, &output_codec, self.hardware_acceleration)
+                .await
         } else {
             None
         };
@@ -1218,11 +1229,7 @@ impl FFMPEG {
             if let Some(encoder) = hardware_encoder.as_ref().filter(|_| !retry_on_cpu) {
                 round_attempts.push((
                     Some(encoder.name),
-                    hardware_encoder::to_hardware_args(
-                        &round_cpu_args,
-                        encoder,
-                        quality_cap_kbps,
-                    ),
+                    hardware_encoder::to_hardware_args(&round_cpu_args, encoder, quality_cap_kbps),
                 ));
             }
             round_attempts.push((None, round_cpu_args));
@@ -1315,7 +1322,11 @@ impl FFMPEG {
                 } else {
                     format!("at {} kbit/s", bitrate)
                 },
-                if on_graphics_card { "graphics card" } else { "CPU" }
+                if on_graphics_card {
+                    "graphics card"
+                } else {
+                    "CPU"
+                }
             );
             let candidate = output_file.with_file_name(format!(
                 "{}.attempt{}.{}",
@@ -1566,7 +1577,10 @@ impl FFMPEG {
             let Some(joined) = running.join_next().await else {
                 break;
             };
-            match joined.map_err(|err| err.to_string()).and_then(|result| result) {
+            match joined
+                .map_err(|err| err.to_string())
+                .and_then(|result| result)
+            {
                 Ok((part_size, range)) => {
                     size += part_size;
                     encoded_length += range.map(|(_, length)| length).unwrap_or(kept_length);
@@ -1638,10 +1652,11 @@ impl FFMPEG {
                 EventListenerGuard::for_app(app_clone.clone(), event_id)
             };
 
-            let mut ffmpeg_instance = match FFMPEG::new(&self.app).map(|f| f.with_owner_window(&self.owner_window)) {
-                Ok(f) => f,
-                Err(e) => return Err(format!("Failed to create ffmpeg instance: {}", e)),
-            };
+            let mut ffmpeg_instance =
+                match FFMPEG::new(&self.app).map(|f| f.with_owner_window(&self.owner_window)) {
+                    Ok(f) => f,
+                    Err(e) => return Err(format!("Failed to create ffmpeg instance: {}", e)),
+                };
 
             let app_clone2 = self.app.clone();
             let batch_id_clone2 = batch_id.to_string();
@@ -1746,9 +1761,7 @@ impl FFMPEG {
             .ok()
             .and_then(|streams| streams.into_iter().next())
             .map(|stream| video_dynamic_range::VideoColor::from(&stream))
-            .filter(|color| {
-                video_dynamic_range::classify(color).dynamic_range == DynamicRange::Hdr
-            })
+            .filter(|color| video_dynamic_range::classify(color).dynamic_range == DynamicRange::Hdr)
             .and_then(|color| video_dynamic_range::filter(DynamicRangeOperation::ToSdr, &color));
         let thumbnail_filter = match hdr_to_sdr {
             Some(filter) => format!("scale=trunc(iw*sar/2)*2:ih,setsar=1,{filter}"),
@@ -1954,7 +1967,8 @@ impl FFMPEG {
 
         let gifski_args_refs: Vec<&str> = gifski_args.iter().map(|s| s.as_str()).collect();
 
-        let image_compressor = ImageCompressor::new(&self.app)?.with_owner_window(&self.owner_window);
+        let image_compressor =
+            ImageCompressor::new(&self.app)?.with_owner_window(&self.owner_window);
         let mut gifski_cmd = image_compressor
             .get_gifski_command()
             .map_err(|e| format!("Gifski command error: {}", e))?;
@@ -2258,7 +2272,10 @@ fn next_target_bitrate(
                 .map(|previous| {
                     let slope = (last.size as f64 - previous.size as f64)
                         / (last.bitrate as f64 - previous.bitrate as f64);
-                    (slope, last.bitrate as f64 + (goal - last.size as f64) / slope)
+                    (
+                        slope,
+                        last.bitrate as f64 + (goal - last.size as f64) / slope,
+                    )
                 })
                 .filter(|(slope, _)| slope.is_finite() && *slope > 0.0)
                 .map(|(_, bitrate)| bitrate);

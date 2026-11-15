@@ -81,7 +81,10 @@ pub fn confirm_quit(
         .message(message)
         .title(title)
         .kind(MessageDialogKind::Warning)
-        .buttons(MessageDialogButtons::OkCancelCustom(texts.quit, cancel_label))
+        .buttons(MessageDialogButtons::OkCancelCustom(
+            texts.quit,
+            cancel_label,
+        ))
         .show(move |is_confirmed| {
             IS_CONFIRMATION_OPEN.store(false, Ordering::SeqCst);
             if is_confirmed {

@@ -27,8 +27,8 @@ use tauri_plugin_fs::FsExt;
 
 use tauri_commands::{
     app::{
-        get_log_file_path, get_open_at_login, log_error, open_files_access_settings, open_login_items_settings, restart_app, set_keep_awake_settings,
-        set_native_texts,
+        get_log_file_path, get_open_at_login, log_error, open_files_access_settings,
+        open_login_items_settings, restart_app, set_keep_awake_settings, set_native_texts,
         set_open_at_login, take_opened_at_login, OPENED_AT_LOGIN_ARG,
     },
     compression_status::{
@@ -43,14 +43,15 @@ use tauri_commands::{
     },
     file_manager::show_item_in_file_manager,
     fs::{
-        copy_file_to_clipboard, copy_files_to_clipboard, delete_cache, delete_file, get_file_metadata, get_image_dimension,
-        get_available_path, get_svg_dimension, move_file, read_files_from_clipboard, read_files_from_paths,
+        copy_file_to_clipboard, copy_files_to_clipboard, delete_cache, delete_file,
+        get_available_path, get_file_metadata, get_image_dimension, get_svg_dimension, move_file,
+        read_files_from_clipboard, read_files_from_paths,
     },
+    hardware_encoder::{get_hardware_encoders, set_hardware_encoding_enabled},
     image::{
         compress_images_batch, convert_svg_to_png, get_exif_info, get_image_basic_info,
         get_image_color_info, get_image_dimensions, prepare_image_preview,
     },
-    hardware_encoder::{get_hardware_encoders, set_hardware_encoding_enabled},
     media::{compress_media_batch, estimate_video_size, set_batch_paused},
     sound::play_completion_sound,
     updater::{check_update, download_and_install_update},
@@ -64,8 +65,9 @@ use tauri_commands::server::{construct_video_url, start_video_server};
 use tauri_commands::file_manager::DbusState;
 
 use tauri_commands::drop_queue::{
-    cancel_drop_queue, clear_finished_drop_queue, is_drop_queue_paused, set_drop_queue_paused, get_drop_queue, remove_drop_queue_item, retry_drop_queue_item,
-    set_auto_compress_enabled, update_drop_queue_item,
+    cancel_drop_queue, clear_finished_drop_queue, get_drop_queue, is_drop_queue_paused,
+    remove_drop_queue_item, retry_drop_queue_item, set_auto_compress_enabled,
+    set_drop_queue_paused, update_drop_queue_item,
 };
 
 #[cfg(any(target_os = "macos", windows))]
@@ -258,7 +260,10 @@ fn on_second_instance(app_handle: &tauri::AppHandle, args: Vec<String>, cwd: Str
         return;
     }
     // Started by the command line while it was starting the app too: nothing to show
-    if args.iter().any(|arg| arg == sys::cli_server::BACKGROUND_ARG) {
+    if args
+        .iter()
+        .any(|arg| arg == sys::cli_server::BACKGROUND_ARG)
+    {
         log::info!("Another background launch of the app, ignored");
         return;
     }
@@ -316,8 +321,7 @@ fn run_explorer_menu_action(
     args: &[String],
     cwd: Option<&str>,
 ) -> bool {
-    use sys::explorer_menu::{action_from_launch_args, quick_compress, MenuAction};
-    use tauri_commands::drop_queue::MenuChoice;
+    use sys::explorer_menu::{action_from_launch_args, menu_choice, quick_compress};
 
     let Some(action) = action_from_launch_args(args) else {
         return false;
@@ -327,23 +331,7 @@ fn run_explorer_menu_action(
         .filter_map(|url| url.to_file_path().ok())
         .map(|path| path.to_string_lossy().to_string())
         .collect();
-    let menu = match action {
-        MenuAction::QuickCompress => MenuChoice::default(),
-        MenuAction::CompressBy(percent) => MenuChoice {
-            target_percent: Some(percent),
-            ..MenuChoice::default()
-        },
-        MenuAction::RemoveMetadata => MenuChoice {
-            remove_metadata: true,
-            ..MenuChoice::default()
-        },
-        MenuAction::FitTo(megabytes) => MenuChoice {
-            fit_to_mb: megabytes,
-            fit_to_custom: megabytes.is_none(),
-            ..MenuChoice::default()
-        },
-    };
-    quick_compress(app_handle, paths, menu);
+    quick_compress(app_handle, paths, menu_choice(action));
     true
 }
 
@@ -567,11 +555,8 @@ async fn run() {
             }
 
             #[cfg(windows)]
-            let is_menu_action = run_explorer_menu_action(
-                app.handle(),
-                &std::env::args().collect::<Vec<_>>(),
-                None,
-            );
+            let is_menu_action =
+                run_explorer_menu_action(app.handle(), &std::env::args().collect::<Vec<_>>(), None);
             #[cfg(not(windows))]
             let is_menu_action = false;
 

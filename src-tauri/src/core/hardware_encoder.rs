@@ -111,10 +111,16 @@ pub async fn available_encoders(app: &AppHandle) -> &'static [HardwareEncoder] {
 
 /// Whether an encoder can encode a single frame here
 async fn works(app: &AppHandle, candidate: &HardwareEncoder) -> bool {
-    let Ok(mut command) = super::tool_bundle::command(app, "ffmpeg").map(tokio::process::Command::from) else {
+    let Ok(mut command) =
+        super::tool_bundle::command(app, "ffmpeg").map(tokio::process::Command::from)
+    else {
         return false;
     };
-    let pixel_format = if candidate.api == Api::Qsv { "nv12" } else { "yuv420p" };
+    let pixel_format = if candidate.api == Api::Qsv {
+        "nv12"
+    } else {
+        "yuv420p"
+    };
     command
         .args([
             "-hide_banner",
@@ -260,7 +266,11 @@ fn quality_args(encoder: &HardwareEncoder, crf: f32) -> Vec<String> {
         // H.264 needs about twice its size to match it, so it is set to about x264's size instead
         // (45, a little lower quality)
         Api::VideoToolbox => {
-            let base = if encoder.codec == Codec::Hevc { 57.0 } else { 45.0 };
+            let base = if encoder.codec == Codec::Hevc {
+                57.0
+            } else {
+                45.0
+            };
             let quality = (base - (crf - 28.0) * 1.75).round().clamp(1.0, 100.0) as u32;
             vec!["-q:v:0".into(), quality.to_string()]
         }
@@ -305,8 +315,20 @@ mod tests {
     }
 
     const CPU_ARGS: [&str; 14] = [
-        "-i", "in.mp4", "-c:v:0", "libx264", "-pix_fmt:v:0", "yuv420p", "-b:v:0", "0", "-preset",
-        "slow", "-crf", "28", "-y", "out.mp4",
+        "-i",
+        "in.mp4",
+        "-c:v:0",
+        "libx264",
+        "-pix_fmt:v:0",
+        "yuv420p",
+        "-b:v:0",
+        "0",
+        "-preset",
+        "slow",
+        "-crf",
+        "28",
+        "-y",
+        "out.mp4",
     ];
 
     #[test]
@@ -340,7 +362,9 @@ mod tests {
         cpu_args[3] = "libx265".to_string();
         cpu_args.splice(4..4, args(&["-tag:v:0", "hvc1"]));
         let hardware = to_hardware_args(&cpu_args, &encoder, None);
-        assert!(hardware.windows(2).any(|pair| pair == ["-c:v:0", "hevc_videotoolbox"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-c:v:0", "hevc_videotoolbox"]));
         assert!(hardware.windows(2).any(|pair| pair == ["-tag:v:0", "hvc1"]));
     }
 
@@ -355,9 +379,13 @@ mod tests {
             encoder("hevc_qsv", Codec::Hevc, Api::Qsv),
         ] {
             let hardware = to_hardware_args(&cpu_args, &encoder, None);
-            assert!(hardware.windows(2).any(|pair| pair == ["-pix_fmt:v:0", "p010le"]));
+            assert!(hardware
+                .windows(2)
+                .any(|pair| pair == ["-pix_fmt:v:0", "p010le"]));
             assert_eq!(
-                hardware.windows(2).any(|pair| pair == ["-profile:v:0", "main10"]),
+                hardware
+                    .windows(2)
+                    .any(|pair| pair == ["-profile:v:0", "main10"]),
                 encoder.api == Api::VideoToolbox
             );
         }
@@ -377,8 +405,12 @@ mod tests {
     fn videotoolbox_quality_is_kept_under_its_cap() {
         let videotoolbox = encoder("h264_videotoolbox", Codec::H264, Api::VideoToolbox);
         let hardware = to_hardware_args(&args(&CPU_ARGS), &videotoolbox, Some(8000));
-        assert!(hardware.windows(2).any(|pair| pair == ["-maxrate:v:0", "8000k"]));
-        assert!(hardware.windows(2).any(|pair| pair == ["-bufsize:v:0", "16000k"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-maxrate:v:0", "8000k"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-bufsize:v:0", "16000k"]));
         // Only on macOS, where it was measured
         let nvenc = encoder("h264_nvenc", Codec::H264, Api::Nvenc);
         let hardware = to_hardware_args(&args(&CPU_ARGS), &nvenc, Some(8000));
@@ -388,12 +420,24 @@ mod tests {
     #[test]
     fn videotoolbox_target_size_peaks_at_its_bitrate() {
         let cpu_args = args(&[
-            "-i", "in.mp4", "-c:v:0", "libx265", "-b:v:0", "7000k", "-maxrate:v:0", "10500k",
-            "-bufsize:v:0", "14000k", "-y", "out.mp4",
+            "-i",
+            "in.mp4",
+            "-c:v:0",
+            "libx265",
+            "-b:v:0",
+            "7000k",
+            "-maxrate:v:0",
+            "10500k",
+            "-bufsize:v:0",
+            "14000k",
+            "-y",
+            "out.mp4",
         ]);
         let videotoolbox = encoder("hevc_videotoolbox", Codec::Hevc, Api::VideoToolbox);
         let hardware = to_hardware_args(&cpu_args, &videotoolbox, Some(8000));
-        assert!(hardware.windows(2).any(|pair| pair == ["-maxrate:v:0", "7000k"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-maxrate:v:0", "7000k"]));
         // Not by quality, so no cap of its own
         assert_eq!(
             hardware.iter().filter(|arg| *arg == "-maxrate:v:0").count(),
@@ -405,7 +449,9 @@ mod tests {
             encoder("hevc_nvenc", Codec::Hevc, Api::Nvenc),
         ] {
             let hardware = to_hardware_args(&cpu_args, &other, None);
-            assert!(hardware.windows(2).any(|pair| pair == ["-maxrate:v:0", "10500k"]));
+            assert!(hardware
+                .windows(2)
+                .any(|pair| pair == ["-maxrate:v:0", "10500k"]));
         }
     }
 
@@ -413,8 +459,12 @@ mod tests {
     fn qsv_uses_nv12_and_global_quality() {
         let encoder = encoder("h264_qsv", Codec::H264, Api::Qsv);
         let hardware = to_hardware_args(&args(&CPU_ARGS), &encoder, None);
-        assert!(hardware.windows(2).any(|pair| pair == ["-pix_fmt:v:0", "nv12"]));
-        assert!(hardware.windows(2).any(|pair| pair == ["-global_quality:v:0", "28"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-pix_fmt:v:0", "nv12"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-global_quality:v:0", "28"]));
         // x264's `-preset slow` is gone; Intel's own `-preset:v:0` is set instead
         assert!(!hardware.iter().any(|arg| arg == "-crf" || arg == "-preset"));
     }
@@ -423,7 +473,9 @@ mod tests {
     fn nvenc_uses_constant_quality() {
         let encoder = encoder("hevc_nvenc", Codec::Hevc, Api::Nvenc);
         let hardware = to_hardware_args(&args(&CPU_ARGS), &encoder, None);
-        assert!(hardware.windows(2).any(|pair| pair == ["-c:v:0", "hevc_nvenc"]));
+        assert!(hardware
+            .windows(2)
+            .any(|pair| pair == ["-c:v:0", "hevc_nvenc"]));
         assert!(hardware.windows(2).any(|pair| pair == ["-cq:v:0", "28"]));
         assert!(!hardware.iter().any(|arg| arg == "-crf" || arg == "-preset"));
     }

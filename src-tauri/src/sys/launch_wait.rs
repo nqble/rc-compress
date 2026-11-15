@@ -79,7 +79,9 @@ pub fn wait_for_starting_instance() {
     if !another_instance_exists(&mutex_name) {
         return;
     }
-    wait_until(TRIES, TRY_INTERVAL, || window_exists(&class_name, &window_name));
+    wait_until(TRIES, TRY_INTERVAL, || {
+        window_exists(&class_name, &window_name)
+    });
 }
 
 #[cfg(test)]

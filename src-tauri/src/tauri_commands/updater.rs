@@ -31,14 +31,14 @@ pub async fn check_update(app_handle: tauri::AppHandle) -> Result<UpdateInfo, St
 
     // The changelog of every version since the installed one, as on GitHub; none when it cannot be
     // read (the app then links to the release on GitHub)
-    let body = match fetch_release_notes(&app_handle.package_info().version, &response.version).await
-    {
-        Ok(notes) => Some(notes),
-        Err(err) => {
-            log::info!("[updater] The release notes could not be loaded: {}", err);
-            None
-        }
-    };
+    let body =
+        match fetch_release_notes(&app_handle.package_info().version, &response.version).await {
+            Ok(notes) => Some(notes),
+            Err(err) => {
+                log::info!("[updater] The release notes could not be loaded: {}", err);
+                None
+            }
+        };
 
     Ok(UpdateInfo {
         is_update_available: true,
@@ -173,7 +173,3 @@ fn release_notes_in(
         .join("\n\n");
     notes
 }
-
-
-
-

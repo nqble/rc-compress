@@ -10,8 +10,8 @@ use serde::Serialize;
 use super::domain::VideoStream;
 
 use super::image_dynamic_range::{
-    DynamicRange, MAX_BOOST_INTENSITY, ImageDynamicRangeConfig as DynamicRangeConfig,
-    ImageDynamicRangeMode as DynamicRangeMode,
+    DynamicRange, ImageDynamicRangeConfig as DynamicRangeConfig,
+    ImageDynamicRangeMode as DynamicRangeMode, MAX_BOOST_INTENSITY,
 };
 
 /// The colour of a video stream, as ffprobe gives it (`None` when untagged)
@@ -291,10 +291,19 @@ mod tests {
     #[test]
     fn classifies_sources() {
         let range = |c: &VideoColor| classify(c).dynamic_range;
-        assert_eq!(range(&color("yuv420p10le", Some("smpte2084"))), DynamicRange::Hdr);
-        assert_eq!(range(&color("yuv420p10le", Some("arib-std-b67"))), DynamicRange::Hdr);
+        assert_eq!(
+            range(&color("yuv420p10le", Some("smpte2084"))),
+            DynamicRange::Hdr
+        );
+        assert_eq!(
+            range(&color("yuv420p10le", Some("arib-std-b67"))),
+            DynamicRange::Hdr
+        );
         assert_eq!(range(&color("yuv420p", Some("bt709"))), DynamicRange::Sdr);
-        assert_eq!(range(&color("yuv420p10le", Some("bt2020-10"))), DynamicRange::Sdr);
+        assert_eq!(
+            range(&color("yuv420p10le", Some("bt2020-10"))),
+            DynamicRange::Sdr
+        );
         assert_eq!(range(&color("yuv420p", None)), DynamicRange::Sdr);
         assert_eq!(range(&color("nv12", Some("unknown"))), DynamicRange::Sdr);
         assert_eq!(range(&color("yuv420p10le", None)), DynamicRange::Unknown);
@@ -302,10 +311,7 @@ mod tests {
 
         let mut iphone = color("yuv420p10le", Some("arib-std-b67"));
         iphone.dolby_vision_profile = Some(8);
-        assert_eq!(
-            classify(&iphone).format,
-            Some(HdrFormat::DolbyVision)
-        );
+        assert_eq!(classify(&iphone).format, Some(HdrFormat::DolbyVision));
         assert_eq!(classify(&iphone).dynamic_range, DynamicRange::Hdr);
         let mut profile_5 = color("yuv420p10le", None);
         profile_5.dolby_vision_profile = Some(5);
@@ -337,14 +343,25 @@ mod tests {
         assert_eq!(operation(&hdr, None, false, true), Operation::ToSdr);
         // Lossless keeps the source as it is unless asked
         assert_eq!(operation(&hdr, None, false, false), Operation::None);
-        assert_eq!(operation(&sdr, Some(&boost), true, true), Operation::Boost(3.0));
+        assert_eq!(
+            operation(&sdr, Some(&boost), true, true),
+            Operation::Boost(3.0)
+        );
         assert_eq!(operation(&sdr, Some(&boost), false, true), Operation::None);
         assert_eq!(operation(&sdr, Some(&boost), true, false), Operation::None);
         assert_eq!(operation(&sdr, Some(&remove), true, true), Operation::None);
         assert_eq!(operation(&hdr, Some(&boost), true, true), Operation::Keep);
-        assert_eq!(operation(&unknown, Some(&boost), true, true), Operation::None);
         assert_eq!(
-            operation(&sdr, Some(&config(DynamicRangeMode::Boost, 9.0)), true, true),
+            operation(&unknown, Some(&boost), true, true),
+            Operation::None
+        );
+        assert_eq!(
+            operation(
+                &sdr,
+                Some(&config(DynamicRangeMode::Boost, 9.0)),
+                true,
+                true
+            ),
             Operation::Boost(8.0)
         );
         assert!(wants_hdr_output(&hdr, None));
@@ -380,10 +397,12 @@ mod tests {
 
         let suffix = if cfg!(windows) { ".exe" } else { "" };
         let tool = |name: &str| {
-            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("bin").join(format!(
-                "compresso_{name}-{}{suffix}",
-                env!("COMPRESSO_TARGET")
-            ))
+            PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+                .join("bin")
+                .join(format!(
+                    "compresso_{name}-{}{suffix}",
+                    env!("COMPRESSO_TARGET")
+                ))
         };
         let (ffmpeg, ffprobe) = (tool("ffmpeg"), tool("ffprobe"));
         struct Work(PathBuf);
@@ -392,10 +411,8 @@ mod tests {
                 let _ = std::fs::remove_dir_all(&self.0);
             }
         }
-        let work = Work(std::env::temp_dir().join(format!(
-            "compresso-video-hdr-{}",
-            std::process::id()
-        )));
+        let work =
+            Work(std::env::temp_dir().join(format!("compresso-video-hdr-{}", std::process::id())));
         std::fs::create_dir_all(&work.0).unwrap();
         let run = |args: &[&str]| {
             let output = Command::new(&ffmpeg)
@@ -419,16 +436,37 @@ mod tests {
                  format=yuv420p10le"
             );
             run(&[
-                "-f", "lavfi", "-i", "color=white:s=64x64:d=0.2", "-vf", &filter, "-c:v",
-                "libx265", "-x265-params", "log-level=error", "-color_primaries", "bt2020",
-                "-color_trc", transfer, "-colorspace", "bt2020nc", path.to_str().unwrap(),
+                "-f",
+                "lavfi",
+                "-i",
+                "color=white:s=64x64:d=0.2",
+                "-vf",
+                &filter,
+                "-c:v",
+                "libx265",
+                "-x265-params",
+                "log-level=error",
+                "-color_primaries",
+                "bt2020",
+                "-color_trc",
+                transfer,
+                "-colorspace",
+                "bt2020nc",
+                path.to_str().unwrap(),
             ]);
             path
         };
         let first_luma = |input: &PathBuf, filter: &str, ten_bit: bool| {
             let pixels = run(&[
-                "-i", input.to_str().unwrap(), "-vf", filter, "-frames:v", "1", "-f",
-                "rawvideo", "-",
+                "-i",
+                input.to_str().unwrap(),
+                "-vf",
+                filter,
+                "-frames:v",
+                "1",
+                "-f",
+                "rawvideo",
+                "-",
             ]);
             if ten_bit {
                 u16::from_le_bytes([pixels[0], pixels[1]]) as i32
@@ -436,8 +474,9 @@ mod tests {
                 pixels[0] as i32
             }
         };
-        let probe = |path: &PathBuf| {
-            let output = Command::new(&ffprobe)
+        let probe =
+            |path: &PathBuf| {
+                let output = Command::new(&ffprobe)
                 .args([
                     "-v", "error", "-select_streams", "v:0", "-show_entries",
                     "stream=pix_fmt,color_transfer,color_primaries:stream_side_data=side_data_type",
@@ -445,10 +484,13 @@ mod tests {
                 ])
                 .output()
                 .unwrap();
-            String::from_utf8_lossy(&output.stdout).to_string()
-        };
+                String::from_utf8_lossy(&output.stdout).to_string()
+            };
 
-        for (transfer, format) in [("smpte2084", HdrFormat::Hdr10), ("arib-std-b67", HdrFormat::Hlg)] {
+        for (transfer, format) in [
+            ("smpte2084", HdrFormat::Hdr10),
+            ("arib-std-b67", HdrFormat::Hlg),
+        ] {
             let input = source(transfer);
             let color = VideoColor {
                 pix_fmt: "yuv420p10le".into(),
@@ -466,9 +508,18 @@ mod tests {
             assert!((205..=228).contains(&luma), "{transfer} to SDR: {luma}");
 
             let output = work.0.join(format!("{transfer}-sdr.mp4"));
-            let mut args = vec!["-i".to_string(), input.to_str().unwrap().into(), "-vf".into(), filter];
+            let mut args = vec![
+                "-i".to_string(),
+                input.to_str().unwrap().into(),
+                "-vf".into(),
+                filter,
+            ];
             args.extend(color_args(Operation::ToSdr, &color));
-            args.extend(["-c:v".into(), "libx264".into(), output.to_str().unwrap().into()]);
+            args.extend([
+                "-c:v".into(),
+                "libx264".into(),
+                output.to_str().unwrap().into(),
+            ]);
             run(&args.iter().map(String::as_str).collect::<Vec<_>>());
             let probed = probe(&output);
             assert!(probed.contains("pix_fmt=yuv420p|"), "{probed}");
@@ -480,21 +531,38 @@ mod tests {
             let mut args = vec!["-i".to_string(), input.to_str().unwrap().into()];
             args.extend(color_args(Operation::Keep, &color));
             args.extend(
-                ["-c:v", "libx265", "-x265-params", "log-level=error", "-pix_fmt", "yuv420p10le"]
-                    .map(String::from),
+                [
+                    "-c:v",
+                    "libx265",
+                    "-x265-params",
+                    "log-level=error",
+                    "-pix_fmt",
+                    "yuv420p10le",
+                ]
+                .map(String::from),
             );
             args.push(output.to_str().unwrap().into());
             run(&args.iter().map(String::as_str).collect::<Vec<_>>());
             let probed = probe(&output);
             assert!(probed.contains("pix_fmt=yuv420p10le"), "{probed}");
-            assert!(probed.contains(&format!("color_transfer={transfer}")), "{probed}");
+            assert!(
+                probed.contains(&format!("color_transfer={transfer}")),
+                "{probed}"
+            );
         }
 
         // HDR Boost: SDR white at 203 nits × the intensity, in PQ (10-bit limited range codes)
         let sdr = work.0.join("sdr.mp4");
         run(&[
-            "-f", "lavfi", "-i", "color=white:s=64x64:d=0.2", "-c:v", "libx264", "-pix_fmt",
-            "yuv420p", sdr.to_str().unwrap(),
+            "-f",
+            "lavfi",
+            "-i",
+            "color=white:s=64x64:d=0.2",
+            "-c:v",
+            "libx264",
+            "-pix_fmt",
+            "yuv420p",
+            sdr.to_str().unwrap(),
         ]);
         let color = VideoColor {
             pix_fmt: "yuv420p".into(),

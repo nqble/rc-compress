@@ -9,8 +9,8 @@ use axum::{
 use serde::Deserialize;
 use std::path::{Component, PathBuf};
 use std::sync::Mutex;
-use tauri::{AppHandle, Manager};
 use std::time::Duration;
+use tauri::{AppHandle, Manager};
 use tokio::io::{AsyncReadExt, AsyncSeekExt};
 use tokio::net::TcpListener;
 use tokio::sync::broadcast;
@@ -128,7 +128,10 @@ async fn serve_video(
             .any(|component| matches!(component, Component::ParentDir))
         && context.app_handle.asset_protocol_scope().is_allowed(&path);
     if !is_allowed {
-        log::error!("Video request for a file CompressO did not open: {:?}", path);
+        log::error!(
+            "Video request for a file CompressO did not open: {:?}",
+            path
+        );
         return Err(StatusCode::FORBIDDEN);
     }
 

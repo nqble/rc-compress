@@ -243,7 +243,8 @@ fn render(shown: Shown) -> Image<'static> {
             let (mut color, mut opacity) = ([0f32; 3], 0f32);
             for sample_y in 0..SUPERSAMPLING {
                 for sample_x in 0..SUPERSAMPLING {
-                    let index = (y * SUPERSAMPLING + sample_y) * canvas + x * SUPERSAMPLING + sample_x;
+                    let index =
+                        (y * SUPERSAMPLING + sample_y) * canvas + x * SUPERSAMPLING + sample_x;
                     let pixel = pixels[index as usize];
                     for i in 0..3 {
                         color[i] += pixel.0[i];

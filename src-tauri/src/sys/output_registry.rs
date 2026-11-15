@@ -94,6 +94,8 @@ pub fn is_output(app_handle: &AppHandle, path: &Path) -> bool {
     let Some(fingerprint) = fingerprint(path) else {
         return false;
     };
-    with_fingerprints(app_handle, |fingerprints| fingerprints.contains(&fingerprint))
-        .unwrap_or(false)
+    with_fingerprints(app_handle, |fingerprints| {
+        fingerprints.contains(&fingerprint)
+    })
+    .unwrap_or(false)
 }
