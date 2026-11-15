@@ -445,10 +445,13 @@
         "level_medium": "Orta (çoğu belge)",
         "level_high": "Yüksek (yazdırma)"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Finder menüsünde göster",
-        "description": "rc-compress'i Finder'ın sağ tık menüsüne, Hızlı Eylemler altına ekler: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Uygulamayı silmeden önce bunu kapatın. Ardından bunları bir kez açın: bir dosyaya sağ tıklayın → Hızlı Eylemler → Özelleştir… ve her birini işaretleyin (bunu yeniden açtıktan sonra tekrar)."
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "Dosya yöneticisi",
+        "title_macos": "Finder menüsünde göster",
+        "title_linux": "Dosya yöneticisinin menüsünde göster",
+        "description_macos": "rc-compress'i Finder'ın sağ tık menüsüne, Hızlı Eylemler altına ekler: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Uygulamayı silmeden önce bunu kapatın. Ardından bunları bir kez açın: bir dosyaya sağ tıklayın → Hızlı Eylemler → Özelleştir… ve her birini işaretleyin (bunu yeniden açtıktan sonra tekrar).",
+        "description_linux": "rc-compress'i Dolphin (KDE), Dosyalar (GNOME) ve Nemo (Cinnamon) sağ tık menüsüne ekler. Uygulamayı kaldırmadan önce bunu kapatın."
       }
     }
   },

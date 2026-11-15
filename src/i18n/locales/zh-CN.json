@@ -445,10 +445,13 @@
         "level_medium": "中等（大多数文档）",
         "level_high": "高（打印）"
       },
-      "finderMenu": {
-        "section": "访达",
-        "title": "在访达菜单中显示",
-        "description": "将 rc-compress 添加到访达右键菜单的“快速操作”中：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。删除应用前请先关闭此项。 然后启用一次：右键点按文件 → 快速操作 → 自定…，勾选每一项（重新打开此项后需再次勾选）。"
+      "fileManagerMenu": {
+        "section_macos": "访达",
+        "section_linux": "文件管理器",
+        "title_macos": "在访达菜单中显示",
+        "title_linux": "在文件管理器菜单中显示",
+        "description_macos": "将 rc-compress 添加到访达右键菜单的“快速操作”中：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。删除应用前请先关闭此项。 然后启用一次：右键点按文件 → 快速操作 → 自定…，勾选每一项（重新打开此项后需再次勾选）。",
+        "description_linux": "将 rc-compress 添加到 Dolphin（KDE）、文件（GNOME）和 Nemo（Cinnamon）的右键菜单中。卸载应用前请先关闭此项。"
       }
     }
   },

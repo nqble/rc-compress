@@ -264,7 +264,7 @@ fn on_second_instance(app_handle: &tauri::AppHandle, args: Vec<String>, cwd: Str
     }
     // "Quick Compress" in the right-click menu: compressed in the background, the window stays as
     // it is
-    #[cfg(windows)]
+    #[cfg(any(windows, target_os = "linux"))]
     if run_explorer_menu_action(app_handle, &args, Some(&cwd)) {
         return;
     }
@@ -309,8 +309,9 @@ fn on_second_instance(app_handle: &tauri::AppHandle, args: Vec<String>, cwd: Str
 }
 
 /// Runs the right-click menu action a launch asks for (see `sys::explorer_menu`) on its files.
-/// Returns whether it was one, so the launch isn't also handled as "Open with".
-#[cfg(windows)]
+/// Returns whether it was one, so the launch isn't also handled as "Open with". On macOS such a launch
+/// runs the command line instead (see `run_cli_if_asked`).
+#[cfg(any(windows, target_os = "linux"))]
 fn run_explorer_menu_action(
     app_handle: &tauri::AppHandle,
     args: &[String],
@@ -549,13 +550,13 @@ async fn run() {
                 }
             }
 
-            #[cfg(windows)]
+            #[cfg(any(windows, target_os = "linux"))]
             let is_menu_action = run_explorer_menu_action(
                 app.handle(),
                 &std::env::args().collect::<Vec<_>>(),
                 None,
             );
-            #[cfg(not(windows))]
+            #[cfg(target_os = "macos")]
             let is_menu_action = false;
 
             #[cfg(any(windows, target_os = "linux"))]
@@ -584,7 +585,7 @@ async fn run() {
             sys::cli_settings::sync_cli_settings,
             sys::cli_server::take_background_launch,
             sys::explorer_menu::take_skipped_note,
-            sys::finder_menu::set_finder_menu_enabled,
+            sys::file_manager_menu::set_file_manager_menu_enabled,
             sys::cli_install::get_cli_install_status,
             sys::cli_install::install_cli,
             sys::cli_install::uninstall_cli,

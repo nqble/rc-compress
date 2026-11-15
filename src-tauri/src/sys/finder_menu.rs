@@ -6,7 +6,7 @@
 //! Mac app has no installer) and deletes them when it is turned off.
 //!
 //! Finder offers no submenus here, so "Compress by…" and "Fit to size…" ask with a list.
-//! Windows: the installer's Explorer entries instead (`src-tauri/windows/hooks.nsh`). Linux: not yet.
+//! Windows: the installer's Explorer entries instead (`src-tauri/windows/hooks.nsh`). Linux: `linux_menu.rs`.
 use std::path::{Path, PathBuf};
 
 /// One Quick Action: its name in Finder & the shell script it runs (`APP` is the executable)
@@ -275,14 +275,9 @@ fn workflow(script: &str) -> String {
     )
 }
 
-/// Adds (`true`) or removes the Quick Actions; called at each start & when the switch changes,
-/// so they follow the app when it is moved
-#[tauri::command]
-pub async fn set_finder_menu_enabled(enabled: bool) -> Result<(), String> {
-    tauri::async_runtime::spawn_blocking(move || platform::apply(enabled))
-        .await
-        .map_err(|err| err.to_string())?
-}
+/// Adds (`true`) or removes the Quick Actions (see `file_manager_menu.rs`)
+#[cfg(target_os = "macos")]
+pub use platform::apply;
 
 #[cfg(target_os = "macos")]
 mod platform {
@@ -347,13 +342,6 @@ mod platform {
             log::info!("[finder-menu] Quick Actions removed");
         }
         Ok(is_changed)
-    }
-}
-
-#[cfg(not(target_os = "macos"))]
-mod platform {
-    pub fn apply(_enabled: bool) -> Result<(), String> {
-        Err("Quick Actions are only on macOS".to_string())
     }
 }
 

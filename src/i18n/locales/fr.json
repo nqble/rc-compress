@@ -445,10 +445,13 @@
         "level_medium": "Moyen (la plupart des documents)",
         "level_high": "Élevé (impression)"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Afficher dans le menu du Finder",
-        "description": "Ajoute rc-compress au menu contextuel du Finder, sous Actions rapides : “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Désactivez cette option avant de supprimer l'app. Activez-les ensuite une fois : clic droit sur un fichier → Actions rapides → Personnaliser…, puis cochez chacune (à refaire après avoir réactivé cette option)."
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "Gestionnaire de fichiers",
+        "title_macos": "Afficher dans le menu du Finder",
+        "title_linux": "Afficher dans le menu du gestionnaire de fichiers",
+        "description_macos": "Ajoute rc-compress au menu contextuel du Finder, sous Actions rapides : “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Désactivez cette option avant de supprimer l'app. Activez-les ensuite une fois : clic droit sur un fichier → Actions rapides → Personnaliser…, puis cochez chacune (à refaire après avoir réactivé cette option).",
+        "description_linux": "Ajoute rc-compress au menu contextuel de Dolphin (KDE), Fichiers (GNOME) et Nemo (Cinnamon). Désactivez cette option avant de désinstaller l'app."
       }
     }
   },

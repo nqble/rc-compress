@@ -445,10 +445,13 @@
         "level_medium": "中等（大多數文件）",
         "level_high": "高（列印）"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "在 Finder 選單中顯示",
-        "description": "將 rc-compress 加入 Finder 右鍵選單的「快速動作」：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。刪除 App 前請先關閉此項。 接著啟用一次：在檔案上按右鍵 → 快速動作 → 自訂…，勾選每一項（重新開啟此項後需再次勾選）。"
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "檔案管理員",
+        "title_macos": "在 Finder 選單中顯示",
+        "title_linux": "在檔案管理員選單中顯示",
+        "description_macos": "將 rc-compress 加入 Finder 右鍵選單的「快速動作」：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。刪除 App 前請先關閉此項。 接著啟用一次：在檔案上按右鍵 → 快速動作 → 自訂…，勾選每一項（重新開啟此項後需再次勾選）。",
+        "description_linux": "將 rc-compress 加入 Dolphin（KDE）、檔案（GNOME）和 Nemo（Cinnamon）的右鍵選單。解除安裝 App 前請先關閉此項。"
       }
     }
   },

@@ -49,11 +49,14 @@ pub fn is_background_launch() -> bool {
 
 /// Whether the app was started by the command line (or by rc-compress's right-click menu, see
 /// `explorer_menu::is_menu_launch`), so its first main window stays hidden: true once, so a main
-/// window opened later (e.g. from the menu bar) is shown
+/// window opened later (e.g. from the menu bar) is shown. On Linux a menu launch shows the window,
+/// which compresses the queue there (no tray icon).
 #[tauri::command]
 pub fn take_background_launch() -> bool {
     static IS_TAKEN: AtomicBool = AtomicBool::new(false);
-    let is_quiet_launch = is_background_launch() || crate::sys::explorer_menu::is_menu_launch();
+    let is_quiet_menu_launch =
+        cfg!(not(target_os = "linux")) && crate::sys::explorer_menu::is_menu_launch();
+    let is_quiet_launch = is_background_launch() || is_quiet_menu_launch;
     !IS_TAKEN.swap(true, Ordering::SeqCst) && is_quiet_launch
 }
 
@@ -284,7 +287,6 @@ where
 }
 
 /// Queues a right-click menu action's files, as a launch from the menu does on Windows
-#[cfg(any(target_os = "macos", windows))]
 fn run_menu_action(app_handle: &AppHandle, action: &str, inputs: Vec<String>) -> serde_json::Value {
     use crate::sys::explorer_menu::{action_from_launch_args, menu_choice, quick_compress};
 
@@ -298,12 +300,6 @@ fn run_menu_action(app_handle: &AppHandle, action: &str, inputs: Vec<String>) ->
     keep_app_open();
     quick_compress(app_handle, inputs, menu_choice(menu_action));
     json!({ "type": "menuQueued" })
-}
-
-#[cfg(target_os = "linux")]
-fn run_menu_action(_: &AppHandle, _: &str, _: Vec<String>) -> serde_json::Value {
-    let message = "The right-click menu is not available on Linux yet.";
-    error_message("notAvailable", message)
 }
 
 fn error_message(code: &str, message: &str) -> serde_json::Value {

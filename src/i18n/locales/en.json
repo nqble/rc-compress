@@ -445,10 +445,13 @@
         "level_medium": "Medium (most documents)",
         "level_high": "High (printing)"
       },
-      "finderMenu": {
-        "section": "Finder",
-        "title": "Show in Finder's menu",
-        "description": "Adds rc-compress to Finder's right-click menu, under Quick Actions: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Turn this off before you delete the app. Then turn them on once: right-click a file → Quick Actions → Customize…, and tick each one (again after you turn this back on)."
+      "fileManagerMenu": {
+        "section_macos": "Finder",
+        "section_linux": "File manager",
+        "title_macos": "Show in Finder's menu",
+        "title_linux": "Show in the file manager's menu",
+        "description_macos": "Adds rc-compress to Finder's right-click menu, under Quick Actions: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Turn this off before you delete the app. Then turn them on once: right-click a file → Quick Actions → Customize…, and tick each one (again after you turn this back on).",
+        "description_linux": "Adds rc-compress to the right-click menu of Dolphin (KDE), Files (GNOME) and Nemo (Cinnamon). Turn this off before you uninstall the app."
       }
     }
   },

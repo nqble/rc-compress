@@ -47,7 +47,7 @@ type SettingsPage = {
   fillsHeight?: boolean
 }
 
-const { isMacOS, isWindows } = getPlatform()
+const { isMacOS } = getPlatform()
 
 const SETTINGS_GROUPS: {
   /** Translated (`settings.groups`) */
@@ -83,16 +83,12 @@ const SETTINGS_GROUPS: {
           ]
         : []),
       // The right-click menu: Explorer's on Windows (added by the installer), Finder's Quick Actions
-      // on macOS (added by the app); not on Linux yet (see `explorer_menu.rs`)
-      ...(isWindows || isMacOS
-        ? [
-            {
-              id: 'rightClickMenu' as const,
-              icon: 'fileExplorer' as const,
-              Component: RightClickMenu,
-            },
-          ]
-        : []),
+      // on macOS and Dolphin's, Files' & Nemo's on Linux (added by the app; see `explorer_menu.rs`)
+      {
+        id: 'rightClickMenu',
+        icon: 'fileExplorer',
+        Component: RightClickMenu,
+      },
       // Compressed by the drop zone's queue (by the main window on Linux, while it is open)
       {
         id: 'watchedFolders',
