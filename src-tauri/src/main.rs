@@ -584,6 +584,7 @@ async fn run() {
             sys::cli_settings::sync_cli_settings,
             sys::cli_server::take_background_launch,
             sys::explorer_menu::take_skipped_note,
+            sys::finder_menu::set_finder_menu_enabled,
             sys::cli_install::get_cli_install_status,
             sys::cli_install::install_cli,
             sys::cli_install::uninstall_cli,

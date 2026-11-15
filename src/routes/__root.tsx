@@ -13,6 +13,7 @@ import {
 } from '@/hooks/useAutoCompressSync'
 import { useClipboardWatchSync } from '@/hooks/useClipboardWatchSync'
 import { useCliSettingsSync } from '@/hooks/useCliSettingsSync'
+import { useFinderMenuSync } from '@/hooks/useFinderMenuSync'
 import { useHardwareEncodingSync } from '@/hooks/useHardwareEncoding'
 import { useKeepAwakeSync } from '@/hooks/useKeepAwakeSync'
 import { watchPrimaryColor } from '@/hooks/usePrimaryColor'
@@ -62,6 +63,7 @@ function MainRoot() {
   useHardwareEncodingSync()
   useKeepAwakeSync()
   useCliSettingsSync()
+  useFinderMenuSync()
   const { showMenuBarIcon } = useSnapshot(settingsStore)
 
   useEffect(() => {

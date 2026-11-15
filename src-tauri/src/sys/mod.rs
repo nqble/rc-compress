@@ -8,6 +8,9 @@ pub mod cli_server;
 pub mod cli_settings;
 pub mod compressible;
 pub mod early_launches;
+// The Quick Actions' files are made & tested on every system, written on macOS
+#[cfg_attr(not(target_os = "macos"), allow(dead_code))]
+pub mod finder_menu;
 pub mod fs;
 pub mod history;
 pub mod keep_awake;

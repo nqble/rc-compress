@@ -444,6 +444,11 @@
         "level_small": "작음 (화면, 이메일)",
         "level_medium": "중간 (대부분의 문서)",
         "level_high": "높음 (인쇄)"
+      },
+      "finderMenu": {
+        "section": "Finder",
+        "title": "Finder 메뉴에 표시",
+        "description": "Finder의 오른쪽 클릭 메뉴에 있는 빠른 동작에 rc-compress를 추가합니다: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. 앱을 삭제하기 전에 끄세요."
       }
     }
   },
