@@ -201,6 +201,18 @@ fn note_skipped_files(app_handle: &tauri::AppHandle, count: usize) {
     });
 }
 
+#[cfg(any(target_os = "macos", windows))]
+fn show_skipped_note(app_handle: &tauri::AppHandle) {
+    use tauri::Emitter;
+
+    crate::tray_popover::ensure_tray_window(app_handle);
+    let _ = app_handle.emit_to(
+        crate::tray_popover::TRAY_WINDOW_LABEL,
+        NOTHING_TO_COMPRESS_EVENT,
+        (),
+    );
+}
+
 /// Linux has no tray: the brief notice says so instead (see `menu_notice.rs`), asking for the count
 /// when it loads (`take_skipped_note`)
 #[cfg(target_os = "linux")]
