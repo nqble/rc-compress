@@ -444,6 +444,11 @@
         "level_small": "小（屏幕、电子邮件）",
         "level_medium": "中等（大多数文档）",
         "level_high": "高（打印）"
+      },
+      "finderMenu": {
+        "section": "访达",
+        "title": "在访达菜单中显示",
+        "description": "将 rc-compress 添加到访达右键菜单的“快速操作”中：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。删除应用前请先关闭此项。"
       }
     }
   },

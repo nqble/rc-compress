@@ -444,6 +444,11 @@
         "level_small": "Nhỏ (màn hình, email)",
         "level_medium": "Trung bình (hầu hết các tài liệu)",
         "level_high": "Cao (in ấn)"
+      },
+      "finderMenu": {
+        "section": "Finder",
+        "title": "Hiển thị trong menu Finder",
+        "description": "Thêm rc-compress vào menu chuột phải của Finder, trong mục Tác vụ nhanh: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Hãy tắt mục này trước khi xóa ứng dụng."
       }
     }
   },

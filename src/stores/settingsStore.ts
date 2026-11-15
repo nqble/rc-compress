@@ -65,6 +65,11 @@ export type SettingsState = {
    */
   preserveFolderStructure: boolean
   /**
+   * rc-compress's Quick Actions in Finder's right-click menu (macOS, on by default: the menu is the
+   * app's point). See `finder_menu.rs`.
+   */
+  finderMenuEnabled: boolean
+  /**
    * Auto-save outputs even when they are larger than their original (on by default). When off,
    * such outputs are left for the Save button.
    */
@@ -167,6 +172,9 @@ function readSettings(): SettingsState {
     // Only an explicit opt-out turns it off
     preserveFolderStructure:
       localStorage.getItem(constants.preserveFolderStructure) !== 'false',
+    // Only an explicit opt-out turns it off
+    finderMenuEnabled:
+      localStorage.getItem(constants.finderMenuEnabled) !== 'false',
     // Only an explicit opt-out turns it off
     saveLargerOutputs:
       localStorage.getItem(constants.saveLargerOutputs) !== 'false',
@@ -309,6 +317,10 @@ subscribe(settingsStore, () => {
   localStorage.setItem(
     constants.preserveFolderStructure,
     String(settingsStore.preserveFolderStructure),
+  )
+  localStorage.setItem(
+    constants.finderMenuEnabled,
+    String(settingsStore.finderMenuEnabled),
   )
   localStorage.setItem(
     constants.saveLargerOutputs,

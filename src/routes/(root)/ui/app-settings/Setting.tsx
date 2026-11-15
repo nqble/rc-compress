@@ -82,8 +82,9 @@ const SETTINGS_GROUPS: {
             },
           ]
         : []),
-      // The installer adds the right-click menu on Windows only, for now (see `explorer_menu.rs`)
-      ...(isWindows
+      // The right-click menu: Explorer's on Windows (added by the installer), Finder's Quick Actions
+      // on macOS (added by the app); not on Linux yet (see `explorer_menu.rs`)
+      ...(isWindows || isMacOS
         ? [
             {
               id: 'rightClickMenu' as const,
