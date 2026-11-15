@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "Finder",
         "title": "Pokaż w menu Findera",
-        "description": "Dodaje rc-compress do menu kontekstowego Findera, w Szybkich czynnościach: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Wyłącz to przed usunięciem aplikacji."
+        "description": "Dodaje rc-compress do menu kontekstowego Findera, w Szybkich czynnościach: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Wyłącz to przed usunięciem aplikacji. Następnie włącz je raz: kliknij plik prawym przyciskiem → Szybkie czynności → Dostosuj… i zaznacz każdą (ponownie po ponownym włączeniu tej opcji)."
       }
     }
   },

@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "访达",
         "title": "在访达菜单中显示",
-        "description": "将 rc-compress 添加到访达右键菜单的“快速操作”中：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。删除应用前请先关闭此项。"
+        "description": "将 rc-compress 添加到访达右键菜单的“快速操作”中：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。删除应用前请先关闭此项。 然后启用一次：右键点按文件 → 快速操作 → 自定…，勾选每一项（重新打开此项后需再次勾选）。"
       }
     }
   },

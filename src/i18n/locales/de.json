@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "Finder",
         "title": "Im Finder-Menü anzeigen",
-        "description": "Fügt rc-compress dem Kontextmenü des Finders unter „Schnellaktionen“ hinzu: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Schalte dies aus, bevor du die App löschst."
+        "description": "Fügt rc-compress dem Kontextmenü des Finders unter „Schnellaktionen“ hinzu: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Schalte dies aus, bevor du die App löschst. Schalte sie danach einmal ein: Rechtsklick auf eine Datei → Schnellaktionen → Anpassen … und hake jede an (erneut, nachdem du dies wieder einschaltest)."
       }
     }
   },

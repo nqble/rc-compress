@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "Finder",
         "title": "Finder menüsünde göster",
-        "description": "rc-compress'i Finder'ın sağ tık menüsüne, Hızlı Eylemler altına ekler: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Uygulamayı silmeden önce bunu kapatın."
+        "description": "rc-compress'i Finder'ın sağ tık menüsüne, Hızlı Eylemler altına ekler: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Uygulamayı silmeden önce bunu kapatın. Ardından bunları bir kez açın: bir dosyaya sağ tıklayın → Hızlı Eylemler → Özelleştir… ve her birini işaretleyin (bunu yeniden açtıktan sonra tekrar)."
       }
     }
   },
