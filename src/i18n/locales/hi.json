@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "Finder",
         "title": "Finder के मेनू में दिखाएँ",
-        "description": "Finder के राइट-क्लिक मेनू में, त्वरित क्रियाएँ के अंतर्गत rc-compress जोड़ता है: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”। ऐप हटाने से पहले इसे बंद करें।"
+        "description": "Finder के राइट-क्लिक मेनू में, त्वरित क्रियाएँ के अंतर्गत rc-compress जोड़ता है: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”। ऐप हटाने से पहले इसे बंद करें। फिर इन्हें एक बार चालू करें: किसी फ़ाइल पर राइट-क्लिक करें → त्वरित क्रियाएँ → कस्टमाइज़ करें…, और हर एक पर टिक करें (इसे फिर से चालू करने के बाद दोबारा)।"
       }
     }
   },

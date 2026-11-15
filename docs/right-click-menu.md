@@ -44,7 +44,9 @@ Finder has no submenus for Quick Actions, so the menu has four items, and two of
 
 There is no **Open in rc-compress…** item: Finder's **Open With** does that. The switch **Show in Finder's menu**
 (Settings → Right-click Menu, on by default) adds the Quick Actions to `~/Library/Services` and removes them when
-turned off; the app rewrites them at each start, so they follow it when it is moved. Turn the switch off before
+turned off; the app rewrites them at each start when they changed, so they follow it when it is moved. macOS lists
+them unticked: turn each one on once, in Finder → right-click a file → **Quick Actions** → **Customize…**, and again
+after the switch has been turned off and on (that writes them anew). Turn the switch off before
 deleting the app, or the Quick Actions stay and do nothing (delete them from `~/Library/Services` by hand). Each
 Quick Action runs the app's executable with the menu option (`compressO --compress-by=30 <files>`), which hands it to
 the app through the command line's connection, starting the app in the background when it isn't running.

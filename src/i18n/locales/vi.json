@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "Finder",
         "title": "Hiển thị trong menu Finder",
-        "description": "Thêm rc-compress vào menu chuột phải của Finder, trong mục Tác vụ nhanh: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Hãy tắt mục này trước khi xóa ứng dụng."
+        "description": "Thêm rc-compress vào menu chuột phải của Finder, trong mục Tác vụ nhanh: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Hãy tắt mục này trước khi xóa ứng dụng. Sau đó bật chúng một lần: nhấp chuột phải vào tệp → Tác vụ nhanh → Tùy chỉnh… và đánh dấu từng mục (làm lại sau khi bật lại mục này)."
       }
     }
   },

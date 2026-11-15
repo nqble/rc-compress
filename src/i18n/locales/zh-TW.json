@@ -448,7 +448,7 @@
       "finderMenu": {
         "section": "Finder",
         "title": "在 Finder 選單中顯示",
-        "description": "將 rc-compress 加入 Finder 右鍵選單的「快速動作」：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。刪除 App 前請先關閉此項。"
+        "description": "將 rc-compress 加入 Finder 右鍵選單的「快速動作」：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。刪除 App 前請先關閉此項。 接著啟用一次：在檔案上按右鍵 → 快速動作 → 自訂…，勾選每一項（重新開啟此項後需再次勾選）。"
       }
     }
   },
