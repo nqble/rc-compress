@@ -1162,5 +1162,19 @@
     "videoBoostFormats": "L’amplification HDR est disponible uniquement pour les vidéos MP4, MOV, MKV, WebM et TS utilisant le codec H.265, VP9 ou AV1.",
     "videoBoostLossless": "L’amplification HDR n’est pas disponible avec la compression sans perte.",
     "videoSdrOnly": "Ce format ou ce codec ne peut pas stocker le HDR ; la vidéo sera donc convertie en SDR."
+  },
+  "menuNotice": {
+    "starting": "Démarrage…",
+    "compressing_one": "Compression d'1 fichier…",
+    "compressing_many": "Compression de {{count}} fichiers…",
+    "compressing_other": "Compression de {{count}} fichiers…",
+    "done_one": "1 fichier compressé.",
+    "done_many": "{{count}} fichiers compressés.",
+    "done_other": "{{count}} fichiers compressés.",
+    "failed_one": "1 fichier n'a pas pu être compressé.",
+    "failed_many": "{{count}} fichiers n'ont pas pu être compressés.",
+    "failed_other": "{{count}} fichiers n'ont pas pu être compressés.",
+    "open": "Ouvrir rc-compress",
+    "close": "Fermer"
   }
 }

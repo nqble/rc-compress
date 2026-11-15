@@ -1179,5 +1179,22 @@
     "videoBoostFormats": "Усиление HDR доступно только для видео MP4, MOV, MKV, WebM и TS с кодеком H.265, VP9 или AV1.",
     "videoBoostLossless": "Усиление HDR недоступно при сжатии без потерь.",
     "videoSdrOnly": "Этот формат или кодек не может хранить HDR, поэтому видео будет преобразовано в SDR."
+  },
+  "menuNotice": {
+    "starting": "Запуск…",
+    "compressing_one": "Файлов: {{count}} — идёт сжатие…",
+    "compressing_few": "Файлов: {{count}} — идёт сжатие…",
+    "compressing_many": "Файлов: {{count}} — идёт сжатие…",
+    "compressing_other": "Файлов: {{count}} — идёт сжатие…",
+    "done_one": "Сжато файлов: {{count}}.",
+    "done_few": "Сжато файлов: {{count}}.",
+    "done_many": "Сжато файлов: {{count}}.",
+    "done_other": "Сжато файлов: {{count}}.",
+    "failed_one": "Не удалось сжать файлов: {{count}}.",
+    "failed_few": "Не удалось сжать файлов: {{count}}.",
+    "failed_many": "Не удалось сжать файлов: {{count}}.",
+    "failed_other": "Не удалось сжать файлов: {{count}}.",
+    "open": "Открыть rc-compress",
+    "close": "Закрыть"
   }
 }

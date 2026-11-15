@@ -1128,5 +1128,13 @@
     "videoBoostFormats": "Tăng cường HDR chỉ khả dụng cho video MP4, MOV, MKV, WebM và TS sử dụng codec H.265, VP9 hoặc AV1.",
     "videoBoostLossless": "Tăng cường HDR không khả dụng khi nén không mất dữ liệu.",
     "videoSdrOnly": "Định dạng hoặc codec này không thể lưu trữ HDR, vì vậy video sẽ được chuyển đổi sang SDR."
+  },
+  "menuNotice": {
+    "starting": "Đang khởi động…",
+    "compressing_other": "Đang nén {{count}} tệp…",
+    "done_other": "Đã nén {{count}} tệp.",
+    "failed_other": "Không thể nén {{count}} tệp.",
+    "open": "Mở rc-compress",
+    "close": "Đóng"
   }
 }

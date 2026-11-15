@@ -1128,5 +1128,13 @@
     "videoBoostFormats": "HDRブーストは、H.265、VP9、AV1コーデックを使用するMP4、MOV、MKV、WebM、TS動画でのみ利用できます。",
     "videoBoostLossless": "ロスレス圧縮ではHDRブーストを利用できません。",
     "videoSdrOnly": "この形式またはコーデックはHDRを保存できないため、動画はSDRに変換されます。"
+  },
+  "menuNotice": {
+    "starting": "開始しています…",
+    "compressing_other": "{{count}}個のファイルを圧縮しています…",
+    "done_other": "{{count}}個のファイルを圧縮しました。",
+    "failed_other": "{{count}}個のファイルを圧縮できませんでした。",
+    "open": "rc-compress を開く",
+    "close": "閉じる"
   }
 }

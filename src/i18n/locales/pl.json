@@ -1179,5 +1179,22 @@
     "videoBoostFormats": "Wzmocnienie HDR jest dostępne tylko dla filmów MP4, MOV, MKV, WebM i TS korzystających z kodeka H.265, VP9 lub AV1.",
     "videoBoostLossless": "Wzmocnienie HDR nie jest dostępne przy kompresji bezstratnej.",
     "videoSdrOnly": "Ten format lub kodek nie może przechowywać HDR, dlatego film zostanie przekonwertowany na SDR."
+  },
+  "menuNotice": {
+    "starting": "Uruchamianie…",
+    "compressing_one": "Pliki: {{count}} — trwa kompresja…",
+    "compressing_few": "Pliki: {{count}} — trwa kompresja…",
+    "compressing_many": "Pliki: {{count}} — trwa kompresja…",
+    "compressing_other": "Pliki: {{count}} — trwa kompresja…",
+    "done_one": "Skompresowane pliki: {{count}}.",
+    "done_few": "Skompresowane pliki: {{count}}.",
+    "done_many": "Skompresowane pliki: {{count}}.",
+    "done_other": "Skompresowane pliki: {{count}}.",
+    "failed_one": "Nieskompresowane pliki: {{count}}.",
+    "failed_few": "Nieskompresowane pliki: {{count}}.",
+    "failed_many": "Nieskompresowane pliki: {{count}}.",
+    "failed_other": "Nieskompresowane pliki: {{count}}.",
+    "open": "Otwórz rc-compress",
+    "close": "Zamknij"
   }
 }

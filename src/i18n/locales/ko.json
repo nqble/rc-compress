@@ -1128,5 +1128,13 @@
     "videoBoostFormats": "HDR 부스트는 H.265, VP9 또는 AV1 코덱을 사용하는 MP4, MOV, MKV, WebM 및 TS 동영상에서만 사용할 수 있습니다.",
     "videoBoostLossless": "무손실 압축에서는 HDR 부스트를 사용할 수 없습니다.",
     "videoSdrOnly": "이 형식 또는 코덱은 HDR을 저장할 수 없으므로 동영상이 SDR로 변환됩니다."
+  },
+  "menuNotice": {
+    "starting": "시작하는 중…",
+    "compressing_other": "파일 {{count}}개 압축 중…",
+    "done_other": "파일 {{count}}개를 압축했습니다.",
+    "failed_other": "파일 {{count}}개를 압축하지 못했습니다.",
+    "open": "rc-compress 열기",
+    "close": "닫기"
   }
 }

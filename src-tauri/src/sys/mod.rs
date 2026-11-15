@@ -21,6 +21,9 @@ pub mod linux_clipboard;
 // The entries are made & tested on every system, written on Linux
 #[cfg_attr(not(target_os = "linux"), allow(dead_code))]
 pub mod linux_menu;
+// Shown on Linux only (no tray icon); its position is tested on every system
+#[cfg_attr(not(target_os = "linux"), allow(dead_code))]
+pub mod menu_notice;
 pub mod logging;
 pub mod native_text;
 pub mod output_registry;

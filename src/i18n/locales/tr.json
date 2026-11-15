@@ -1145,5 +1145,16 @@
     "videoBoostFormats": "HDR güçlendirme yalnızca H.265, VP9 veya AV1 codec’ini kullanan MP4, MOV, MKV, WebM ve TS videolarında kullanılabilir.",
     "videoBoostLossless": "HDR güçlendirme kayıpsız sıkıştırmayla kullanılamaz.",
     "videoSdrOnly": "Bu biçim veya codec HDR depolayamaz, bu nedenle video SDR’ye dönüştürülecektir."
+  },
+  "menuNotice": {
+    "starting": "Başlatılıyor…",
+    "compressing_one": "1 dosya sıkıştırılıyor…",
+    "compressing_other": "{{count}} dosya sıkıştırılıyor…",
+    "done_one": "1 dosya sıkıştırıldı.",
+    "done_other": "{{count}} dosya sıkıştırıldı.",
+    "failed_one": "1 dosya sıkıştırılamadı.",
+    "failed_other": "{{count}} dosya sıkıştırılamadı.",
+    "open": "rc-compress'i aç",
+    "close": "Kapat"
   }
 }
