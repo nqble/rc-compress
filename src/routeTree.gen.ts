@@ -12,8 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as rootIndexImport } from './routes/(root)/index'
-import { Route as WebviewsTrayIndexImport } from './routes/webviews/tray/index'
 import { Route as WebviewsMenuNoticeIndexImport } from './routes/webviews/menu-notice/index'
+import { Route as WebviewsTrayIndexImport } from './routes/webviews/tray/index'
 
 // Create/Update Routes
 
