@@ -106,7 +106,8 @@ const PLIST_HEADER: &str = r#"<?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 "#;
 
-/// Tells macOS this is a Quick Action for files & folders in Finder, named `title`
+/// Tells macOS this is a Quick Action for files & folders in Finder, named `title`. Finder lists a Quick Action only
+/// when it has an icon & a background color, as Automator writes them; without them it is registered but never shown.
 fn info_plist(title: &str) -> String {
     let title = xml_escape(title);
     format!(
@@ -114,6 +115,10 @@ fn info_plist(title: &str) -> String {
 	<key>NSServices</key>
 	<array>
 		<dict>
+			<key>NSBackgroundColorName</key>
+			<string>background</string>
+			<key>NSIconName</key>
+			<string>NSActionTemplate</string>
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
@@ -363,6 +368,17 @@ mod tests {
             .find(|file| file.path == path)
             .map(|file| file.contents.clone())
             .expect("the workflow of the action")
+    }
+
+    #[test]
+    fn finder_lists_them_only_with_an_icon_and_a_background() {
+        let files = bundle_files(Path::new("/a"));
+        let info_plists: Vec<_> = files.iter().filter(|file| file.path.ends_with("Info.plist")).collect();
+        assert_eq!(info_plists.len(), 4);
+        for file in info_plists {
+            assert!(file.contents.contains("<key>NSIconName</key>\n\t\t\t<string>NSActionTemplate</string>"));
+            assert!(file.contents.contains("<key>NSBackgroundColorName</key>\n\t\t\t<string>background</string>"));
+        }
     }
 
     #[test]
