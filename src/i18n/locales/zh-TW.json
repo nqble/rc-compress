@@ -444,6 +444,11 @@
         "level_small": "小型（螢幕、電子郵件）",
         "level_medium": "中等（大多數文件）",
         "level_high": "高（列印）"
+      },
+      "finderMenu": {
+        "section": "Finder",
+        "title": "在 Finder 選單中顯示",
+        "description": "將 rc-compress 加入 Finder 右鍵選單的「快速動作」：“Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”。刪除 App 前請先關閉此項。"
       }
     }
   },

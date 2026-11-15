@@ -78,6 +78,52 @@ pub enum Command {
     Presets { json: bool },
     Mcp,
     Compress(CompressArgs),
+    /// A right-click menu action (macOS Quick Actions): the app queues the files as from the menu
+    Menu {
+        action: String,
+        inputs: Vec<PathBuf>,
+    },
+}
+
+/// The right-click menu's options (`--quick-compress`, `--compress-by=30`, …), which the app checks.
+/// Must match `src-tauri/src/sys/explorer_menu.rs`.
+const MENU_ACTIONS: [&str; 4] = [
+    "--quick-compress",
+    "--compress-by",
+    "--fit-to",
+    "--remove-metadata",
+];
+
+fn is_menu_action(arg: &str) -> bool {
+    let name = arg.split_once('=').map_or(arg, |(name, _)| name);
+    MENU_ACTIONS.contains(&name)
+}
+
+/// A menu launch is the action and the chosen files, nothing else
+fn parse_menu(args: Vec<String>) -> Result<Command, CliError> {
+    let mut action = None;
+    let mut inputs = Vec::new();
+    for arg in args {
+        if is_menu_action(&arg) {
+            if action.replace(arg).is_some() {
+                return Err(CliError::usage(
+                    "Choose one right-click menu action at a time.",
+                ));
+            }
+            continue;
+        }
+        if arg.starts_with('-') {
+            return Err(CliError::usage(format!(
+                "{arg} does not go with a right-click menu action."
+            )));
+        }
+        inputs.push(absolute_path(&PathBuf::from(&arg)));
+    }
+    let action = action.expect("parse_menu is called with a menu action");
+    if inputs.is_empty() {
+        return Err(CliError::usage(format!("{action} needs files or folders.")));
+    }
+    Ok(Command::Menu { action, inputs })
 }
 
 #[derive(Default)]
@@ -114,6 +160,9 @@ fn parse_switch(name: &str, value: Option<&str>) -> Result<bool, CliError> {
 }
 
 pub fn parse(args: Vec<String>) -> Result<Command, CliError> {
+    if args.iter().any(|arg| is_menu_action(arg)) {
+        return parse_menu(args);
+    }
     let mut args = args.into_iter().peekable();
     match args.peek().map(String::as_str) {
         None => return Ok(Command::Help),
@@ -214,4 +263,53 @@ pub fn parse(args: Vec<String>) -> Result<Command, CliError> {
         }
     }
     Ok(Command::Compress(parsed))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn args(list: &[&str]) -> Vec<String> {
+        list.iter().map(|arg| arg.to_string()).collect()
+    }
+
+    fn menu(list: &[&str]) -> (String, Vec<PathBuf>) {
+        match parse(args(list)) {
+            Ok(Command::Menu { action, inputs }) => (action, inputs),
+            _ => panic!("not parsed as a menu action: {list:?}"),
+        }
+    }
+
+    #[test]
+    fn a_menu_action_and_its_files() {
+        let (action, inputs) = menu(&["--compress-by=30", "/a.mp4", "/b.jpg"]);
+        assert_eq!(action, "--compress-by=30");
+        assert_eq!(inputs, [PathBuf::from("/a.mp4"), PathBuf::from("/b.jpg")]);
+        assert_eq!(menu(&["/a.mp4", "--quick-compress"]).0, "--quick-compress");
+        assert_eq!(menu(&["--fit-to=custom", "/a.mp4"]).0, "--fit-to=custom");
+        assert_eq!(
+            menu(&["--remove-metadata", "/a.mp4"]).0,
+            "--remove-metadata"
+        );
+    }
+
+    #[test]
+    fn a_menu_action_is_alone() {
+        let refused = [
+            vec!["--quick-compress"],
+            vec!["--quick-compress", "--remove-metadata", "/a.mp4"],
+            vec!["--quick-compress", "--json", "/a.mp4"],
+        ];
+        for list in refused {
+            let error = parse(args(&list)).err().expect("refused");
+            assert_eq!(error.exit_code, crate::error::exit_code::USAGE, "{list:?}");
+        }
+    }
+
+    #[test]
+    fn other_options_are_not_menu_actions() {
+        assert!(!is_menu_action("--quick"));
+        assert!(!is_menu_action("--video-preset=Web"));
+        assert!(matches!(parse(args(&["/a.mp4"])), Ok(Command::Compress(_))));
+    }
 }

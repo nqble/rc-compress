@@ -316,8 +316,7 @@ fn run_explorer_menu_action(
     args: &[String],
     cwd: Option<&str>,
 ) -> bool {
-    use sys::explorer_menu::{action_from_launch_args, quick_compress, MenuAction};
-    use tauri_commands::drop_queue::MenuChoice;
+    use sys::explorer_menu::{action_from_launch_args, menu_choice, quick_compress};
 
     let Some(action) = action_from_launch_args(args) else {
         return false;
@@ -327,23 +326,7 @@ fn run_explorer_menu_action(
         .filter_map(|url| url.to_file_path().ok())
         .map(|path| path.to_string_lossy().to_string())
         .collect();
-    let menu = match action {
-        MenuAction::QuickCompress => MenuChoice::default(),
-        MenuAction::CompressBy(percent) => MenuChoice {
-            target_percent: Some(percent),
-            ..MenuChoice::default()
-        },
-        MenuAction::RemoveMetadata => MenuChoice {
-            remove_metadata: true,
-            ..MenuChoice::default()
-        },
-        MenuAction::FitTo(megabytes) => MenuChoice {
-            fit_to_mb: megabytes,
-            fit_to_custom: megabytes.is_none(),
-            ..MenuChoice::default()
-        },
-    };
-    quick_compress(app_handle, paths, menu);
+    quick_compress(app_handle, paths, menu_choice(action));
     true
 }
 
@@ -601,6 +584,7 @@ async fn run() {
             sys::cli_settings::sync_cli_settings,
             sys::cli_server::take_background_launch,
             sys::explorer_menu::take_skipped_note,
+            sys::finder_menu::set_finder_menu_enabled,
             sys::cli_install::get_cli_install_status,
             sys::cli_install::install_cli,
             sys::cli_install::uninstall_cli,

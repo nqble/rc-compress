@@ -444,6 +444,11 @@
         "level_small": "Petit (écran, e-mail)",
         "level_medium": "Moyen (la plupart des documents)",
         "level_high": "Élevé (impression)"
+      },
+      "finderMenu": {
+        "section": "Finder",
+        "title": "Afficher dans le menu du Finder",
+        "description": "Ajoute rc-compress au menu contextuel du Finder, sous Actions rapides : “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”. Désactivez cette option avant de supprimer l'app."
       }
     }
   },

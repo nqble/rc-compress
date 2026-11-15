@@ -1,5 +1,6 @@
-// Settings of the file manager's right-click menu (Windows Explorer for now; the entries are added
-// by the installer, see `src-tauri/windows/hooks.nsh` and `explorer_menu.rs`)
+// Settings of the file manager's right-click menu: Windows Explorer's (added by the installer, see
+// `src-tauri/windows/hooks.nsh`) and Finder's Quick Actions on macOS (added by the app, with the
+// switch here, see `finder_menu.rs`); the actions themselves are in `explorer_menu.rs`
 import { SelectItem } from '@heroui/react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSnapshot } from 'valtio'
@@ -8,9 +9,11 @@ import InfoTooltip from '@/components/InfoTooltip'
 import NumberInput from '@/components/NumberInput'
 import Select from '@/components/Select'
 import SettingLink from '@/components/SettingLink'
+import Switch from '@/components/Switch'
 import { presetsStore } from '@/stores/presetsStore'
 import { settingsStore } from '@/stores/settingsStore'
 import type { PresetMediaType } from '@/types/preset'
+import { getPlatform } from '@/utils/fs'
 import { isPdfLevel, PDF_LEVELS } from '@/utils/pdfLevels'
 import {
   getPresetOutput,
@@ -186,9 +189,34 @@ function FitSize() {
   )
 }
 
+/** The switch that adds or removes the Quick Actions in Finder (macOS) */
+function FinderMenu() {
+  const { t } = useTranslation()
+  const { finderMenuEnabled } = useSnapshot(settingsStore)
+
+  return (
+    <SettingsSection title={t('settings.rightClickMenu.finderMenu.section')}>
+      <SettingsRow
+        settingId="finderMenu"
+        title={t('settings.rightClickMenu.finderMenu.title')}
+        description={t('settings.rightClickMenu.finderMenu.description')}
+      >
+        <Switch
+          aria-label={t('settings.rightClickMenu.finderMenu.title')}
+          isSelected={finderMenuEnabled}
+          onValueChange={(isSelected) => {
+            settingsStore.finderMenuEnabled = isSelected
+          }}
+        />
+      </SettingsRow>
+    </SettingsSection>
+  )
+}
+
 function RightClickMenu() {
   return (
     <>
+      {getPlatform().isMacOS && <FinderMenu />}
       <QuickCompressPresets />
       <FitSize />
       <QuickCompressGroups />

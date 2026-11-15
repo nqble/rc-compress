@@ -1,8 +1,11 @@
-//! The file manager's right-click menu (Windows Explorer for now): its entries launch the app with
-//! an action option and the chosen file, e.g. `rc-compress.exe --quick-compress "C:\video.mp4"`.
-//! The installer adds the entries (`src-tauri/windows/hooks.nsh`) and its uninstaller
-//! removes them. Explorer starts the app once per chosen file; when the app is already running,
-//! each launch reaches it as a second instance (see `on_second_instance` in `main.rs`).
+//! The file manager's right-click menu: its entries launch the app with an action option and the
+//! chosen files, e.g. `rc-compress.exe --quick-compress "C:\video.mp4"`.
+//! - Windows: the installer adds the entries (`src-tauri/windows/hooks.nsh`) and its uninstaller
+//!   removes them. Explorer starts the app once per chosen file; when the app is already running,
+//!   each launch reaches it as a second instance (see `on_second_instance` in `main.rs`).
+//! - macOS: a launch with arguments runs the command line (see `run_cli_if_asked` in `main.rs`),
+//!   which hands the action to the app through its socket (the `menu` request in `cli_server.rs`).
+//! - Linux: not yet.
 //!
 //! "Open in rc-compress…" is a plain launch with the file ("Open with"), so only the other actions
 //! are handled here.
@@ -120,10 +123,32 @@ fn is_note_due(last_queued: Option<Instant>, skipped_at: Instant, grace: Duratio
     }
 }
 
+/// What the queue needs to know about a menu action
+pub fn menu_choice(action: MenuAction) -> crate::tauri_commands::drop_queue::MenuChoice {
+    use crate::tauri_commands::drop_queue::MenuChoice;
+
+    match action {
+        MenuAction::QuickCompress => MenuChoice::default(),
+        MenuAction::CompressBy(percent) => MenuChoice {
+            target_percent: Some(percent),
+            ..MenuChoice::default()
+        },
+        MenuAction::RemoveMetadata => MenuChoice {
+            remove_metadata: true,
+            ..MenuChoice::default()
+        },
+        MenuAction::FitTo(megabytes) => MenuChoice {
+            fit_to_mb: megabytes,
+            fit_to_custom: megabytes.is_none(),
+            ..MenuChoice::default()
+        },
+    }
+}
+
 /// Queues the files of a "Quick Compress", "Compress by N%", "Fit to size" or "Remove metadata" launch (`menu`).
 /// A chosen folder gives the media inside it, subfolders included (each copy is saved next to its original). Files
 /// rc-compress cannot compress (a `.txt`, a `.zip`) are skipped; when that is all of them, the tray shows a note.
-#[cfg(windows)]
+#[cfg(any(target_os = "macos", windows))]
 pub fn quick_compress(
     app_handle: &tauri::AppHandle,
     paths: Vec<String>,
@@ -157,7 +182,7 @@ pub fn quick_compress(
 }
 
 /// Counts the skipped files and, after `NOTE_GRACE`, has the tray show its note unless the selection queued a file
-#[cfg(windows)]
+#[cfg(any(target_os = "macos", windows))]
 fn note_skipped_files(app_handle: &tauri::AppHandle, count: usize) {
     log::info!("[explorer-menu] None of the {count} files can be compressed");
     SKIPPED_FOR_NOTE.fetch_add(count, Ordering::SeqCst);
@@ -174,7 +199,7 @@ fn note_skipped_files(app_handle: &tauri::AppHandle, count: usize) {
     });
 }
 
-#[cfg(windows)]
+#[cfg(any(target_os = "macos", windows))]
 fn show_skipped_note(app_handle: &tauri::AppHandle) {
     use tauri::Emitter;
 

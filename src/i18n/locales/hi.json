@@ -444,6 +444,11 @@
         "level_small": "छोटा (स्क्रीन, ईमेल)",
         "level_medium": "मध्यम (अधिकांश दस्तावेज़)",
         "level_high": "उच्च (मुद्रण)"
+      },
+      "finderMenu": {
+        "section": "Finder",
+        "title": "Finder के मेनू में दिखाएँ",
+        "description": "Finder के राइट-क्लिक मेनू में, त्वरित क्रियाएँ के अंतर्गत rc-compress जोड़ता है: “Compress with rc-compress”, “Compress by…”, “Fit to size…”, “Remove metadata”। ऐप हटाने से पहले इसे बंद करें।"
       }
     }
   },

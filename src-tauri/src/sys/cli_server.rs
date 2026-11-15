@@ -12,6 +12,9 @@
 //! - `{"type":"compress","inputs":[..],"job":{..}}`: compresses them (see `CliJob`), answered with
 //!   `accepted`, then `progress` & `file` for each media, & `done`
 //! - `{"type":"cancel"}`: cancels the compression of this connection
+//! - `{"type":"menu","action":"--compress-by=30","inputs":[..]}`: a right-click menu action (macOS
+//!   Quick Actions, see `explorer_menu.rs`), queued as from the menu & answered with `menuQueued` at
+//!   once: its progress shows in the tray, not in the command line
 //!
 //! Closing the connection cancels its media not compressed yet. An app started by the command line
 //! quits once it is done, unless the user opened its window or dropped media meanwhile.
@@ -169,6 +172,10 @@ enum Request {
         job: CliJob,
     },
     Cancel,
+    Menu {
+        action: String,
+        inputs: Vec<String>,
+    },
 }
 
 type Writer<S> = Arc<tokio::sync::Mutex<tokio::io::WriteHalf<S>>>;
@@ -251,6 +258,9 @@ where
                     }
                 }
             }
+            Request::Menu { action, inputs } => {
+                send(&writer, run_menu_action(&app_handle, &action, inputs)).await
+            }
             Request::Cancel => {
                 if let Some((job_id, _)) = &job {
                     drop_queue::cancel_cli_job(&app_handle, job_id);
@@ -271,6 +281,29 @@ where
             drop_queue::cancel_cli_job(&app_handle, &job_id);
         }
     }
+}
+
+/// Queues a right-click menu action's files, as a launch from the menu does on Windows
+#[cfg(any(target_os = "macos", windows))]
+fn run_menu_action(app_handle: &AppHandle, action: &str, inputs: Vec<String>) -> serde_json::Value {
+    use crate::sys::explorer_menu::{action_from_launch_args, menu_choice, quick_compress};
+
+    // Parsed like a launch's arguments, the first of which is the program
+    let launch_args = [String::new(), action.to_string()];
+    let Some(menu_action) = action_from_launch_args(&launch_args) else {
+        return error_message("invalidRequest", &format!("Unknown menu action: {action}"));
+    };
+    // The user chose these files: the app stays open to compress them (& to show its note when
+    // none of them can be), as after a launch from the menu
+    keep_app_open();
+    quick_compress(app_handle, inputs, menu_choice(menu_action));
+    json!({ "type": "menuQueued" })
+}
+
+#[cfg(target_os = "linux")]
+fn run_menu_action(_: &AppHandle, _: &str, _: Vec<String>) -> serde_json::Value {
+    let message = "The right-click menu is not available on Linux yet.";
+    error_message("notAvailable", message)
 }
 
 fn error_message(code: &str, message: &str) -> serde_json::Value {
