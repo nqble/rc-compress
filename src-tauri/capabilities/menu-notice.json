@@ -1,0 +1,15 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "menu-notice",
+  "description": "Capability for the brief notice a right-click menu launch shows on Linux (see `menu_notice.rs`)",
+  "platforms": ["linux"],
+  "local": true,
+  "windows": ["menu-notice"],
+  "permissions": [
+    "core:path:default",
+    "core:event:default",
+    "core:window:default",
+    "core:app:default",
+    "os:allow-platform"
+  ]
+}

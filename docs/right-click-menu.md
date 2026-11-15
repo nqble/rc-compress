@@ -67,8 +67,11 @@ each start when they changed, so an AppImage that is moved keeps working. Turn t
 Thunar (Xfce) keeps its custom actions in one file it shares with the ones you made yourself, so rc-compress doesn't
 write to it. There is no **Open in rc-compress…** item: the file manager's **Open With** does that.
 
-Linux has no tray icon, so a right-click item opens the main window, which shows the queue while it compresses
-(when none of the chosen files can be compressed, the window opens with nothing queued).
+Linux has no tray icon, so a right-click item shows a small notice in the bottom-right corner of the screen: how many
+files are being compressed and how far it is, then how many were compressed (or that none of them can be), and it
+closes itself a few seconds later. **Open rc-compress** on it shows the main window with the queue. The main window
+compresses meanwhile, hidden, and an app that a right-click started quits when the notice closes. When the main window
+is already open, it shows the queue itself and no notice appears.
 
 ## PDFs
 
@@ -90,6 +93,6 @@ icon) to be saved by hand, and Settings → Right-click Menu shows a warning nex
 
 ## In the background
 
-When rc-compress is closed, a right-click item starts it without opening its window; progress shows on the tray icon (the menu bar icon on macOS; on Linux, which has none, the main window opens)
+When rc-compress is closed, a right-click item starts it without opening its window; progress shows on the tray icon (the menu bar icon on macOS; on Linux, which has none, in a small notice)
 and in its queue. The first start after installing still shows the one-time "Preparing" window while the bundled
 tools are unpacked.

@@ -1128,5 +1128,13 @@
     "videoBoostFormats": "HDR 增強僅適用於使用 H.265、VP9 或 AV1 編解碼器的 MP4、MOV、MKV、WebM 和 TS 影片。",
     "videoBoostLossless": "無損壓縮不支援 HDR 增強。",
     "videoSdrOnly": "此格式或編解碼器無法儲存 HDR，因此影片將轉換為 SDR。"
+  },
+  "menuNotice": {
+    "starting": "正在啟動…",
+    "compressing_other": "正在壓縮 {{count}} 個檔案…",
+    "done_other": "已壓縮 {{count}} 個檔案。",
+    "failed_other": "有 {{count}} 個檔案無法壓縮。",
+    "open": "開啟 rc-compress",
+    "close": "關閉"
   }
 }

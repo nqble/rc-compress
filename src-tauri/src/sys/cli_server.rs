@@ -49,14 +49,11 @@ pub fn is_background_launch() -> bool {
 
 /// Whether the app was started by the command line (or by rc-compress's right-click menu, see
 /// `explorer_menu::is_menu_launch`), so its first main window stays hidden: true once, so a main
-/// window opened later (e.g. from the menu bar) is shown. On Linux a menu launch shows the window,
-/// which compresses the queue there (no tray icon).
+/// window opened later (e.g. from the menu bar) is shown
 #[tauri::command]
 pub fn take_background_launch() -> bool {
     static IS_TAKEN: AtomicBool = AtomicBool::new(false);
-    let is_quiet_menu_launch =
-        cfg!(not(target_os = "linux")) && crate::sys::explorer_menu::is_menu_launch();
-    let is_quiet_launch = is_background_launch() || is_quiet_menu_launch;
+    let is_quiet_launch = is_background_launch() || crate::sys::explorer_menu::is_menu_launch();
     !IS_TAKEN.swap(true, Ordering::SeqCst) && is_quiet_launch
 }
 

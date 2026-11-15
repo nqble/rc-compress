@@ -23,6 +23,7 @@ import { settingsStore } from '@/stores/settingsStore'
 import { checkForUpdates, setupUpdateListeners } from '@/stores/updateStore'
 import { takeOpenedAtLogin } from '@/tauri/commands/app'
 import { takeBackgroundLaunch } from '@/tauri/commands/cli'
+import { MENU_NOTICE_WINDOW_LABEL } from '@/tauri/commands/menuNotice'
 import {
   setTrayIconEnabled,
   setTrayProgressColor,
@@ -49,8 +50,22 @@ const hasTrayMaterial = isMacOS || (isWindows && isWindowTintSupported())
 // The tray popover (macOS status bar) renders this frontend in its own webview window
 const isTrayWindow = getCurrentWindow().label === TRAY_WINDOW_LABEL
 
+// The brief notice of a right-click menu launch (Linux, see `menu_notice.rs`) has its own as well
+const isMenuNoticeWindow = getCurrentWindow().label === MENU_NOTICE_WINDOW_LABEL
+
 function RootComponent() {
+  if (isMenuNoticeWindow) return <MenuNoticeRoot />
   return isTrayWindow ? <TrayRoot /> : <MainRoot />
+}
+
+/** Only the notice: the main window, hidden, does the syncing & the compressing */
+function MenuNoticeRoot() {
+  useThemeSync()
+  return (
+    <UIProvider>
+      <Outlet />
+    </UIProvider>
+  )
 }
 
 function MainRoot() {

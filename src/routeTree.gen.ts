@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as rootIndexImport } from './routes/(root)/index'
+import { Route as WebviewsMenuNoticeIndexImport } from './routes/webviews/menu-notice/index'
 import { Route as WebviewsTrayIndexImport } from './routes/webviews/tray/index'
 
 // Create/Update Routes
@@ -28,6 +29,12 @@ const WebviewsTrayIndexRoute = WebviewsTrayIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const WebviewsMenuNoticeIndexRoute = WebviewsMenuNoticeIndexImport.update({
+  id: '/webviews/menu-notice/',
+  path: '/webviews/menu-notice/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -37,6 +44,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof rootIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/webviews/menu-notice/': {
+      id: '/webviews/menu-notice/'
+      path: '/webviews/menu-notice'
+      fullPath: '/webviews/menu-notice'
+      preLoaderRoute: typeof WebviewsMenuNoticeIndexImport
       parentRoute: typeof rootRoute
     }
     '/webviews/tray/': {
@@ -53,36 +67,41 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof rootIndexRoute
+  '/webviews/menu-notice': typeof WebviewsMenuNoticeIndexRoute
   '/webviews/tray': typeof WebviewsTrayIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof rootIndexRoute
+  '/webviews/menu-notice': typeof WebviewsMenuNoticeIndexRoute
   '/webviews/tray': typeof WebviewsTrayIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/(root)/': typeof rootIndexRoute
+  '/webviews/menu-notice/': typeof WebviewsMenuNoticeIndexRoute
   '/webviews/tray/': typeof WebviewsTrayIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/webviews/tray'
+  fullPaths: '/' | '/webviews/menu-notice' | '/webviews/tray'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/webviews/tray'
-  id: '__root__' | '/(root)/' | '/webviews/tray/'
+  to: '/' | '/webviews/menu-notice' | '/webviews/tray'
+  id: '__root__' | '/(root)/' | '/webviews/menu-notice/' | '/webviews/tray/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   rootIndexRoute: typeof rootIndexRoute
+  WebviewsMenuNoticeIndexRoute: typeof WebviewsMenuNoticeIndexRoute
   WebviewsTrayIndexRoute: typeof WebviewsTrayIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   rootIndexRoute: rootIndexRoute,
+  WebviewsMenuNoticeIndexRoute: WebviewsMenuNoticeIndexRoute,
   WebviewsTrayIndexRoute: WebviewsTrayIndexRoute,
 }
 
@@ -97,11 +116,15 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/(root)/",
+        "/webviews/menu-notice/",
         "/webviews/tray/"
       ]
     },
     "/(root)/": {
       "filePath": "(root)/index.tsx"
+    },
+    "/webviews/menu-notice/": {
+      "filePath": "webviews/menu-notice/index.tsx"
     },
     "/webviews/tray/": {
       "filePath": "webviews/tray/index.tsx"

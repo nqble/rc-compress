@@ -1162,5 +1162,19 @@
     "videoBoostFormats": "O realce HDR está disponível apenas para vídeos MP4, MOV, MKV, WebM e TS que usam o codec H.265, VP9 ou AV1.",
     "videoBoostLossless": "O realce HDR não está disponível com a compressão sem perdas.",
     "videoSdrOnly": "Este formato ou codec não pode armazenar HDR, portanto o vídeo será convertido para SDR."
+  },
+  "menuNotice": {
+    "starting": "Iniciando…",
+    "compressing_one": "Comprimindo 1 arquivo…",
+    "compressing_many": "Comprimindo {{count}} arquivos…",
+    "compressing_other": "Comprimindo {{count}} arquivos…",
+    "done_one": "1 arquivo comprimido.",
+    "done_many": "{{count}} arquivos comprimidos.",
+    "done_other": "{{count}} arquivos comprimidos.",
+    "failed_one": "Não foi possível comprimir 1 arquivo.",
+    "failed_many": "Não foi possível comprimir {{count}} arquivos.",
+    "failed_other": "Não foi possível comprimir {{count}} arquivos.",
+    "open": "Abrir o rc-compress",
+    "close": "Fechar"
   }
 }
