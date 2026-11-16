@@ -11,6 +11,7 @@ const { outputText } = ts.transpileModule(read('src/utils/compressBy.ts'), {
   compilerOptions: { module: ts.ModuleKind.ESNext },
 })
 const {
+  alreadyFits,
   COMPRESS_BY_PERCENTS,
   FIT_SIZES_IN_MB,
   imageFitSizeInKB,
@@ -63,4 +64,12 @@ test('fit to size offers the same sizes in the menu, the app and here', () => {
 test('an image fits within a size given in MB, counted in KB', () => {
   assert.equal(imageFitSizeInKB(8), 8000)
   assert.equal(imageFitSizeInKB(0.001), 10)
+})
+
+test('Fit to size: a file already within the size skips the target search', () => {
+  assert.equal(alreadyFits(5_500_000, 10), true, 'a 5.5 MB video and 10 MB')
+  assert.equal(alreadyFits(10_000_000, 10), true, 'exactly the size')
+  assert.equal(alreadyFits(10_000_001, 10), false)
+  assert.equal(alreadyFits(null, 10), false, 'an unknown size is searched for')
+  assert.equal(alreadyFits(0, 10), false)
 })

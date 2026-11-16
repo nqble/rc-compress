@@ -39,6 +39,22 @@ export const FIT_SIZES_IN_MB = [8, 10, 25]
 /** The default of "Your size", in MB */
 export const DEFAULT_CUSTOM_FIT_SIZE_IN_MB = 50
 
+/**
+ * Whether a file of `sizeInBytes` already fits within `megabytes`. Its target size then asks for nothing, and searching
+ * for it takes long with nothing to show (half a minute for a 5.5 MB video and 10 MB), so the preset compresses it as
+ * Quick Compress does. An unknown size doesn't fit.
+ */
+export function alreadyFits(
+  sizeInBytes: number | null | undefined,
+  megabytes: number,
+) {
+  return (
+    sizeInBytes != null &&
+    sizeInBytes > 0 &&
+    sizeInBytes <= megabytes * BYTES_PER_MB
+  )
+}
+
 /** An image's target to fit within `megabytes`, in KB */
 export function imageFitSizeInKB(megabytes: number) {
   return Math.max(

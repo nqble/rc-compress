@@ -60,6 +60,7 @@ import {
 } from '@/types/compression'
 import { type PresetMediaType, STANDARD_PRESET_ID } from '@/types/preset'
 import {
+  alreadyFits,
   imageFitSizeInKB,
   imageTargetSizeInKB,
   videoTargetSizeInMB,
@@ -191,6 +192,9 @@ function withMenuTarget(
   const fitToMb = item.fitToCustom
     ? settingsStore.quickCompressFitSizeInMB
     : item.fitToMb
+  if (fitToMb && alreadyFits(media.sizeInBytes, fitToMb)) {
+    return config
+  }
   if (fitToMb) {
     const target = isImage
       ? { targetSizeInKB: imageFitSizeInKB(fitToMb) }
