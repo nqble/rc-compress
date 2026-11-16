@@ -28,7 +28,7 @@ kind (its preset or PDF quality), and each copy is saved next to its original; t
 |---|---|---|
 | **Quick Compress** | Compresses with your Quick Compress preset for that kind of media, or your own group's preset if the file's type is in one | Settings → Right-click Menu: a preset per kind of media, and **Your groups** (file types with their own preset, checked top to bottom) |
 | **Compress by ▸ 10% … 90%** | Makes the file that much smaller (a target size). Videos and audio hit it closely; images get as close as their quality steps allow | The Quick Compress presets' other settings |
-| **Fit to size ▸ 8 MB · 10 MB · 25 MB · Your size** | Makes the file fit within that size (8 and 10 MB for Discord, 25 MB for email) | **Your size**: Settings → Right-click Menu → Fit to size |
+| **Fit to size ▸ 8 MB · 10 MB · 25 MB · Your size** | Makes the file fit within that size (8 and 10 MB for Discord, 25 MB for email); a file already within it is compressed as Quick Compress does | **Your size**: Settings → Right-click Menu → Fit to size |
 | **Remove metadata** | Copies the file without its location, camera and date details, without compressing it (videos and audio unchanged; images saved losslessly) | None |
 | **Open in rc-compress…** | Opens the file in the app window, to choose every setting by hand | None |
 
