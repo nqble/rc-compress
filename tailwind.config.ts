@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module'
+import { dirname } from 'node:path'
 import { heroui } from '@heroui/react'
 import typography from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
@@ -24,6 +26,19 @@ const CUSTOM_MQ = {
   h3xl: { raw: `(min-height: ${WIDTHS['3xl']})` },
 }
 
+/**
+ * Where HeroUI's component classes are: `@heroui/theme`, a dependency of `@heroui/react`, found through it. Its place
+ * in node_modules depends on the package manager: pnpm 11 ignores `.npmrc`'s hoisting, and a fixed
+ * `./node_modules/@heroui/theme` path then matched nothing, so builds lost every control's styles. As a glob, with
+ * forward slashes on Windows too.
+ */
+function heroUIThemeFiles() {
+  const requireHere = createRequire(import.meta.url)
+  const requireFromHeroUI = createRequire(requireHere.resolve('@heroui/react'))
+  const themeDist = dirname(requireFromHeroUI.resolve('@heroui/theme'))
+  return `${themeDist.replaceAll('\\', '/')}/**/*.{js,ts,jsx,tsx}`
+}
+
 const config: Config = {
   darkMode: 'class',
   plugins: [
@@ -34,8 +49,8 @@ const config: Config = {
   ],
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
-    // NextUI Components
-    './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}',
+    // HeroUI's components
+    heroUIThemeFiles(),
   ],
   theme: {
     extend: {

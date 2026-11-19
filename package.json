@@ -1,6 +1,7 @@
 {
   "name": "rc-compress",
   "version": "0.1.6",
+  "packageManager": "pnpm@10.28.0",
   "private": true,
   "author": {
     "name": "Code For Real",

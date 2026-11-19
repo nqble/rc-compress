@@ -1,0 +1,4 @@
+# pnpm settings. pnpm 11 reads them only from here, not from .npmrc (which pnpm 10 and older still use: keep both
+# the same). HeroUI's packages are hoisted to the top of node_modules, as compressO's setup expects.
+publicHoistPattern:
+  - '*@heroui/*'
