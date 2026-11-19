@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Qualité du PDF",
         "description": "Définit la taille réduite atteinte par Compression rapide pour les PDF. Le texte reste net et sélectionnable ; les images à l'intérieur sont compressées avec une résolution plus faible.",
-        "level_small": "Petit (écran, e-mail)",
-        "level_medium": "Moyen (la plupart des documents)",
-        "level_high": "Élevé (impression)"
+        "level_small": "Petit",
+        "levelHint_small": "écran, e-mail",
+        "level_medium": "Moyen",
+        "levelHint_medium": "la plupart des documents",
+        "level_high": "Élevé",
+        "levelHint_high": "impression"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

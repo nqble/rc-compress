@@ -441,9 +441,12 @@
       "pdf": {
         "title": "PDF 质量",
         "description": "“快速压缩”可将 PDF 文件压缩到多小的程度。文本依然清晰且可选；其中的图片则会被降低分辨率。",
-        "level_small": "小（屏幕、电子邮件）",
-        "level_medium": "中等（大多数文档）",
-        "level_high": "高（打印）"
+        "level_small": "小",
+        "levelHint_small": "屏幕、电子邮件",
+        "level_medium": "中等",
+        "levelHint_medium": "大多数文档",
+        "level_high": "高",
+        "levelHint_high": "打印"
       },
       "fileManagerMenu": {
         "section_macos": "访达",

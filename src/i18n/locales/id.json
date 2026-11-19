@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Kualitas PDF",
         "description": "Seberapa kecil ukuran PDF yang dihasilkan oleh Kompresi Cepat. Teks tetap tajam dan dapat dipilih; gambar di dalamnya akan mendapatkan resolusi yang lebih rendah.",
-        "level_small": "Kecil (layar, email)",
-        "level_medium": "Sedang (sebagian besar dokumen)",
-        "level_high": "Tinggi (pencetakan)"
+        "level_small": "Kecil",
+        "levelHint_small": "layar, email",
+        "level_medium": "Sedang",
+        "levelHint_medium": "sebagian besar dokumen",
+        "level_high": "Tinggi",
+        "levelHint_high": "pencetakan"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

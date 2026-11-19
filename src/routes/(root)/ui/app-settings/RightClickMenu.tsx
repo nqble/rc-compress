@@ -141,8 +141,15 @@ function PdfLevelRow() {
         className="w-[220px]"
         classNames={{ popoverContent: 'settings-dialog' }}
       >
+        {/* The box shows the level's name only; what it's for is in the list, under it: "Medium (most documents)"
+            didn't fit the box in most languages */}
         {PDF_LEVELS.map((level) => (
-          <SelectItem key={level}>
+          <SelectItem
+            key={level}
+            description={t('settings.rightClickMenu.pdf.levelHint', {
+              context: level,
+            })}
+          >
             {t('settings.rightClickMenu.pdf.level', { context: level })}
           </SelectItem>
         ))}

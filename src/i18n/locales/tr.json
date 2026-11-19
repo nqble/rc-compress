@@ -441,9 +441,12 @@
       "pdf": {
         "title": "PDF kalitesi",
         "description": "Hızlı Sıkıştırma'nın PDF'leri ne kadar küçülttüğü. Metin net ve seçilebilir kalır; içindeki resimler ise daha düşük çözünürlüğe sahip olur.",
-        "level_small": "Küçük (ekran, e-posta)",
-        "level_medium": "Orta (çoğu belge)",
-        "level_high": "Yüksek (yazdırma)"
+        "level_small": "Küçük",
+        "levelHint_small": "ekran, e-posta",
+        "level_medium": "Orta",
+        "levelHint_medium": "çoğu belge",
+        "level_high": "Yüksek",
+        "levelHint_high": "yazdırma"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

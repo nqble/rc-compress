@@ -441,9 +441,12 @@
       "pdf": {
         "title": "PDF 品質",
         "description": "快速壓縮會將 PDF 縮小到什麼程度。文字保持清晰且可選取；內部的圖片則會降低解析度。",
-        "level_small": "小型（螢幕、電子郵件）",
-        "level_medium": "中等（大多數文件）",
-        "level_high": "高（列印）"
+        "level_small": "小型",
+        "levelHint_small": "螢幕、電子郵件",
+        "level_medium": "中等",
+        "levelHint_medium": "大多數文件",
+        "level_high": "高",
+        "levelHint_high": "列印"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

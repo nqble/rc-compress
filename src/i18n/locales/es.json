@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Calidad del PDF",
         "description": "Qué tan pequeños hace los PDF la Compresión rápida. El texto se mantiene nítido y seleccionable; las imágenes en su interior obtienen una resolución más baja.",
-        "level_small": "Pequeño (pantalla, correo electrónico)",
-        "level_medium": "Medio (la mayoría de los documentos)",
-        "level_high": "Alta (impresión)"
+        "level_small": "Pequeño",
+        "levelHint_small": "pantalla, correo electrónico",
+        "level_medium": "Medio",
+        "levelHint_medium": "la mayoría de los documentos",
+        "level_high": "Alta",
+        "levelHint_high": "impresión"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

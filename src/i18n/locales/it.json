@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Qualità PDF",
         "description": "Quanto riduce le dimensioni dei PDF la Compressione rapida. Il testo rimane nitido e selezionabile; le immagini al suo interno ottengono una risoluzione inferiore.",
-        "level_small": "Piccolo (schermo, e-mail)",
-        "level_medium": "Medio (la maggior parte dei documenti)",
-        "level_high": "Alta (stampa)"
+        "level_small": "Piccolo",
+        "levelHint_small": "schermo, e-mail",
+        "level_medium": "Medio",
+        "levelHint_medium": "la maggior parte dei documenti",
+        "level_high": "Alta",
+        "levelHint_high": "stampa"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

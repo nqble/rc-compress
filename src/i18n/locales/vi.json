@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Chất lượng PDF",
         "description": "Mức độ nén nhanh của rc-compress đối với các tệp PDF. Văn bản vẫn sắc nét và có thể chọn được; hình ảnh bên trong sẽ có độ phân giải thấp hơn.",
-        "level_small": "Nhỏ (màn hình, email)",
-        "level_medium": "Trung bình (hầu hết các tài liệu)",
-        "level_high": "Cao (in ấn)"
+        "level_small": "Nhỏ",
+        "levelHint_small": "màn hình, email",
+        "level_medium": "Trung bình",
+        "levelHint_medium": "hầu hết các tài liệu",
+        "level_high": "Cao",
+        "levelHint_high": "in ấn"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",
