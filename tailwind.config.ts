@@ -1,6 +1,5 @@
 import { createRequire } from 'node:module'
 import { dirname } from 'node:path'
-
 import { heroui } from '@heroui/react'
 import typography from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
