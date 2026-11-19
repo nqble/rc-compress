@@ -84,3 +84,49 @@ jobs:
           workspaces: src-tauri -> target
       - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
       - run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets
+
+  other-platforms:
+    name: Rust (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      # Swift's native build system needs the recent Xcode used by release builds.
+      - name: Use the newest Xcode
+        if: runner.os == 'macOS'
+        run: |
+          xcode=$(ls -d /Applications/Xcode_*.app | sort -V | tail -n 1)
+          sudo xcode-select -s "$xcode"
+          swift --version
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+          key: platform-check-${{ matrix.os }}
+      # Match existing builds: Node is ready, so the install hook need not switch it.
+      - name: Stand in for fnm
+        run: |
+          mkdir -p "$RUNNER_TEMP/fnm"
+          printf '#!/bin/sh\nexit 0\n' > "$RUNNER_TEMP/fnm/fnm"
+          chmod +x "$RUNNER_TEMP/fnm/fnm"
+          printf '@exit /b 0\r\n' > "$RUNNER_TEMP/fnm/fnm.cmd"
+          echo "$RUNNER_TEMP/fnm" >> "$GITHUB_PATH"
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/prepare-tools.mjs
+      - run: pnpm vite:build
+      - run: cargo check --locked --manifest-path src-tauri/Cargo.toml --all-targets
+      - run: cargo clippy --locked --manifest-path src-tauri/Cargo.toml --all-targets
