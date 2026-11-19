@@ -76,6 +76,9 @@ jobs:
       # HeroUI's control styles are in the CSS: a build that can't find @heroui/theme loses every one of them and the
       # controls look flat, with nothing else failing (see tailwind.config.ts)
       - run: grep -q rounded-medium dist/assets/*.css
+      # The route tree the build just regenerated passes Biome as committed would (biome.jsonc leaves its import order to
+      # TanStack): a build and CI must not disagree about it
+      - run: pnpm biome ci src/routeTree.gen.ts
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
