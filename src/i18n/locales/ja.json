@@ -441,9 +441,12 @@
       "pdf": {
         "title": "PDFの画質",
         "description": "クイック圧縮がPDFをどの程度小さくするか。テキストは鮮明なまま選択可能で、中の画像は解像度が下げられます。",
-        "level_small": "小（画面、メール）",
-        "level_medium": "中程度（ほとんどのドキュメント）",
-        "level_high": "高品質（印刷用）"
+        "level_small": "小",
+        "levelHint_small": "画面、メール",
+        "level_medium": "中程度",
+        "levelHint_medium": "ほとんどのドキュメント",
+        "level_high": "高品質",
+        "levelHint_high": "印刷用"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

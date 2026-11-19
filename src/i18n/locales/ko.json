@@ -441,9 +441,12 @@
       "pdf": {
         "title": "PDF 품질",
         "description": "빠른 압축이 PDF를 얼마나 작게 만드는지. 텍스트는 선명하게 유지되고 선택할 수 있으며, 내부의 이미지는 해상도가 낮아집니다.",
-        "level_small": "작음 (화면, 이메일)",
-        "level_medium": "중간 (대부분의 문서)",
-        "level_high": "높음 (인쇄)"
+        "level_small": "작음",
+        "levelHint_small": "화면, 이메일",
+        "level_medium": "중간",
+        "levelHint_medium": "대부분의 문서",
+        "level_high": "높음",
+        "levelHint_high": "인쇄"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

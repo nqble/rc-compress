@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Jakość PDF",
         "description": "Jak bardzo Szybka kompresja zmniejsza pliki PDF. Tekst pozostaje ostry i zaznaczalny; obrazy wewnątrz mają niższą rozdzielczość.",
-        "level_small": "Mały (ekran, e-mail)",
-        "level_medium": "Średni (większość dokumentów)",
-        "level_high": "Wysoka (druk)"
+        "level_small": "Mały",
+        "levelHint_small": "ekran, e-mail",
+        "level_medium": "Średni",
+        "levelHint_medium": "większość dokumentów",
+        "level_high": "Wysoka",
+        "levelHint_high": "druk"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

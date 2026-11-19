@@ -441,9 +441,12 @@
       "pdf": {
         "title": "PDF quality",
         "description": "How small Quick Compress makes PDFs. Text stays sharp and selectable; pictures inside get a lower resolution.",
-        "level_small": "Small (screen, email)",
-        "level_medium": "Medium (most documents)",
-        "level_high": "High (printing)"
+        "level_small": "Small",
+        "levelHint_small": "screen, email",
+        "level_medium": "Medium",
+        "levelHint_medium": "most documents",
+        "level_high": "High",
+        "levelHint_high": "printing"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",

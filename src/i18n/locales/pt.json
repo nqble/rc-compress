@@ -441,9 +441,12 @@
       "pdf": {
         "title": "Qualidade do PDF",
         "description": "O quão pequenos os PDFs ficam com a Compressão Rápida. O texto permanece nítido e selecionável; as imagens dentro dele recebem uma resolução mais baixa.",
-        "level_small": "Pequeno (tela, e-mail)",
-        "level_medium": "Médio (a maioria dos documentos)",
-        "level_high": "Alta (impressão)"
+        "level_small": "Pequeno",
+        "levelHint_small": "tela, e-mail",
+        "level_medium": "Médio",
+        "levelHint_medium": "a maioria dos documentos",
+        "level_high": "Alta",
+        "levelHint_high": "impressão"
       },
       "fileManagerMenu": {
         "section_macos": "Finder",
