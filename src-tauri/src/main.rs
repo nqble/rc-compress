@@ -822,7 +822,3 @@ async fn run() {
             },
         );
 }
-
-// Temporary CI witness; removed immediately after the expected-failure run.
-#[cfg(any(target_os = "macos", target_os = "windows"))]
-compile_error!("RC_PLATFORM_CI_EXPECTED_FAILURE");
