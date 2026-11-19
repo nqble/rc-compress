@@ -77,6 +77,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # The Rust build embeds the built web page (frontendDist) and the bundled tools, as `tauri build` does
       - run: node scripts/prepare-tools.mjs && pnpm vite:build
+      # HeroUI's control styles are in the CSS: a build that can't find @heroui/theme loses every one of them and the
+      # controls look flat, with nothing else failing (see tailwind.config.ts)
+      - run: grep -q rounded-medium dist/assets/*.css
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy
