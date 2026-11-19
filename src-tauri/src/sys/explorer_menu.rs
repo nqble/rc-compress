@@ -146,6 +146,24 @@ pub fn menu_choice(action: MenuAction) -> crate::tauri_commands::drop_queue::Men
     }
 }
 
+/// The action, as the log names it: every action used to log as "Quick Compress", so a "Compress by"
+/// right after one read as the same files queued twice
+fn action_label(menu: &crate::tauri_commands::drop_queue::MenuChoice) -> String {
+    if menu.remove_metadata {
+        return "Remove metadata".to_string();
+    }
+    if let Some(percent) = menu.target_percent {
+        return format!("Compress by {percent}%");
+    }
+    if let Some(megabytes) = menu.fit_to_mb {
+        return format!("Fit to {megabytes} MB");
+    }
+    if menu.fit_to_custom {
+        return "Fit to your size".to_string();
+    }
+    "Quick Compress".to_string()
+}
+
 /// Queues the files of a "Quick Compress", "Compress by N%", "Fit to size" or "Remove metadata" launch (`menu`).
 /// A chosen folder gives the media inside it, subfolders included (each copy is saved next to its original). Files
 /// rc-compress cannot compress (a `.txt`, a `.zip`) are skipped; when that is all of them, the tray shows a note.
@@ -154,7 +172,7 @@ pub fn quick_compress(
     paths: Vec<String>,
     menu: crate::tauri_commands::drop_queue::MenuChoice,
 ) {
-    log::info!("[explorer-menu] Quick Compress of {} files or folders", paths.len());
+    log::info!("[explorer-menu] {} of {} files or folders", action_label(&menu), paths.len());
     // No tray icon to show the progress on: a brief notice does (the main window compresses, hidden)
     #[cfg(target_os = "linux")]
     crate::sys::menu_notice::show(app_handle);
@@ -243,6 +261,16 @@ mod tests {
 
     fn file(path: &str) -> CollectedFile {
         CollectedFile { path: path.to_string(), relative_dir: String::new() }
+    }
+
+    #[test]
+    fn the_log_names_each_action() {
+        let label = |action| action_label(&menu_choice(action));
+        assert_eq!(label(MenuAction::QuickCompress), "Quick Compress");
+        assert_eq!(label(MenuAction::CompressBy(50)), "Compress by 50%");
+        assert_eq!(label(MenuAction::FitTo(Some(8))), "Fit to 8 MB");
+        assert_eq!(label(MenuAction::FitTo(None)), "Fit to your size");
+        assert_eq!(label(MenuAction::RemoveMetadata), "Remove metadata");
     }
 
     #[test]
